@@ -1,4 +1,4 @@
-var id, map, lat, lng;
+var id, map, lat, lng, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
 
 function showOnMap(zpos) { 
   map = new google.maps.Map(document.getElementById('map-canvas'), {
