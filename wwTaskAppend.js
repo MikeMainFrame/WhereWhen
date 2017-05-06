@@ -3,17 +3,12 @@ function wrapUp(wwObject) {
   var transaction = document.implementation.createDocument ("", "", null);  
   
   var zTask = transaction.createElement("task");  
-  zTask.setAttribute("timestamp",document.getElementById('zstatus').textContent);  
-  
-  for (ix = 0; ix < products.length; ix++) {     
-    if (parseInt(values[ix]) > 0) {
-      var zSlot = transaction.createElement("item");  
-      zSlot.setAttribute("value",values[ix]);
-      zSlot.setAttribute("product",products[ix]);    
-      zDay.appendChild(zSlot);
-    }          
-  }          
-  transaction.appendChild(zDay);
+  zTask.setAttribute("id",wwObject.id);  
+  zTask.setAttribute("lat",wwObject.lat);  
+  zTask.setAttribute("lng",wwObject.lng);  
+  zTask.setAttribute("timestamp",wwObject.timestamp);  
+  zTask.setAttribute("duration",wwObject.duration);  
+  transaction.appendChild(zTask);
   
   var xmlhttp = new XMLHttpRequest();    
   
