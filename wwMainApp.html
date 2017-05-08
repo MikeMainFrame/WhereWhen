@@ -5,20 +5,27 @@
     <meta charset="utf-8">
     <title>Radar Search Documentation :: TRITICUM</title>
     <style>
-      html, body, #map-canvas {
+      html, body, #wwMap {
         height: 100%;
         margin: 0px;
         padding: 0px
       }
+    button#start {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    background: #080;   
+}
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4FEx-OIBeLwAjGVY-Ln9bh8cPACDImYs&libraries=places,visualization&v=3.exp"></script>
   
 </head>
 <body>
-<div><h2 id="geolatlng">Where Are You</h2></div>
-<div id="map-canvas" />
-
+  <div id="wwMap" />
+  <div id="wwTask"/>
+  <form id="wwForm" name="zForm">
+    <button type="button" value="Submit" value="Start"></button>    
+  </form>
 </body>
-
-<script type="text/javascript" src="geo.js"></script>
+<script type="text/javascript" src="wwMonitor.js"></script>
 </html>
