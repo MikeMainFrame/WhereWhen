@@ -11,5 +11,5 @@ handlers:
 - url: /wwTaskAppend.js
   script: wwTaskAppend.js
 
-- url: /wwTaskAppend.js
-  script: wwTaskAppend.js
+- url: /wwTransaction.php
+  script: wwTransaction.php
