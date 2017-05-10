@@ -5,8 +5,11 @@ handlers:
 - url: /.*
   script: wwMainApp.php
   
-  - url: /wwMonitor.js
+- url: /wwMonitor.js
   script: wwMonitor.js
   
-  - url: /wwTaskAppend.js
+- url: /wwTaskAppend.js
+  script: wwTaskAppend.js
+
+- url: /wwTaskAppend.js
   script: wwTaskAppend.js
