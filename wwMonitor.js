@@ -1,7 +1,7 @@
 var id, map, lat, lng, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
-
+document.getElementById('wwTask').textContent ="MikeWasHere";
 function showOnMap(zpos) { 
-  map = new google.maps.Map(document.getElementById('map-canvas'), {
+  map = new google.maps.Map(document.getElementById('wwMap'), {
                              center: new google.maps.LatLng(zpos.coords.latitude, zpos.coords.longitude),
                              zoom: 15 });
                              var latlon = new google.maps.LatLng(zpos.coords.latitude, zpos.coords.longitude);
