@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <title>Radar Search Documentation :: TRITICUM</title>
     <style>
-      html, body, #wwMap {
+      html, body, #wwMap, #wwTask {
         height: 100%;
         margin: 0px;
         padding: 0px
       }
-    button#start {
+    button {
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px;
@@ -21,11 +21,11 @@
   
 </head>
 <body>
-  <div id="wwMap" />
-  <div id="wwTask"/>
   <form id="wwForm" name="zForm">
     <button type="button" value="Submit" value="Start"></button>    
   </form>
+  <div id="wwMap" />
+  <div id="wwTask"/>
 </body>
 <script type="text/javascript" src="wwMonitor.js"></script>
 <script type="text/javascript" src="wwTaskAppend.js"></script>
