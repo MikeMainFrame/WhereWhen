@@ -2,9 +2,7 @@ var id, map, lat, lng, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp
 document.getElementById('wwTask').textContent ="MikeWasHere";
 
 function showOnMap(latLng) { 
-  var zCenter = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};
-  var map = new google.maps.Map(document.getElementById('wwMap'), { zoom: 4, center: zCenter });
-  var marker = new google.maps.Marker({ position: zCenter, map: map });      
+  map = new google.maps.Map(document.getElementById('wwMap'), {center: {lat: latLng.coords.latitude, lng: latLng.coords.longitude }, zoom: 4}); 
 }
 function GetGPSCoords(latLng) {
    document.getElementById('geolatlng').textContent = latLng.coords.latitude + ", " + latLng.coords.longitude;
