@@ -2,14 +2,17 @@ runtime: php55
 api_version: 1
 
 handlers:
-- url: /.*
-  script: wwMainApp.php
+- url: staticdata
+  static_dir: /staticdata
+    
+- url: /staticdata/wwMonitor.js
+  script: /staticdata/wwMonitor.js
   
-- url: /wwMonitor.js
-  script: wwMonitor.js
-  
-- url: /wwTaskAppend.js
-  script: wwTaskAppend.js
-
+- url: /staticdata/wwTaskAppend.js
+  script: /staticdata/wwTaskAppend.js
+    
 - url: /wwTransaction.php
   script: wwTransaction.php
+  
+- url: /wwMainApp.php
+  script: wwMainApp.php
