@@ -24,7 +24,7 @@
 <body>
   <h1 id="geolatlng" />
   <form id="wwForm" name="zForm">
-    <button type="button" value="Submit" value="Start"></button>    
+    <button type="button" value="Start">Start</button>    
   </form>
   <div id="wwMap" />
   <div id="wwTask"/>
