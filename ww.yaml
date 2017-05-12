@@ -14,5 +14,5 @@ handlers:
 - url: /wwTransaction.php
   script: wwTransaction.php
   
-- url: /wwMainApp.php
+- url: /.*
   script: wwMainApp.php
