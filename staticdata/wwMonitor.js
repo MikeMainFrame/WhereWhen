@@ -1,12 +1,12 @@
 var id, map, lat, lng, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
 document.getElementById('wwTask').textContent ="MikeWasHere";
 
-function showOnMap(latLng) { 
+function gMap(latLng) { 
   map = new google.maps.Map(document.getElementById('wwMap'), {center: {lat: latLng.coords.latitude, lng: latLng.coords.longitude }, zoom: 4}); 
 }
 function GetGPSCoords(latLng) {
    document.getElementById('geolatlng').textContent = latLng.coords.latitude + ", " + latLng.coords.longitude;
-   showOnMap(latLng);
+   gMap(latLng);
    navigator.geolocation.clearWatch(id);
 }
 function error(err) {
