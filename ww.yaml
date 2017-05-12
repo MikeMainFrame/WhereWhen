@@ -2,8 +2,8 @@ runtime: php55
 api_version: 1
 
 handlers:
-- url: staticdata
-  static_dir: /staticdata
+- url: /staticdata
+  static_dir: staticdata
     
 - url: /staticdata/wwMonitor.js
   script: /staticdata/wwMonitor.js
