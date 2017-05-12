@@ -14,6 +14,7 @@
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px;
+    width: 40%;  
     background: #080;   
 }
     </style>
@@ -27,6 +28,6 @@
   <div id="wwMap" />
   <div id="wwTask"/>
 </body>
-<script type="text/javascript" src="wwMonitor.js"></script>
-<script type="text/javascript" src="wwTaskAppend.js"></script>
+<script type="text/javascript" src="staticdata/wwMonitor.js"></script>
+<script type="text/javascript" src="staicdata/wwTaskAppend.js"></script>
 </html>
