@@ -1,12 +1,9 @@
 var id, map, lat, lng, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
 document.getElementById('wwTask').textContent ="MikeWasHere";
 function showOnMap(latLng) { 
-  var zlatlng = new google.maps.LatLng(latLng.coords.latitude, latLng.coords.longitude);
   map = new google.maps.Map(document.getElementById('wwMap'), {
                              center: new google.maps.LatLng(latLng.coords.latitude, latLng.coords.longitude),
-                             zoom: 15 });
-                             var latlon = new google.maps.LatLng(latLng.coords.latitude, latLng.coords.longitude);
-                             var marker = new google.maps.Marker({position: zlatlon, map:map,title: "boom"});
+                             zoom: 15 });                         
 }
 function GetGPSCoords(latLng) {
    document.getElementById('geolatlng').textContent = latLng.coords.latitude + ", " + latLng.coords.longitude;
