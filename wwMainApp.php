@@ -19,14 +19,14 @@
     </style>  
 </head>
 <body>
-  <h1 id="geolatlng" />
+  <h1 id="geolatlng">h1</h1>
   <form id="wwForm" name="zForm">
     <button type="button" value="Start">Start</button>    
   </form>
-  <div id="wwMap" />
-  <div id="wwTask"/>
+  <div id="wwMap">wwMap</div>
+  <div id="wwTask">wwTask</div>
 </body>
 <script type="text/javascript" src="staticdata/wwMonitor.js"></script>
 <script type="text/javascript" src="staticdata/wwTaskAppend.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV112FdOVJA4U5BSwImhPzEI73mgYUjQ"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV112FdOVJA4U5BSwImhPzEI73mgYUjQ"></script>
 </html>
