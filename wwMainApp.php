@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,9 +16,7 @@
     width: 40%;  
     background: #080;   
 }
-    </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV112FdOVJA4U5BSwImhPzEI73mgYUjQ"></script>
-  
+    </style>  
 </head>
 <body>
   <h1 id="geolatlng" />
@@ -31,4 +28,5 @@
 </body>
 <script type="text/javascript" src="staticdata/wwMonitor.js"></script>
 <script type="text/javascript" src="staticdata/wwTaskAppend.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV112FdOVJA4U5BSwImhPzEI73mgYUjQ"></script>
 </html>
