@@ -1,4 +1,5 @@
 var id, map, lat, lng, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
+
 document.getElementById('wwTask').textContent ="MikeWasHere";
 
 function gMap(latLng) { 
