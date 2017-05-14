@@ -1,11 +1,11 @@
 var id, map, lat, lng, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
 
-document.getElementById('wwTask').textContent ="MikeWasHere";
+document.getElementById('wwTask').textContent ="Mike Was Here";
 
 function gMap(latLng) { 
   const zWhere = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};  
   zMap = new google.maps.Map(document.getElementById('wwMap'), {center: zWhere, zoom: 4}); 
-  marker = new google.maps.LatLng(position: zWhere, map: zMap);
+  zMarker = new google.maps.LatLng(position: zWhere, map: zMap);
 }
 function GetGPSCoords(latLng) {
    document.getElementById('geolatlng').textContent = latLng.coords.latitude + ", " + latLng.coords.longitude;
