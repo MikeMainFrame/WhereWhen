@@ -28,7 +28,15 @@
     <button type="button" value="Start">Start</button>    
   </form>
   <div id="wwMap">wwMap</div>
-  <div id="wwTask">wwTask</div>
+  <div id="wwTask">
+  <?php
+    echo
+    $dom = new DOMDocument(); 
+    $zFileContents = file_get_contents("gs://wherewhen/XML/wwTask.xml");
+    $dom->loadXML($zFileContents); 
+    echo $dom->saveXML();
+  ?>
+  </div>
 </body>
 <script type="text/javascript" src="staticdata/wwMonitor.js"></script>
 <script type="text/javascript" src="staticdata/wwTaskAppend.js"></script>
