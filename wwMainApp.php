@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Radar Search Documentation :: TRITICUM</title>
+    <title>WhereWhen :: by Michael Kenneth Rasch :: TRITICUM</title>
     <style>
       html, body, #wwMap, #wwTask {
         height: 100%;
@@ -10,11 +10,10 @@
         padding: 0px
       }
     button {
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
+    padding: 4px;  
     width: 40%;  
     height: 2em;
+    border:none;
     background: #080;   
 }
     </style>  
