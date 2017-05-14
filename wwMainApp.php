@@ -20,7 +20,6 @@
     background: #080;   
 }
     </style>  
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV112FdOVJA4U5BSwImhPzEI73mgYUjQ"></script>
 </head>
 <body>
   <h1 id="geolatlng">h1</h1>
@@ -39,6 +38,7 @@
   ?>
   </div>
 </body>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV112FdOVJA4U5BSwImhPzEI73mgYUjQ" async defer></script>
 <script type="text/javascript" src="staticdata/wwMonitor.js"></script>
 <script type="text/javascript" src="staticdata/wwTaskAppend.js"></script>
 </html>
