@@ -39,6 +39,6 @@
   ?>
   </div>
 </body>
-<script type="text/javascript" src="staticdata/wwMonitor.js"></script>
+<script type="text/javascript" src="staticdata/wwMonitor1.js"></script>
 <script type="text/javascript" src="staticdata/wwTaskAppend.js"></script>
 </html>
