@@ -3,7 +3,9 @@ var id, map, lat, lng, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp
 document.getElementById('wwTask').textContent ="MikeWasHere";
 
 function gMap(latLng) { 
-  map = new google.maps.Map(document.getElementById('wwMap'), {center: {lat: latLng.coords.latitude, lng: latLng.coords.longitude }, zoom: 4}); 
+  const zWhere = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};  
+  zMap = new google.maps.Map(document.getElementById('wwMap'), {center: zWhere, zoom: 4}); 
+  marker = new google.maps.LatLng( position: zWhere, map: zMap};
 }
 function GetGPSCoords(latLng) {
    document.getElementById('geolatlng').textContent = latLng.coords.latitude + ", " + latLng.coords.longitude;
