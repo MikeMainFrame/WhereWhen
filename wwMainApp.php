@@ -9,10 +9,13 @@
         margin: 0px;
         padding: 0px
       }
+      
     button {
     padding: 4px;  
     width: 40%;  
     height: 2em;
+    font-size: large;
+    color: white;  
     border:none;
     background: #080;   
 }
