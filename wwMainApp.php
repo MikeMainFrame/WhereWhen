@@ -32,7 +32,7 @@
   <?php
     echo
     $dom = new DOMDocument(); 
-    $zFileContents = file_get_contents("gs://wherewhen/XML/wwTask.xml");
+    $zFileContents = file_get_contents("gs://wherewhen/XML/wwtask.xml");
     $dom->loadXML($zFileContents); 
     echo $dom->saveXML();
   ?>
