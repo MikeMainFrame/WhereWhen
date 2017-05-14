@@ -4,8 +4,8 @@ document.getElementById('wwTask').textContent ="Mike Was Here";
 
 function gMap(latLng) { 
   const zWhere = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};  
-  zMap = new google.maps.Map(document.getElementById('wwMap'), {center: zWhere, zoom: 4}); 
-  zMarker = new google.maps.LatLng(position: zWhere, map: zMap);
+  var zMap = new google.maps.Map(document.getElementById('wwMap'), {center: zWhere, zoom: 4}); 
+  var zMarker = new google.maps.Marker({position: zWhere, map: zMap});
 }
 function GetGPSCoords(latLng) {
    document.getElementById('geolatlng').textContent = latLng.coords.latitude + ", " + latLng.coords.longitude;
