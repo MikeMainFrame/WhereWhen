@@ -5,20 +5,28 @@
     <title>WhereWhen :: by Michael Kenneth Rasch :: TRITICUM</title>
     <style>
       html, body, #wwMap, #wwTask {
-        height: 100%;
+        height: 50%;
         margin: 0px;
         padding: 0px
       }
-      
-    button {
-    padding: 4px;  
-    width: 40%;  
-    height: 2em;
-    font-size: large;
-    color: white;  
-    border:none;
-    background: #080;   
-}
+      button {
+        padding: 4px;  
+        width: 40%;  
+        height: 2em;
+        font-size: large;
+        color: white;  
+        border:none;
+        background: #080;   
+      }
+      #taskContainer {
+       width:100%,
+       padding: 4px        
+      }  
+      .taskItems {
+      color: #000;
+      font-size: small;
+      font-weight: 900  
+      }
     </style>  
 </head>
 <body>
@@ -34,7 +42,19 @@
     $dom = new DOMDocument(); 
     $zFileContents = file_get_contents("gs://wherewhen/XML/wwtask.xml");
     $dom->loadXML($zFileContents); 
-    echo $dom->saveXML();
+    echo "<div id='taskContainer'>";      
+    $tasks = $dom->getElementsByTagName('task');     
+    echo "<span class='taskItems'>" . $tasks->item(0)->parentNode->getAttribute('id') . "</span>";
+    foreach ($tasks as $task) {
+      echo "<span class='taskItems'>" . $task->getAttribute('duration') . "</span>";
+      echo "<span class='taskItems'>" . $task->getAttribute('timestamp') . "</span>";
+      echo "<span class='taskItems'>" . $task->getAttribute('lat') . "</span>";
+      echo "<span class='taskItems'>" . $task->getAttribute('lng') . "</span>";
+      echo PHP_EOL;
+    }  
+}
+    echo "</div>";
+    // echo $dom->saveXML();
   ?>
   </div>
 </body>
