@@ -13,7 +13,7 @@ function showWhereWhenOnMap(latLng) {
      map: zMap,
      icon: {
        path: google.maps.SymbolPath.CIRCLE, scale: 10
-     }
+     },
      animation: google.maps.Animation.DROP
   });
 }
