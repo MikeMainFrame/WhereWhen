@@ -42,6 +42,7 @@
     $dom = new DOMDocument(); 
     $zFileContents = file_get_contents("gs://wherewhen/XML/wwtask.xml");
     $dom->loadXML($zFileContents); 
+    
     echo "<div id='taskContainer'>";      
     $tasks = $dom->getElementsByTagName('task');     
     echo "<span class='taskItems'>" . $tasks->item(0)->parentNode->getAttribute('id') . "</span>";
@@ -52,7 +53,6 @@
       echo "<span class='taskItems'>" . $task->getAttribute('lng') . "</span>";
       echo PHP_EOL;
     }  
-}
     echo "</div>";
     // echo $dom->saveXML();
   ?>
