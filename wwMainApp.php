@@ -31,7 +31,7 @@
     </style>  
 </head>
 <body>
-  <h1 id="geolatlng">h1</h1>
+  <h1 id="wwTask">h1</h1>
   <form id="wwForm" name="zForm">
     <button type="button" value="Start">Start</button>    
   </form>
