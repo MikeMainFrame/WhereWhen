@@ -31,7 +31,7 @@
     </style>  
 </head>
 <body>
-  <h1 id="wwTask">h1</h1>
+  <h1 id="geolatlng">h1</h1>
   <form id="wwForm" name="zForm">
     <button type="button" value="Start">Start</button>    
   </form>
@@ -54,8 +54,10 @@
       echo PHP_EOL;
     }  
     echo "</div>";
+   
     // echo $dom->saveXML();
   ?>
+<div id="wwTask" />
 </body>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV112FdOVJA4U5BSwImhPzEI73mgYUjQ" async defer></script>
 <script type="text/javascript" src="staticdata/wwMonitor.js"></script>
