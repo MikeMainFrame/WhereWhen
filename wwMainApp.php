@@ -24,6 +24,7 @@
       }  
       .taskItems {
       color: #000;
+      padding: 0 4px; 
       font-size: small;
       font-weight: 900  
       }
