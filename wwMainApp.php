@@ -30,9 +30,9 @@
     echo "<g text-anchor='right' fill='#fff'>";
     
     foreach ($tasks as $task) {      
-      echo "<rect x='0' y='" . y . "' width='600' height='50' rx='5' fill='#000060' />";
-      echo "<rect x='20' y='" . y + 10 . "' width='40' height='30' rx='5' fill='#0000f0' />";
-      echo "<text x='30' y='" .  y + 10 . $task->getAttribute('duration') . " />";
+      echo "<rect x='0' y='" . $y . "' width='600' height='50' rx='5' fill='#000060' />";
+      echo "<rect x='20' y='" . $y + 10 . "' width='40' height='30' rx='5' fill='#0000f0' />";
+      echo "<text x='30' y='" .  $y + 10 . $task->getAttribute('duration') . " />";
       $y = $y + 50;
       //echo "<span class='taskItems'>" . $task->getAttribute('timestamp') . "</span>";
       //echo "<span class='taskItems'>" . $task->getAttribute('lat') . "</span>";
