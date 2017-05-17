@@ -23,6 +23,7 @@
     $dom = new DOMDocument(); 
     $zFileContents = file_get_contents("gs://wherewhen/XML/wwtask.xml");
     $dom->loadXML($zFileContents); 
+    $tasks = $dom->getElementsByTagName('task');
     
     $y = 0; $x = 0;
     
