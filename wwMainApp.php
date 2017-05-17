@@ -9,33 +9,14 @@
         margin: 0px;
         padding: 0px
       }
-      button {
-        padding: 4px;  
-        width: 40%;  
-        height: 2em;
-        font-size: large;
-        color: white;  
-        border:none;
-        background: #080;   
-      }
-      #taskContainer {
-       width:100%,
-       padding: 4px        
-      }  
-      .taskItems {
-      color: #000;
-      padding: 0 4px; 
-      font-size: small;
-      font-weight: 900  
-      }
     </style>  
 </head>
 <body>
-  <h1 id="geolatlng">h1</h1>
-  <form id="wwForm" name="zForm">
-    <button type="button" value="Start">Start</button>    
-  </form>
   <div id="wwMap">wwMap</div>
+  <svg viewBox="0 0 600 300" style="width: 100%; font-family: 'Racing Sans One'"  id="zTasks" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <link xmlns="http://www.w3.org/1999/xhtml" href="http://fonts.googleapis.com/css?family=Racing+Sans+One|Six+Caps" type="text/css" rel="stylesheet" />
+    </defs>
   <?php
     error_reporting(E_ALL);
     ini_set("display_errors", 1);
@@ -43,20 +24,24 @@
     $zFileContents = file_get_contents("gs://wherewhen/XML/wwtask.xml");
     $dom->loadXML($zFileContents); 
     
-    echo "<div id='taskContainer'>";      
-    $tasks = $dom->getElementsByTagName('task');     
-    echo "<span class='taskItems'>" . $tasks->item(0)->parentNode->getAttribute('id') . "</span>";
-    foreach ($tasks as $task) {
-      echo "<span class='taskItems'>" . $task->getAttribute('duration') . "</span>";
-      echo "<span class='taskItems'>" . $task->getAttribute('timestamp') . "</span>";
-      echo "<span class='taskItems'>" . $task->getAttribute('lat') . "</span>";
-      echo "<span class='taskItems'>" . $task->getAttribute('lng') . "</span>";
-      echo PHP_EOL;
+    $y = 0; $x = 0;
+    
+    echo "<g text-anchor='right' fill='#fff>;
+    
+    foreach ($tasks as $task) {      
+      echo "<rect x='0' y='" . y ."' width=600 height=50 rx='5' fill='#000060' />";
+      echo "<rect x='20' y='" . y + 10 . "' width=40 height=30 rx='5' fill='#0000f0' />";
+      echo "<text x='' y='" .  y + 10 . $task->getAttribute('duration') . " />";
+      $y = $y + 50;
+      //echo "<span class='taskItems'>" . $task->getAttribute('timestamp') . "</span>";
+      //echo "<span class='taskItems'>" . $task->getAttribute('lat') . "</span>";
+      //echo "<span class='taskItems'>" . $task->getAttribute('lng') . "</span>";
+      //echo PHP_EOL;*/
     }  
-    echo "</div>";
-   
+    echo "</g>";   
     // echo $dom->saveXML();
   ?>
+  </svg>
 <div id="wwTask" />
 </body>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV112FdOVJA4U5BSwImhPzEI73mgYUjQ" async defer></script>
