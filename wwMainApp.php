@@ -42,6 +42,7 @@
     // echo $dom->saveXML();
   ?>
   </svg>
+  <pre id="slam">pre</pre>
   <div id="wwMap">wwMap</div>
 </body>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV112FdOVJA4U5BSwImhPzEI73mgYUjQ" async defer></script>
