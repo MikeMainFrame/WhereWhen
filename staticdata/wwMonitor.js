@@ -4,7 +4,7 @@ function showWhereWhenOnMap(latLng) {
   const zWhere = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};  
   var zMap = new google.maps.Map(document.getElementById('wwMap'), {
       center: zWhere,
-      zoom: 15, 
+      zoom: 20, 
     }); 
   var zMarker = new google.maps.Marker({
      position: zWhere,
@@ -34,5 +34,5 @@ xmlhttp.onreadystatechange=function() {
   }
 };
 
-xmlhttp.open("GET","https://storage.googleapis.com/wherewhen/XML/wwtask.xml",true);  
+xmlhttp.open("GET","https://storage.cloud.google.com/wherewhen/XML/wwtask.xml",true);  
 xmlhttp.send();
