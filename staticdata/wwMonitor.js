@@ -29,10 +29,39 @@ id = navigator.geolocation.watchPosition(GetGPSCoords, error, { enableHighAccura
 var xmlhttp = new XMLHttpRequest();
 
 xmlhttp.onreadystatechange=function() { 
-  if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-    var zstatus = document.getElementById('pre'); zstatus.textContent = xmlhttp.responseText;
+  if (xmlhttp.readyState==4 && xmlhttp.status==200) {    
+    buildTaskLines(xmlhttp.responseText);
   }
 };
 
 xmlhttp.open("GET","wwGetTasks.php",true);  
 xmlhttp.send();
+
+function buildTaskLines(data) {
+  var hook = document.getElementById('wwTasks')
+  
+  var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
+  rect.setAttribute("x", 0);
+  rect.setAttribute("y", 0);    
+  rect.setAttribute("width", 600);    
+  rect.setAttribute("height", 50);    
+  rect.setAttribute("rx", 5);        
+  rect.setAttribute("fill", '#000060');        
+  hook.appendChild(rect); 
+  
+  var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
+  rect.setAttribute("x", 20);
+  rect.setAttribute("y", 10);    
+  rect.setAttribute("width", 00);    
+  rect.setAttribute("height", 30);    
+  rect.setAttribute("rx", 5);        
+  rect.setAttribute("fill", '#0000f0');        
+  hook.appendChild(rect); 
+  
+  var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
+  text.setAttribute("x", 30);
+  text.setAttribute("y", 30);    
+  text.textContent = '3600';
+  hook.appendChild(text); 
+  
+}
