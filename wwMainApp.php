@@ -19,8 +19,7 @@
     
   
   <?php
-    echo "<g text-anchor='right' fill='#fff' font-family='Racing Sans One' id='wwTasks' >";
-    /*
+       
     error_reporting(E_ALL);
     ini_set("display_errors", 1);
     $dom = new DOMDocument(); 
@@ -30,20 +29,20 @@
     
     $y = 0; $x = 0;
     
-    echo "<g text-anchor='right' fill='#fff' font-family='Racing Sans One'>";
+    echo "<g text-anchor='right' fill='#fff' font-family='Racing Sans One' id='wwTasks'>";
     
-    foreach ($tasks as $task) {      
-      echo "<rect x='000' y='" . $y . "' width='600' height='50' rx='5' fill='#000060' />";
-      echo "<rect x='020' y='" . ($y + 10) . "' width='60' height='30' rx='5' fill='#0000f0' />";
-      echo "<text x='030' y='" . ($y + 30) . "'>" . $task->getAttribute('duration') . "</text>";
-      $y = $y + 50;
+    //foreach ($tasks as $task) {      
+      //echo "<rect x='000' y='" . $y . "' width='600' height='50' rx='5' fill='#000060' />";
+      //echo "<rect x='020' y='" . ($y + 10) . "' width='60' height='30' rx='5' fill='#0000f0' />";
+      //echo "<text x='030' y='" . ($y + 30) . "'>" . $task->getAttribute('duration') . "</text>";
+      //$y = $y + 50;
       //echo "<span class='taskItems'>" . $task->getAttribute('timestamp') . "</span>";
       //echo "<span class='taskItems'>" . $task->getAttribute('lat') . "</span>";
       //echo "<span class='taskItems'>" . $task->getAttribute('lng') . "</span>";
       //echo PHP_EOL;*/
     }  
     echo "</g>";   
-    */
+   
     // echo $dom->saveXML();
     
   ?>
