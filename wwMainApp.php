@@ -40,7 +40,7 @@
       //echo "<span class='taskItems'>" . $task->getAttribute('lat') . "</span>";
       //echo "<span class='taskItems'>" . $task->getAttribute('lng') . "</span>";
       //echo PHP_EOL;*/
-    }  
+    //}  
     echo "</g>";   
    
     // echo $dom->saveXML();
