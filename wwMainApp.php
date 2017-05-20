@@ -16,7 +16,11 @@
     <defs>
       <link xmlns="http://www.w3.org/1999/xhtml" href="https://fonts.googleapis.com/css?family=Racing+Sans+One|Six+Caps" type="text/css" rel="stylesheet" />
     </defs>
+    
+  
   <?php
+    echo "<g text-anchor='right' fill='#fff' font-family='Racing Sans One' id='wwTasks' >";
+    /*
     error_reporting(E_ALL);
     ini_set("display_errors", 1);
     $dom = new DOMDocument(); 
@@ -39,10 +43,11 @@
       //echo PHP_EOL;*/
     }  
     echo "</g>";   
+    */
     // echo $dom->saveXML();
+    
   ?>
   </svg>
-  <pre id="slam">pre</pre>
   <div id="wwMap">wwMap</div>
 </body>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV112FdOVJA4U5BSwImhPzEI73mgYUjQ" async defer></script>
