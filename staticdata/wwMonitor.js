@@ -25,3 +25,14 @@ function error(err) {
   alert('ERROR(' + err.code + '): ' + err.message);
 }
 id = navigator.geolocation.watchPosition(GetGPSCoords, error, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
+
+var xmlhttp = new XMLHttpRequest();
+
+xmlhttp.onreadystatechange=function() { 
+  if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+    var zstatus = document.getElementById('pre'); zstatus.textContent = xmlhttp.responseText;
+  }
+};
+
+xmlhttp.open("GET","https://storage.googleapis.com/wherewhen/XML/wwtask.xml",true);  
+xmlhttp.send();
