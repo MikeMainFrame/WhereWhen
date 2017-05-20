@@ -30,7 +30,7 @@ var xmlhttp = new XMLHttpRequest();
 
 xmlhttp.onreadystatechange=function() { 
   if (xmlhttp.readyState==4 && xmlhttp.status==200) {    
-    buildTaskLines(xhr.responseXML.documentElement);
+    buildTaskLines(xmlhttp.responseXML.documentElement);
   }
 };
 
