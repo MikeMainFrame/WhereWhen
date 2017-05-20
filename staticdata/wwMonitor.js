@@ -34,5 +34,5 @@ xmlhttp.onreadystatechange=function() {
   }
 };
 
-xmlhttp.open("GET","https://storage.cloud.google.com/wherewhen/XML/wwtask.xml",true);  
+xmlhttp.open("GET","wwGetTasks.php",true);  
 xmlhttp.send();
