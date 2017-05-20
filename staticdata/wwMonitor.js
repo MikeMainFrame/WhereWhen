@@ -30,15 +30,22 @@ var xmlhttp = new XMLHttpRequest();
 
 xmlhttp.onreadystatechange=function() { 
   if (xmlhttp.readyState==4 && xmlhttp.status==200) {    
-    buildTaskLines(xmlhttp.responseText);
+    buildTaskLines(xhr.responseXML.documentElement);
   }
 };
 
 xmlhttp.open("GET","wwGetTasks.php",true);  
 xmlhttp.send();
 
-function buildTaskLines(data) {
-  var hook = document.getElementById('wwTasks')
+function buildTaskLines(root) {
+  var hook = document.getElementById('wwTasks');
+  var zTasks = root.getElementsByTagName('task');
+  
+  for (let task of zTasks) {
+    console.log(task.getAttribute('duration'))
+    console.log(task.getAttribute('timestamp'))
+  }
+  
   
   var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
   rect.setAttribute("x", 0);
@@ -61,7 +68,7 @@ function buildTaskLines(data) {
   var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
   text.setAttribute("x", 30);
   text.setAttribute("y", 30);    
-  text.textContent = '3600';
+  text.textContent = root.getElementsByTagName("task")
   hook.appendChild(text); 
   
 }
