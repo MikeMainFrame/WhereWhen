@@ -4,5 +4,5 @@
   $zFileContents = file_get_contents("gs://wherewhen/XML/wwtask.xml");
   $dom = new DOMDocument;
   $dom->loadXML($zFileContents);
-  $dom->saveXML();
+  echo $dom->saveXML();
 ?>
