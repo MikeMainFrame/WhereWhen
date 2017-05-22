@@ -27,6 +27,7 @@ function error(err) {
 id = navigator.geolocation.watchPosition(GetGPSCoords, error, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
 
 var xmlhttp = new XMLHttpRequest();
+xmlhttp.overrideMimeType('application/xml');
 
 xmlhttp.onreadystatechange=function() { 
   if (xmlhttp.readyState==4 && xmlhttp.status==200) {    
