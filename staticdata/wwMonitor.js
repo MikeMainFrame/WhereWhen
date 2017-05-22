@@ -43,35 +43,29 @@ function buildTaskLines(root) {
   var zTasks = root.getElementsByTagName('task');
   
   for (let task of zTasks) {
-    console.log(task.getAttribute('duration'))
-    console.log(task.getAttribute('timestamp'))
+    var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
+    rect.setAttribute("x", 0);
+    rect.setAttribute("y", 0);    
+    rect.setAttribute("width", 600);    
+    rect.setAttribute("height", 50);    
+    rect.setAttribute("rx", 5);        
+    rect.setAttribute("fill", '#000060');        
+    rect.setAttribute("zid", task.getAttribute('id'));        
+    hook.appendChild(rect); 
+  
+    var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
+    rect.setAttribute("x", 20);
+    rect.setAttribute("y", 10);    
+    rect.setAttribute("width", 00);    
+    rect.setAttribute("height", 30);    
+    rect.setAttribute("rx", 5);        
+    rect.setAttribute("fill", '#0000f0');        
+    hook.appendChild(rect); 
+  
+    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
+    text.setAttribute("x", 30);
+    text.setAttribute("y", 30);    
+    text.textContent = task.getAttribute('duration'))
+    hook.appendChild(text); 
   }
-  /**
-  *  make line
-  */
-  var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
-  rect.setAttribute("x", 0);
-  rect.setAttribute("y", 0);    
-  rect.setAttribute("width", 600);    
-  rect.setAttribute("height", 50);    
-  rect.setAttribute("rx", 5);        
-  rect.setAttribute("fill", '#000060');        
-  rect.setAttribute("zid", task.getAttribute('id'));        
-  hook.appendChild(rect); 
-  
-  var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
-  rect.setAttribute("x", 20);
-  rect.setAttribute("y", 10);    
-  rect.setAttribute("width", 00);    
-  rect.setAttribute("height", 30);    
-  rect.setAttribute("rx", 5);        
-  rect.setAttribute("fill", '#0000f0');        
-  hook.appendChild(rect); 
-  
-  var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-  text.setAttribute("x", 30);
-  text.setAttribute("y", 30);    
-  text.textContent = root.getElementsByTagName("task")
-  hook.appendChild(text); 
-  
 }
