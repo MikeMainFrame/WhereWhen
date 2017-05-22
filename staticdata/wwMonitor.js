@@ -46,8 +46,9 @@ function buildTaskLines(root) {
     console.log(task.getAttribute('duration'))
     console.log(task.getAttribute('timestamp'))
   }
-  
-  
+  /**
+  *  make line
+  */
   var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
   rect.setAttribute("x", 0);
   rect.setAttribute("y", 0);    
@@ -55,6 +56,7 @@ function buildTaskLines(root) {
   rect.setAttribute("height", 50);    
   rect.setAttribute("rx", 5);        
   rect.setAttribute("fill", '#000060');        
+  rect.setAttribute("zid", task.getAttribute('id');        
   hook.appendChild(rect); 
   
   var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
