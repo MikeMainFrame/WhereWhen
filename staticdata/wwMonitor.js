@@ -41,10 +41,11 @@ xmlhttp.send();
 function buildTaskLines(root) {
   var hook = document.getElementById('wwTasks');
   var zTasks = root.getElementsByTagName('task');
+  var x = 0;
   
   for (let task of zTasks) {
     var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
-    rect.setAttribute("x", 0);
+    rect.setAttribute("x", x);
     rect.setAttribute("y", 0);    
     rect.setAttribute("width", 600);    
     rect.setAttribute("height", 50);    
@@ -54,7 +55,7 @@ function buildTaskLines(root) {
     hook.appendChild(rect); 
   
     var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
-    rect.setAttribute("x", 20);
+    rect.setAttribute("x", x + 20);
     rect.setAttribute("y", 10);    
     rect.setAttribute("width", 00);    
     rect.setAttribute("height", 30);    
@@ -63,9 +64,10 @@ function buildTaskLines(root) {
     hook.appendChild(rect); 
   
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", 30);
+    text.setAttribute("x", x + 30);
     text.setAttribute("y", 30);    
-    text.textContent = task.getAttribute('duration'))
+    text.textContent = task.getAttribute('duration');
     hook.appendChild(text); 
+    x = x + 60;
   }
 }
