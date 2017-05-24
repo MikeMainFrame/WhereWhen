@@ -50,7 +50,7 @@ function buildTaskLines(root) {
     rect.setAttribute("width", 600);    
     rect.setAttribute("height", 50);    
     rect.setAttribute("rx", 5);        
-    rect.setAttribute("fill", rgba(59, 120, 231,1));        
+    rect.setAttribute("fill", "rgba(59, 120, 231,1)");        
     rect.setAttribute("zid", task.getAttribute('id'));        
     hook.appendChild(rect); 
   
