@@ -10,7 +10,9 @@ function showWhereWhenOnMap(latLng) {
      position: zWhere,
      map: zMap,
      icon: {
-       path: google.maps.SymbolPath.CIRCLE, scale: 10
+       path: google.maps.SymbolPath.CIRCLE,
+       scale: 10,
+       strokeWeight: 1
      },
      animation: google.maps.Animation.DROP
   });
