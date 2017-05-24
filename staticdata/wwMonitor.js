@@ -4,7 +4,7 @@ function showWhereWhenOnMap(latLng) {
   const zWhere = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};  
   var zMap = new google.maps.Map(document.getElementById('wwMap'), {
       center: zWhere,
-      zoom: 20, 
+      zoom: 18, 
     }); 
   var zMarker = new google.maps.Marker({
      position: zWhere,
@@ -12,6 +12,7 @@ function showWhereWhenOnMap(latLng) {
      icon: {
        path: google.maps.SymbolPath.CIRCLE,
        scale: 10,
+       strokeColor: '#FF0000',
        strokeWeight: 1
      },
      animation: google.maps.Animation.DROP
@@ -57,12 +58,14 @@ function buildTaskLines(root) {
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
     text.setAttribute("x", x + 10);
     text.setAttribute("y", y + 30);    
+    text.setAttribute("fill", "#FF0000");
     text.textContent = task.getAttribute('id');
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
     text.setAttribute("x", x + 60);
     text.setAttribute("y", y + 30);    
+    text.setAttribute("fill", "#FF0000");
     text.textContent = task.getAttribute('duration');
     hook.appendChild(text); 
     
