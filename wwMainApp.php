@@ -21,7 +21,7 @@
       <text  x=60 y=30 text-anchor="right" fill="#fff">Duration seconds</text>
       <text x=300 y=30 text-anchor="right" fill="#fff">Timestamp</text>
       <text x=450 y=30 text-anchor="right" fill="#fff">Latitude</text>
-      <text x=600 y=30 text-anchor="right" fill="#fff">Lontitude</text>
+      <text x=600 y=30 text-anchor="right" fill="#fff">Longitude</text>
     </g>
     <g  id="wwTasks" text-anchor="right" fill="#000" font-family="Racing Sans One" >
     </g>
