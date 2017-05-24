@@ -28,13 +28,11 @@ id = navigator.geolocation.watchPosition(GetGPSCoords, error, { enableHighAccura
 
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.overrideMimeType('application/xml');
-
 xmlhttp.onreadystatechange=function() { 
   if (xmlhttp.readyState==4 && xmlhttp.status==200) {    
     buildTaskLines(xmlhttp.responseXML.documentElement);
   }
 };
-
 xmlhttp.open("GET","wwGetTasks.php",true);  
 xmlhttp.send();
 
@@ -56,13 +54,13 @@ function buildTaskLines(root) {
   
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
     text.setAttribute("x", x + 10);
-    text.setAttribute("y", y);    
+    text.setAttribute("y", y + 30);    
     text.textContent = task.getAttribute('id');
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
     text.setAttribute("x", x + 60);
-    text.setAttribute("y", y);    
+    text.setAttribute("y", y + 30);    
     text.textContent = task.getAttribute('duration');
     hook.appendChild(text); 
     
