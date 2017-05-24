@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>WhereWhen :: by Michael Kenneth Rasch :: TRITICUM</title>
     <style>
-      div { width: 100%; margin: 0; padding: 0}
+      div { width: 100%; height: 50% ; margin: 0; padding: 0}
     </style>  
 </head>
 <body>
