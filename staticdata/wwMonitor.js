@@ -4,7 +4,7 @@ function showWhereWhenOnMap(latLng) {
   const zWhere = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};  
   var zMap = new google.maps.Map(document.getElementById('wwMap'), {
       center: zWhere,
-      zoom: 18, 
+      zoom: 16, 
     }); 
   var zMarker = new google.maps.Marker({
      position: zWhere,
@@ -21,33 +21,49 @@ function showWhereWhenOnMap(latLng) {
      animation: google.maps.Animation.DROP
   });
 }
+
 function GetGPSCoords(latLng) {
    zLat = latLng.coords.latitude;
    zLng = latLng.coords.longitude;
    showWhereWhenOnMap(latLng);
+   getStoredData(latLng);
    navigator.geolocation.clearWatch(id);
 }
+
 function error(err) {
   alert('ERROR(' + err.code + '): ' + err.message);
 }
-id = navigator.geolocation.watchPosition(GetGPSCoords, error, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
 
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.overrideMimeType('application/xml');
-xmlhttp.onreadystatechange=function() { 
-  if (xmlhttp.readyState==4 && xmlhttp.status==200) {    
-    buildTaskLines(xmlhttp.responseXML.documentElement);
-  }
-};
-xmlhttp.open("GET","wwGetTasks.php",true);  
-xmlhttp.send();
+function getStoredData (latLng) {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.overrideMimeType('application/xml');
+  xmlhttp.onreadystatechange=function() { 
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {    
+      buildTaskLines(xmlhttp.responseXML.documentElement, latLng);
+    }
+  };
+  xmlhttp.open("GET","wwGetTasks.php",true);  
+  xmlhttp.send();
+}
 
-function buildTaskLines(root) {
+function buildTaskLines(root, latLng) {
   var hook = document.getElementById('wwTasks');
   var zTasks = root.getElementsByTagName('task');
   var x = 0, y = 60;
   
+  doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude);
+  y = y + 60;
+  
   for (let task of zTasks) {
+    doLine(task.getAttribute('id'), 
+           task.getAttribute('duration'),
+           task.getAttribute('timestamp'),
+           task.getAttribute('lat'),
+           task.getAttribute('lng'));     
+    y = y + 60;
+  }
+  function doLine(id, duration, timestamp, lat, lng) {
+    
     var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
     rect.setAttribute("x", x);
     rect.setAttribute("y", y);    
@@ -55,44 +71,43 @@ function buildTaskLines(root) {
     rect.setAttribute("height", 50);    
     rect.setAttribute("rx", 5);        
     rect.setAttribute("fill", "rgba(79, 150, 255,1)");        
-    rect.setAttribute("zid", task.getAttribute('id'));        
+    rect.setAttribute("zid", id);        
     hook.appendChild(rect); 
   
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
     text.setAttribute("x", x + 10);
     text.setAttribute("y", y + 30);    
     text.setAttribute("fill", "#FFF");
-    text.textContent = task.getAttribute('id');
+    text.textContent = id;
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
     text.setAttribute("x", x + 60);
     text.setAttribute("y", y + 30);    
     text.setAttribute("fill", "#FFF");
-    text.textContent = task.getAttribute('duration');
+    text.textContent = duration;
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
     text.setAttribute("x", x + 200);
     text.setAttribute("y", y + 30);    
     text.setAttribute("fill", "#FFF");
-    text.textContent = task.getAttribute('timestamp');
+    text.textContent = timestamp;
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
     text.setAttribute("x", x + 350);
     text.setAttribute("y", y + 30);    
     text.setAttribute("fill", "#FFF");
-    text.textContent = task.getAttribute('latitude');
+    text.textContent = lat;
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
     text.setAttribute("x", x + 500);
     text.setAttribute("y", y + 30);    
     text.setAttribute("fill", "#FFF");
-    text.textContent = task.getAttribute('longitude');
-    hook.appendChild(text); 
-    
-    y = y + 60;
+    text.textContent = lng;
+    hook.appendChild(text);
   }
 }
+id = navigator.geolocation.watchPosition(GetGPSCoords, error, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
