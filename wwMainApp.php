@@ -12,7 +12,14 @@
     <defs>
       <link xmlns="http://www.w3.org/1999/xhtml" href="https://fonts.googleapis.com/css?family=Racing+Sans+One|Six+Caps" type="text/css" rel="stylesheet" />
     </defs>
-    <g  id="wwTasks" text-anchor="right" fill="#fff" font-family="Racing Sans One" />
+    <g  id="wwTasks" text-anchor="right" fill="#fff" font-family="Racing Sans One" >
+      <rect x=0 y=0 width=600 height=50 fill="rgba(59, 120, 231,1)" />
+      <text x=10 y=0 text-anchor="left">ID</text>
+      <text x=60 y=0 text-anchor="right">Duration seconds</text>
+      <text x=200 y=0 text-anchor="right">Timestamp</text>
+      <text x=300 y=0 text-anchor="right">Latitude</text>
+      <text x=400 y=0 text-anchor="right">Lontitude</text>
+    </g>
   </svg>
   <!-- Top part is controls and info - below is google maps with current position marked in a circle -->
   <div id="wwMap" style='height: 100%; margin: 0; padding: 0'>wwMap</div>
