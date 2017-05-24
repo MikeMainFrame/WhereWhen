@@ -13,7 +13,10 @@ function showWhereWhenOnMap(latLng) {
        path: google.maps.SymbolPath.CIRCLE,
        scale: 10,
        strokeColor: '#FF0000',
-       strokeWeight: 1
+       strokeOpacity: 0.8,
+       strokeWeight: 2,
+       fillColor: '#FF0000',
+       fillOpacity: 0.35
      },
      animation: google.maps.Animation.DROP
   });
@@ -58,14 +61,14 @@ function buildTaskLines(root) {
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
     text.setAttribute("x", x + 10);
     text.setAttribute("y", y + 30);    
-    text.setAttribute("fill", "#FF0000");
+    text.setAttribute("fill", "#FFF");
     text.textContent = task.getAttribute('id');
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
     text.setAttribute("x", x + 60);
     text.setAttribute("y", y + 30);    
-    text.setAttribute("fill", "#FF0000");
+    text.setAttribute("fill", "#FFF");
     text.textContent = task.getAttribute('duration');
     hook.appendChild(text); 
     
