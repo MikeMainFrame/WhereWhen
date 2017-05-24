@@ -41,12 +41,12 @@ xmlhttp.send();
 function buildTaskLines(root) {
   var hook = document.getElementById('wwTasks');
   var zTasks = root.getElementsByTagName('task');
-  var x = 0, y = 0;
+  var x = 0, y = 60;
   
   for (let task of zTasks) {
     var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
     rect.setAttribute("x", x);
-    rect.setAttribute("y", 0);    
+    rect.setAttribute("y", y);    
     rect.setAttribute("width", 600);    
     rect.setAttribute("height", 50);    
     rect.setAttribute("rx", 5);        
