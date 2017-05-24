@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>WhereWhen :: by Michael Kenneth Rasch :: TRITICUM</title>
-    <style>
+    <style>      
       #wwMap { width: 100%; height: 400px}
     </style>  
+    <link href="https://fonts.googleapis.com/css?family=Racing+Sans+One" rel="stylesheet">
 </head>
 <body>
   <div>
@@ -23,8 +24,7 @@
       <text x=350 y=30 text-anchor="right" fill="#fff">Latitude</text>
       <text x=500 y=30 text-anchor="right" fill="#fff">Longitude</text>
     </g>
-    <g  id="wwTasks" text-anchor="right" fill="#000" font-family="Racing Sans One" >
-    </g>
+    <g  id="wwTasks" text-anchor="right" fill="#000" font-family="Racing Sans One" ></g>
   </svg>
   </div>
   <!-- Top part is controls and info - below is google maps with current position marked in a circle -->
