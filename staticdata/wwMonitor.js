@@ -41,7 +41,7 @@ xmlhttp.send();
 function buildTaskLines(root) {
   var hook = document.getElementById('wwTasks');
   var zTasks = root.getElementsByTagName('task');
-  var x = 0;
+  var x = 0, y = 0;
   
   for (let task of zTasks) {
     var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
@@ -50,24 +50,22 @@ function buildTaskLines(root) {
     rect.setAttribute("width", 600);    
     rect.setAttribute("height", 50);    
     rect.setAttribute("rx", 5);        
-    rect.setAttribute("fill", '#000060');        
+    rect.setAttribute("fill", rgba(59, 120, 231,1));        
     rect.setAttribute("zid", task.getAttribute('id'));        
     hook.appendChild(rect); 
   
-    var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
-    rect.setAttribute("x", x + 20);
-    rect.setAttribute("y", 10);    
-    rect.setAttribute("width", 00);    
-    rect.setAttribute("height", 30);    
-    rect.setAttribute("rx", 5);        
-    rect.setAttribute("fill", '#0000f0');        
-    hook.appendChild(rect); 
-  
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 30);
-    text.setAttribute("y", 30);    
+    text.setAttribute("x", x + 10);
+    text.setAttribute("y", y);    
+    text.textContent = task.getAttribute('id');
+    hook.appendChild(text); 
+    
+    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
+    text.setAttribute("x", x + 60);
+    text.setAttribute("y", y);    
     text.textContent = task.getAttribute('duration');
     hook.appendChild(text); 
-    x = x + 60;
+    
+    y = y + 60;
   }
 }
