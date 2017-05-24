@@ -4,14 +4,15 @@
     <meta charset="utf-8">
     <title>WhereWhen :: by Michael Kenneth Rasch :: TRITICUM</title>
     <style>
-      div { width: 100%; height: 50% ; margin: 0; padding: 0}
+      #wwMap { width: 100%; height: 400px}
     </style>  
 </head>
 <body>
   <div>
-  <svg viewBox="0 0 600 300" style="width: 100%; font-family: 'Racing Sans One'"  id="zTasks" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <svg viewBox="0 0 600 300" style="width: 100%; font-family: 'Racing Sans One'"  
+       id="zTasks" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
-      <link xmlns="http://www.w3.org/1999/xhtml" href="https://fonts.googleapis.com/css?family=Racing+Sans+One|Six+Caps" type="text/css" rel="stylesheet" />
+      <link xmlns="http://www.w3.org/1999/xhtml" xlink:href="https://fonts.googleapis.com/css?family=Racing+Sans+One|Six+Caps" type="text/css" rel="stylesheet" />
     </defs>
     <g text-anchor="right" font-family="Racing Sans One" >
       <rect x=0 y=0 width=600 height=50 fill="rgba(59, 120, 231,1)" />
