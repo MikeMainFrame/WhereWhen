@@ -54,7 +54,7 @@ function buildTaskLines(root) {
     rect.setAttribute("width", 600);    
     rect.setAttribute("height", 50);    
     rect.setAttribute("rx", 5);        
-    rect.setAttribute("fill", "rgba(59, 120, 231,1)");        
+    rect.setAttribute("fill", "rgba(69, 130, 241,1)");        
     rect.setAttribute("zid", task.getAttribute('id'));        
     hook.appendChild(rect); 
   
@@ -70,6 +70,27 @@ function buildTaskLines(root) {
     text.setAttribute("y", y + 30);    
     text.setAttribute("fill", "#FFF");
     text.textContent = task.getAttribute('duration');
+    hook.appendChild(text); 
+    
+    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
+    text.setAttribute("x", x + 60);
+    text.setAttribute("y", y + 200);    
+    text.setAttribute("fill", "#FFF");
+    text.textContent = task.getAttribute('timestamp');
+    hook.appendChild(text); 
+    
+    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
+    text.setAttribute("x", x + 60);
+    text.setAttribute("y", y + 350);    
+    text.setAttribute("fill", "#FFF");
+    text.textContent = task.getAttribute('latitude');
+    hook.appendChild(text); 
+    
+    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
+    text.setAttribute("x", x + 60);
+    text.setAttribute("y", y + 500);    
+    text.setAttribute("fill", "#FFF");
+    text.textContent = task.getAttribute('longitude');
     hook.appendChild(text); 
     
     y = y + 60;
