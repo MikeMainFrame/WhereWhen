@@ -88,13 +88,13 @@ function buildTaskLines(root, latLng) {
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 360);
+    text.setAttribute("x", x + 400);
     text.setAttribute("y", y + 30);    
     text.textContent = timestamp;
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 480);
+    text.setAttribute("x", x + 500);
     text.setAttribute("y", y + 30);    
     text.textContent = lat;
     hook.appendChild(text); 
