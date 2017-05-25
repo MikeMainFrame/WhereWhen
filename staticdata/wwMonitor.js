@@ -66,7 +66,7 @@ function buildTaskLines(root, latLng) {
   function doLine(id, duration, timestamp, lat, lng) {
     
     var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
-    rect.setAttribute("x", x + 10);
+    rect.setAttribute("x", x);
     rect.setAttribute("y", y);    
     rect.setAttribute("width", 600);    
     rect.setAttribute("height", 50);    
