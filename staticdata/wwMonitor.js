@@ -114,7 +114,7 @@ function buildTaskLines(root, latLng) {
   line.setAttribute("id", 'zTimer');  
   hook.appendChild(line);
   
-  hook.addEventlisterner("click", taskClicked);
+  hook.addEventlistener("click", taskClicked);
 }
 function taskClicked(what) {
   
