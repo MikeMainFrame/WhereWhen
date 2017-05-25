@@ -105,5 +105,27 @@ function buildTaskLines(root, latLng) {
     text.textContent = lng;
     hook.appendChild(text);
   }
+  var line = document.createElementNS("http://www.w3.org/2000/svg", 'line');            
+  line.setAttribute("x1", 0);
+  line.setAttribute("y1", y + 10);
+  line.setAttribute("x2", 0);
+  line.setAttribute("y2", y + 10);
+  line.setAttribute("stroke", '#00F');
+  line.setAttribute("id", 'zTimer');  
+  hook.appendChild(line);
+  
+  hook.addEventlisterner("click", taskClicked);
+}
+function taskClicked(what) {
+  
+  var scope = what.target;     
+  
+  if (scope.getAttribute("zid")) {    
+    alert("starting clock on" + scope.getAttribute("zid"));
+    var temp = setInterval(progress, 1000);
+  }
+}
+function progress() {
+   document.getElementById('zTimer').setAttribute('x2', document.getElementById('zTimer').getAttribute('x2') + 1);
 }
 id = navigator.geolocation.watchPosition(GetGPSCoords, error, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
