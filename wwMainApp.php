@@ -18,13 +18,13 @@
     </defs>
     <g text-anchor="end" font-family="Racing Sans One" >
       <rect x=0 y=0 width=600 height=50 fill="rgba(59, 120, 231,1)" rx=5 />
-      <text  x=10 y=30 fill="#fff">ID</text>
-      <text  x=60 y=30 fill="#fff">Duration seconds</text>
-      <text x=200 y=30 fill="#fff">Timestamp</text>
-      <text x=350 y=30 fill="#fff">Latitude</text>
-      <text x=500 y=30 fill="#fff">Longitude</text>
+      <text  x=60 y=30 fill="#fff">ID</text>
+      <text x=160 y=30 fill="#fff">Duration seconds</text>
+      <text x=290 y=30 fill="#fff">Timestamp</text>
+      <text x=440 y=30 fill="#fff">Latitude</text>
+      <text x=590 y=30 fill="#fff">Longitude</text>
     </g>
-    <g  id="wwTasks" text-anchor="end" fill="#000" font-family="Racing Sans One" ></g>
+    <g  id="wwTasks" text-anchor="end" fill="#FFF" font-family="Racing Sans One" ></g>
   </svg>
   </div>
   <!-- Top part is controls and info - below is google maps with current position marked in a circle -->
