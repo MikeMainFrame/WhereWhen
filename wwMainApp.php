@@ -17,12 +17,12 @@
             xlink:href="https://fonts.googleapis.com/css?family=Racing+Sans+One" type="text/css" rel="stylesheet" />
     </defs>
     <g text-anchor="end" font-family="Racing Sans One" >
-      <rect x=0 y=0 width=600 height=50 fill="rgba(59, 120, 231,1)" rx=5 />
-      <text  x=60 y=30 fill="#fff">ID</text>
-      <text x=160 y=30 fill="#fff">Duration seconds</text>
-      <text x=290 y=30 fill="#fff">Timestamp</text>
-      <text x=440 y=30 fill="#fff">Latitude</text>
-      <text x=590 y=30 fill="#fff">Longitude</text>
+      <rect x=000 y=00 width=600 height=50 fill="rgba(59, 120, 231,1)" rx=5 />
+      <text x=060 y=30 fill="#fff">ID</text>
+      <text x=240 y=30 fill="#fff">Duration seconds</text>
+      <text x=360 y=30 fill="#fff">Timestamp</text>
+      <text x=480 y=30 fill="#fff">Latitude</text>
+      <text x=600 y=30 fill="#fff">Longitude</text>
     </g>
     <g  id="wwTasks" text-anchor="end" fill="#FFF" font-family="Racing Sans One" ></g>
   </svg>
