@@ -6,7 +6,7 @@
     <style>      
       #wwMap { width: 100%; height: 400px}
     </style>  
-    <link href="https://fonts.googleapis.com/css?family=Racing+Sans+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 </head>
 <body>
   <div>
@@ -14,17 +14,17 @@
        id="zTasks" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
       <link xmlns="http://www.w3.org/1999/xhtml" 
-            xlink:href="https://fonts.googleapis.com/css?family=Racing+Sans+One" type="text/css" rel="stylesheet" />
+            xlink:href="https://fonts.googleapis.com/css?family=Merriweather" type="text/css" rel="stylesheet" />
     </defs>
-    <g text-anchor="end" font-family="Racing Sans One" >
+    <g text-anchor="end" font-family="Merriweather" >
       <rect x=000 y=00 width=600 height=50 fill="rgba(59, 120, 231,1)" rx=5 />
       <text x=060 y=30 fill="#fff">ID</text>
       <text x=240 y=30 fill="#fff">Duration seconds</text>
-      <text x=360 y=30 fill="#fff">Timestamp</text>
-      <text x=480 y=30 fill="#fff">Latitude</text>
+      <text x=400 y=30 fill="#fff">Timestamp</text>
+      <text x=500 y=30 fill="#fff">Latitude</text>
       <text x=600 y=30 fill="#fff">Longitude</text>
     </g>
-    <g  id="wwTasks" text-anchor="end" fill="#FFF" font-family="Racing Sans One" ></g>
+    <g  id="wwTasks" text-anchor="end" fill="#FFF" font-family="Merriweather" ></g>
   </svg>
   </div>
   <!-- Top part is controls and info - below is google maps with current position marked in a circle -->
