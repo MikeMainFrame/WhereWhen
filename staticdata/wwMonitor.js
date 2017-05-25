@@ -62,12 +62,13 @@ function buildTaskLines(root, latLng) {
            task.getAttribute('lng'));     
     y = y + 60;
   }
+  
   function doLine(id, duration, timestamp, lat, lng) {
     
     var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
-    rect.setAttribute("x", x);
+    rect.setAttribute("x", x + 10);
     rect.setAttribute("y", y);    
-    rect.setAttribute("width", 600);    
+    rect.setAttribute("width", 580);    
     rect.setAttribute("height", 50);    
     rect.setAttribute("rx", 5);        
     rect.setAttribute("fill", "rgba(79, 150, 255,1)");        
@@ -75,37 +76,32 @@ function buildTaskLines(root, latLng) {
     hook.appendChild(rect); 
   
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 10);
+    text.setAttribute("x", x + 60);
     text.setAttribute("y", y + 30);    
-    text.setAttribute("fill", "#FFF");
     text.textContent = id;
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 60);
+    text.setAttribute("x", x + 160);
     text.setAttribute("y", y + 30);    
-    text.setAttribute("fill", "#FFF");
     text.textContent = duration;
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 200);
+    text.setAttribute("x", x + 290);
     text.setAttribute("y", y + 30);    
-    text.setAttribute("fill", "#FFF");
     text.textContent = timestamp;
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 350);
+    text.setAttribute("x", x + 440);
     text.setAttribute("y", y + 30);    
-    text.setAttribute("fill", "#FFF");
     text.textContent = lat;
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 500);
+    text.setAttribute("x", x + 590);
     text.setAttribute("y", y + 30);    
-    text.setAttribute("fill", "#FFF");
     text.textContent = lng;
     hook.appendChild(text);
   }
