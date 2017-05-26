@@ -73,6 +73,7 @@ function buildTaskLines(root, latLng) {
     rect.setAttribute("rx", 5);        
     rect.setAttribute("fill", "rgba(79, 150, 255,1)");        
     rect.setAttribute("zid", id);        
+    rect.addEventListener('click', taskClicked, false);  
     hook.appendChild(rect); 
   
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
@@ -127,5 +128,3 @@ function progress() {
    document.getElementById('zTimer').setAttribute('x2', document.getElementById('zTimer').getAttribute('x2') + 1);
 }
 id = navigator.geolocation.watchPosition(GetGPSCoords, error, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
-var slam = document.getElementById('zTasks');
-slam.addEventlistener("click", taskClicked);
