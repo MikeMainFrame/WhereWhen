@@ -1,4 +1,4 @@
-var id, map, zLat, zLng, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
+var id, map, zLat, zLng, zAddress, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
 
 function showWhereWhenOnMap(latLng) { 
   const zWhere = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};  
@@ -26,6 +26,7 @@ function GetGPSCoords(latLng) {
    zLat = latLng.coords.latitude;
    zLng = latLng.coords.longitude;
    showWhereWhenOnMap(latLng);
+   zAddress = geocodeLatLng(latLng);
    getStoredData(latLng);
    navigator.geolocation.clearWatch(id);
 }
@@ -45,7 +46,13 @@ function getStoredData (latLng) {
   xmlhttp.open("GET","wwGetTasks.php",true);  
   xmlhttp.send();
 }
-
+function geocodeLatLng(latLng) {
+  var geocoder = new google.maps.Geocoder;
+  geocoder.geocode({'location': latLng}, function(results, status) {
+    if (status === 'OK') {
+      return results[1].formatted_address);     
+    }
+}
 function buildTaskLines(root, latLng) {
   var hook = document.getElementById('wwTasks');
   var zTasks = root.getElementsByTagName('task');
