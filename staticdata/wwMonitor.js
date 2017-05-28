@@ -26,7 +26,7 @@ function GetGPSCoords(latLng) {
    zLat = latLng.coords.latitude;
    zLng = latLng.coords.longitude;
    showWhereWhenOnMap(latLng);
-   zAddress = geocodeLatLng(zWhere);
+   zAddress = geocodeLatLng(latLng);
    getStoredData(latLng);
    navigator.geolocation.clearWatch(id);
 }
@@ -47,8 +47,9 @@ function getStoredData (latLng) {
   xmlhttp.send();
 }
 function geocodeLatLng(latLng) {
+  var temp = {lat: latLng.coords.latitude, lng: latLng.coords.longitude}
   var geocoder = new google.maps.Geocoder;
-  geocoder.geocode({'location': latLng}, function(results, status) {
+  geocoder.geocode({'location': temp}, function(results, status) {
     if (status === 'OK') return results[1].formatted_address;     
   });
 }      
