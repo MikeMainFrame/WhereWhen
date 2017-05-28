@@ -48,7 +48,7 @@ function getStoredData (latLng) {
 }
 function geocodeLatLng(latLng) {
   var geocoder = new google.maps.Geocoder;
-  geocoder.geocode({'location': latLng}, function(results, status) {
+  geocoder.geocode({'location': latLng}, function(results, status)) {
     if (status === 'OK') return results[1].formatted_address;     
 
   }
