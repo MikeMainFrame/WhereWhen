@@ -26,7 +26,7 @@ function GetGPSCoords(latLng) {
    zLat = latLng.coords.latitude;
    zLng = latLng.coords.longitude;
    showWhereWhenOnMap(latLng);
-   zAddress = geocodeLatLng(latLng);
+   zAddress = geocodeLatLng(zWhere);
    getStoredData(latLng);
    navigator.geolocation.clearWatch(id);
 }
