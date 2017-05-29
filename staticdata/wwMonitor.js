@@ -1,4 +1,4 @@
-var id, map, zLat, zLng, zAddress, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
+var id, zAddress, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
 
 function showWhereWhenOnMap(latLng) { 
   const zWhere = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};  
@@ -20,13 +20,15 @@ function showWhereWhenOnMap(latLng) {
      },
      animation: google.maps.Animation.DROP
   });
+  
+  var zGeocoder = new google.maps.Geocoder;
+  geocoder.geocode({'location': zWhere}, function(results, status) {
+    if (status === 'OK') zAddress = results[1].formatted_address;     
+  });
 }
 
 function GetGPSCoords(latLng) {
-   zLat = latLng.coords.latitude;
-   zLng = latLng.coords.longitude;
    showWhereWhenOnMap(latLng);
-   zAddress = geocodeLatLng(latLng);
    getStoredData(latLng);
    navigator.geolocation.clearWatch(id);
 }
@@ -46,13 +48,6 @@ function getStoredData (latLng) {
   xmlhttp.open("GET","wwGetTasks.php",true);  
   xmlhttp.send();
 }
-function geocodeLatLng(latLng) {
-  var temp = {lat: latLng.coords.latitude, lng: latLng.coords.longitude}
-  var geocoder = new google.maps.Geocoder;
-  geocoder.geocode({'location': temp}, function(results, status) {
-    if (status === 'OK') return results[1].formatted_address;     
-  });
-}      
 function buildTaskLines(root, latLng) {
   var hook = document.getElementById('wwTasks');
   var zTasks = root.getElementsByTagName('task');
@@ -126,12 +121,37 @@ function buildTaskLines(root, latLng) {
 function taskClicked(what) {
   
   var scope = what.target;     
-  
+  setupClock('zTimer')
   if (scope.getAttribute("zid")) {    
     var temp = setInterval(progress, 1000);
   }
   function progress() {
-    document.getElementById('zTimer').setAttribute('x2', parseInt(document.getElementById('zTimer').getAttribute('x2')) + 1);
+    var now = new Date();        
+    var zGet = "s" + parseInt(now.getSeconds() + 1);
+    var thisPath = document.getElementById(zGet);
+    thisPath.setAttribute("fill", '#0000ff');
   }
+}
+function setupClock (anchor) {
+  var svgdoc = document.getElementById(anchor); 
+  var group = document.createElementNS("http://www.w3.org/2000/svg", 'g'); 
+  var jx = 0;
+  
+  for (ix=1; ix<360; ix=ix+6) {        // ix is degree rotater
+    var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
+    X = Math.cos(ix * Math.PI / 180);          Y = Math.sin(ix * Math.PI / 180);           d = "M"  + parseInt(1000 + (X * 900)) + ', '  + parseInt(1000 + (Y * 900));                   
+    X = Math.cos(ix * Math.PI / 180);          Y = Math.sin(ix * Math.PI / 180);           d+= " L" + parseInt(1000 + (X * 1000)) + ', ' + parseInt(1000 + (Y * 1000));                
+    X = Math.cos((ix + 2.5) * Math.PI / 180);  Y = Math.sin((ix + 2.5) * Math.PI / 180);   d+= " Q" + parseInt(1000 + (X * 1003)) + ', ' + parseInt(1000 + (Y * 1003));            
+    X = Math.cos((ix + 5) * Math.PI / 180);    Y = Math.sin((ix + 5) * Math.PI / 180);     d+= "  " + parseInt(1000 + (X * 1000)) + ', ' + parseInt(1000 + (Y * 1000));                
+    X = Math.cos((ix + 5) * Math.PI / 180);    Y = Math.sin((ix + 5) * Math.PI / 180);     d+= " L" + parseInt(1000 + (X * 900)) + ', '  + parseInt(1000 + (Y * 900));               
+    jx++;
+    path.setAttribute("id", 's' + jx);
+    path.setAttribute("fill", "#222");
+    path.setAttribute("d", d + ' Z');    
+    group.appendChild(path);             
+  } 
+  svgdoc.appendChild(group);  
+  svgdoc.style.visibility = "visible";
+  svgdoc.style.display = "block";
 }
 id = navigator.geolocation.watchPosition(GetGPSCoords, error, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
