@@ -22,7 +22,7 @@ function showWhereWhenOnMap(latLng) {
   });
   
   var zGeocoder = new google.maps.Geocoder;
-  geocoder.geocode({'location': zWhere}, function(results, status) {
+  zGeocoder.geocode({'location': zWhere}, function(results, status) {
     if (status === 'OK') zAddress = results[1].formatted_address;     
   });
 }
