@@ -1,4 +1,4 @@
-var id, zAddress, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
+var id, zAddress, zDone = false ; var wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
 
 function showWhereWhenOnMap(latLng) { 
   const zWhere = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};  
@@ -108,15 +108,6 @@ function buildTaskLines(root, latLng) {
     text.textContent = lng;
     hook.appendChild(text);
   }
-  var line = document.createElementNS("http://www.w3.org/2000/svg", 'line');            
-  line.setAttribute("x1", 0);
-  line.setAttribute("y1", y + 10);
-  line.setAttribute("x2", 0);
-  line.setAttribute("y2", y + 10);
-  line.setAttribute("stroke", '#00F');
-  line.setAttribute("stroke-width", 4);
-  line.setAttribute("id", 'zTimer');  
-  // hook.appendChild(line);
 }
 function taskClicked(what) {
   
@@ -129,7 +120,7 @@ function taskClicked(what) {
     var now = new Date();        
     var zGet = "s" + parseInt(now.getSeconds() + 1);
     var thisPath = document.getElementById(zGet);
-    thisPath.setAttribute("fill", '#0000ff');
+    thisPath.setAttribute("fill", "rgba(79, 150, 255,1)");
   }
 }
 function setupClock (anchor) {
@@ -146,7 +137,7 @@ function setupClock (anchor) {
     X = Math.cos((ix + 5) * Math.PI / 180);    Y = Math.sin((ix + 5) * Math.PI / 180);     d+= " L" + parseInt(1000 + (X * 900)) + ', '  + parseInt(1000 + (Y * 900));               
     jx++;
     path.setAttribute("id", 's' + jx);
-    path.setAttribute("fill", "#222");
+    path.setAttribute("fill", "#FFF");
     path.setAttribute("d", d + ' Z');    
     group.appendChild(path);             
   } 
