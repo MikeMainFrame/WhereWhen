@@ -10,7 +10,7 @@
 </head>
 <body>
   <div>
-    <svg viewBox="0 0 600 300" style="width: 100%"  
+    <svg viewBox="0 0 600 300" style="width: 74% ; float right"  
          id="zTasks" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs>
         <link xmlns="http://www.w3.org/1999/xhtml" 
@@ -26,7 +26,7 @@
       </g>
       <g  id="wwTasks" text-anchor="end" fill="#FFF" font-family="Merriweather" ></g>
     </svg>
-    <svg viewBox="0 0 2000 2000" style="width: 100%"  
+    <svg viewBox="0 0 2000 2000" style="width: 25% ; float:left"  
          id="zTimer" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
       <rect x=000 y=00 width=2000 height=2000 fill="#FFF" />
     </svg>
