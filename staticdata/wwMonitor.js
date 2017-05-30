@@ -151,7 +151,5 @@ function setupClock (anchor) {
     group.appendChild(path);             
   } 
   svgdoc.appendChild(group);  
-  svgdoc.style.visibility = "visible";
-  svgdoc.style.display = "block";
 }
 id = navigator.geolocation.watchPosition(GetGPSCoords, error, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
