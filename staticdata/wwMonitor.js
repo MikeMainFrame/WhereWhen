@@ -1,4 +1,5 @@
-var id, zAddress, zDone = false ; var wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
+var id, zAddress, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
+var zDone = false;
 
 function showWhereWhenOnMap(latLng) { 
   const zWhere = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};  
@@ -110,7 +111,7 @@ function buildTaskLines(root, latLng) {
   }
 }
 function taskClicked(what) {
-  if zDone = false {
+  if (zDone == false) {
     setupClock('zTimer');
     var temp = setInterval(progress, 1000);
     zDone = true;
