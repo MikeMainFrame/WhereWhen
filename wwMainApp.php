@@ -10,7 +10,7 @@
 </head>
 <body>
   <div>
-    <svg viewBox="0 0 600 600" style="width: 100%"  
+    <svg viewBox="0 0 600 300" style="width: 100%"  
          id="zTasks" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs>
         <link xmlns="http://www.w3.org/1999/xhtml" 
