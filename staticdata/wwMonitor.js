@@ -110,11 +110,10 @@ function buildTaskLines(root, latLng) {
   }
 }
 function taskClicked(what) {
-  
-  var scope = what.target;     
-  setupClock('zTimer')
-  if (scope.getAttribute("zid")) {    
+  if zDone = false {
+    setupClock('zTimer');
     var temp = setInterval(progress, 1000);
+    zDone = true;
   }
   function progress() {
     var now = new Date();        
