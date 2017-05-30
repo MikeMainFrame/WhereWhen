@@ -26,7 +26,7 @@
       </g>
       <g  id="wwTasks" text-anchor="end" fill="#FFF" font-family="Merriweather" ></g>
     </svg>
-    <svg viewBox="0 0 2000 2000" style="width: 100%; font-family: 'Racing Sans One'; visibility: hidden; display: none"  
+    <svg viewBox="0 0 2000 2000" style="width: 100%; font-family: 'Racing Sans One'"  
          id="zTimer" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
     </svg>
   </div>
