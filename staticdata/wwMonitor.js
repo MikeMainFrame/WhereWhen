@@ -116,7 +116,7 @@ function buildTaskLines(root, latLng) {
   line.setAttribute("stroke", '#00F');
   line.setAttribute("stroke-width", 4);
   line.setAttribute("id", 'zTimer');  
-  hook.appendChild(line);
+  // hook.appendChild(line);
 }
 function taskClicked(what) {
   
