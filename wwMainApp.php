@@ -10,7 +10,7 @@
 </head>
 <body>
   <div>
-    <svg viewBox="0 0 600 600" style="width: 49%; float: left ; font-family: 'Racing Sans One'"  
+    <svg viewBox="0 0 600 600" style="width: 100%"  
          id="zTasks" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs>
         <link xmlns="http://www.w3.org/1999/xhtml" 
@@ -26,9 +26,9 @@
       </g>
       <g  id="wwTasks" text-anchor="end" fill="#FFF" font-family="Merriweather" ></g>
     </svg>
-    <svg viewBox="0 0 2000 2000" style="width: 49%; float: right"  
+    <svg viewBox="0 0 2000 2000" style="width: 100%"  
          id="zTimer" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-      <rect x=000 y=00 width=2000 height=2000 fill="#000" />
+      <rect x=000 y=00 width=2000 height=2000 fill="#FFF" />
     </svg>
   </div>
   <!-- Top part is controls and info - below is google maps with current position marked in a circle -->
