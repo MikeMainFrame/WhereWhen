@@ -115,7 +115,7 @@ function taskClicked(what) {
   function progress() {
     var now = new Date();        
     var jx = parseInt(now.getSeconds() + 1);
-    for (var ix = 1 to jx) {
+    for (var ix = 0; ix < jx; ix++) {    
       var thisPath = document.getElementById("s" + parseInt(now.getSeconds() + 1));
       thisPath.setAttribute("fill", "rgba(79, 150, 255,1)");
     }
