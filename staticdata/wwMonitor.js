@@ -144,9 +144,9 @@ function setupClock (anchor) {
   } 
   var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');
   text.setAttribute("id", 'zdate');  
-  text.setAttribute("fill", 'white');  
+  text.setAttribute("fill", 'black');  
   text.setAttribute("font-size", 96);  
-  text.setAttribute("stroke", 'white');      
+  text.setAttribute("stroke", 'black');      
   text.setAttribute("text-anchor", 'middle');  
   text.setAttribute("x", 1000);
   text.setAttribute("y", 1000);
