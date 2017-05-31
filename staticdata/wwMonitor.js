@@ -1,4 +1,4 @@
-var id, zAddress, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
+var id, zAddress, zNow = 0, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
 var zDone = false;
 
 function showWhereWhenOnMap(latLng) { 
@@ -27,17 +27,14 @@ function showWhereWhenOnMap(latLng) {
     if (status === 'OK') zAddress = results[1].formatted_address;     
   });
 }
-
 function GetGPSCoords(latLng) {
    showWhereWhenOnMap(latLng);
    getStoredData(latLng);
    navigator.geolocation.clearWatch(id);
 }
-
 function error(err) {
   alert('ERROR(' + err.code + '): ' + err.message);
 }
-
 function getStoredData (latLng) {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.overrideMimeType('application/xml');
@@ -52,7 +49,7 @@ function getStoredData (latLng) {
 function buildTaskLines(root, latLng) {
   var hook = document.getElementById('wwTasks');
   var zTasks = root.getElementsByTagName('task');
-  var x = 0, y = 60;
+  var x = 0, y = 60, zNow = latLng.timestamp;
   
   doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude);
   y = y + 60;
@@ -65,7 +62,6 @@ function buildTaskLines(root, latLng) {
            task.getAttribute('lng'));     
     y = y + 60;
   }
-  
   function doLine(id, duration, timestamp, lat, lng) {
     
     var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
@@ -118,9 +114,14 @@ function taskClicked(what) {
   }
   function progress() {
     var now = new Date();        
-    var zGet = "s" + parseInt(now.getSeconds() + 1);
-    var thisPath = document.getElementById(zGet);
-    thisPath.setAttribute("fill", "rgba(79, 150, 255,1)");
+    var jx = parseInt(now.getSeconds() + 1);
+    for (var ix = 1 to jx) {
+      var thisPath = document.getElementById("s" + parseInt(now.getSeconds() + 1));
+      thisPath.setAttribute("fill", "rgba(79, 150, 255,1)");
+    }
+    var now = new Date();            
+    var diff = now.getTime() - zNow;
+    document.getElementById("zdate").textContent = diff;
   }
 }
 function setupClock (anchor) {
@@ -137,10 +138,20 @@ function setupClock (anchor) {
     X = Math.cos((ix + 5) * Math.PI / 180);    Y = Math.sin((ix + 5) * Math.PI / 180);     d+= " L" + parseInt(1000 + (X * 900)) + ', '  + parseInt(1000 + (Y * 900));               
     jx++;
     path.setAttribute("id", 's' + jx);
-    path.setAttribute("fill", "#FFF");
+    path.setAttribute("fill", "#EEE");
     path.setAttribute("d", d + ' Z');    
     group.appendChild(path);             
   } 
+  var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');
+  text.setAttribute("id", 'zdate');  
+  text.setAttribute("fill", 'white');  
+  text.setAttribute("font-size", 96);  
+  text.setAttribute("stroke", 'white');      
+  text.setAttribute("text-anchor", 'middle');  
+  text.setAttribute("x", 1000);
+  text.setAttribute("y", 1000);
+  text.textContent = "000";
+  group.appendChild(text);             
   svgdoc.appendChild(group);  
 }
 id = navigator.geolocation.watchPosition(GetGPSCoords, error, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
