@@ -29,7 +29,7 @@
     </svg>
   </div>
   <!-- Top part is controls and info - below is google maps with current position marked in a circle -->
-  <div style="height: 100% ; width: 100%" id="wwMap">wwMap</div>
+  <div style="height: 600px ; width: 100%" id="wwMap">wwMap</div>
 </body>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV112FdOVJA4U5BSwImhPzEI73mgYUjQ" async defer></script>
 <script type="text/javascript" src="staticdata/wwMonitor.js"></script>
