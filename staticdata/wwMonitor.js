@@ -1,10 +1,11 @@
-var id, zAddress, zNow = 0, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
+var id, zAddress, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
 var zDone = false;
 
 function showWhereWhenOnMap(latLng) { 
   const zWhere = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};  
   var zMap = new google.maps.Map(document.getElementById('wwMap'), {
       center: zWhere,
+      gestureHandling: greedy,
       zoom: 16, 
     }); 
   var zMarker = new google.maps.Marker({
@@ -21,14 +22,14 @@ function showWhereWhenOnMap(latLng) {
      },
      animation: google.maps.Animation.DROP
   });
-  
   var zGeocoder = new google.maps.Geocoder;
   zGeocoder.geocode({'location': zWhere}, function(results, status) {
     if (status === 'OK') zAddress = results[1].formatted_address;     
   });
+  return zAddress;
 }
 function GetGPSCoords(latLng) {
-   showWhereWhenOnMap(latLng);
+   zAddress = showWhereWhenOnMap(latLng);
    getStoredData(latLng);
    navigator.geolocation.clearWatch(id);
 }
@@ -49,7 +50,7 @@ function getStoredData (latLng) {
 function buildTaskLines(root, latLng) {
   var hook = document.getElementById('wwTasks');
   var zTasks = root.getElementsByTagName('task');
-  var x = 0, y = 60, zNow = latLng.timestamp;
+  var x = 0, y = 60;
   
   doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude);
   y = y + 60;
