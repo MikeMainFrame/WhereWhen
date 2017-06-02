@@ -7,7 +7,7 @@
 </head>
 <body>
   <div>
-    <svg viewBox="0 0 600 300" style="width: 72% ; float right"  
+    <svg viewBox="0 0 600 300" style="width: 71% ; float right"  
          id="zTasks" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs>
         <link xmlns="http://www.w3.org/1999/xhtml" 
@@ -29,7 +29,7 @@
     </svg>
   </div>
   <!-- Top part is controls and info - below is google maps with current position marked in a circle -->
-  <div id="wwMap">wwMap</div>
+  <div style="height: 100% ; width: 100%" id="wwMap">wwMap</div>
 </body>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV112FdOVJA4U5BSwImhPzEI73mgYUjQ" async defer></script>
 <script type="text/javascript" src="staticdata/wwMonitor.js"></script>
