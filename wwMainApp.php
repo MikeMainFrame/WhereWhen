@@ -3,9 +3,6 @@
   <head>
     <meta charset="utf-8">
     <title>WhereWhen :: by Michael Kenneth Rasch :: TRITICUM</title>
-    <style>      
-      #wwMap { height: 100% }
-    </style>  
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 </head>
 <body>
