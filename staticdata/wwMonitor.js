@@ -5,7 +5,7 @@ function showWhereWhenOnMap(latLng) {
   const zWhere = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};  
   var zMap = new google.maps.Map(document.getElementById('wwMap'), {
       center: zWhere,
-      gestureHandling: greedy,
+      gestureHandling: 'greedy',
       zoom: 16, 
     }); 
   var zMarker = new google.maps.Marker({
@@ -146,7 +146,7 @@ function setupClock (anchor) {
   var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');
   text.setAttribute("id", 'zdate');  
   text.setAttribute("fill", 'black');  
-  text.setAttribute("font-size", 96);  
+  text.setAttribute("font-size", 192);  
   text.setAttribute("stroke", 'black');      
   text.setAttribute("text-anchor", 'middle');  
   text.setAttribute("x", 1000);
