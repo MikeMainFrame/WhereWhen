@@ -16,10 +16,10 @@
       <g text-anchor="end" font-family="Merriweather" >
         <rect x=000 y=00 width=600 height=50 fill="rgba(59, 120, 231,1)" rx=5 />
         <text x=060 y=30 fill="#fff">ID</text>
-        <text x=240 y=20 fill="#fff">Duration</text>
-        <text x=240 y=40 fill="#fff">Seconds</text>
-        <text x=400 y=30 fill="#fff">Timestamp</text>
-        <text x=410 y=30 fill="#fff" text-anchor="start">Address</text>
+        <text x=160 y=20 fill="#fff">Duration</text>
+        <text x=160 y=40 fill="#fff">Seconds</text>
+        <text x=320 y=30 fill="#fff">Timestamp</text>
+        <text x=330 y=30 fill="#fff" text-anchor="start">Address</text>
       </g>
       <g  id="wwTasks" text-anchor="end" fill="#FFF" font-family="Merriweather" ></g>
     </svg>
