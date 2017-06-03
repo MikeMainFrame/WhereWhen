@@ -1,4 +1,4 @@
-var id, zAddress, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1};
+var id, zAddress, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1, address: 'Ø'};
 var zDone = false;
 
 function showWhereWhenOnMap(latLng) { 
@@ -86,13 +86,13 @@ function buildTaskLines(root, latLng) {
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 240);
+    text.setAttribute("x", x + 160);
     text.setAttribute("y", y + 30);    
     text.textContent = duration;
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 400);
+    text.setAttribute("x", x + 320);
     text.setAttribute("y", y + 30);    
     text.textContent = timestamp;
     hook.appendChild(text); 
@@ -110,7 +110,7 @@ function buildTaskLines(root, latLng) {
     hook.appendChild(text);
     */
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 410);
+    text.setAttribute("x", x + 330);
     text.setAttribute("y", y + 30);    
     text.textContent = timestamp;
     hook.appendChild(text); 
