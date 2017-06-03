@@ -96,7 +96,7 @@ function buildTaskLines(root, latLng) {
     text.setAttribute("y", y + 30);    
     text.textContent = timestamp;
     hook.appendChild(text); 
-    
+    /*
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
     text.setAttribute("x", x + 500);
     text.setAttribute("y", y + 30);    
@@ -108,6 +108,12 @@ function buildTaskLines(root, latLng) {
     text.setAttribute("y", y + 30);    
     text.textContent = lng;
     hook.appendChild(text);
+    */
+    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
+    text.setAttribute("x", x + 410);
+    text.setAttribute("y", y + 30);    
+    text.textContent = timestamp;
+    hook.appendChild(text); 
   }
 }
 function taskClicked(what) {
