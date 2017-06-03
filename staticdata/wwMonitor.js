@@ -5,6 +5,7 @@ function showWhereWhenOnMap(latLng) {
   const zWhere = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};  
   var zMap = new google.maps.Map(document.getElementById('wwMap'), {
       center: zWhere,
+      scale: 2,
       gestureHandling: 'greedy',
       zoom: 16, 
     }); 
@@ -50,9 +51,9 @@ function getStoredData (latLng) {
 function buildTaskLines(root, latLng) {
   var hook = document.getElementById('wwTasks');
   var zTasks = root.getElementsByTagName('task');
-  var x = 0, y = 60;
+  var x = 0, y = 60, address = "Ø"
   
-  doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude);
+  doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude, address);
   y = y + 60;
   
   for (let task of zTasks) {
@@ -60,10 +61,12 @@ function buildTaskLines(root, latLng) {
            task.getAttribute('duration'),
            task.getAttribute('timestamp'),
            task.getAttribute('lat'),
-           task.getAttribute('lng'));     
+           task.getAttribute('lng'),
+           task.getAttribute('address'),
+          );     
     y = y + 60;
   }
-  function doLine(id, duration, timestamp, lat, lng) {
+  function doLine(id, duration, timestamp, lat, lng, address) {
     
     var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
     rect.setAttribute("x", x);
