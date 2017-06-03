@@ -19,7 +19,7 @@
         <text x=240 y=20 fill="#fff">Duration</text>
         <text x=240 y=40 fill="#fff">Seconds</text>
         <text x=400 y=30 fill="#fff">Timestamp</text>
-        <text x=500 y=30 fill="#fff">Address</text>
+        <text x=410 y=30 fill="#fff" text-anchor="start">Address</text>
       </g>
       <g  id="wwTasks" text-anchor="end" fill="#FFF" font-family="Merriweather" ></g>
     </svg>
