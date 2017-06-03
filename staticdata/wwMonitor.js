@@ -53,7 +53,7 @@ function buildTaskLines(root, latLng) {
   var zTasks = root.getElementsByTagName('task');
   var x = 0, y = 60, address = "Ø"
   
-  doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude, address);
+  doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude, zAddress);
   y = y + 60;
   
   for (let task of zTasks) {
@@ -111,8 +111,9 @@ function buildTaskLines(root, latLng) {
     */
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
     text.setAttribute("x", x + 330);
-    text.setAttribute("y", y + 30);    
-    text.textContent = timestamp;
+    text.setAttribute("y", y + 30);   
+    text.setAttribute("text-anchor", 'start');        
+    text.textContent = address;
     hook.appendChild(text); 
   }
 }
