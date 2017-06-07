@@ -18,7 +18,7 @@
         <rect x=000 y=00 width=600 height=50 fill="#000" rx=5 />
         <text x=060 y=30 fill="#fff">ID</text>
         <text x=160 y=20 fill="#fff">Duration</text>
-        <text x=160 y=40 fill="#fff">Seconds</text>
+        <text x=160 y=40 fill="#fff">Minutes</text>
         <text x=320 y=30 fill="#fff">Timestamp</text>
         <text x=330 y=30 fill="#fff" text-anchor="start">Address</text>
       </g>
