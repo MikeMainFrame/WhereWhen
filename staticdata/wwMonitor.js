@@ -94,7 +94,7 @@ function buildTaskLines(root, latLng) {
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
     text.setAttribute("x", x + 320);
     text.setAttribute("y", y + 30);    
-    var w = new Date(timestamp);
+    var w = new Date(parseInt(timestamp));
     text.textContent = w.getUTCDate();
     hook.appendChild(text); 
     /*
