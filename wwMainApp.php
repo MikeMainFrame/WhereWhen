@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
     <title>WhereWhen :: by Michael Kenneth Rasch :: TRITICUM</title>
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 </head>
@@ -23,10 +24,10 @@
       </g>
       <g  id="wwTasks" text-anchor="end" fill="#FFF" font-family="Merriweather" ></g>
     </svg>
-    <svg viewBox="0 0 2000 2000" style="width: 100% ; float:left"  
+    <!--svg viewBox="0 0 2000 2000" style="width: 100% ; float:left"  
          id="zTimer" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
       <rect x=000 y=00 width=2000 height=2000 fill="#FFF" />
-    </svg>
+    </svg-->
   </div>
   <!-- Top part is controls and info - below is google maps with current position marked in a circle -->
   <div style="height: 600px ; width: 100%" id="wwMap">wwMap</div>
