@@ -3,6 +3,10 @@ var zDone = false;
 
 function showWhereWhenOnMap(latLng) { 
   const zWhere = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};  
+  wwObject.lat = latLng.coords.latitude; 
+  wwObject.lng = latLng.coords.longitude;
+  wwObject.timestamp = latLng.timestamp;
+  wwObject.id = 9999;
   var zMap = new google.maps.Map(document.getElementById('wwMap'), {
       center: zWhere,
       scale: 2,
@@ -41,7 +45,7 @@ function getStoredData (latLng) {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.overrideMimeType('application/xml');
   xmlhttp.onreadystatechange=function() { 
-    if (xmlhttp.readyState==4 && xmlhttp.status==200) {    
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {    
       buildTaskLines(xmlhttp.responseXML.documentElement, latLng);
     }
   };
@@ -92,10 +96,14 @@ function buildTaskLines(root, latLng) {
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 320);
+    text.setAttribute("x", x + 290);
     text.setAttribute("y", y + 30);    
     var w = new Date(parseInt(timestamp));
-    text.textContent =  parseInt((w.getFullYear() * 10000) + ((w.getMonth() + 1) * 100) + w.getDate());
+    text.textContent =  parseInt((w.getFullYear() * 100000000) +
+                                ((w.getMonth() + 1) * 1000000) + 
+                                (w.getDate() * 10000) +
+                                (w.getHours() * 100) +
+                                 w.getSeconds());
     hook.appendChild(text); 
     /*
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
@@ -111,7 +119,7 @@ function buildTaskLines(root, latLng) {
     hook.appendChild(text);
     */
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 330);
+    text.setAttribute("x", x + 300);
     text.setAttribute("y", y + 30);   
     text.setAttribute("text-anchor", 'start');        
     text.textContent = address;
