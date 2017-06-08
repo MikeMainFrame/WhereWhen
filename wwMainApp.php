@@ -19,8 +19,8 @@
         <text x=060 y=30 fill="#fff">ID</text>
         <text x=160 y=20 fill="#fff">Duration</text>
         <text x=160 y=40 fill="#fff">Minutes</text>
-        <text x=320 y=30 fill="#fff">Timestamp</text>
-        <text x=330 y=30 fill="#fff" text-anchor="start">Address</text>
+        <text x=290 y=30 fill="#fff">Timestamp</text>
+        <text x=300 y=30 fill="#fff" text-anchor="start">Address</text>
       </g>
       <g  id="wwTasks" text-anchor="end" fill="#FFF" font-family="Merriweather" ></g>
     </svg>
