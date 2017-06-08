@@ -95,7 +95,7 @@ function buildTaskLines(root, latLng) {
     text.setAttribute("x", x + 320);
     text.setAttribute("y", y + 30);    
     var w = new Date(parseInt(timestamp));
-    text.textContent = w;
+    text.textContent =  parseInt((w.getFullYear() * 10000) + ((w.getMonth() + 1) * 100) + w.getDate());
     hook.appendChild(text); 
     /*
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
