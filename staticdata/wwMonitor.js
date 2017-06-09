@@ -29,7 +29,7 @@ function showWhereWhenOnMap(latLng) {
   });
   var zGeocoder = new google.maps.Geocoder;
   zGeocoder.geocode({'location': zWhere}, function(results, status) {
-    if (status === 'OK') zAddress = results[1].formatted_address;     
+    if (status === 'OK') zAddress = results[0].formatted_address;     
   });
   return zAddress;
 }
@@ -127,20 +127,17 @@ function buildTaskLines(root, latLng) {
   }
 }
 function taskClicked(what) {
-  if (zDone == false) {
+  if (zDone === false) {
     setupClock('zTimer');
-    var temp = setInterval(progress, 1000);
+    var temp = setInterval(progress, 10000);
     zDone = true;
   }
   function progress() {
-    var now = new Date();        
-    var jx = parseInt(now.getSeconds() + 1);
-    for (var ix = 0; ix < jx; ix++) {    
-      var thisPath = document.getElementById("s" + parseInt(now.getSeconds() + 1));
-      thisPath.setAttribute("fill", "rgba(79, 150, 255,1)");
-    }
     var now = new Date();            
-    var diff = now.getTime() - zNow;
+    var diff = now.now() - wwObject.timestamp;
+    var jx = parseInt(now.getSeconds() + 1);
+    var thisPath = document.getElementById("s" + parseInt(now.getSeconds() + 1));
+    thisPath.setAttribute("fill", "rgba(79, 150, 255,1)");
     document.getElementById("zdate").textContent = diff;
   }
 }
