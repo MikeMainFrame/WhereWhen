@@ -129,12 +129,12 @@ function buildTaskLines(root, latLng) {
 function taskClicked(what) {
   if (zDone === false) {
     setupClock('zTimer');
-    var temp = setInterval(progress, 10000);
+    var temp = setInterval(progress, 1000);
     zDone = true;
   }
   function progress() {
     var now = new Date();            
-    var diff = now.now() - wwObject.timestamp;
+    var diff = now.getTime() - wwObject.timestamp;
     var jx = parseInt(now.getSeconds() + 1);
     var thisPath = document.getElementById("s" + parseInt(now.getSeconds() + 1));
     thisPath.setAttribute("fill", "rgba(79, 150, 255,1)");
