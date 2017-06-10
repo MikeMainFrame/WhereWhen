@@ -138,11 +138,11 @@ function taskClicked(what) {
     var jx = parseInt(now.getSeconds() + 1);
     var thisPath = document.getElementById("s" + parseInt(now.getSeconds() + 1));
     thisPath.setAttribute("fill", "rgba(79, 150, 255,1)");
-    document.getElementById("zdate").textContent = (function (diff) {
-      var a = parseInt(diff / 1000);      
-      var m = parseInt(a / 60);
-      var s = diff - (m * 60); 
-      return m + ":" + s;
+    document.getElementById("zdate").textContent = (function (mili) {
+      var seconds = parseInt(mili / 1000);      
+      var mm = parseInt(seconds / 60);
+      var ss = seconds - (mm * 60); 
+      return mm + ":" + ss;
     })(diff);
   }
 }
