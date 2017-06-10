@@ -142,7 +142,9 @@ function taskClicked(what) {
       var seconds = parseInt(mili / 1000);      
       var mm = parseInt(seconds / 60);
       var ss = seconds - (mm * 60); 
-      return ("00" + mm).slice(2) + ":" + ("00" + ss).slice(2);
+      if (mm < 10) mm = "0" + mm;
+      if (ss < 10) ss = "0" + ss;
+      return mm + ":" + ss;
     })(diff);
   }
 }
@@ -167,7 +169,7 @@ function setupClock (anchor) {
   var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');
   text.setAttribute("id", 'zdate');  
   text.setAttribute("fill", 'black');  
-  text.setAttribute("font-size", 192);  
+  text.setAttribute("font-size", 256);  
   text.setAttribute("stroke", 'black');      
   text.setAttribute("text-anchor", 'middle');  
   text.setAttribute("x", 1000);
