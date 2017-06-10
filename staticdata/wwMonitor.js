@@ -59,8 +59,8 @@ function buildTaskLines(root, latLng) {
   
   doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude, zAddress);
   y = y + 60;
-  
-  for (let task of zTasks) {
+  for (var ix = 0; ix < zTasks.length; ix++)
+    task = zTasks[ix];
     doLine(task.getAttribute('id'), 
            task.getAttribute('duration'),
            task.getAttribute('timestamp'),
@@ -70,8 +70,8 @@ function buildTaskLines(root, latLng) {
           );     
     y = y + 60;
   }
-  function doLine(id, duration, timestamp, lat, lng, address) {
-    
+
+  function doLine(id, duration, timestamp, lat, lng, address) {  
     var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
     rect.setAttribute("x", x);
     rect.setAttribute("y", y);    
@@ -138,7 +138,13 @@ function taskClicked(what) {
     var jx = parseInt(now.getSeconds() + 1);
     var thisPath = document.getElementById("s" + parseInt(now.getSeconds() + 1));
     thisPath.setAttribute("fill", "rgba(79, 150, 255,1)");
-    document.getElementById("zdate").textContent = diff;
+    document.getElementById("zdate").textContent = diffx(diff);
+    function diffx(diff) {
+      var t = diff % 1000;      
+      var m = t % 60;
+      var s = diff - (m * 60); 
+      return m + ":" s;
+    }
   }
 }
 function setupClock (anchor) {
