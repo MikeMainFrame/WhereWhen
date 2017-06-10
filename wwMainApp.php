@@ -24,7 +24,7 @@
       </g>
       <g  id="wwTasks" text-anchor="end" fill="#FFF" font-family="Merriweather" ></g>
     </svg>
-    <svg viewBox="0 0 2000 2000" style="width: 27% ; float:left"  
+    <svg viewBox="0 0 2000 2000" style="width: 28% ; float:left"  
          id="zTimer" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
       <rect x=000 y=00 width=2000 height=2000 fill="#FFF" />
     </svg>
