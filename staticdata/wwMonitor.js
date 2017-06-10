@@ -139,8 +139,8 @@ function taskClicked(what) {
     var thisPath = document.getElementById("s" + parseInt(now.getSeconds() + 1));
     thisPath.setAttribute("fill", "rgba(79, 150, 255,1)");
     document.getElementById("zdate").textContent = (function (diff) {
-      var t = diff % 1000;      
-      var m = t % 60;
+      var a = parseInt(diff / 1000);      
+      var m = parseInt(a / 60);
       var s = diff - (m * 60); 
       return m + ":" + s;
     })(diff);
