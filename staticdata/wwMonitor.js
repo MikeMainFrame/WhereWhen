@@ -142,7 +142,7 @@ function taskClicked(what) {
       var t = diff % 1000;      
       var m = t % 60;
       var s = diff - (m * 60); 
-      return m + ":" s;
+      return m + ":" + s;
     })(diff);
   }
 }
