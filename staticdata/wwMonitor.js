@@ -128,9 +128,8 @@ function buildTaskLines(root, latLng) {
 }
 
 function stopClock(what) {
-  alert("clock stopped " + wwObject);
-  var execute = document.getElementById('todie');    
-  if (execute) svgdoc.removeChild(execute);
+  alert("clock stopped " + JSON.stringify(wwObject));
+  var execute = document.getElementById('todie').parentNode.removeChild(node);
 }
 function taskClicked(what) {  
   if (zDone === false) {
