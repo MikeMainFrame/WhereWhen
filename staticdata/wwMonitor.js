@@ -126,7 +126,13 @@ function buildTaskLines(root, latLng) {
     hook.appendChild(text); 
   }
 }
-function taskClicked(what) {
+
+function stopClock(what) {
+  alert("clock stopped " + wwObject);
+  var execute = document.getElementById('todie');    
+  if (execute) svgdoc.removeChild(execute);
+}
+function taskClicked(what) {  
   if (zDone === false) {
     setupClock('zTimer');
     var temp = setInterval(progress, 1000);
@@ -151,6 +157,8 @@ function taskClicked(what) {
 function setupClock (anchor) {
   var svgdoc = document.getElementById(anchor); 
   var group = document.createElementNS("http://www.w3.org/2000/svg", 'g'); 
+  group.setAttribute("id", 'todie');
+  
   var jx = 0;
   
   for (ix=1; ix<360; ix=ix+6) {        // ix is degree rotater
@@ -177,5 +185,6 @@ function setupClock (anchor) {
   text.textContent = "000";
   group.appendChild(text);             
   svgdoc.appendChild(group);  
+  svgdoc.addEventListener('click', stopClock, false);  
 }
 id = navigator.geolocation.watchPosition(GetGPSCoords, error, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
