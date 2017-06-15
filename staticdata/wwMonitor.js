@@ -29,12 +29,12 @@ function showWhereWhenOnMap(latLng) {
   });
   var zGeocoder = new google.maps.Geocoder;
   zGeocoder.geocode({'location': zWhere}, function(results, status) {
-    if (status === 'OK') zAddress = results[0].formatted_address;     
+    if (status === 'OK') wwObject.address = results[0].formatted_address;     
   });
-  return zAddress;
+  return wwObject.address;
 }
 function GetGPSCoords(latLng) {
-   zAddress = showWhereWhenOnMap(latLng);
+   wwObject.address = showWhereWhenOnMap(latLng);
    getStoredData(latLng);
    navigator.geolocation.clearWatch(id);
 }
@@ -57,7 +57,7 @@ function buildTaskLines(root, latLng) {
   var zTasks = root.getElementsByTagName('task');
   var x = 0, y = 60, address = "Ø"
   
-  doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude, zAddress);
+  doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude, wwObject.address);
   y = y + 60;
   for (var ix = 0; ix < zTasks.length; ix++) {
     task = zTasks[ix];
@@ -129,7 +129,8 @@ function buildTaskLines(root, latLng) {
 
 function stopClock(what) {
   alert("clock stopped " + JSON.stringify(wwObject));
-  var execute = document.getElementById('todie').parentNode.removeChild(node);
+  var todie = document.getElementById('todie');
+  var execute = todie.parentNode.removeChild(todie);
 }
 function taskClicked(what) {  
   if (zDone === false) {
