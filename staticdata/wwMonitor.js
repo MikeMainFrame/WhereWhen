@@ -1,4 +1,4 @@
-var id, zAddress, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1, address: 'Ø'};
+var id, zInterval, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1, address: 'Ø'};
 var zDone = false;
 
 function showWhereWhenOnMap(latLng) { 
@@ -131,16 +131,18 @@ function stopClock(what) {
   alert("clock stopped " + JSON.stringify(wwObject));
   var todie = document.getElementById('todie');
   var execute = todie.parentNode.removeChild(todie);
+  clearInterval(zInterval);
+  
 }
 function taskClicked(what) {  
   if (zDone === false) {
     setupClock('zTimer');
-    var temp = setInterval(progress, 1000);
+    var zInterval = setInterval(progress, 1000);
     zDone = true;
   }
   function progress() {
     var now = new Date();            
-    var diff = now.getTime() - wwObject.timestamp;
+    var wwObject.duration = now.getTime() - wwObject.timestamp;
     var jx = parseInt(now.getSeconds() + 1);
     var thisPath = document.getElementById("s" + parseInt(now.getSeconds() + 1));
     thisPath.setAttribute("fill", "rgba(79, 150, 255,1)"); // change color during elapse ?
@@ -151,7 +153,7 @@ function taskClicked(what) {
       if (mm < 10) mm = "0" + mm;
       if (ss < 10) ss = "0" + ss;
       return mm + ":" + ss;
-    })(diff);
+    })(wwObject.duration);
   }
 }
 function setupClock (anchor) {
