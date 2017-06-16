@@ -142,7 +142,7 @@ function taskClicked(what) {
   }
   function progress() {
     var now = new Date();            
-    var wwObject.duration = now.getTime() - wwObject.timestamp;
+    wwObject.duration = now.getTime() - wwObject.timestamp;
     var jx = parseInt(now.getSeconds() + 1);
     var thisPath = document.getElementById("s" + parseInt(now.getSeconds() + 1));
     thisPath.setAttribute("fill", "rgba(79, 150, 255,1)"); // change color during elapse ?
