@@ -137,7 +137,7 @@ function stopClock(what) {
 function taskClicked(what) {  
   if (zDone === false) {
     setupClock('zTimer');
-    var zInterval = setInterval(progress, 1000);
+    zInterval = setInterval(progress, 1000);
     zDone = true;
   }
   function progress() {
