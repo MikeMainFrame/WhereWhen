@@ -132,6 +132,7 @@ function stopClock(what) {
   var todie = document.getElementById('todie');
   var execute = todie.parentNode.removeChild(todie);
   clearInterval(zInterval);
+  alert(wrapUp(wwObject));
   
 }
 function taskClicked(what) {  
