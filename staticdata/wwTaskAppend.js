@@ -20,8 +20,9 @@ function wrapUp(wwObject) {
   
   xmlhttp.onreadystatechange=function() { 
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-      alert(xmlhttp.responseText);
+      return(xmlhttp.responseText);
     }
+    return("oops");
   };
   xmlhttp.open("POST","wwTransaction.php",true);  
   xmlhttp.send(transaction);  
