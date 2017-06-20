@@ -11,6 +11,7 @@ function wrapUp(wwObject) {
   zTask.setAttribute("lat",wwObject.lat);  
   zTask.setAttribute("lng",wwObject.lng);  
   zTask.setAttribute("timestamp",wwObject.timestamp);  
+  zTask.setAttribute("address",wwObject.address);  
   zTask.setAttribute("duration",wwObject.duration);  
   zWho.appendChild(zTask);
   
