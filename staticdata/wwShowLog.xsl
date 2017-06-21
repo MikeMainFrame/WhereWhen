@@ -5,17 +5,17 @@
   <xsl:template match="/">
     <svg viewBox="0 0 2400 1400" style="background: #000 ; font-family: 'Racing Sans One'"  id="zcanvas2" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs>
-        <!--link xmlns="http://www.w3.org/1999/xhtml" href="http://fonts.googleapis.com/css?family=Racing+Sans+One|Six+Caps" type="text/css" rel="stylesheet" /-->
+        <link xmlns="http://www.w3.org/1999/xhtml" href="http://fonts.googleapis.com/css?family=Racing+Sans+One|Six+Caps" type="text/css" rel="stylesheet" />
       </defs>
-      <xsl:apply-templates select="roll/dayquantum">
-        <xsl:sort select="@date" order="descending" data-type="number"/>
+      <xsl:apply-templates select="who">
+        <xsl:sort select="@id" order="descending"/>
       </xsl:apply-templates>
     </svg>
   </xsl:template>
   
   <!-- each day -->
   
-  <xsl:template match="dayquantum">
+  <xsl:template match="who">
   
     <xsl:variable name="total"><xsl:call-template name="summasumarum"><xsl:with-param name="list" select="dayquantum"/></xsl:call-template> </xsl:variable>
   
