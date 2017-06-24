@@ -17,5 +17,8 @@ handlers:
 - url: /wwGetTasks.php
   script: wwGetTasks.php
   
+- url: /wwShowLog.php
+  script: wwShowLog.php
+  
 - url: /.*
   script: wwMainApp.php
