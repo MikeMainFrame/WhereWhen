@@ -3,10 +3,11 @@
   error_reporting(E_ALL);
   ini_set("display_errors", 1);
   $dom = new DOMDocument;
-  $zFileContents =  file_get_contents("gs://wherewhen/XML/wwtask.xml");
+  $zFileContents = file_get_contents("gs://wherewhen/XML/wwtask.xml");
   $dom->loadXML($zFileContents); 
+
   $xsl = new DOMDocument;
-  $zFileContents = file_get_contents("gs://crcountlog/crStatic.xsl");
+  $zFileContents = file_get_contents("gs://wherewhen/XML/wwlog.xslt");
   $xsl->loadXML($zFileContents); 
   $proc = new XSLTProcessor;
   $proc->importStyleSheet($xsl);
