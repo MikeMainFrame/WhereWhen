@@ -14,6 +14,9 @@ handlers:
 - url: /wwTransaction.php
   script: wwTransaction.php
   
+- url: /wwTransaction2.php
+  script: wwTransaction2.php
+
 - url: /wwGetTasks.php
   script: wwGetTasks.php
   
