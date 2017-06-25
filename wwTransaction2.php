@@ -1,8 +1,8 @@
 <?php
   error_reporting(E_ALL);
   ini_set("display_errors", 1); 
-  $mother->loadXML(file_get_contents("gs://wherewhen/XML/wwtask.xml"));
   $mother = new DOMDocument; 
+  $mother->loadXML(file_get_contents("gs://wherewhen/XML/wwtask.xml"));
   $root = $mother->documentElement;                    
   
   $transaction = new DOMDocument;                                                // transaction
