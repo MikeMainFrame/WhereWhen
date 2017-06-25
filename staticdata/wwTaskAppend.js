@@ -4,7 +4,7 @@ function wrapUp(wwObject) {
   var temp = window.location.search.split("=");
   
   var zWho = transaction.createElement("who");  
-  zWho.setAttribute("id", temp);  
+  zWho.setAttribute("id", temp[1]);  
   
   var zTask = transaction.createElement("task");  
   zTask.setAttribute("id",wwObject.id);  
