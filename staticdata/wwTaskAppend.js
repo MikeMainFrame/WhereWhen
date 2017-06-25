@@ -25,6 +25,6 @@ function wrapUp(wwObject) {
     }
     return("oops");
   };
-  xmlhttp.open("POST","wwTransaction.php",true);  
+  xmlhttp.open("POST","wwTransaction2.php",true);  
   xmlhttp.send(transaction);  
 }
