@@ -21,7 +21,7 @@ function wrapUp(wwObject) {
   
   xmlhttp.onreadystatechange=function() { 
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-      document.getElementById("control").innerHTML = "<p>Done</p>";
+      document.getElementById("control").innerHTML = "<h1>Done</h1>";
     }
   };
   xmlhttp.open("POST","wwTransaction2.php",true);  
