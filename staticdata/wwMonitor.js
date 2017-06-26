@@ -128,11 +128,10 @@ function buildTaskLines(root, latLng) {
 }
 
 function stopClock(what) {
-  alert("clock stopped " + JSON.stringify(wwObject));
   var todie = document.getElementById('todie');
   var execute = todie.parentNode.removeChild(todie);
   clearInterval(zInterval);
-  alert(wrapUp(wwObject));
+  wrapUp(wwObject);
   
 }
 function taskClicked(what) {  
@@ -164,16 +163,16 @@ function setupClock (anchor) {
   
   var jx = 0;
   
-  for (ix=1; ix<360; ix=ix+6) {        // ix is degree rotater
+  for (ix = 1; ix < 360; ix = ix + 6) {        // ix is degree rotater
     var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
     X = Math.cos(ix * Math.PI / 180);          Y = Math.sin(ix * Math.PI / 180);           d = "M"  + parseInt(1000 + (X * 900)) + ', '  + parseInt(1000 + (Y * 900));                   
     X = Math.cos(ix * Math.PI / 180);          Y = Math.sin(ix * Math.PI / 180);           d+= " L" + parseInt(1000 + (X * 1000)) + ', ' + parseInt(1000 + (Y * 1000));                
-    X = Math.cos((ix + 2.5) * Math.PI / 180);  Y = Math.sin((ix + 2.5) * Math.PI / 180);   d+= " Q" + parseInt(1000 + (X * 1003)) + ', ' + parseInt(1000 + (Y * 1003));            
-    X = Math.cos((ix + 5) * Math.PI / 180);    Y = Math.sin((ix + 5) * Math.PI / 180);     d+= "  " + parseInt(1000 + (X * 1000)) + ', ' + parseInt(1000 + (Y * 1000));                
-    X = Math.cos((ix + 5) * Math.PI / 180);    Y = Math.sin((ix + 5) * Math.PI / 180);     d+= " L" + parseInt(1000 + (X * 900)) + ', '  + parseInt(1000 + (Y * 900));               
+    X = Math.cos((ix + 3) * Math.PI / 180);    Y = Math.sin((ix + 3) * Math.PI / 180);     d+= " Q" + parseInt(1000 + (X * 1003)) + ', ' + parseInt(1000 + (Y * 1003));            
+    X = Math.cos((ix + 6) * Math.PI / 180);    Y = Math.sin((ix + 6) * Math.PI / 180);     d+= "  " + parseInt(1000 + (X * 1000)) + ', ' + parseInt(1000 + (Y * 1000));                
+    X = Math.cos((ix + 6) * Math.PI / 180);    Y = Math.sin((ix + 6) * Math.PI / 180);     d+= " L" + parseInt(1000 + (X * 900)) + ', '  + parseInt(1000 + (Y * 900));               
     jx++;
     path.setAttribute("id", 's' + jx);
-    path.setAttribute("fill", "#EEE");
+    path.setAttribute("fill", "rgba(79, 150, 255,1)");
     path.setAttribute("d", d + ' Z');    
     group.appendChild(path);             
   } 
