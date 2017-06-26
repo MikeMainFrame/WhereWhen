@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 </head>
 <body>
-  <div>
+  <div id="control">
     <svg viewBox="0 0 600 300" style="width: 72% ; float: right"  
          id="zTasks" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs>
