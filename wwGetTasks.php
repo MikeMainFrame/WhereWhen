@@ -7,5 +7,5 @@
   $domXPath = new DOMXPath($dom); 
   $id = $_GET["id"];
   $targetNodes = $domXPath->query("//who[@id = " . $id . "]"); 
-  echo $targetNodes->saveXML();
+  echo $targetNodes->item(0);
 ?>
