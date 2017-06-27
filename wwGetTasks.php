@@ -7,5 +7,7 @@
   $domXPath = new DOMXPath($dom); 
   $id = $_GET["id"];
   $targetNodes = $domXPath->query("//who[@id = " . $id . "]"); 
-  echo $targetNodes->item(0)->saveXML();
+  $result = new DOMDocument;
+  $node = $result->importNode($targetNodes->item(0), true);
+  echo $result->saveXML();
 ?>
