@@ -49,7 +49,8 @@ function getStoredData (latLng) {
       buildTaskLines(xmlhttp.responseXML.documentElement, latLng);
     }
   };
-  xmlhttp.open("GET","wwGetTasks.php",true);  
+  var temp = window.location.search.split("=");
+  xmlhttp.open("GET","wwGetTasks.php" . "?id=" . temp[1]),true);  
   xmlhttp.send();
 }
 function buildTaskLines(root, latLng) {
