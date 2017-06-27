@@ -50,7 +50,7 @@ function getStoredData (latLng) {
     }
   };
   var temp = window.location.search.split("=");
-  xmlhttp.open("GET","wwGetTasks.php" . "?id=" . temp[1]),true);  
+  xmlhttp.open("GET","wwGetTasks.php" + "?id=" + temp[1]),true);  
   xmlhttp.send();
 }
 function buildTaskLines(root, latLng) {
@@ -106,19 +106,7 @@ function buildTaskLines(root, latLng) {
                                 (w.getHours() * 100) +
                                  w.getSeconds());
     hook.appendChild(text); 
-    /*
-    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 500);
-    text.setAttribute("y", y + 30);    
-    text.textContent = lat;
-    hook.appendChild(text); 
     
-    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 600);
-    text.setAttribute("y", y + 30);    
-    text.textContent = lng;
-    hook.appendChild(text);
-    */
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
     text.setAttribute("x", x + 300);
     text.setAttribute("y", y + 30);   
