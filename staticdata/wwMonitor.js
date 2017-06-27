@@ -1,6 +1,10 @@
 var id, zInterval, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1, address: 'Ø'};
 var zDone = false;
-
+function GetGPSCoords(latLng) {
+   wwObject.address = showWhereWhenOnMap(latLng);
+   getStoredData(latLng);
+   navigator.geolocation.clearWatch(id);
+}
 function showWhereWhenOnMap(latLng) { 
   const zWhere = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};  
   wwObject.lat = latLng.coords.latitude; 
@@ -33,11 +37,6 @@ function showWhereWhenOnMap(latLng) {
   });
   return wwObject.address;
 }
-function GetGPSCoords(latLng) {
-   wwObject.address = showWhereWhenOnMap(latLng);
-   getStoredData(latLng);
-   navigator.geolocation.clearWatch(id);
-}
 function error(err) {
   alert('ERROR(' + err.code + '): ' + err.message);
 }
@@ -50,7 +49,7 @@ function getStoredData (latLng) {
     }
   };
   var temp = window.location.search.split("=");
-  xmlhttp.open("GET","wwGetTasks.php" + "?id=" + temp[1]),true);  
+  xmlhttp.open("GET","wwGetTasks.php" + "?id=" + temp[1],true);  
   xmlhttp.send();
 }
 function buildTaskLines(root, latLng) {
@@ -115,7 +114,6 @@ function buildTaskLines(root, latLng) {
     hook.appendChild(text); 
   }
 }
-
 function stopClock(what) {
   var todie = document.getElementById('todie');
   var execute = todie.parentNode.removeChild(todie);
