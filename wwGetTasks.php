@@ -8,6 +8,8 @@
   $id = $_GET["id"];
   $targetNodes = $domXPath->query("//who[@id = " . $id . "]"); 
   $result = new DOMDocument;
+  $result->loadXML("<root></root>");
   $node = $result->importNode($targetNodes->item(0), true);
+  $result->appendChild($node);
   echo $result->saveXML();
 ?>
