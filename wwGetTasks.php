@@ -4,5 +4,8 @@
   $zFileContents = file_get_contents("gs://wherewhen/XML/wwtask.xml");
   $dom = new DOMDocument;
   $dom->loadXML($zFileContents);
-  echo $dom->saveXML();
+  $domXPath = new DOMXPath($dom); 
+  $id = $_GET["id"];
+  $targetNodes = $domXPath->query("//who[@id = " . $id . "]"); 
+  echo $targetNodes->saveXML();
 ?>
