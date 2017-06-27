@@ -11,5 +11,6 @@
   $result->loadXML("<root></root>");
   $node = $result->importNode($targetNodes->item(0), true);
   $result->appendChild($node);
+  header('Content-Type: text/xml'); 
   echo $result->saveXML();
 ?>
