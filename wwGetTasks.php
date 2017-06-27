@@ -10,7 +10,7 @@
   $result = new DOMDocument;
   $result->loadXML("<root></root>");
   $node = $result->importNode($targetNodes->item(0), true);
-  $result->document_element->appendChild($node);
+  $result->documentElement->appendChild($node);
   header('Content-Type: text/xml'); 
   echo $result->saveXML();
 ?>
