@@ -159,7 +159,7 @@ function setupClock (anchor) {
     X = Math.cos((ix + 6) * Math.PI / 180);    Y = Math.sin((ix + 6) * Math.PI / 180);     d+= " L" + parseInt(1000 + (X * 900)) + ', '  + parseInt(1000 + (Y * 900));               
     jx++;
     path.setAttribute("id", 's' + jx);
-    path.setAttribute("fill", "#eee");
+    path.setAttribute("fill", "url(#blue)";
     path.setAttribute("d", d + ' Z');    
     group.appendChild(path);             
   } 
