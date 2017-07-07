@@ -13,13 +13,15 @@
       <defs>
         <link xmlns="http://www.w3.org/1999/xhtml" 
               xlink:href="https://fonts.googleapis.com/css?family=Merriweather" type="text/css" rel="stylesheet" />
-          <defs>
+          
        <radialGradient id="blue"  fx="1000" fy="1000" cx="1000" cy="1000" r="1000" gradientUnits="userSpaceOnUse">
          <stop offset="90%"   stop-color="#0000a0" />
          <stop offset="95%"   stop-color="#8080ff" />
          <stop offset="100%"   stop-color="#0000a0" />
        </radialGradient>    
+        
      </defs>
+      
      <g text-anchor="end" font-family="Merriweather" >
         <rect x=000 y=00 width=600 height=50 fill="#000" rx=5 />
         <text x=060 y=30 fill="#fff">ID</text>
