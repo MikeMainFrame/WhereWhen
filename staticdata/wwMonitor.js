@@ -55,7 +55,7 @@ function getStoredData (latLng) {
 function buildTaskLines(root, latLng) {
   var hook = document.getElementById('wwTasks');
   var zTasks = root.getElementsByTagName('task');
-  var x = 0, y = 60, address = "Ø", grouped=[];
+  var x = 0, y = 60, address = "Ø", grouped=[], match = false
   
   doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude, wwObject.address);
   y = y + 60;
@@ -67,11 +67,11 @@ function buildTaskLines(root, latLng) {
     } else {
       for (var jx = 0; jx < grouped.length; jx++) { 
         if (grouped[jx].address = zTasks[ix].getAttribute("address")) {
-           grouped[jx].duration = grouped[jx].duration + zTasks[ix].getAttribute("duration")          
-        } else {
-          grouped.push(copyTask(task));
-        }   
+           grouped[jx].duration = grouped[jx].duration + zTasks[ix].getAttribute("duration");
+           match = true;
+        }  
       }
+      if (match = false) grouped.push(copyTask(task)); 
     }    
     doLine(task.getAttribute('id'), 
            task.getAttribute('duration'),
