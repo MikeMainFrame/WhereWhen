@@ -55,14 +55,15 @@ function getStoredData (latLng) {
 function buildTaskLines(root, latLng) {
   var hook = document.getElementById('wwTasks');
   var zTasks = root.getElementsByTagName('task');
-  var x = 0, y = 60, address = "Ø", grouped=[], match = false
+  var x = 0, y = 60, address = "Ø", grouped=[], match = false;
   
   doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude, wwObject.address);
   y = y + 60;
   
   for (var ix = 0; ix < zTasks.length; ix++) {
     task = zTasks[ix];  
-    if (ix = 0) {
+    match = false;
+    if (ix === 0) {
       grouped[0] = copyTask(task);
     } else {
       for (var jx = 0; jx < grouped.length; jx++) { 
@@ -71,7 +72,7 @@ function buildTaskLines(root, latLng) {
            match = true;
         }  
       }
-      if (match = false) grouped.push(copyTask(task)); 
+      if (match === false) grouped.push(copyTask(task)); 
     }    
     doLine(task.getAttribute('id'), 
            task.getAttribute('duration'),
