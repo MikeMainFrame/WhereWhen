@@ -55,12 +55,24 @@ function getStoredData (latLng) {
 function buildTaskLines(root, latLng) {
   var hook = document.getElementById('wwTasks');
   var zTasks = root.getElementsByTagName('task');
-  var x = 0, y = 60, address = "Ø"
+  var x = 0, y = 60, address = "Ø", grouped=[];
   
   doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude, wwObject.address);
   y = y + 60;
+  
   for (var ix = 0; ix < zTasks.length; ix++) {
-    task = zTasks[ix];
+    task = zTasks[ix];  
+    if (ix = 0) {
+      grouped[0] = copyTask(task);
+    } else {
+      for (var jx = 0; jx < grouped.length; jx++) { 
+        if (grouped[jx].address = zTasks[ix].getAttribute("address")) {
+           grouped[jx].duration = grouped[jx].duration + zTasks[ix].getAttribute("duration")          
+        } else {
+          grouped[jx+1] = copyTask(task);
+        }   
+      }
+    }    
     doLine(task.getAttribute('id'), 
            task.getAttribute('duration'),
            task.getAttribute('timestamp'),
@@ -70,7 +82,16 @@ function buildTaskLines(root, latLng) {
           );     
     y = y + 60;
   }
-
+  function copyTask (task) {
+    var groupedItem = {};  
+    groupedItem.id = task.getAttribute('id');
+    groupedItem.duration = task.getAttribute('duration');
+    groupedItem.timestamp = task.getAttribute('timestamp');
+    groupedItem.lat = task.getAttribute('lat');
+    groupedItem.lng = task.getAttribute('lng');
+    groupedItem.address = task.getAttribute('address');
+    return groupedItem;
+  }   
   function doLine(id, duration, timestamp, lat, lng, address) {  
     var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
     rect.setAttribute("x", x);
