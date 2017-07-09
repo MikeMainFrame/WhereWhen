@@ -69,7 +69,7 @@ function buildTaskLines(root, latLng) {
         if (grouped[jx].address = zTasks[ix].getAttribute("address")) {
            grouped[jx].duration = grouped[jx].duration + zTasks[ix].getAttribute("duration")          
         } else {
-          grouped[jx+1] = copyTask(task);
+          grouped.push(copyTask(task));
         }   
       }
     }    
