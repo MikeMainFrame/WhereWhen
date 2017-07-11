@@ -61,14 +61,13 @@ function buildTaskLines(root, latLng) {
   y = y + 60;
   
   for (var ix = 0; ix < zTasks.length; ix++) {
-    task = zTasks[ix];  
-    match = false;
+    task = zTasks[ix]; match = false;
     if (ix === 0) {
       grouped[0] = copyTask(task);
     } else {
       for (var jx = 0; jx < grouped.length; jx++) { 
-        if (grouped[jx].address = zTasks[ix].getAttribute("address")) {
-           grouped[jx].duration = grouped[jx].duration + zTasks[ix].getAttribute("duration");
+        if (grouped[jx].address === task.getAttribute("address")) {
+           grouped[jx].duration = grouped[jx].duration + task.getAttribute("duration");
            match = true;
         }  
       }
