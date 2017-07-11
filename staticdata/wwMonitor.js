@@ -67,8 +67,8 @@ function buildTaskLines(root, latLng) {
     } else {
       for (var jx = 0; jx < grouped.length; jx++) { 
         if (grouped[jx].address === task.getAttribute("address")) {
-           grouped[jx].duration = grouped[jx].duration + task.getAttribute("duration");
-           match = true;
+          grouped[jx].duration = grouped[jx].duration + parseInt(task.getAttribute("duration"));
+          match = true;
         }  
       }
       if (match === false) grouped.push(copyTask(task)); 
