@@ -57,9 +57,6 @@ function buildTaskLines(root, latLng) {
   var zTasks = root.getElementsByTagName('task');
   var x = 0, y = 60, address = "Ø", grouped=[], match = false;
   
-  doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude, wwObject.address);
-  y = y + 60;
-  
   for (var ix = 0; ix < zTasks.length; ix++) {
     task = zTasks[ix]; match = false;
     if (ix === 0) {
@@ -73,14 +70,26 @@ function buildTaskLines(root, latLng) {
       }
       if (match === false) grouped.push(copyTask(task)); 
     }    
-    doLine(task.getAttribute('id'), 
+    /* doLine(task.getAttribute('id'), 
            task.getAttribute('duration'),
            task.getAttribute('timestamp'),
            task.getAttribute('lat'),
            task.getAttribute('lng'),
            task.getAttribute('address'),
           );     
+    y = y + 60;*/
+    doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude, wwObject.address);
     y = y + 60;
+    for (var ix = 0; ix < grouped.length; ix++) { 
+      doLine(grouped[ix].id, 
+             grouped[ix].duration,
+             grouped[ix].timestamp,
+             grouped[ix].lat,
+             grouped[ix].lng,
+             grouped[ix].address,
+            ); 
+      y = y + 60;
+    }
   }
   function copyTask (task) {
     var groupedItem = {};  
