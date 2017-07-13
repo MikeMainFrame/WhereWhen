@@ -78,19 +78,20 @@ function buildTaskLines(root, latLng) {
            task.getAttribute('address'),
           );     
     y = y + 60;*/
-    doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude, wwObject.address);
-    y = y + 60;
-    for (var ix = 0; ix < grouped.length; ix++) { 
-      doLine(grouped[ix].id, 
-             grouped[ix].duration,
-             grouped[ix].timestamp,
-             grouped[ix].lat,
-             grouped[ix].lng,
-             grouped[ix].address,
-            ); 
-      y = y + 60;
-    }
+   
   }
+  doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude, wwObject.address);
+  y = y + 60;
+  for (var ix = 0; ix < grouped.length; ix++) { 
+    doLine(grouped[ix].id, 
+           grouped[ix].duration,
+           grouped[ix].timestamp,
+           grouped[ix].lat,
+           grouped[ix].lng,
+           grouped[ix].address,
+          ); 
+    y = y + 60;
+  } 
   function copyTask (task) {
     var groupedItem = {};  
     groupedItem.id = task.getAttribute('id');
