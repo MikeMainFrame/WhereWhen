@@ -64,21 +64,12 @@ function buildTaskLines(root, latLng) {
     } else {
       for (var jx = 0; jx < grouped.length; jx++) { 
         if (grouped[jx].address === task.getAttribute("address")) {
-          grouped[jx].duration = grouped[jx].duration + parseInt(task.getAttribute("duration"));
+          grouped[jx].duration = (parseInt(grouped[jx].duration) + parseInt(task.getAttribute("duration")));
           match = true;
         }  
       }
       if (match === false) grouped.push(copyTask(task)); 
     }    
-    /* doLine(task.getAttribute('id'), 
-           task.getAttribute('duration'),
-           task.getAttribute('timestamp'),
-           task.getAttribute('lat'),
-           task.getAttribute('lng'),
-           task.getAttribute('address'),
-          );     
-    y = y + 60;*/
-   
   }
   doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude, wwObject.address);
   y = y + 60;
@@ -123,7 +114,7 @@ function buildTaskLines(root, latLng) {
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
     text.setAttribute("x", x + 160);
     text.setAttribute("y", y + 30);    
-    text.textContent = parseInt(duration) / 60;
+    text.textContent = parseInt(duration) / 60000;
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
