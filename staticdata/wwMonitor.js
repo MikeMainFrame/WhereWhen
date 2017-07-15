@@ -114,7 +114,7 @@ function buildTaskLines(root, latLng) {
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
     text.setAttribute("x", x + 160);
     text.setAttribute("y", y + 30);    
-    text.textContent = parseInt(duration) / 60000;
+    text.textContent = parseInt(parseInt(duration) / 60000);
     hook.appendChild(text); 
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
