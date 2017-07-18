@@ -13,9 +13,7 @@ function showWhereWhenOnMap(latLng) {
   wwObject.id = 9999;
   var zMap = new google.maps.Map(document.getElementById('wwMap'), {
       center: zWhere,
-      scale: 2,
-      gestureHandling: 'greedy',
-      zoom: 16, 
+      zoom: 12, 
     }); 
   var zMarker = new google.maps.Marker({
      position: zWhere,
@@ -31,6 +29,7 @@ function showWhereWhenOnMap(latLng) {
      },
      animation: google.maps.Animation.DROP
   });
+  zMarker.addListener('click', function() {alert(wwObject.address)}); 
   var zGeocoder = new google.maps.Geocoder;
   zGeocoder.geocode({'location': zWhere}, function(results, status) {
     if (status === 'OK') wwObject.address = results[0].formatted_address;     
