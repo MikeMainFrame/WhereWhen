@@ -45,17 +45,18 @@ function getStoredData (latLng) {
   xmlhttp.overrideMimeType('application/xml');
   xmlhttp.onreadystatechange=function() { 
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {    
-      buildTaskLines(xmlhttp.responseXML.documentElement, latLng);
+      groupTasks_ShowUI(xmlhttp.responseXML.documentElement, latLng);
     }
   };
   var temp = window.location.search.split("=");
   xmlhttp.open("GET","wwGetTasks.php" + "?id=" + temp[1],true);  
   xmlhttp.send();
 }
-function buildTaskLines(root, latLng) {
+function groupTasks_ShowUI(root, latLng) {
   var hook = document.getElementById('wwTasks');
   var zTasks = root.getElementsByTagName('task');
   var address = "Ø", match = false;
+  
   grouped[0].id = 9999; grouped[0].duration = 0; grouped[0].timestamp = latLng.timestamp;
   grouped[0].lat = latLng.coords.latitude; grouped[0].lng = latLng.coords.lng ; grouped[0].address = wwObject.address;
 
@@ -68,8 +69,7 @@ function buildTaskLines(root, latLng) {
       }  
       if (match === false) grouped.push(copyTask(task)); 
     }    
-  }
-  
+  }  
   function copyTask (task) {
     var groupedItem = {};  
     groupedItem.id = task.getAttribute('id');
@@ -79,15 +79,31 @@ function buildTaskLines(root, latLng) {
     groupedItem.lng = task.getAttribute('lng');
     groupedItem.address = task.getAttribute('address');
     return groupedItem;
-  }   
-  
-  
+  }
+  function scatterTasks (grouped) {
+    for (var jx = 1; jx < grouped.length; jx++) { 
+      const zWhere = {lat: grouped[jx].lat, lng: lat: grouped[jx].lng};  
+      var zMarker = new google.maps.Marker({
+      position: zWhere,
+      map: zMap,
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 10,
+        strokeColor: '#00FF00',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#00FF00',
+        fillOpacity: 0.35
+      },
+      animation: google.maps.Animation.DROP
+    });
+  }
+} 
 function stopClock(what) {
   var todie = document.getElementById('todie');
   var execute = todie.parentNode.removeChild(todie);
   clearInterval(zInterval);
-  wrapUp(wwObject);
-  
+  wrapUp(wwObject); 
 }
 function taskClicked(what) {  
   if (zDone === false) {
@@ -114,34 +130,51 @@ function taskClicked(what) {
 function setupClock (anchor) {
   var svgdoc = document.getElementById(anchor); 
   var group = document.createElementNS("http://www.w3.org/2000/svg", 'g'); 
-  group.setAttribute("id", 'todie');
-  
   var jx = 0;
   
-  for (ix = 1; ix < 360; ix = ix + 6) {        // ix is degree rotater
+  for (ix=1; ix<360; ix=ix+6) {        // ix is degree rotater
     var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
-    X = Math.cos(ix * Math.PI / 180);          Y = Math.sin(ix * Math.PI / 180);           d = "M"  + parseInt(1000 + (X * 900)) + ', '  + parseInt(1000 + (Y * 900));                   
+    X = Math.cos(ix * Math.PI / 180);          Y = Math.sin(ix * Math.PI / 180);           d = "M"  + parseInt(1000 + (X * 700)) + ', '  + parseInt(1000 + (Y * 700));                   
     X = Math.cos(ix * Math.PI / 180);          Y = Math.sin(ix * Math.PI / 180);           d+= " L" + parseInt(1000 + (X * 1000)) + ', ' + parseInt(1000 + (Y * 1000));                
-    X = Math.cos((ix + 3) * Math.PI / 180);    Y = Math.sin((ix + 3) * Math.PI / 180);     d+= " Q" + parseInt(1000 + (X * 1003)) + ', ' + parseInt(1000 + (Y * 1003));            
-    X = Math.cos((ix + 6) * Math.PI / 180);    Y = Math.sin((ix + 6) * Math.PI / 180);     d+= "  " + parseInt(1000 + (X * 1000)) + ', ' + parseInt(1000 + (Y * 1000));                
-    X = Math.cos((ix + 6) * Math.PI / 180);    Y = Math.sin((ix + 6) * Math.PI / 180);     d+= " L" + parseInt(1000 + (X * 900)) + ', '  + parseInt(1000 + (Y * 900));               
+    X = Math.cos((ix + 2) * Math.PI / 180);    Y = Math.sin((ix + 2) * Math.PI / 180);     d+= " Q" + parseInt(1000 + (X * 1003)) + ', ' + parseInt(1000 + (Y * 1003));            
+    X = Math.cos((ix + 4) * Math.PI / 180);    Y = Math.sin((ix + 4) * Math.PI / 180);     d+= "  " + parseInt(1000 + (X * 1000)) + ', ' + parseInt(1000 + (Y * 1000));                
+    X = Math.cos((ix + 4) * Math.PI / 180);    Y = Math.sin((ix + 4) * Math.PI / 180);     d+= " L" + parseInt(1000 + (X * 700)) + ', '  + parseInt(1000 + (Y * 700));                
     jx++;
     path.setAttribute("id", 's' + jx);
-    path.setAttribute("fill", "url(#blue)");
+    path.setAttribute("fill", "url(#passive)");
     path.setAttribute("d", d + ' Z');    
-    group.appendChild(path);             
+    group.appendChild(path);  
   } 
+  svgdoc.appendChild(group);  
+  
   var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');
   text.setAttribute("id", 'zdate');  
-  text.setAttribute("fill", 'black');  
-  text.setAttribute("font-size", 256);  
-  text.setAttribute("stroke", 'black');      
+  text.setAttribute("fill", '#f80');  
+  text.setAttribute("font-size", 144);  
   text.setAttribute("text-anchor", 'middle');  
   text.setAttribute("x", 1000);
   text.setAttribute("y", 1000);
-  text.textContent = "000";
-  group.appendChild(text);             
-  svgdoc.appendChild(group);  
-  svgdoc.addEventListener('click', stopClock, false);  
-}
+  text.textContent = '00:00';    
+  
+  svgdoc.appendChild(text);  
+  
+  setInterval(motion, 1000);
+  
+  function motion() {
+    var now = new Date();            
+    var elapsed = now.getTime() - entryTime.getTime();
+    var zGet = "s" + parseInt(now.getSeconds() + 1);
+    var thisPath = document.getElementById(zGet);
+    (thisPath.getAttribute("fill") === 'url(#active)') ? thisPath.setAttribute("fill", 'url(#passive)') : thisPath.setAttribute("fill", 'url(#active)');  
+    var thisClock = document.getElementById("zdate");
+    thisClock.textContent = function (mili) {
+      var seconds = parseInt(mili / 1000);
+      var mm = parseInt(seconds / 60);
+      var ss = seconds - (mm * 60);
+      if (mm < 10) mm = "0" + mm; 
+      if (ss < 10) ss = "0" + ss; 
+      return mm + ":" + ss;
+      }(elapsed);
+  }
+} 
 id = navigator.geolocation.watchPosition(GetGPSCoords, error, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
