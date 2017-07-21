@@ -1,9 +1,9 @@
 var id, zInterval, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1, address: 'Ø'};
-var zDone = false;
+var zDone = false, grouped = [];
 function GetGPSCoords(latLng) {
-   wwObject.address = showWhereWhenOnMap(latLng);
-   getStoredData(latLng);
-   navigator.geolocation.clearWatch(id);
+  wwObject.address = showWhereWhenOnMap(latLng);
+  getStoredData(latLng);
+  navigator.geolocation.clearWatch(id);
 }
 function showWhereWhenOnMap(latLng) { 
   const zWhere = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};  
@@ -29,7 +29,8 @@ function showWhereWhenOnMap(latLng) {
      },
      animation: google.maps.Animation.DROP
   });
-  zMarker.addListener('click', function() {alert(wwObject.address)}); 
+  zMarker.addListener('click', taskClicked);   
+  
   var zGeocoder = new google.maps.Geocoder;
   zGeocoder.geocode({'location': zWhere}, function(results, status) {
     if (status === 'OK') wwObject.address = results[0].formatted_address;     
@@ -54,34 +55,21 @@ function getStoredData (latLng) {
 function buildTaskLines(root, latLng) {
   var hook = document.getElementById('wwTasks');
   var zTasks = root.getElementsByTagName('task');
-  var x = 0, y = 60, address = "Ø", grouped=[], match = false;
-  
-  for (var ix = 0; ix < zTasks.length; ix++) {
+  var address = "Ø", match = false;
+  grouped[0].id = 9999; grouped[0].duration = 0; grouped[0].timestamp = latLng.timestamp;
+  grouped[0].lat = latLng.coords.latitude; grouped[0].lng = latLng.coords.lng ; grouped[0].address = wwObject.address;
+
+  for (var ix = 1; ix < zTasks.length; ix++) {
     task = zTasks[ix]; match = false;
-    if (ix === 0) {
-      grouped[0] = copyTask(task);
-    } else {
-      for (var jx = 0; jx < grouped.length; jx++) { 
-        if (grouped[jx].address === task.getAttribute("address")) {
-          grouped[jx].duration = (parseInt(grouped[jx].duration) + parseInt(task.getAttribute("duration")));
-          match = true;
-        }  
-      }
+    for (var jx = 0; jx < grouped.length; jx++) { 
+      if (grouped[jx].address === task.getAttribute("address")) {       
+        grouped[jx].duration = (parseInt(grouped[jx].duration) + parseInt(task.getAttribute("duration")));
+        match = true;
+      }  
       if (match === false) grouped.push(copyTask(task)); 
     }    
   }
-  doLine(9999, 0, latLng.timestamp, latLng.coords.latitude, latLng.coords.longitude, wwObject.address);
-  y = y + 60;
-  for (var ix = 0; ix < grouped.length; ix++) { 
-    doLine(grouped[ix].id, 
-           grouped[ix].duration,
-           grouped[ix].timestamp,
-           grouped[ix].lat,
-           grouped[ix].lng,
-           grouped[ix].address,
-          ); 
-    y = y + 60;
-  } 
+  
   function copyTask (task) {
     var groupedItem = {};  
     groupedItem.id = task.getAttribute('id');
@@ -92,49 +80,8 @@ function buildTaskLines(root, latLng) {
     groupedItem.address = task.getAttribute('address');
     return groupedItem;
   }   
-  function doLine(id, duration, timestamp, lat, lng, address) {  
-    var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');            
-    rect.setAttribute("x", x);
-    rect.setAttribute("y", y);    
-    rect.setAttribute("width", 600);    
-    rect.setAttribute("height", 50);    
-    rect.setAttribute("rx", 5);        
-    rect.setAttribute("fill", "rgba(79, 150, 255,1)");        
-    rect.setAttribute("zid", id);        
-    rect.addEventListener('click', taskClicked, false);  
-    hook.appendChild(rect); 
   
-    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 60);
-    text.setAttribute("y", y + 30);    
-    text.textContent = id;
-    hook.appendChild(text); 
-    
-    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 160);
-    text.setAttribute("y", y + 30);    
-    text.textContent = parseInt(parseInt(duration) / 60000);
-    hook.appendChild(text); 
-    
-    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 290);
-    text.setAttribute("y", y + 30);    
-    var w = new Date(parseInt(timestamp));
-    text.textContent =  parseInt((w.getFullYear() * 100000000) +
-                                ((w.getMonth() + 1) * 1000000) + 
-                                (w.getDate() * 10000) +
-                                (w.getHours() * 100) +
-                                 w.getSeconds());
-    hook.appendChild(text); 
-    
-    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');            
-    text.setAttribute("x", x + 300);
-    text.setAttribute("y", y + 30);   
-    text.setAttribute("text-anchor", 'start');        
-    text.textContent = address;
-    hook.appendChild(text); 
-  }
-}
+  
 function stopClock(what) {
   var todie = document.getElementById('todie');
   var execute = todie.parentNode.removeChild(todie);
