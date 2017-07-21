@@ -69,7 +69,9 @@ function groupTasks_ShowUI(root, latLng) {
       }  
       if (match === false) grouped.push(copyTask(task)); 
     }    
-  }  
+  }
+  scatterTasks(grouped);
+
   function copyTask (task) {
     var groupedItem = {};  
     groupedItem.id = task.getAttribute('id');
