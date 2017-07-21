@@ -116,29 +116,14 @@ function stopClock(what) {
 }
 function taskClicked(what) {  
   if (zDone === false) {
-    setupClock('zTimer');
-    zInterval = setInterval(progress, 1000);
+    setupClock('zTasks');
     zDone = true;
-  }
-  function progress() {
-    var now = new Date();            
-    wwObject.duration = now.getTime() - wwObject.timestamp;
-    var jx = parseInt(now.getSeconds() + 1);
-    var thisPath = document.getElementById("s" + parseInt(now.getSeconds() + 1));
-    thisPath.setAttribute("fill", "rgba(79, 150, 255,1)"); // change color during elapse ?
-    document.getElementById("zdate").textContent = (function (mili) {
-      var seconds = parseInt(mili / 1000);      
-      var mm = parseInt(seconds / 60);
-      var ss = seconds - (mm * 60); 
-      if (mm < 10) mm = "0" + mm;
-      if (ss < 10) ss = "0" + ss;
-      return mm + ":" + ss;
-    })(wwObject.duration);
   }
 }
 function setupClock (anchor) {
   var svgdoc = document.getElementById(anchor); 
   var group = document.createElementNS("http://www.w3.org/2000/svg", 'g'); 
+  group.setAttribute("id", "todie");
   var jx = 0;
   
   for (ix=1; ix<360; ix=ix+6) {        // ix is degree rotater
@@ -167,23 +152,23 @@ function setupClock (anchor) {
   
   svgdoc.appendChild(text);  
   
-  var timing = setInterval(motion, 1000);
+  zInterval = setInterval(motion, 1000);
   
   function motion() {
     var now = new Date();            
-    var elapsed = now.getTime() - entryTime.getTime();
+    var elapsed = now.getTime() - wwObject.timestamp;
     var zGet = "s" + parseInt(now.getSeconds() + 1);
     var thisPath = document.getElementById(zGet);
     (thisPath.getAttribute("fill") === 'url(#active)') ? thisPath.setAttribute("fill", 'url(#passive)') : thisPath.setAttribute("fill", 'url(#active)');  
     var thisClock = document.getElementById("zdate");
-    thisClock.textContent = function (mili) {
+    thisClock.textContent = (function (mili) {
       var seconds = parseInt(mili / 1000);
       var mm = parseInt(seconds / 60);
       var ss = seconds - (mm * 60);
       if (mm < 10) mm = "0" + mm; 
       if (ss < 10) ss = "0" + ss; 
       return mm + ":" + ss;
-      }(elapsed);
+      })(elapsed);
   }
 } 
 id = navigator.geolocation.watchPosition(GetGPSCoords, error, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
