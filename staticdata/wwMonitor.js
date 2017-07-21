@@ -91,7 +91,7 @@ function groupTasks_ShowUI(root, latLng, user) {
   }
   function scatterTasks (grouped) {
     for (var jx = 1; jx < grouped.length; jx++) { 
-      const zWhere = {lat: grouped[jx].lat, lng: lat: grouped[jx].lng};  
+      const zWhere = {lat: grouped[jx].lat, lng: grouped[jx].lng};  
       var zMarker = new google.maps.Marker({
       position: zWhere,
       map: zMap,
