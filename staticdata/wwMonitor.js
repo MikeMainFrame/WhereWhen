@@ -65,12 +65,18 @@ function groupTasks_ShowUI(root, latLng) {
     for (var jx = 0; jx < grouped.length; jx++) { 
       if (grouped[jx].address === task.getAttribute("address")) {       
         grouped[jx].duration = (parseInt(grouped[jx].duration) + parseInt(task.getAttribute("duration")));
+        grouped[jx].timestamp = grouped[jx].timestamp;
         match = true;
       }  
       if (match === false) grouped.push(copyTask(task)); 
     }    
   }
   scatterTasks(grouped);
+  
+  document.getElementById('zId').textContent = grouped[0].id;
+  document.getElementById('zAddress').textContent = grouped[0].address;
+  document.getElementById('zAccumulate').textContent = grouped[0].duration;
+  document.getElementById('zTimestamp').textContent = grouped[0].timestamp;
 
   function copyTask (task) {
     var groupedItem = {};  
