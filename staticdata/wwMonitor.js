@@ -167,7 +167,7 @@ function setupClock (anchor) {
   
   svgdoc.appendChild(text);  
   
-  setInterval(motion, 1000);
+  var timing = setInterval(motion, 1000);
   
   function motion() {
     var now = new Date();            
