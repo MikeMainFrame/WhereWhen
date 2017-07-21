@@ -45,14 +45,14 @@ function getStoredData (latLng) {
   xmlhttp.overrideMimeType('application/xml');
   xmlhttp.onreadystatechange=function() { 
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {    
-      groupTasks_ShowUI(xmlhttp.responseXML.documentElement, latLng);
+      groupTasks_ShowUI(xmlhttp.responseXML.documentElement, latLng, temp[1]);
     }
   };
   var temp = window.location.search.split("=");
   xmlhttp.open("GET","wwGetTasks.php" + "?id=" + temp[1],true);  
   xmlhttp.send();
 }
-function groupTasks_ShowUI(root, latLng) {
+function groupTasks_ShowUI(root, latLng, user) {
   var hook = document.getElementById('wwTasks');
   var zTasks = root.getElementsByTagName('task');
   var address = "Ø", match = false;
@@ -73,7 +73,8 @@ function groupTasks_ShowUI(root, latLng) {
   }
   scatterTasks(grouped);
   
-  document.getElementById('zId').textContent = grouped[0].id;
+  document.getElementById('zId').textContent = user;
+  document.getElementById('zTask').textContent = grouped[0].id;
   document.getElementById('zAddress').textContent = grouped[0].address;
   document.getElementById('zAccumulate').textContent = grouped[0].duration;
   document.getElementById('zTimestamp').textContent = grouped[0].timestamp;
