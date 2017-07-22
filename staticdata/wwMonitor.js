@@ -65,7 +65,6 @@ function groupTasks_ShowUI(root, latLng, user) {
     for (var jx = 0; jx < grouped.length; jx++) { 
       if (grouped[jx].address === task.getAttribute("address")) {       
         grouped[jx].duration = (parseInt(grouped[jx].duration) + parseInt(task.getAttribute("duration")));
-        grouped[jx].timestamp = grouped[jx].timestamp;
         match = true;
       }  
       if (match === false) grouped.push(copyTask(task)); 
