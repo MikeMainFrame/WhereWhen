@@ -69,11 +69,11 @@ function groupTasks_ShowUI(root, latLng, user) {
     }
   }
   
-  for (var jx = 1; jx < grouped.length; jx++) {
-    const zWhere = {lat: grouped[jx].lat, lng: grouped[jx].lng};
-    var zMarker = new google.maps.Marker({
-    position: zWhere,
-    map: zMap
+  for (jx = 1; jx < grouped.length; jx++) {
+    const where = {lat: grouped[jx].lat, lng: grouped[jx].lng};
+    var marker = new google.maps.Marker({
+    position: where,
+    map: zMap,
     icon: {
       path: google.maps.SymbolPath.CIRCLE,
       scale: 10,
