@@ -112,14 +112,14 @@ function stopClock(what) {
   clearInterval(zInterval);
   wrapUp(wwObject); 
 }
-function taskClicked(what) {  
+function taskClicked() {  
   if (zDone === false) {
-    setupClock('wwUser');
+    setupClock();
     zDone = true;
   }
 }
-function setupClock (anchor) {
-  var svgdoc = document.getElementById(anchor); 
+function setupClock () {
+  var svgdoc = document.getElementById("zControl"); 
   var group = document.createElementNS("http://www.w3.org/2000/svg", 'g'); 
   group.setAttribute("id", "todie");
   var jx = 0;
