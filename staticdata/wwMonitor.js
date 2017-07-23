@@ -107,7 +107,7 @@ function groupTasks_ShowUI(root, latLng, user) {
   }
 }
 function stopClock(what) {
-  var todie = document.getElementById("todie");
+  var todie = document.getElementById("wwControl");
   var execute = todie.parentNode.removeChild(todie);
   clearInterval(zInterval);
   wrapUp(wwObject);
@@ -120,6 +120,7 @@ function taskClicked() {
 }
 function setupClock () {
   var svgdoc = document.getElementById("zControl");
+  svgdoc.addEventListener("click", stopClock, false);
   var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
   group.setAttribute("id", "todie");
   var jx = 0;
