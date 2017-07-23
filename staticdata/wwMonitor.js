@@ -1,4 +1,4 @@
-var id, zInterval, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1, address: "Ø"};
+var id, zInterval, wwObject = {user: "Ø", id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1, address: "Ø"};
 var zDone = false, zMap, grouped = [];
 function GetGPSCoords(latLng) {
   wwObject.address = showWhereWhenOnMap(latLng);
@@ -45,11 +45,11 @@ function getStoredData (latLng) {
   xmlhttp.overrideMimeType("application/xml");
   xmlhttp.onreadystatechange=function() {
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-      groupTasks_ShowUI(xmlhttp.responseXML.documentElement, latLng, temp[1]);
+      groupTasks_ShowUI(xmlhttp.responseXML.documentElement, latLng, wwObject.user);
     }
   };
-  var temp = window.location.search.split("=");
-  xmlhttp.open("GET","wwGetTasks.php" + "?id=" + temp[1],true);
+  wwObject.user = window.location.search.split("=")[1];
+  xmlhttp.open("GET","wwGetTasks.php" + "?id=" + wwObject.user,true);
   xmlhttp.send();
 }
 function groupTasks_ShowUI(root, latLng, user) {
@@ -68,8 +68,8 @@ function groupTasks_ShowUI(root, latLng, user) {
       if (match === false) grouped.push(copyTask(task));
     }
   }
-  
-  for (jx = 1; jx < grouped.length; jx++) {
+  // the compressed tasks, is displayed on map ...
+  for (var jx = 1; jx < grouped.length; jx++) {
     const where = {lat: grouped[jx].lat, lng: grouped[jx].lng};
     var marker = new google.maps.Marker({
     position: where,
@@ -121,7 +121,7 @@ function setupClock () {
   svgdoc.addEventListener("click", stopClock, false);
   var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
   group.setAttribute("id", "todie");
-  var jx = 0;
+  var jx = 0, X = 0, Y = 0;
   
   for (ix=1; ix<360; ix=ix+6) {
     var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
@@ -157,7 +157,6 @@ function setupClock () {
     var zGet = "s" + parseInt(now.getSeconds() + 1);
     var thisPath = document.getElementById(zGet);
     (thisPath.getAttribute("fill") === "url(#active)") ? thisPath.setAttribute("fill", "url(#passive)") : thisPath.setAttribute("fill", "url(#active)");
-    thisPath.setAttribute("fill", onetwo)
     var thisClock = document.getElementById("zdate");
     thisClock.textContent = (function (mili) {
       var seconds = parseInt(mili / 1000);
