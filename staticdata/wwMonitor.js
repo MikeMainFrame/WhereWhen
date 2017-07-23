@@ -1,5 +1,5 @@
 var id, zInterval, wwObject = {id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1, address: 'Ø'};
-var zDone = false, grouped = [];
+var zDone = false, zMap, grouped = [];
 function GetGPSCoords(latLng) {
   wwObject.address = showWhereWhenOnMap(latLng);
   getStoredData(latLng);
@@ -11,7 +11,7 @@ function showWhereWhenOnMap(latLng) {
   wwObject.lng = latLng.coords.longitude;
   wwObject.timestamp = latLng.timestamp;
   wwObject.id = 9999;
-  var zMap = new google.maps.Map(document.getElementById('wwMap'), {
+  zMap = new google.maps.Map(document.getElementById('wwMap'), {
       center: zWhere,
       zoom: 12, 
     }); 
@@ -53,13 +53,11 @@ function getStoredData (latLng) {
   xmlhttp.send();
 }
 function groupTasks_ShowUI(root, latLng, user) {
-  var hook = document.getElementById('wwTasks');
   var zTasks = root.getElementsByTagName('task');
-  var address = "Ø", match = false;
+  var address = "Ø", match = false, group = {};
   
-  grouped[0].id = 9999; grouped[0].duration = 0; grouped[0].timestamp = latLng.timestamp;
-  grouped[0].lat = latLng.coords.latitude; grouped[0].lng = latLng.coords.lng ; grouped[0].address = wwObject.address;
-
+  grouped[0] = wwObject;
+  
   for (var ix = 1; ix < zTasks.length; ix++) {
     task = zTasks[ix]; match = false;
     for (var jx = 0; jx < grouped.length; jx++) { 
@@ -70,6 +68,7 @@ function groupTasks_ShowUI(root, latLng, user) {
       if (match === false) grouped.push(copyTask(task)); 
     }    
   }
+  
   scatterTasks(grouped);
   
   document.getElementById('zId').textContent = user;
