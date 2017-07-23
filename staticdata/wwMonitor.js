@@ -64,9 +64,9 @@ function groupTasks_ShowUI(root, latLng, user) {
       if (grouped[jx].address === task.getAttribute("address")) {
         grouped[jx].duration = (parseInt(grouped[jx].duration) + parseInt(task.getAttribute("duration")));
         match = true;
-      }
-      if (match === false) grouped.push(copyTask(task));
+      }      
     }
+    if (match === false) grouped.push(copyTask(task));
   }
   // the compressed tasks, is displayed on map ...
   for (var jx = 1; jx < grouped.length; jx++) {
