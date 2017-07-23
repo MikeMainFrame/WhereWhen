@@ -114,7 +114,7 @@ function stopClock(what) {
 }
 function taskClicked(what) {  
   if (zDone === false) {
-    setupClock('zTasks');
+    setupClock('wwUser');
     zDone = true;
   }
 }
