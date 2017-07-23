@@ -54,7 +54,7 @@ function getStoredData (latLng) {
 }
 function groupTasks_ShowUI(root, latLng, user) {
   var zTasks = root.getElementsByTagName("task");
-  var address = "Ø", match = false, group = {};
+  var address = "Ø", match = false;
   
   grouped[0] = wwObject;
   
@@ -69,7 +69,23 @@ function groupTasks_ShowUI(root, latLng, user) {
     }
   }
   
-  scatterTasks(grouped);
+  for (var jx = 1; jx < grouped.length; jx++) {
+    const zWhere = {lat: grouped[jx].lat, lng: grouped[jx].lng};
+    var zMarker = new google.maps.Marker({
+    position: zWhere,
+    map: zMap
+    icon: {
+      path: google.maps.SymbolPath.CIRCLE,
+      scale: 10,
+      strokeColor: "#00FF00",
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: "#00FF00",
+      fillOpacity: 0.35
+    },
+    animation: google.maps.Animation.DROP
+    });
+  }  
   
   document.getElementById("zId").textContent = user;
   document.getElementById("zTask").textContent = grouped[0].id;
@@ -86,24 +102,6 @@ function groupTasks_ShowUI(root, latLng, user) {
     groupedItem.lng = task.getAttribute("lng");
     groupedItem.address = task.getAttribute("address");
     return groupedItem;
-  }
-  function scatterTasks (grouped) {
-    for (var jx = 1; jx < grouped.length; jx++) {
-      const zWhere = {lat: grouped[jx].lat, lng: grouped[jx].lng};
-      var zMarker = new google.maps.Marker({
-      position: zWhere,
-      map: zMap,
-      icon: {
-        path: google.maps.SymbolPath.CIRCLE,
-        scale: 10,
-        strokeColor: "#00FF00",
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: "#00FF00",
-        fillOpacity: 0.35
-      },
-      animation: google.maps.Animation.DROP
-    });
   }
 }
 function stopClock(what) {
@@ -159,6 +157,7 @@ function setupClock () {
     var zGet = "s" + parseInt(now.getSeconds() + 1);
     var thisPath = document.getElementById(zGet);
     (thisPath.getAttribute("fill") === "url(#active)") ? thisPath.setAttribute("fill", "url(#passive)") : thisPath.setAttribute("fill", "url(#active)");
+    thisPath.setAttribute("fill", onetwo)
     var thisClock = document.getElementById("zdate");
     thisClock.textContent = (function (mili) {
       var seconds = parseInt(mili / 1000);
