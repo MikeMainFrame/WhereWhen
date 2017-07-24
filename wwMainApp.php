@@ -6,7 +6,7 @@
     <title>WhereWhen :: by Michael Kenneth Rasch :: TRITICUM</title>
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 </head>
-<body>
+<body style="background: #000" ; margin: 5px>
   <div id="wwControl">
     <svg viewBox="0 0 2000 2000"   
       id="zControl" 
@@ -15,7 +15,7 @@
       xmlns:xlink="http://www.w3.org/1999/xlink" 
       xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <link xmlns="http://www.w3.org/1999/xhtml" href="http://fonts.googleapis.com/css?family=Racing+Sans+One|Six+Caps" type="text/css" rel="stylesheet" />                               
+        <link xmlns="http://www.w3.org/1999/xhtml" href="https://fonts.googleapis.com/css?family=Racing+Sans+One|Six+Caps" type="text/css" rel="stylesheet" />                               
         <path id="insidePath" d="M400,1000, C400,1800 1600,1800 1600,1000" />     
         <radialGradient id="passive" gradientUnits="userSpaceOnUse" cx="1000" cy="1000" r="1000" fx="1000" fy="1000">
           <stop offset="70%" stop-color="#008" /><stop offset="85%" stop-color="#55f" /><stop offset="100%" stop-color="#008" />
