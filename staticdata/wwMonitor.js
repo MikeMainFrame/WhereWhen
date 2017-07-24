@@ -70,7 +70,7 @@ function groupTasks_ShowUI(root, latLng, user) {
   }
   
   for (var jx = 1; jx < grouped.length; jx++) {
-    var latlng = {lat: grouped[jx].lat, lng: grouped[jx].lng};
+    var latlng = {lat: parseFloat(grouped[jx].lat), lng: parseFloat(grouped[jx].lng)};
     var marker = new google.maps.Marker({
     position: latlng,
     map: zMap,
