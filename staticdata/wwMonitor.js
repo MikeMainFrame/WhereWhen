@@ -58,7 +58,7 @@ function groupTasks_ShowUI(root, latLng, user) {
   
   grouped[0] = wwObject;
   
-  for (var ix = 1; ix < zTasks.length; ix++) {
+  for (var ix = 0; ix < zTasks.length; ix++) {
     task = zTasks[ix]; match = false;
     for (var jx = 0; jx < grouped.length; jx++) {
       if (grouped[jx].address === task.getAttribute("address")) {
@@ -68,11 +68,11 @@ function groupTasks_ShowUI(root, latLng, user) {
     }
     if (match === false) grouped.push(copyTask(task));
   }
-  // the compressed tasks, is displayed on map ...
+  
   for (var jx = 1; jx < grouped.length; jx++) {
-    const where = {lat: grouped[jx].lat, lng: grouped[jx].lng};
+    var latlng = {lat: grouped[jx].lat, lng: grouped[jx].lng};
     var marker = new google.maps.Marker({
-    position: where,
+    position: latlng,
     map: zMap,
     icon: {
       path: google.maps.SymbolPath.CIRCLE,
@@ -91,7 +91,8 @@ function groupTasks_ShowUI(root, latLng, user) {
   document.getElementById("zTask").textContent = grouped[0].id;
   document.getElementById("zAddress").textContent = grouped[0].address;
   document.getElementById("zAccumulate").textContent = grouped[0].duration;
-  document.getElementById("zTimestamp").textContent = grouped[0].timestamp;
+  var temp = new Date(grouped[0].timestamp);  
+  document.getElementById("zTimestamp").textContent = convertDateToUTC(temp);
 
   function copyTask (task) {
     var groupedItem = {};
@@ -103,6 +104,13 @@ function groupTasks_ShowUI(root, latLng, user) {
     groupedItem.address = task.getAttribute("address");
     return groupedItem;
   }
+  
+function convertDateToUTC(date) { 
+  return parseInt((date.getFullYear() * 1.0e+08) 
+                  + ((date.getMonth() + 1) * 1.0e+06) 
+                  + (date.getDate() * 1.0e+4) 
+                  + (date.getHours() * 100)
+                  + date.getMinutes());}
 }
 function stopClock(what) {
   var todie = document.getElementById("wwControl");
