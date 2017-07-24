@@ -113,8 +113,8 @@ function convertDateToUTC(date) {
                   + date.getMinutes());}
 }
 function stopClock(what) {
-  var todie = document.getElementById("wwControl");
-  var execute = todie.parentNode.removeChild(todie);
+  // var todie = document.getElementById("wwControl");
+  // var execute = todie.parentNode.removeChild(todie);
   clearInterval(zInterval);
   wrapUp(wwObject);
 }
