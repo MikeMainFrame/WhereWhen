@@ -33,7 +33,7 @@ function showWhereWhenOnMap(latLng) {
   
   var zGeocoder = new google.maps.Geocoder();
   zGeocoder.geocode({"location": zWhere}, function(results, status) {    
-    if (status === google.maps.GeocoderStatus.OK) wwObject.address = results[0].formatted_address;
+    if (status === google.maps.GeocoderStatus.OK) document.getElementById("zAddress").textContent = wwObject.address = results[0].formatted_address;
   });
   return wwObject.address;
 }
@@ -134,13 +134,13 @@ function setupClock () {
   for (ix=1; ix<360; ix=ix+6) {
     var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     X = Math.cos(ix * Math.PI / 180);          Y = Math.sin(ix * Math.PI / 180);           d = "M"  + parseInt(1000 + (X * 700)) + ", "  + parseInt(1000 + (Y * 700));
-    X = Math.cos(ix * Math.PI / 180);          Y = Math.sin(ix * Math.PI / 180);           d+= " L" + parseInt(1000 + (X * 1000)) + ", " + parseInt(1000 + (Y * 1000));
-    X = Math.cos((ix + 2) * Math.PI / 180);    Y = Math.sin((ix + 2) * Math.PI / 180);     d+= " Q" + parseInt(1000 + (X * 1003)) + ", " + parseInt(1000 + (Y * 1003));
-    X = Math.cos((ix + 4) * Math.PI / 180);    Y = Math.sin((ix + 4) * Math.PI / 180);     d+= "  " + parseInt(1000 + (X * 1000)) + ", " + parseInt(1000 + (Y * 1000));
+    X = Math.cos(ix * Math.PI / 180);          Y = Math.sin(ix * Math.PI / 180);           d+= " L" + parseInt(1000 + (X * 900)) + ", " + parseInt(1000 + (Y * 900));
+    X = Math.cos((ix + 2) * Math.PI / 180);    Y = Math.sin((ix + 2) * Math.PI / 180);     d+= " Q" + parseInt(1000 + (X * 903)) + ", " + parseInt(1000 + (Y * 903));
+    X = Math.cos((ix + 4) * Math.PI / 180);    Y = Math.sin((ix + 4) * Math.PI / 180);     d+= "  " + parseInt(1000 + (X * 900)) + ", " + parseInt(1000 + (Y * 900));
     X = Math.cos((ix + 4) * Math.PI / 180);    Y = Math.sin((ix + 4) * Math.PI / 180);     d+= " L" + parseInt(1000 + (X * 700)) + ", "  + parseInt(1000 + (Y * 700));
     jx++;
     path.setAttribute("id", "s" + jx);
-    path.setAttribute("fill", "url(#passive)");
+    path.setAttribute("fill", "#222");
     path.setAttribute("d", d + " Z");
     group.appendChild(path);
   }
@@ -164,7 +164,7 @@ function setupClock () {
     var elapsed = now.getTime() - wwObject.timestamp;
     var zGet = "s" + parseInt(now.getSeconds() + 1);
     var thisPath = document.getElementById(zGet);
-    (thisPath.getAttribute("fill") === "url(#active)") ? thisPath.setAttribute("fill", "url(#passive)") : thisPath.setAttribute("fill", "url(#active)");
+    (thisPath.getAttribute("fill") === "#00f") ? thisPath.setAttribute("fill", "#222") : thisPath.setAttribute("fill", "#00f");
     var thisClock = document.getElementById("zdate");
     thisClock.textContent = (function (mili) {
       var seconds = parseInt(mili / 1000);
