@@ -16,13 +16,7 @@
       xmlns:xlink="http://www.w3.org/1999/xlink" 
       xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <path id="insidePath" d="M400,1000, C400,1800 1600,1800 1600,1000" />     
-        <radialGradient id="passive" gradientUnits="userSpaceOnUse" cx="1000" cy="1000" r="1000" fx="1000" fy="1000">
-          <stop offset="70%" stop-color="#008" /><stop offset="85%" stop-color="#55f" /><stop offset="100%" stop-color="#008" />
-        </radialGradient>
-        <radialGradient id="active" gradientUnits="userSpaceOnUse" cx="1000" cy="1000" r="1000" fx="1000" fy="1000">
-          <stop offset="70%" stop-color="#111" /><stop offset="85%" stop-color="#555" /><stop offset="100%" stop-color="#111" />
-        </radialGradient>
+        <path id="insidePath" d="M400,1000, C400,1800 1600,1800 1600,1000" />
       </defs>
       <g font-size="64" fill="#f80">
        <text id="zAddress"    x="10"   y="60">Teglgaardsvej 529</text>
