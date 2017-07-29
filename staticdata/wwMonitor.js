@@ -67,7 +67,7 @@ function groupTasks_ShowUI(root, latLng, user) {
       strokeWeight: 2,
       fillColor: "#0000FF",
       fillOpacity: 0.5,
-      radius: 40
+      scale: 20
       },
     animation: google.maps.Animation.DROP
     });
@@ -82,7 +82,7 @@ function groupTasks_ShowUI(root, latLng, user) {
     strokeWeight: 2,
     fillColor: "#FF0000",
     fillOpacity: 0.5,    
-    radius: 40
+    scale: 20
     },
   animation: google.maps.Animation.DROP
   });
