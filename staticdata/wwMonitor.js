@@ -63,20 +63,28 @@ function groupTasks_ShowUI(root, latLng, user) {
     icon: {
       path: google.maps.SymbolPath.CIRCLE,
       scale: 10,      
+      strokeColor: '#0000FF',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
       fillColor: "#00FF00",
-      fillOpacity: 0.5
+      fillOpacity: 0.5,
+      radius: 40
       },
     animation: google.maps.Animation.DROP
     });
   }  
   var zMarker = new google.maps.Marker({
   position: {lat: parseFloat(wwObject.lat), lng: parseFloat(wwObject.lng)},
-  map: zMap,
+  map: zMap,    
   icon: {
     path: google.maps.SymbolPath.CIRCLE,
     scale: 10,
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
     fillColor: "#FF0000",
-    fillOpacity: 0.5
+    fillOpacity: 0.5,    
+    radius: 40
     },
   animation: google.maps.Animation.DROP
   });
