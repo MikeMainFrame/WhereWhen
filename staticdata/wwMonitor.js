@@ -11,7 +11,7 @@ function showWhereWhenOnMap(latLng) {
   wwObject.timestamp = latLng.timestamp;
   wwObject.id = 9999;
   zMap = new google.maps.Map(document.getElementById("wwMap"), {
-    center: zWhere,
+    center: {lat: parseFloat(wwObject.lat), lng: parseFloat(wwObject.lng)},
     zoom: 12
   });
   zMap = new google.maps.Map(document.getElementById("wwMap"),
