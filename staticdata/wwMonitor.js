@@ -15,7 +15,7 @@ function showWhereWhenOnMap(latLng) {
     zoom: 12
   });
   var zGeocoder = new google.maps.Geocoder();
-  zGeocoder.geocode({"location": zWhere}, function(results, status) {    
+  zGeocoder.geocode({"location": {lat: parseFloat(wwObject.lat), lng: parseFloat(wwObject.lng)}}, function(results, status) {    
     if (status === google.maps.GeocoderStatus.OK) document.getElementById("zAddress").textContent = wwObject.address = results[0].formatted_address;
   });
   return wwObject.address;
