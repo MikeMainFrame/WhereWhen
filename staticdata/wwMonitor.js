@@ -14,9 +14,6 @@ function showWhereWhenOnMap(latLng) {
     center: {lat: parseFloat(wwObject.lat), lng: parseFloat(wwObject.lng)},
     zoom: 12
   });
-  zMap = new google.maps.Map(document.getElementById("wwMap"),
-     {center: {lat: parseFloat(wwObject.lat), lng: parseFloat(wwObject.lng)},
-      zoom: 12 });
   var zGeocoder = new google.maps.Geocoder();
   zGeocoder.geocode({"location": zWhere}, function(results, status) {    
     if (status === google.maps.GeocoderStatus.OK) document.getElementById("zAddress").textContent = wwObject.address = results[0].formatted_address;
