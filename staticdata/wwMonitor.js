@@ -6,31 +6,17 @@ function GetGPSCoords(latLng) {
   navigator.geolocation.clearWatch(id);
 }
 function showWhereWhenOnMap(latLng) {
-  const zWhere = {lat: latLng.coords.latitude, lng: latLng.coords.longitude};
   wwObject.lat = latLng.coords.latitude;
   wwObject.lng = latLng.coords.longitude;
   wwObject.timestamp = latLng.timestamp;
   wwObject.id = 9999;
   zMap = new google.maps.Map(document.getElementById("wwMap"), {
-      center: zWhere,
-      zoom: 12
-    });
-  var zMarker = new google.maps.Marker({
-     position: zWhere,
-     map: zMap,
-     icon: {
-       path: google.maps.SymbolPath.CIRCLE,
-       scale: 10,
-       strokeColor: "#FF0000",
-       strokeOpacity: 0.8,
-       strokeWeight: 2,
-       fillColor: "#FF0000",
-       fillOpacity: 0.35
-     },
-     animation: google.maps.Animation.DROP
+    center: zWhere,
+    zoom: 12
   });
-  zMarker.addListener("click", taskClicked);
-  
+  zMap = new google.maps.Map(document.getElementById("wwMap"),
+     {center: {lat: parseFloat(wwObject.lat), lng: parseFloat(wwObject.lng)},
+      zoom: 12 });
   var zGeocoder = new google.maps.Geocoder();
   zGeocoder.geocode({"location": zWhere}, function(results, status) {    
     if (status === google.maps.GeocoderStatus.OK) document.getElementById("zAddress").textContent = wwObject.address = results[0].formatted_address;
@@ -61,8 +47,12 @@ function groupTasks_ShowUI(root, latLng, user) {
   for (var ix = 0; ix < zTasks.length; ix++) {
     task = zTasks[ix]; match = false;
     for (var jx = 0; jx < grouped.length; jx++) {
-      if (grouped[jx].address === task.getAttribute("address")) {
-        grouped[jx].duration = (parseInt(grouped[jx].duration) + parseInt(task.getAttribute("duration")));
+      if (task.getAttribute("address") === grouped[jx].address) {        
+        if (task.id === "9999") {
+          grouped[jx].duration = (parseInt(grouped[jx].duration) + parseInt(task.getAttribute("duration")));
+        } else {
+          grouped[jx].id = task.id;
+        }  
         match = true;
       }      
     }
@@ -70,22 +60,30 @@ function groupTasks_ShowUI(root, latLng, user) {
   }
   
   for (var jx = 1; jx < grouped.length; jx++) {
-    var latlng = {lat: parseFloat(grouped[jx].lat), lng: parseFloat(grouped[jx].lng)};
     var marker = new google.maps.Marker({
-    position: latlng,
+    position: {lat: parseFloat(grouped[jx].lat), lng: parseFloat(grouped[jx].lng)},
     map: zMap,
     icon: {
       path: google.maps.SymbolPath.CIRCLE,
-      scale: 10,
-      strokeColor: "#00FF00",
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
+      scale: 10,      
       fillColor: "#00FF00",
-      fillOpacity: 0.35
-    },
+      fillOpacity: 0.5
+      },
     animation: google.maps.Animation.DROP
     });
   }  
+  var zMarker = new google.maps.Marker({
+  position: {lat: parseFloat(wwObject.lat), lng: parseFloat(wwObject.lng)},
+  map: zMap,
+  icon: {
+    path: google.maps.SymbolPath.CIRCLE,
+    scale: 10,
+    fillColor: "#FF0000",
+    fillOpacity: 0.5
+    },
+  animation: google.maps.Animation.DROP
+  });
+  zMarker.addListener("click", taskClicked);
   
   document.getElementById("zId").textContent = user;
   document.getElementById("zTask").textContent = grouped[0].id;
@@ -104,13 +102,13 @@ function groupTasks_ShowUI(root, latLng, user) {
     groupedItem.address = task.getAttribute("address");
     return groupedItem;
   }
-  
+}  
 function convertDateToUTC(date) { 
-  return parseInt((date.getFullYear() * 1.0e+08) 
-                  + ((date.getMonth() + 1) * 1.0e+06) 
-                  + (date.getDate() * 1.0e+4) 
-                  + (date.getHours() * 100)
-                  + date.getMinutes());}
+  return parseInt((date.getFullYear() * 1.0e+08) +
+                  ((date.getMonth() + 1) * 1.0e+06) +
+                  (date.getDate() * 1.0e+4) + 
+                  (date.getHours() * 100) +
+                  date.getMinutes());
 }
 function stopClock(what) {
   // var todie = document.getElementById("wwControl");
