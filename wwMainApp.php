@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Racing+Sans+One|Six+Caps" type="text/css" rel="stylesheet" />    
   </head>
-<body style="background: #000" ; margin: 5px>
+<body style="background: #000" ; margin: 5px ; color: #fff>
   <div id="wwControl">
     <svg viewBox="0 0 2000 2000"   
       id="zControl" 
@@ -32,7 +32,7 @@
     </svg>
   </div>
   <!-- Top part is controls and info - below is google maps with current position marked in a circle -->
-  <div style="height: 600px ; width: 100%" id="wwMap">wwMap</div>
+  <div style="height: 500px ; width: 100%" id="wwMap">wwMap</div>
 </body>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV112FdOVJA4U5BSwImhPzEI73mgYUjQ" async defer></script>
 <script type="text/javascript" src="staticdata/wwMonitor.js"></script>
