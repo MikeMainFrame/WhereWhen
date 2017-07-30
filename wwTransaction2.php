@@ -11,12 +11,12 @@
   $transactionNode = $mother->importNode($transaction->documentElement->firstChild, true);
   
   $domXPath = new DOMXPath($mother); 
-  $targetNodes = $domXPath->query("//who[@id = " . $id . "]"); 
+  $targetNodes = $domXPath->query("//who[@id = '" . $id . "']"); 
   
   if ($targetNodes->length) {
     $targetNodes->item(0)->appendChild($transactionNode);
     file_put_contents("gs://wherewhen/XML/wwtask.xml", $mother->saveXML());
-    echo 'good';
+    echo 'good - saved ' . time(); 
   } else {
     echo 'mother id not found';
   }  
