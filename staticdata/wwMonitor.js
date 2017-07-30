@@ -37,7 +37,7 @@ function getStoredData (latLng) {
 }
 function groupTasks_ShowUI(root, latLng, user) {
   var zTasks = root.getElementsByTagName("task");
-  var address = "Ø", match = false;
+  var match = false;
   
   grouped[0] = wwObject;
   
@@ -64,7 +64,7 @@ function groupTasks_ShowUI(root, latLng, user) {
       path: google.maps.SymbolPath.CIRCLE,
       strokeColor: '#0000FF',
       strokeOpacity: 0.8,
-      strokeWeight: 2,
+      strokeWeight: 3,
       fillColor: "#0000FF",
       fillOpacity: 0.35,
       scale: 16
@@ -79,7 +79,7 @@ function groupTasks_ShowUI(root, latLng, user) {
     path: google.maps.SymbolPath.CIRCLE,
     strokeColor: '#FF0000',
     strokeOpacity: 0.8,
-    strokeWeight: 2,
+    strokeWeight: 3,
     fillColor: "#FF0000",
     fillOpacity: 0.35,    
     scale: 16
@@ -114,8 +114,6 @@ function convertDateToUTC(date) {
                   date.getMinutes());
 }
 function stopClock(what) {
-  // var todie = document.getElementById("wwControl");
-  // var execute = todie.parentNode.removeChild(todie);
   clearInterval(zInterval);
   wrapUp(wwObject);
 }
