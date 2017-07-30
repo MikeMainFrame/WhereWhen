@@ -2,6 +2,7 @@ function wrapUp(wwObject) {
   
   var transaction = document.implementation.createDocument ("", "", null);  
   var temp = window.location.search.split("=");
+  var now = new Date();
   
   var zWho = transaction.createElement("who");  
   zWho.setAttribute("id", temp[1]);  
@@ -12,7 +13,7 @@ function wrapUp(wwObject) {
   zTask.setAttribute("lng",wwObject.lng);  
   zTask.setAttribute("timestamp",wwObject.timestamp);  
   zTask.setAttribute("address",wwObject.address);  
-  zTask.setAttribute("duration",wwObject.duration);  
+  zTask.setAttribute("duration",now.getTime() - wwObject.timestamp);
   zWho.appendChild(zTask);
   
   transaction.appendChild(zWho);
