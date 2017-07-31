@@ -45,12 +45,12 @@ function groupTasks_ShowUI(root, latLng, user) {
     task = zTasks[ix]; match = false;
     for (var jx = 0; jx < grouped.length; jx++) {
       if (task.getAttribute("address") === grouped[jx].address) {        
+        match = true;
         if (task.id === "9999") {
           grouped[jx].duration = (parseInt(grouped[jx].duration) + parseInt(task.getAttribute("duration")));
         } else {
           grouped[jx].id = task.id;
         }  
-        match = true;
       }      
     }
     if (match === false) grouped.push(copyTask(task));
