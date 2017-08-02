@@ -44,9 +44,9 @@ function groupTasks_ShowUI(root, latLng, user) {
   for (var ix = 0; ix < zTasks.length; ix++) {
     task = zTasks[ix]; match = false;
     for (var jx = 0; jx < grouped.length; jx++) {
-      if (task.getAttribute("address") === grouped[jx].address) {        
+      if (task.getAttribute("address") == grouped[jx].address) {        
         match = true;
-        if (task.id === "9999") {
+        if (task.id == "9999") {
           grouped[jx].duration = (parseInt(grouped[jx].duration) + parseInt(task.getAttribute("duration")));
         } else {
           grouped[jx].id = task.id;
