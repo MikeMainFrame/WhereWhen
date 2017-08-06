@@ -34,7 +34,7 @@
   <!-- Top part is controls and info - below is google maps with current position marked in a circle -->
   <div style="height: 500px ; width: 100%" id="wwMap">wwMap</div>
 </body>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV112FdOVJA4U5BSwImhPzEI73mgYUjQ" async defer></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV112FdOVJA4U5BSwImhPzEI73mgYUjQ&language=en" async defer></script>
 <script type="text/javascript" src="staticdata/wwMonitor.js"></script>
 <script type="text/javascript" src="staticdata/wwTaskAppend.js"></script>
 </html>
