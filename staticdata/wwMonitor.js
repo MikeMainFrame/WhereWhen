@@ -64,8 +64,8 @@ function groupTasks_ShowUI(root, latLng, user) {
       path: google.maps.SymbolPath.CIRCLE,
       strokeColor: '#0000FF',
       strokeOpacity: 0.8,
-      strokeWeight: 3,
-      fillColor: "#0000FF",
+      strokeWeight: 0,
+      fillColor: "#800080",
       fillOpacity: 0.35,
       scale: 16
       },
@@ -79,7 +79,7 @@ function groupTasks_ShowUI(root, latLng, user) {
     path: google.maps.SymbolPath.CIRCLE,
     strokeColor: '#FF0000',
     strokeOpacity: 0.8,
-    strokeWeight: 3,
+    strokeWeight: 0,
     fillColor: "#FF0000",
     fillOpacity: 0.35,    
     scale: 16
