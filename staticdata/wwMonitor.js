@@ -65,8 +65,8 @@ function groupTasks_ShowUI(root, latLng, user) {
       strokeColor: '#0000FF',
       strokeOpacity: 0.8,
       strokeWeight: 0,
-      fillColor: "#800080",
-      fillOpacity: 0.35,
+      fillColor: "#008080",
+      fillOpacity: 0.5,
       scale: 16
       },
     animation: google.maps.Animation.DROP
@@ -81,7 +81,7 @@ function groupTasks_ShowUI(root, latLng, user) {
     strokeOpacity: 0.8,
     strokeWeight: 0,
     fillColor: "#FF0000",
-    fillOpacity: 0.35,    
+    fillOpacity: 0.8,    
     scale: 16
     },
   animation: google.maps.Animation.DROP
