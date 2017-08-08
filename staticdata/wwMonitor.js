@@ -65,7 +65,7 @@ function groupTasks_ShowUI(root, latLng, user) {
       strokeColor: '#0000FF',
       strokeOpacity: 0.8,
       strokeWeight: 0,
-      fillColor: "#008080",
+      fillColor: "#0000FF",
       fillOpacity: 0.5,
       scale: 16
       },
