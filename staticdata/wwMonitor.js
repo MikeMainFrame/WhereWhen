@@ -57,6 +57,7 @@ function groupTasks_ShowUI(root, latLng, user) {
   }
   
   for (var jx = 1; jx < grouped.length; jx++) {
+    if (grouped[jx].id == "9999") continue; // skip 9999 elements
     var marker = new google.maps.Marker({
     position: {lat: parseFloat(grouped[jx].lat), lng: parseFloat(grouped[jx].lng)},
     map: zMap,
