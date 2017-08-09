@@ -92,7 +92,7 @@ function groupTasks_ShowUI(root, latLng, user) {
   document.getElementById("zId").textContent = user;
   document.getElementById("zTask").textContent = grouped[0].id;
   document.getElementById("zAddress").textContent = grouped[0].address;
-  document.getElementById("zAccumulate").textContent = grouped[0].duration;
+  document.getElementById("zAccumulate").textContent = millisecondsToHoursMinutes(grouped[0].duration);
   var temp = new Date(grouped[0].timestamp);  
   document.getElementById("zTimestamp").textContent = convertDateToUTC(temp);
 
@@ -106,6 +106,11 @@ function groupTasks_ShowUI(root, latLng, user) {
     groupedItem.address = task.getAttribute("address");
     return groupedItem;
   }
+}
+function convert millisecondsToHoursMinutes(mili) { 
+ var h = parseInt(mili / 60000);
+ var m = parseInt(mili - (60000 * h));
+ return h + "h" + m + "m";  
 }  
 function convertDateToUTC(date) { 
   return parseInt((date.getFullYear() * 1.0e+08) +
