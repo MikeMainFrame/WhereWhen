@@ -8,7 +8,7 @@ function wrapUp(wwObject) {
   zWho.setAttribute("id", temp[1]);  
   
   var zTask = transaction.createElement("task");  
-  zTask.setAttribute("id",wwObject.id);  
+  zTask.setAttribute("id",9999);  
   zTask.setAttribute("lat",wwObject.lat);  
   zTask.setAttribute("lng",wwObject.lng);  
   zTask.setAttribute("timestamp",wwObject.timestamp);  
