@@ -108,8 +108,9 @@ function groupTasks_ShowUI(root, latLng, user) {
   }
 }
 function convertMiliToHoursMinutes(mili) { 
- var h = parseInt(mili / 60000);
- var m = parseInt((mili - (60000 * h)) / 1000);
+ var x = parseInt(mili / 1000); 
+ var h = x / 60;
+ var m = x - (60 * h);
  return h + "h" + m + "m";  
 }  
 function convertDateToUTC(date) { 
