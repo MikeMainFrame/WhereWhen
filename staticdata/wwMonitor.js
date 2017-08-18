@@ -109,8 +109,8 @@ function groupTasks_ShowUI(root, latLng, user) {
 }
 function convertMiliToHoursMinutes(mili) { 
  var x = parseInt(mili / 1000); 
- var h = x / 60;
- var m = x - (60 * h);
+ var h = parseInt(x / 60);
+ var m = parseInt(x - (60 * h));
  return h + "h" + m + "m";  
 }  
 function convertDateToUTC(date) { 
