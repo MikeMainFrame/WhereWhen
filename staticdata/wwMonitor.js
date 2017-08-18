@@ -181,5 +181,28 @@ function setupClock () {
       return mm + ":" + ss;
       })(elapsed);
   }
-} 
+}
+function showInfo() {
+  var svgdoc = document.getElementById("zControl");
+  var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  group.setAttribute("id", "todie");
+  
+  for (var ix = 1; ix < grouped.length; ix++) {
+    if (grouped[ix].id == "9999") continue; // skip 9999 elements  
+    var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    text.setAttribute("fill", "#000");
+    text.setAttribute("text-anchor", "middle");
+    text.setAttribute("x", 1000);
+    text.setAttribute("y", 1000);
+    text.textContent = "*";
+      <g font-size="64" fill="#f80">
+       <text id="zAddress"    x="10"   y="60">Teglgaardsvej 529</text>
+       <text id="zTimestamp"  x="1990" y="60" text-anchor="end">20170717123456</text>
+       <text id="zTask"       x="10"   y="1960">9999</text>
+       <text id="zAccumulate" x="1990" y="1990" text-anchor="end">23h5m</text>
+      </g>
+    group.appendChild(text);   
+  }  
+  svgdoc.appendChild(group);  
+}
 id = navigator.geolocation.watchPosition(GetGPSCoords, error, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
