@@ -186,23 +186,34 @@ function showInfo() {
   var svgdoc = document.getElementById("zControl");
   var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
   group.setAttribute("id", "todie");
+  group.setAttribute("style", "font-size: 28 ; color: #000");  
   
-  for (var ix = 1; ix < grouped.length; ix++) {
-    if (grouped[ix].id == "9999") continue; // skip 9999 elements  
-    var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    text.setAttribute("fill", "#000");
-    text.setAttribute("text-anchor", "middle");
-    text.setAttribute("x", 1000);
-    text.setAttribute("y", 1000);
-    text.textContent = "*";
-      <g font-size="64" fill="#f80">
-       <text id="zAddress"    x="10"   y="60">Teglgaardsvej 529</text>
-       <text id="zTimestamp"  x="1990" y="60" text-anchor="end">20170717123456</text>
-       <text id="zTask"       x="10"   y="1960">9999</text>
-       <text id="zAccumulate" x="1990" y="1990" text-anchor="end">23h5m</text>
-      </g>
-    group.appendChild(text);   
-  }  
+  var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  rect.setAttribute("x", 10);rect.setAttribute("y", 10);
+  rect.setAttribute("width", 600);rect.setAttribute("height", 200);
+  rect.setAttribute("rx", 20);rect.setAttribute("ry", 20);
+  rect.setAttribute("stroke", "#000");rect.setAttribute("fill", "rgba(0,0,255,0.8)")
+  
+  var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  text.setAttribute("x", 35); text.setAttribute("y", 45); text.setAttribute("text-anchor", "start");
+  text.textContent = 9999; group.appendChild(text);
+  
+  var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  text.setAttribute("x", 590); text.setAttribute("y", 45); text.setAttribute("text-anchor", "end");
+  text.textContent = "Teglgårdsvej 529"; group.appendChild(text);
+  
+  var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  text.setAttribute("x", 300); text.setAttribute("y", 110); text.setAttribute("text-anchor", "middle");
+  text.textContent = "12:34"; group.appendChild(text);
+  
+  var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  text.setAttribute("x", 35); text.setAttribute("y", 175); text.setAttribute("text-anchor", "start");
+  text.textContent = "201707161200"; group.appendChild(text);
+  
+  var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  text.setAttribute("x", 590); text.setAttribute("y", 175); text.setAttribute("text-anchor", "end");
+  text.textContent = "7h15m"; group.appendChild(text);
+  
   svgdoc.appendChild(group);  
 }
 id = navigator.geolocation.watchPosition(GetGPSCoords, error, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
