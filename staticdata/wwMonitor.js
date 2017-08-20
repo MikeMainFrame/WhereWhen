@@ -72,6 +72,7 @@ function groupTasks_ShowUI(root, latLng, user) {
       },
     animation: google.maps.Animation.DROP
     });
+    showInfo("translate(0,0)")
   }  
   var zMarker = new google.maps.Marker({
   position: {lat: parseFloat(wwObject.lat), lng: parseFloat(wwObject.lng)},
@@ -133,7 +134,7 @@ function taskClicked() {
 function setupClock () {
   var svgdoc = document.getElementById("zControl");
   svgdoc.addEventListener("click", stopClock, false);
-  var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  /*var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
   group.setAttribute("id", "todie");
   var jx = 0, X = 0, Y = 0;
   
@@ -151,7 +152,7 @@ function setupClock () {
     group.appendChild(path);
   }
   svgdoc.appendChild(group);
-  
+  */
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
   text.setAttribute("id", "zdate");
   text.setAttribute("fill", "#f80");
@@ -182,17 +183,21 @@ function setupClock () {
       })(elapsed);
   }
 }
-function showInfo() {
+function showInfo(translate, color) {
   var svgdoc = document.getElementById("zControl");
+  svgdoc.addEventListener("click", stopClock, false);
+  
   var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
   group.setAttribute("id", "todie");
-  group.setAttribute("style", "font-size: 28 ; color: #000");  
+  group.setAttribute("style", "font-size: 28");  
+  group.setAttribute("transform", translate);
   
   var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   rect.setAttribute("x", 10);rect.setAttribute("y", 10);
   rect.setAttribute("width", 600);rect.setAttribute("height", 200);
   rect.setAttribute("rx", 20);rect.setAttribute("ry", 20);
-  rect.setAttribute("stroke", "#000");rect.setAttribute("fill", "rgba(0,0,255,0.8)")
+  rect.setAttribute("stroke-width", "0");rect.setAttribute("fill", "rgba(0,0,255,0.8)")
+  group.appendChild(rect);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
   text.setAttribute("x", 35); text.setAttribute("y", 45); text.setAttribute("text-anchor", "start");
@@ -203,15 +208,15 @@ function showInfo() {
   text.textContent = "Teglgårdsvej 529"; group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  text.setAttribute("x", 300); text.setAttribute("y", 110); text.setAttribute("text-anchor", "middle");
+  text.setAttribute("x", 300); text.setAttribute("y", 120); text.setAttribute("text-anchor", "middle");
   text.textContent = "12:34"; group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  text.setAttribute("x", 35); text.setAttribute("y", 175); text.setAttribute("text-anchor", "start");
+  text.setAttribute("x", 35); text.setAttribute("y", 195); text.setAttribute("text-anchor", "start");
   text.textContent = "201707161200"; group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  text.setAttribute("x", 590); text.setAttribute("y", 175); text.setAttribute("text-anchor", "end");
+  text.setAttribute("x", 590); text.setAttribute("y", 195); text.setAttribute("text-anchor", "end");
   text.textContent = "7h15m"; group.appendChild(text);
   
   svgdoc.appendChild(group);  
