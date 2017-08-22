@@ -72,7 +72,7 @@ function groupTasks_ShowUI(root, latLng, user) {
       },
     animation: google.maps.Animation.DROP
     });
-    showInfo("translate(0,0)")
+    showInfo("translate(0,0)","rgba(255,0,0,0.8)", grouped[jx]);
   }  
   var zMarker = new google.maps.Marker({
   position: {lat: parseFloat(wwObject.lat), lng: parseFloat(wwObject.lng)},
@@ -153,16 +153,12 @@ function setupClock () {
   }
   svgdoc.appendChild(group);
   */
-  var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  var text = document.getElementById("zClock");   
   text.setAttribute("id", "zdate");
   text.setAttribute("fill", "#f80");
   text.setAttribute("font-size", 144);
   text.setAttribute("text-anchor", "middle");
-  text.setAttribute("x", 1000);
-  text.setAttribute("y", 1000);
   text.textContent = "00:00";
-  
-  svgdoc.appendChild(text);
   
   zInterval = setInterval(motion, 1000);
   
@@ -183,20 +179,16 @@ function setupClock () {
       })(elapsed);
   }
 }
-function showInfo(translate, color) {
-  var svgdoc = document.getElementById("zControl");
-  svgdoc.addEventListener("click", stopClock, false);
-  
+function showInfo(translate, color, object) {
+  var svgdoc = document.getElementById("zControl");   
   var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
-  group.setAttribute("id", "todie");
-  group.setAttribute("style", "font-size: 28");  
   group.setAttribute("transform", translate);
   
   var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   rect.setAttribute("x", 10);rect.setAttribute("y", 10);
   rect.setAttribute("width", 600);rect.setAttribute("height", 200);
   rect.setAttribute("rx", 20);rect.setAttribute("ry", 20);
-  rect.setAttribute("stroke-width", "0");rect.setAttribute("fill", "rgba(0,0,255,0.8)")
+  rect.setAttribute("stroke-width", "0");rect.setAttribute("fill", color);
   group.appendChild(rect);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
