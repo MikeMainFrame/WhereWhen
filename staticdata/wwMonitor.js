@@ -72,7 +72,7 @@ function groupTasks_ShowUI(root, latLng, user) {
       },
     animation: google.maps.Animation.DROP
     });
-    showInfo("translate(0,0)","rgba(255,0,0,0.8)", grouped[jx]);
+    showInfo("translate(0,0)","rgba(0,0,255,0.8)", grouped[jx]);
   }  
   var zMarker = new google.maps.Marker({
   position: {lat: parseFloat(wwObject.lat), lng: parseFloat(wwObject.lng)},
@@ -88,15 +88,16 @@ function groupTasks_ShowUI(root, latLng, user) {
     },
   animation: google.maps.Animation.DROP
   });
+  showInfo("translate(0,0)","rgba(255,0,0,0.8)", grouped[0]);
   zMarker.addListener("click", taskClicked);
-  
+  /*
   document.getElementById("zId").textContent = user;
   document.getElementById("zTask").textContent = grouped[0].id;
   document.getElementById("zAddress").textContent = grouped[0].address;
   document.getElementById("zAccumulate").textContent = convertMiliToHoursMinutes(grouped[0].duration);
   var temp = new Date(grouped[0].timestamp);  
   document.getElementById("zTimestamp").textContent = convertDateToUTC(temp);
-
+ */
   function copyTask (task) {
     var groupedItem = {};
     groupedItem.id = task.getAttribute("id");
@@ -152,23 +153,13 @@ function setupClock () {
     group.appendChild(path);
   }
   svgdoc.appendChild(group);
-  */
-  var text = document.getElementById("zClock");   
-  text.setAttribute("id", "zdate");
-  text.setAttribute("fill", "#f80");
-  text.setAttribute("font-size", 144);
-  text.setAttribute("text-anchor", "middle");
-  text.textContent = "00:00";
-  
+  */  
   zInterval = setInterval(motion, 1000);
   
   function motion() {
     var now = new Date();
     var elapsed = now.getTime() - wwObject.timestamp;
-    var zGet = "s" + parseInt(now.getSeconds() + 1);
-    var thisPath = document.getElementById(zGet);
-    (thisPath.getAttribute("fill") === "#00f") ? thisPath.setAttribute("fill", "#222") : thisPath.setAttribute("fill", "#00f");
-    var thisClock = document.getElementById("zdate");
+    var thisClock = document.getElementById("zClock");
     thisClock.textContent = (function (mili) {
       var seconds = parseInt(mili / 1000);
       var mm = parseInt(seconds / 60);
@@ -179,7 +170,7 @@ function setupClock () {
       })(elapsed);
   }
 }
-function showInfo(translate, color, object) {
+function showInfo(translate, color, wwObject) {
   var svgdoc = document.getElementById("zControl");   
   var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
   group.setAttribute("transform", translate);
@@ -193,23 +184,24 @@ function showInfo(translate, color, object) {
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
   text.setAttribute("x", 35); text.setAttribute("y", 45); text.setAttribute("text-anchor", "start");
-  text.textContent = 9999; group.appendChild(text);
+  text.textContent = wwObject.id; group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
   text.setAttribute("x", 590); text.setAttribute("y", 45); text.setAttribute("text-anchor", "end");
-  text.textContent = "Teglgårdsvej 529"; group.appendChild(text);
+  text.textContent = wwObject.address; group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  if (translate == "transform(0,0)" text.setAttribute("zClock", 300); // id on animated time elapse 
   text.setAttribute("x", 300); text.setAttribute("y", 120); text.setAttribute("text-anchor", "middle");
-  text.textContent = "12:34"; group.appendChild(text);
+  text.textContent = ""; group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
   text.setAttribute("x", 35); text.setAttribute("y", 195); text.setAttribute("text-anchor", "start");
-  text.textContent = "201707161200"; group.appendChild(text);
+  text.textContent = wwObject.timestamp; group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
   text.setAttribute("x", 590); text.setAttribute("y", 195); text.setAttribute("text-anchor", "end");
-  text.textContent = "7h15m"; group.appendChild(text);
+  text.textContent = wwObject.duration; group.appendChild(text);
   
   svgdoc.appendChild(group);  
 }
