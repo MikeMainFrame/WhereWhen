@@ -191,7 +191,7 @@ function showInfo(translate, color, wwObject) {
   text.textContent = wwObject.address; group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  if (translate == "transform(0,0)" text.setAttribute("zClock", 300); // id on animated time elapse 
+  if (translate == "transform(0,0)" text.setAttribute("id","zClock"); // id on animated time elapse 
   text.setAttribute("x", 300); text.setAttribute("y", 120); text.setAttribute("text-anchor", "middle");
   text.textContent = ""; group.appendChild(text);
   
