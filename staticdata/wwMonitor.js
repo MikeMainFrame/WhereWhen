@@ -179,7 +179,8 @@ function showInfo(translate, color, wwObject) {
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
   text.setAttribute("x", 35); text.setAttribute("y", 195); text.setAttribute("text-anchor", "start");
-  text.textContent = convertDateToUTC(wwObject.timestamp); group.appendChild(text);
+  var temp = new Date(wwObject.timestamp);  
+  text.textContent = convertDateToUTC(temp); group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
   text.setAttribute("x", 590); text.setAttribute("y", 195); text.setAttribute("text-anchor", "end");
