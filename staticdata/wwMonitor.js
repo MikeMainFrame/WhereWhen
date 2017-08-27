@@ -38,8 +38,8 @@ function getStoredData (latLng) {
 function groupTasks_ShowUI(root, latLng, user) {
   var zTasks = root.getElementsByTagName("task");
   var match = false;
-  const transform = ["translate(0,0)","translate(0,200)", "translate(600,200)", "translate(600,400)", 
-                     "translate(0,600)", "translate(600,600)", "translate(800,200)"];
+  const transform = ["translate(0,0)","translate(0,200)", "translate(600,200)", "translate(0,400)", 
+                     "translate(600,400)", "translate(0,600)", "translate(600,600)", "translate(0,800)"];
   
   grouped[0] = wwObject;
   
@@ -90,7 +90,7 @@ function groupTasks_ShowUI(root, latLng, user) {
     },
   animation: google.maps.Animation.DROP
   });
-  showInfo("translate(0,0)","rgba(255,0,0,0.8)", grouped[0]);
+  showInfo("translate(0,0) scale(2)","rgba(255,0,0,0.8)", grouped[0]);
   zMarker.addListener("click", taskClicked);
   /*
   document.getElementById("zId").textContent = user;
