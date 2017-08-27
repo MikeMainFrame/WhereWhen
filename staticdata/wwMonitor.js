@@ -1,7 +1,7 @@
 var id, zInterval, wwObject = {user: "Ø", id: 0, lat: 0, lng: 0, duration: 0, timestamp: 1, address: "Ø"};
 var zDone = false, zMap, grouped = [];
 function GetGPSCoords(latLng) {
-  wwObject.address = showWhereWhenOnMap(latLng);
+  showWhereWhenOnMap(latLng);
   getStoredData(latLng);
   navigator.geolocation.clearWatch(id);
 }
@@ -16,9 +16,8 @@ function showWhereWhenOnMap(latLng) {
   });
   var zGeocoder = new google.maps.Geocoder();
   zGeocoder.geocode({"location": {lat: parseFloat(wwObject.lat), lng: parseFloat(wwObject.lng)}}, function(results, status) {    
-    if (status === google.maps.GeocoderStatus.OK);
+    if (status === google.maps.GeocoderStatus.OK) wwObject.address = results[0].formatted_address;
   });
-  return wwObject.address;
 }
 function error(err) {
   alert("ERROR(" + err.code + "): " + err.message);
@@ -38,11 +37,13 @@ function getStoredData (latLng) {
 function groupTasks_ShowUI(root, latLng, user) {
   var zTasks = root.getElementsByTagName("task");
   var match = false;
-  const transform = ["translate(0,0)","translate(0,400)", "translate(600,400)", "translate(0,600)", 
-                     "translate(600,600)", "translate(0,800)", "translate(600,800)", "translate(0,999)"];
+  // we use same canvas and same rect, but we offset them accordingly to the table value
+  const transform = ["translate(10,10)","translate(10,410)", "translate(620,410)", "translate(10,620)", 
+                     "translate(620,620)", "translate(10,830)", "translate(620,830)", "translate(0,999)"];
   
+  // first element is where you are on the map right now ...
   grouped[0] = wwObject;
-  
+  // grouping on address
   for (var ix = 0; ix < zTasks.length; ix++) {
     task = zTasks[ix]; match = false;
     for (var jx = 0; jx < grouped.length; jx++) {
@@ -57,6 +58,7 @@ function groupTasks_ShowUI(root, latLng, user) {
     }
     if (match === false) grouped.push(copyTask(task));
   }
+  // cascade the markers not equal to 9999
   var kx = 0;
   for (var jx = 1; jx < grouped.length; jx++) {
     if (grouped[jx].id == "9999") continue; // skip 9999 elements
@@ -77,6 +79,7 @@ function groupTasks_ShowUI(root, latLng, user) {
     kx++;
     showInfo(transform[kx],"rgba(0,0,255,0.8)", grouped[jx]);
   }  
+  // main marker - last, so it is on top ...
   var zMarker = new google.maps.Marker({
   position: {lat: parseFloat(wwObject.lat), lng: parseFloat(wwObject.lng)},
   map: zMap,    
@@ -93,14 +96,7 @@ function groupTasks_ShowUI(root, latLng, user) {
   });
   showInfo("translate(0,0) scale(2)","rgba(255,0,0,0.8)", grouped[0]);
   zMarker.addListener("click", taskClicked);
-  /*
-  document.getElementById("zId").textContent = user;
-  document.getElementById("zTask").textContent = grouped[0].id;
-  document.getElementById("zAddress").textContent = grouped[0].address;
-  document.getElementById("zAccumulate").textContent = convertMiliToHoursMinutes(grouped[0].duration);
-  var temp = new Date(grouped[0].timestamp);  
-  document.getElementById("zTimestamp").textContent = convertDateToUTC(temp);
- */
+  
   function copyTask (task) {
     var groupedItem = {};
     groupedItem.id = task.getAttribute("id");
@@ -136,27 +132,7 @@ function taskClicked() {
   }
 }
 function setupClock () {
-  /* var svgdoc = document.getElementById("zControl");
-  svgdoc.addEventListener("click", stopClock, false);
-  var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
-  group.setAttribute("id", "todie");
-  var jx = 0, X = 0, Y = 0;
-  
-  for (ix=1; ix<360; ix=ix+6) {
-    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    X = Math.cos(ix * Math.PI / 180);          Y = Math.sin(ix * Math.PI / 180);           d = "M"  + parseInt(1000 + (X * 700)) + ", "  + parseInt(1000 + (Y * 700));
-    X = Math.cos(ix * Math.PI / 180);          Y = Math.sin(ix * Math.PI / 180);           d+= " L" + parseInt(1000 + (X * 900)) + ", " + parseInt(1000 + (Y * 900));
-    X = Math.cos((ix + 2) * Math.PI / 180);    Y = Math.sin((ix + 2) * Math.PI / 180);     d+= " Q" + parseInt(1000 + (X * 903)) + ", " + parseInt(1000 + (Y * 903));
-    X = Math.cos((ix + 4) * Math.PI / 180);    Y = Math.sin((ix + 4) * Math.PI / 180);     d+= "  " + parseInt(1000 + (X * 900)) + ", " + parseInt(1000 + (Y * 900));
-    X = Math.cos((ix + 4) * Math.PI / 180);    Y = Math.sin((ix + 4) * Math.PI / 180);     d+= " L" + parseInt(1000 + (X * 700)) + ", "  + parseInt(1000 + (Y * 700));
-    jx++;
-    path.setAttribute("id", "s" + jx);
-    path.setAttribute("fill", "#222");
-    path.setAttribute("d", d + " Z");
-    group.appendChild(path);
-  }
-  svgdoc.appendChild(group);
-  */  
+
   zInterval = setInterval(motion, 1000);
   
   function motion() {
@@ -172,6 +148,7 @@ function setupClock () {
       return mm + ":" + ss;
       })(elapsed);
   }
+  
 }
 function showInfo(translate, color, wwObject) {
   var svgdoc = document.getElementById("zControl");   
@@ -180,7 +157,7 @@ function showInfo(translate, color, wwObject) {
   group.setAttribute("transform", translate);
   
   var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  rect.setAttribute("x", 10);rect.setAttribute("y", 10);
+  rect.setAttribute("x", 0);rect.setAttribute("y", 0);
   rect.setAttribute("width", 600);rect.setAttribute("height", 200);
   rect.setAttribute("rx", 20);rect.setAttribute("ry", 20);
   rect.setAttribute("stroke-width", "0");rect.setAttribute("fill", color);
@@ -196,17 +173,17 @@ function showInfo(translate, color, wwObject) {
   text.textContent = wwObject.address; group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  if (translate == "translate(0,0) scale(2)") text.setAttribute("id","zClock"); // id on animated time elapse 
+  if (translate == "translate(0,0) scale(2)") text.setAttribute("id","zClock"); 
   text.setAttribute("x", 300); text.setAttribute("y", 120); text.setAttribute("text-anchor", "middle");
-  text.textContent = ""; group.appendChild(text);
+  text.textContent = "00:00"; text.setAttribute("font-size", 64); group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
   text.setAttribute("x", 35); text.setAttribute("y", 195); text.setAttribute("text-anchor", "start");
-  text.textContent = wwObject.timestamp; group.appendChild(text);
+  text.textContent = convertDateToUTC(wwObject.timestamp); group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
   text.setAttribute("x", 590); text.setAttribute("y", 195); text.setAttribute("text-anchor", "end");
-  text.textContent = wwObject.duration; group.appendChild(text);
+  text.textContent = convertMiliToHoursMinutes(wwObject.duration); group.appendChild(text);
   
   svgdoc.appendChild(group);  
 }
