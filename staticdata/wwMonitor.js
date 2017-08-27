@@ -38,7 +38,7 @@ function getStoredData (latLng) {
 function groupTasks_ShowUI(root, latLng, user) {
   var zTasks = root.getElementsByTagName("task");
   var match = false;
-  const transform = ["translate(0,200)", "translate(600,200)", "translate(600,400)", 
+  const transform = ["translate(0,0)","translate(0,200)", "translate(600,200)", "translate(600,400)", 
                      "translate(0,600)", "translate(600,600)", "translate(800,200)"];
   
   grouped[0] = wwObject;
@@ -74,7 +74,7 @@ function groupTasks_ShowUI(root, latLng, user) {
       },
     animation: google.maps.Animation.DROP
     });
-    showInfo("translate(0,0)","rgba(0,0,255,0.8)", grouped[jx]);
+    showInfo(translate[jx],"rgba(0,0,255,0.8)", grouped[jx]);
   }  
   var zMarker = new google.maps.Marker({
   position: {lat: parseFloat(wwObject.lat), lng: parseFloat(wwObject.lng)},
