@@ -74,7 +74,7 @@ function groupTasks_ShowUI(root, latLng, user) {
       },
     animation: google.maps.Animation.DROP
     });
-    showInfo(translate[jx],"rgba(0,0,255,0.8)", grouped[jx]);
+    showInfo(transform[jx],"rgba(0,0,255,0.8)", grouped[jx]);
   }  
   var zMarker = new google.maps.Marker({
   position: {lat: parseFloat(wwObject.lat), lng: parseFloat(wwObject.lng)},
