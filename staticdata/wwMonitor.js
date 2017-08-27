@@ -16,7 +16,7 @@ function showWhereWhenOnMap(latLng) {
   });
   var zGeocoder = new google.maps.Geocoder();
   zGeocoder.geocode({"location": {lat: parseFloat(wwObject.lat), lng: parseFloat(wwObject.lng)}}, function(results, status) {    
-    if (status === google.maps.GeocoderStatus.OK) document.getElementById("zAddress").textContent = wwObject.address = results[0].formatted_address;
+    if (status === google.maps.GeocoderStatus.OK);
   });
   return wwObject.address;
 }
@@ -38,8 +38,8 @@ function getStoredData (latLng) {
 function groupTasks_ShowUI(root, latLng, user) {
   var zTasks = root.getElementsByTagName("task");
   var match = false;
-  const transform = ["translate(0,0)","translate(0,200)", "translate(600,200)", "translate(0,400)", 
-                     "translate(600,400)", "translate(0,600)", "translate(600,600)", "translate(0,800)"];
+  const transform = ["translate(0,0)","translate(0,400)", "translate(600,400)", "translate(0,600)", 
+                     "translate(600,600)", "translate(0,800)", "translate(600,800)", "translate(0,999)"];
   
   grouped[0] = wwObject;
   
@@ -176,6 +176,7 @@ function setupClock () {
 function showInfo(translate, color, wwObject) {
   var svgdoc = document.getElementById("zControl");   
   var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  group.setAttribute("fill", "#FFF");
   group.setAttribute("transform", translate);
   
   var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
