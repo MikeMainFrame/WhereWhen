@@ -38,6 +38,8 @@ function getStoredData (latLng) {
 function groupTasks_ShowUI(root, latLng, user) {
   var zTasks = root.getElementsByTagName("task");
   var match = false;
+  const transform = ["translate(0,200)", "translate(600,200)", "translate(600,400)", 
+                     "translate(0,600)", "translate(600,600)", "translate(800,200)"];
   
   grouped[0] = wwObject;
   
@@ -133,9 +135,9 @@ function taskClicked() {
   }
 }
 function setupClock () {
-  var svgdoc = document.getElementById("zControl");
+  /* var svgdoc = document.getElementById("zControl");
   svgdoc.addEventListener("click", stopClock, false);
-  /*var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
   group.setAttribute("id", "todie");
   var jx = 0, X = 0, Y = 0;
   
@@ -180,6 +182,7 @@ function showInfo(translate, color, wwObject) {
   rect.setAttribute("width", 600);rect.setAttribute("height", 200);
   rect.setAttribute("rx", 20);rect.setAttribute("ry", 20);
   rect.setAttribute("stroke-width", "0");rect.setAttribute("fill", color);
+  rect.addEventListener("click", stopClock, false);
   group.appendChild(rect);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
