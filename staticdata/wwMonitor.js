@@ -57,7 +57,7 @@ function groupTasks_ShowUI(root, latLng, user) {
     }
     if (match === false) grouped.push(copyTask(task));
   }
-  
+  var kx = 0;
   for (var jx = 1; jx < grouped.length; jx++) {
     if (grouped[jx].id == "9999") continue; // skip 9999 elements
     var marker = new google.maps.Marker({
@@ -74,7 +74,8 @@ function groupTasks_ShowUI(root, latLng, user) {
       },
     animation: google.maps.Animation.DROP
     });
-    showInfo(transform[jx],"rgba(0,0,255,0.8)", grouped[jx]);
+    kx++;
+    showInfo(transform[kx],"rgba(0,0,255,0.8)", grouped[jx]);
   }  
   var zMarker = new google.maps.Marker({
   position: {lat: parseFloat(wwObject.lat), lng: parseFloat(wwObject.lng)},
@@ -194,7 +195,7 @@ function showInfo(translate, color, wwObject) {
   text.textContent = wwObject.address; group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  if (translate == "transform(0,0)") text.setAttribute("id","zClock"); // id on animated time elapse 
+  if (translate == "translate(0,0) scale(2)") text.setAttribute("id","zClock"); // id on animated time elapse 
   text.setAttribute("x", 300); text.setAttribute("y", 120); text.setAttribute("text-anchor", "middle");
   text.textContent = ""; group.appendChild(text);
   
