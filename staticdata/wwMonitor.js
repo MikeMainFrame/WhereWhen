@@ -38,8 +38,8 @@ function groupTasks_ShowUI(root, latLng, user) {
   var zTasks = root.getElementsByTagName("task");
   var match = false;
   // we use same canvas and same rect, but we offset them accordingly to the table value
-  const transform = ["translate(10,10)","translate(10,410)", "translate(620,410)", "translate(10,620)", 
-                     "translate(620,620)", "translate(10,830)", "translate(620,830)", "translate(0,999)"];
+  const transform = ["translate(0,0)","translate(0,400)", "translate(600,400)", "translate(0,600)", 
+                     "translate(600,600)", "translate(0,800)", "translate(600,800)", "translate(0,999)"];
   
   // first element is where you are on the map right now ...
   grouped[0] = wwObject;
@@ -154,12 +154,12 @@ function showInfo(translate, color, wwObject) {
   var svgdoc = document.getElementById("zControl");   
   var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
   group.setAttribute("fill", "#FFF");
+  group.setAttribute("font-size", 32);
   group.setAttribute("transform", translate);
   
   var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   rect.setAttribute("x", 0);rect.setAttribute("y", 0);
   rect.setAttribute("width", 600);rect.setAttribute("height", 200);
-  rect.setAttribute("rx", 20);rect.setAttribute("ry", 20);
   rect.setAttribute("stroke-width", "0");rect.setAttribute("fill", color);
   rect.addEventListener("click", stopClock, false);
   group.appendChild(rect);
