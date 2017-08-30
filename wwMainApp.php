@@ -9,7 +9,7 @@
   </head>
   <body style="background: #000 ; margin: 0 ; color: #fff">
   <div id="wwControl" style="margin: 0">
-    <svg viewBox="0 0 1240 1000"   
+    <svg viewBox="0 0 1200 1000"   
       id="zControl" 
       style="background: #000 ; color: #fff; font-family: 'Racing Sans One'"
       version="1.1" 
