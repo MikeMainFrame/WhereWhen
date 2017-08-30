@@ -154,7 +154,7 @@ function showInfo(translate, color, wwObject) {
   var svgdoc = document.getElementById("zControl");   
   var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
   group.setAttribute("fill", "#FFF");
-  group.setAttribute("font-size", 32);
+  group.setAttribute("font-size", 24);
   group.setAttribute("transform", translate);
   
   var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
@@ -165,24 +165,24 @@ function showInfo(translate, color, wwObject) {
   group.appendChild(rect);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  text.setAttribute("x", 35); text.setAttribute("y", 15); text.setAttribute("text-anchor", "start");
+  text.setAttribute("x", 25); text.setAttribute("y", 25); text.setAttribute("text-anchor", "start");
   text.textContent = wwObject.id; group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  text.setAttribute("x", 590); text.setAttribute("y", 15); text.setAttribute("text-anchor", "end");
+  text.setAttribute("x", 575); text.setAttribute("y", 25); text.setAttribute("text-anchor", "end");
   text.textContent = wwObject.address; group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
   if (translate == "translate(0,0) scale(2)") text.setAttribute("id","zClock"); 
-  text.setAttribute("x", 300); text.setAttribute("y", 110); text.setAttribute("text-anchor", "middle");
+  text.setAttribute("x", 300); text.setAttribute("y", 120); text.setAttribute("text-anchor", "middle");
   text.textContent = "00:00"; text.setAttribute("font-size", 64); group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  text.setAttribute("x", 35); text.setAttribute("y", 185); text.setAttribute("text-anchor", "start");
+  text.setAttribute("x", 25); text.setAttribute("y", 185); text.setAttribute("text-anchor", "start");
   text.textContent = convertDateToUTC(new Date(parseInt(wwObject.timestamp))); group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  text.setAttribute("x", 590); text.setAttribute("y", 185); text.setAttribute("text-anchor", "end");
+  text.setAttribute("x", 575); text.setAttribute("y", 185); text.setAttribute("text-anchor", "end");
   text.textContent = convertMiliToHoursMinutes(wwObject.duration); group.appendChild(text);
   
   svgdoc.appendChild(group);  
