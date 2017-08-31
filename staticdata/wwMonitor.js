@@ -16,7 +16,7 @@ function showWhereWhenOnMap(latLng) {
   });
   var zGeocoder = new google.maps.Geocoder();
   zGeocoder.geocode({"location": {lat: parseFloat(wwObject.lat), lng: parseFloat(wwObject.lng)}}, function(results, status) {    
-    if (status === google.maps.GeocoderStatus.OK) wwObject.address = results[0].formatted_address;
+    if (status === google.maps.GeocoderStatus.OK) document.getElementById("zAddress").textContent = wwObject.address = results[0].formatted_address;
   });
 }
 function error(err) {
@@ -169,6 +169,7 @@ function showInfo(translate, color, wwObject) {
   text.textContent = wwObject.id; group.appendChild(text);
   
   var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  if (translate == "translate(0,0) scale(2)") text.setAttribute("id","zAddress"); 
   text.setAttribute("x", 575); text.setAttribute("y", 25); text.setAttribute("text-anchor", "end");
   text.textContent = wwObject.address; group.appendChild(text);
   
