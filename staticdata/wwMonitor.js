@@ -77,7 +77,7 @@ function groupTasks_ShowUI(root, latLng, user) {
     animation: google.maps.Animation.DROP
     });
     kx++;
-    showInfo(transform[kx],"rgba(0,0,255,0.8)", grouped[jx]);
+    showInfo(transform[kx],"url(#blue)", grouped[jx]);
   }  
   // main marker - last, so it is on top ...
   var zMarker = new google.maps.Marker({
