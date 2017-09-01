@@ -16,11 +16,10 @@
       xmlns:xlink="http://www.w3.org/1999/xlink" 
       xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="blue" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" style="stop-color:rgb(0,0,255,1)" />
-          <stop offset="50%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
-          <stop offset="100%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
-        </linearGradient>
+        <linearGradient id="blue" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#00F" />
+        <stop offset="50%" stop-color="#008" />
+        <stop offset="100%" stop-color="#00F" />   
       </defs>
     </svg>
   </div>
