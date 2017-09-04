@@ -17,9 +17,8 @@
       xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="blue" x2="0%" y2="100%">
-        <stop offset="0%" stop-color="#00F" />
-        <stop offset="50%" stop-color="#008" />
-        <stop offset="100%" stop-color="#00F" />   
+          <stop offset="0%" stop-color="#008" /><stop offset="50%" stop-color="#00f" /><stop offset="100%" stop-color="#008" />   
+        </linearGradient> 
       </defs>
     </svg>
   </div>
