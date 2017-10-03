@@ -27,22 +27,6 @@
         <stop offset="100%" stop-color="#111" />
     </radialGradient>
   </defs>
-  <g font-size="64" fill="#f80">
-    <!--text x="10"   y="40"   fill="#666">ADDRESS</text-->
-    <text x="10"   y="60">Teglgaardsvej 529</text>
-    <!--text x="1990" y="40"   fill="#666" text-anchor="end">LASTEST LOG</text-->
-    <text x="1990" y="60" text-anchor="end">20170717123456</text>
-    <!--text x="10"   y="1906" fill="#666">ID</text-->
-    <text x="10"   y="1960">9999</text>
-    <!--text x="1990" y="1936" fill="#666" text-anchor="end">AKKUMULATED</text-->
-    <text x="1990" y="1990" text-anchor="end">23h5m</text>
-    <!--text x="1000" y="860"  fill="#666" font-size="96" text-anchor="middle">ELAPSED</text-->
-  </g>
-  <g>
-   <text font-size="72" font-family="arial" font-weight="600" text-anchor="middle">
-     <textPath fill="#aaa" letter-spacing="0.1em" startOffset="50%" xlink:href="#insidePath" opacity="1.0">miketriticum@gmail.com</textPath>
-   </text>  
-  </g>
   <script type="application/ecmascript" xlink:href="timeElapsed.js" ></script>
 </svg>
 
