@@ -54,4 +54,3 @@ function setupClock (anchor) {
       }(elapsed);
   }
 } 
-function convertDateToUTC(date) { return parseInt((date.getFullYear() * 1.0e+08) + ((date.getMonth() + 1) * 1.0e+06) + (date.getDate() * 1.0e+4) + (date.getHours() * 100)+ date.getMinutes());}
