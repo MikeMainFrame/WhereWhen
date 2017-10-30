@@ -154,7 +154,7 @@ function showInfo(translate, color, wwObject) {
   var svgdoc = document.getElementById("zControl");   
   var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
   group.setAttribute("fill", "#FFF");
-  group.setAttribute("font-size", 24);
+  group.setAttribute("font-size", 22);
   group.setAttribute("transform", translate);
   
   var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
