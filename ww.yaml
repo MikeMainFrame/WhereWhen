@@ -10,6 +10,9 @@ handlers:
   
 - url: /staticdata/wwTaskAppend.js
   script: /staticdata/wwTaskAppend.js
+
+- url: /staticdata/wwPostTime.js
+  script: /staticdata/wwPostTime.js
     
 - url: /wwTransaction.php
   script: wwTransaction.php
