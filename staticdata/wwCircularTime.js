@@ -1,13 +1,13 @@
 function RingOfTime(slices) {
     
-    var zBand = 0, zOffset = 0, zMinutes = 0, min = 0, max = 0; const oRadius = 500, iRadius = 400, thisColor = "#F00";
+    var zOffset = 0, zMinutes = 0, min = 0, max = 0; const oRadius = 500; const iRadius = 400; const thisColor = "#F00";
       
     for (ix = 0; ix < slices.length; ix++) {      
       if (slices[ix].timestamp < min) min = slices[ix].timestamp;
       else if (slices[ix].timestamp > max) max = slices[ix].timestamp;
     }    
     
-    zBand = max - min;
+    var zBand = max - min;
     var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');    
     
     for (ix = 0; ix < slices.length; ix++) {
