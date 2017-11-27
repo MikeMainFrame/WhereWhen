@@ -13,7 +13,10 @@ handlers:
 
 - url: /staticdata/wwPostTime.js
   script: /staticdata/wwPostTime.js
-    
+
+- url: /staticdata/wwCircularTime.js  
+  script: /staticdata/wwCircularTime.js  
+  
 - url: /wwTransaction.php
   script: wwTransaction.php
   
