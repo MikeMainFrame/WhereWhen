@@ -12,7 +12,7 @@
         slices.push(slice);  
       }  
     }    
-    document.body.appendChild(ringOfTime(slices));
+    document.getElementById("zCircularTime").appendChild(ringOfTime(slices));
   };    
   
   xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who,true);
