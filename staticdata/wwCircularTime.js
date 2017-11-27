@@ -42,7 +42,7 @@ function getStoredData (who) {
         slices.push(slice);  
       }  
     }    
-    ringOfTime(slices);
+    document.body.appendChild(ringOfTime(slices));
   };    
   
   xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who,true);
