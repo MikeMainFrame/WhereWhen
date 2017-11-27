@@ -28,6 +28,9 @@ handlers:
   
 - url: /wwShowLog.php
   script: wwShowLog.php
-  
+
+- url: /wwCircularTime.svg
+  script: wwCircularTime.svg
+
 - url: /.*
   script: wwMainApp.php
