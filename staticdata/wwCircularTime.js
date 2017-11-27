@@ -1,3 +1,23 @@
+(function getStoredData (who) {
+  var xmlhttp = new XMLHttpRequest();
+  var slices = [];
+  xmlhttp.overrideMimeType("application/xml");
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {         
+      var zTasks = xmlhttp.responseXML.documentElement.getElementsByTagName("task");
+      for (var ix = 0; ix < zTasks.length; ix++) {
+        var slice = {};
+        slice.duration = zTasks[ix].getAttribute("duration");
+        slice.timestamp = zTasks[ix].getAttribute("timestamp");
+        slices.push(slice);  
+      }  
+    }    
+    document.body.appendChild(ringOfTime(slices));
+  };    
+  
+  xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who,true);
+  xmlhttp.send();
+}
 function RingOfTime(slices) {
 
   var zOffset = 0, zMinutes = 0, min = 0, max = 0; const oRadius = 500; const iRadius = 400; const thisColor = "#F00";
@@ -27,24 +47,4 @@ function RingOfTime(slices) {
     g.appendChild(path);                  
   }        
   return(g);
-} 
-function getStoredData (who) {
-  var xmlhttp = new XMLHttpRequest();
-  var slices = [];
-  xmlhttp.overrideMimeType("application/xml");
-  xmlhttp.onreadystatechange=function() {
-    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {         
-      var zTasks = xmlhttp.responseXML.documentElement.getElementsByTagName("task");
-      for (var ix = 0; ix < zTasks.length; ix++) {
-        var slice = {};
-        slice.duration = zTasks[ix].getAttribute("duration");
-        slice.timestamp = zTasks[ix].getAttribute("timestamp");
-        slices.push(slice);  
-      }  
-    }    
-    document.body.appendChild(ringOfTime(slices));
-  };    
-  
-  xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who,true);
-  xmlhttp.send();
-}
+})("miketriticum@gmail.com"); 
