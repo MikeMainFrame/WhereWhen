@@ -9,10 +9,10 @@
         var slice = {};
         slice.duration = zTasks[ix].getAttribute("duration");
         slice.timestamp = zTasks[ix].getAttribute("timestamp");
-        if (slice.duration > 0) slices.push(slice)  ;
-      }  
-    }    
-    document.getElementById("zCircularTime").appendChild(ringOfTime(slices));
+        if (slice.duration > 0 && slice.timestamp > 0) slices.push(slice);
+      }
+      document.getElementById("zCircularTime").appendChild(ringOfTime(slices));
+    }        
   };    
   
   xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who,true);
