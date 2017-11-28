@@ -9,7 +9,7 @@
         var slice = {};
         slice.duration = zTasks[ix].getAttribute("duration");
         slice.timestamp = zTasks[ix].getAttribute("timestamp");
-        slices.push(slice);  
+        if (slice.duration > 0) slices.push(slice)  ;
       }  
     }    
     document.getElementById("zCircularTime").appendChild(ringOfTime(slices));
@@ -38,11 +38,12 @@
       path.setAttribute("fill", thisColor); 
       path.setAttribute("stroke", thisColor); 
       path.setAttribute("stroke-width", 0);  
-      path.setAttribute("d", "M " + parseFloat(Math.cos(zOffset * Math.PI/180) * iRadius) + ", " + parseFloat(Math.sin(zOffset * Math.PI/180) * iRadius)
-        + "L " + parseFloat(Math.cos(zOffset * Math.PI/180) * oRadius) + ", " + parseFloat(Math.sin(zOffset * Math.PI/180) * oRadius)
-        + "A " + oRadius + "," + oRadius + " 0 0,1 " +  parseFloat(Math.cos((zMinutes + zOffset) * Math.PI/180) * oRadius) +  "," + parseFloat(Math.sin((zMinutes + zOffset) * Math.PI/180) * oRadius)
-        + "L " + parseFloat(Math.cos((zMinutes + zOffset) * Math.PI/180) * iRadius) + ", " + parseFloat(Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius)
-        + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(Math.cos((zMinutes + zOffset) * Math.PI/180) * iRadius) +  "," + parseFloat(Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius)
+      		path.setAttribute("d",
+          "M " + parseFloat(500 - (Math.cos(zOffset * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * iRadius))
+        + "L " + parseFloat(Math.cos(500 - (zOffset * Math.PI/180) * oRadius)) + ", " + parseFloat(Math.sin(500 - (zOffset * Math.PI/180) * oRadius))
+        + "A " + oRadius + "," + oRadius + " 0 0,1 " +  parseFloat(Math.cos(500 - ((zMinutes + zOffset) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * oRadius))
+        + "L " + parseFloat(Math.cos(500 - ((zMinutes + zOffset) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius))
+        + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 - (Math.cos((zMinutes + zOffset) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius))
         + " Z");        
       g.appendChild(path);                  
     }        
