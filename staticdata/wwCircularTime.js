@@ -20,7 +20,7 @@
 
   function ringOfTime(slices) {
 
-    var zOffset = 0, zMinutes = 0, min = 0, max = 0; const oRadius = 500; const iRadius = 400; const thisColor = "#F00";
+    var zOffset = 0, zMinutes = 0, min = 0, max = 0; const oRadius = 500; const iRadius = 400; const thisColor = "#000";
 
     for (ix = 0; ix < slices.length; ix++) {      
       if (slices[ix].timestamp < min) min = slices[ix].timestamp;
