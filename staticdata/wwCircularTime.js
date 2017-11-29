@@ -54,11 +54,11 @@
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
       text.setAttribute("font-family", "Barlow Condensed");
       text.setAttribute("font-size", 24);
-      text.setAttribute("fill", "red");
+      text.setAttribute("fill", "white");
       text.setAttribute("transform", "rotate(" + (parseInt(zMinutes + zOffset) / 360 * zBand) + " 500 500)");
       text.setAttribute("x",  parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * oRadius)));     
       text.setAttribute("y",  parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * oRadius)));     
-      text.setAttribute("font-family", "Barlow Condensed");
+      text.setAttribute("font-family", "'Barlow Condensed', sans-serif");
       text.textContent = today.toUTCString();
       g.appendChild(text);
     }        
