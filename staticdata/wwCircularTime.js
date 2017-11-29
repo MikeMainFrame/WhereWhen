@@ -65,6 +65,6 @@
     return(g);
   }
   function showInfo(what) {
-    alert("clicked this slice: " + what.getAttribute("ztimestamp"); 
+    alert("clicked this slice: " + what.getAttribute("ztimestamp")); 
   }
 })("miketriticum@gmail.com"); 
