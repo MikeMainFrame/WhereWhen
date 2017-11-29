@@ -50,12 +50,12 @@
       path.addEventListener("click", showInfo);
       g.appendChild(path);
       
-      var today = new Date(slices[ix].timestamp); 
+      var today = new Date(parseFloat(slices[ix].timestamp)); 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
       text.setAttribute("font-family", "Barlow Condensed");
       text.setAttribute("font-size", 24);
       text.setAttribute("fill", "red");
-      text.setAttribute("transform", "rotate(" + parseInt(zMinutes + zOffset) + " 500 500)");
+      text.setAttribute("transform", "rotate(" + (parseInt(zMinutes + zOffset) / 360 * zBand) + " 500 500)");
       text.setAttribute("x",  parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * oRadius)));     
       text.setAttribute("y",  parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * oRadius)));     
       text.setAttribute("font-family", "Barlow Condensed");
@@ -65,6 +65,6 @@
     return(g);
   }
   function showInfo(what) {
-    alert("clicked this slice: " + what.getAttribute("ztimestamp")); 
+    alert("clicked this slice: " + what); 
   }
 })("miketriticum@gmail.com"); 
