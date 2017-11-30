@@ -28,12 +28,13 @@
     }    
 
     var zBand = max - min;
+    var zUnits = zBand / 360;        
     var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');    
 
     for (ix = 0; ix < slices.length; ix++) {
       
-      zMinutes = slices[ix].duration * 360 / zBand;        
-      zOffset = slices[ix].timestamp - min;
+      zMinutes = slices[ix].duration / zUnits;
+      zOffset = (slices[ix].timestamp - min) / zUnits;
       var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
       path.setAttribute("id", ix);     
       path.setAttribute("ztimestamp", slices[ix].timestamp); 
