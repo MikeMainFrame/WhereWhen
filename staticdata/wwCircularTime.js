@@ -53,12 +53,14 @@
       
       var today = new Date(parseFloat(slices[ix].timestamp)); 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
+      X = parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * oRadius));
+      Y = parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * oRadius)));     
       text.setAttribute("font-family", "Barlow Condensed");
       text.setAttribute("font-size", 16);
       text.setAttribute("fill", "white");
-      text.setAttribute("transform", "rotate(" + parseInt(zMinutes + zOffset) + " 500 500)");
-      text.setAttribute("x",  parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * oRadius)));     
-      text.setAttribute("y",  parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * oRadius)));     
+      text.setAttribute("transform", "rotate(" + parseInt(zMinutes + zOffset) + " " + X + "," + Y + ")");
+      text.setAttribute("x",  X);     
+      text.setAttribute("y",  Y);     
       text.setAttribute("font-family", "'Barlow Condensed', sans-serif");
       text.textContent = today.toUTCString();
       g.appendChild(text);
@@ -66,6 +68,6 @@
     return(g);
   }
   function showInfo(what) {
-    alert("clicked this slice: " + what); 
+    alert("clicked this slice: " + what.target.outerHTML); 
   }
 })("miketriticum@gmail.com"); 
