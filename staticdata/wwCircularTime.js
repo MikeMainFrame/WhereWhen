@@ -54,7 +54,7 @@
       var today = new Date(parseFloat(slices[ix].timestamp)); 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
       X = parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * oRadius));
-      Y = parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * oRadius)));     
+      Y = parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * oRadius));     
       text.setAttribute("font-family", "Barlow Condensed");
       text.setAttribute("font-size", 16);
       text.setAttribute("fill", "white");
