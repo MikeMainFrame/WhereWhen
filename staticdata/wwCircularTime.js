@@ -55,14 +55,21 @@
       var today = new Date(parseFloat(slices[ix].timestamp)); 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
       X = parseFloat(oRadius + (Math.cos(zOffset * Math.PI/180) * oRadius));
-      Y = parseFloat(oRadius - (Math.sin(zOffset * Math.PI/180) * oRadius));     
-      
+      Y = parseFloat(oRadius - (Math.sin(zOffset * Math.PI/180) * oRadius));           
       text.setAttribute("x",  X);     
-      text.setAttribute("y",  Y);     
-      
+      text.setAttribute("y",  Y);           
       text.textContent = parseInt(slices[ix].duration / 60000);
       g.appendChild(text);
     }        
+    for (ix = 0; ix < 360; ix = ix + 4) {
+      X = parseFloat(oRadius + (Math.cos(ix * Math.PI/180) * oRadius));
+      Y = parseFloat(oRadius - (Math.sin(ix * Math.PI/180) * oRadius));     
+      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
+      text.setAttribute("x",  X);     
+      text.setAttribute("y",  Y);   
+      text.setAttribute("translate", "rotate(" + ix + " " + X + " " + Y + ")");
+      text.textContent = parseInt(ix);
+    }  
     return(g);
   }
   function showInfo(what) {
