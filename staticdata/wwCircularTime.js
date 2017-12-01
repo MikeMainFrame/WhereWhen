@@ -69,6 +69,7 @@
       text.setAttribute("y",  Y);   
       text.setAttribute("translate", "rotate(" + ix + " " + X + " " + Y + ")");
       text.textContent = parseInt(ix);
+      g.appendChild(text);
     }  
     return(g);
   }
