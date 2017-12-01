@@ -20,15 +20,12 @@
 
   function ringOfTime(slices) {
 
-    var zOffset = 0, zMinutes = 0, min = 1999999999999, max = 0; const oRadius = 500; const iRadius = 400; const thisColor = "#000";
-
-    for (ix = 0; ix < slices.length; ix++) {      
-      if (slices[ix].timestamp < min) min = slices[ix].timestamp;
-      else if (slices[ix].timestamp > max) max = slices[ix].timestamp;
-    }    
-
+    const oRadius = 500; const iRadius = 400; const thisColor = "#000";
+    var zOffset = 0, zMinutes = 0, max = new Date().getTime(), min = max - (1000*60*60*24*90);
+    
     var zBand = max - min;
-    var zUnits = zBand / 360;        
+    var zUnits = zBand / 360;   
+        
     var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
     g.setAttribute("text-anchor", "middle");
     g.setAttribute("font-family", "Barlow Condensed");
@@ -36,6 +33,7 @@
     g.setAttribute("fill", "white");
 
     for (ix = 0; ix < slices.length; ix++) {      
+      if (slices[ix].timestamp < min) continue;
       zMinutes = slices[ix].duration / zUnits;
       zOffset = (slices[ix].timestamp - min) / zUnits;
       var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
