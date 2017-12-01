@@ -56,13 +56,13 @@
       
       var today = new Date(parseFloat(slices[ix].timestamp)); 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
-      X = parseFloat(350 + (Math.cos(zOffset * Math.PI/180) * 350));
-      Y = parseFloat(350 - (Math.sin(zOffset * Math.PI/180) * 350));     
+      X = parseFloat(oRadius + (Math.cos(zOffset * Math.PI/180) * oRadius));
+      Y = parseFloat(oRadius - (Math.sin(zOffset * Math.PI/180) * oRadius));     
       
       text.setAttribute("x",  X);     
       text.setAttribute("y",  Y);     
       
-      text.textContent = slices[ix].duration / 60000;
+      text.textContent = parseInt(slices[ix].duration / 60000);
       g.appendChild(text);
     }        
     return(g);
