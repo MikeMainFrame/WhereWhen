@@ -28,7 +28,7 @@
         
     var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
     g.setAttribute("text-anchor", "middle");
-    g.setAttribute("font-family", "Barlow Condensed");
+    g.setAttribute("font-family", "sans-serif");
     g.setAttribute("font-size", 18);      
     g.setAttribute("fill", "white");
 
@@ -62,12 +62,12 @@
       g.appendChild(text);
     }        
     for (ix = 0; ix < 360; ix = ix + 4) {
-      X = parseFloat(oRadius + (Math.cos(ix * Math.PI/180) * oRadius));
-      Y = parseFloat(oRadius - (Math.sin(ix * Math.PI/180) * oRadius));     
+      X = parseFloat(iRadius + (Math.cos(ix * Math.PI/180) * iRadius));
+      Y = parseFloat(iRadius - (Math.sin(ix * Math.PI/180) * iRadius));     
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
       text.setAttribute("x",  X);     
       text.setAttribute("y",  Y);   
-      text.setAttribute("translate", "rotate(" + ix + " " + X + " " + Y + ")");
+      text.setAttribute("transform", "rotate(" + ix + " " + X + " " + Y + ")");
       text.textContent = parseInt(ix);
       g.appendChild(text);
     }  
