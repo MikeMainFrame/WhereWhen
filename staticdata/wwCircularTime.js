@@ -20,7 +20,7 @@
 
   function ringOfTime(slices) {
 
-    const oRadius = 500; const iRadius = 400; const thisColor = "#000";
+    const oRadius = 500; const iRadius = 400; const thisColor = "#222";
     var zOffset = 0, zMinutes = 0, max = new Date().getTime(), min = max - (1000*60*60*24*90);
     
     var zBand = max - min;
@@ -32,7 +32,7 @@
     g.setAttribute("font-size", 18);      
     g.setAttribute("fill", "white");
 
-    for (ix = 0; ix < slices.length; ix++) {      
+    for (var ix = 0; ix < slices.length; ix++) {      
       if (slices[ix].timestamp < min) continue;
       zMinutes = slices[ix].duration / zUnits;
       zOffset = (slices[ix].timestamp - min) / zUnits;
@@ -60,15 +60,18 @@
       text.setAttribute("y",  Y);           
       text.textContent = parseInt(slices[ix].duration / 60000);
       g.appendChild(text);
-    }        
-    for (ix = 0; ix < 360; ix = ix + 4) {
-      X = parseFloat(oRadius + (Math.cos(ix * Math.PI/180) * iRadius));
-      Y = parseFloat(oRadius - (Math.sin(ix * Math.PI/180) * iRadius));     
+    }      
+    var jx = 0;
+    for (var ix = 0; ix < 360; ix = ix + 4) {
+      jx++;
+      X = parseFloat(oRadius + (Math.cos(ix * Math.PI/180) * (iRadius - 20)));
+      Y = parseFloat(oRadius - (Math.sin(ix * Math.PI/180) * (iRadius - 20)));     
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
+      text.setAttribute("font-size",  14);     
       text.setAttribute("x",  X);     
       text.setAttribute("y",  Y);   
       text.setAttribute("transform", "rotate(" + ix + " " + X + " " + Y + ")");
-      text.textContent = parseInt(ix);
+      text.textContent = jx;
       g.appendChild(text);
     }  
     return(g);
