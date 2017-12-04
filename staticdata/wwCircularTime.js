@@ -77,7 +77,7 @@
     return(g);
   }
   function showInfo(what) {
-    var temp = new Date(what.target.getAttribute("ztimestamp"));    
+    var temp = new Date(parseFloat(what.target.getAttribute("ztimestamp")));    
     alert(temp.getUTCDate());    
   }
 })("miketriticum@gmail.com"); 
