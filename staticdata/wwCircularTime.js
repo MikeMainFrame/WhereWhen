@@ -62,8 +62,8 @@
       g.appendChild(text);
     }        
     for (ix = 0; ix < 360; ix = ix + 4) {
-      X = parseFloat(iRadius + (Math.cos(ix * Math.PI/180) * iRadius));
-      Y = parseFloat(iRadius - (Math.sin(ix * Math.PI/180) * iRadius));     
+      X = parseFloat(oRadius + (Math.cos(ix * Math.PI/180) * iRadius));
+      Y = parseFloat(oRadius - (Math.sin(ix * Math.PI/180) * iRadius));     
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
       text.setAttribute("x",  X);     
       text.setAttribute("y",  Y);   
