@@ -61,23 +61,23 @@
       text.textContent = parseInt(slices[ix].duration / 60000);
       g.appendChild(text);
     }      
-    var jx = 0;
-    for (var ix = 0; ix < 360; ix = ix + 4) {
-      jx++;
+    
+    for (var ix = 0; ix < 360; ix = ix + 4) {    
       X = parseFloat(oRadius + (Math.cos(ix * Math.PI/180) * (iRadius - 20)));
       Y = parseFloat(oRadius - (Math.sin(ix * Math.PI/180) * (iRadius - 20)));     
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
       text.setAttribute("font-size",  14);     
-      text.setAttribute("fill", "ddd");      
+      text.setAttribute("fill", "#DDD");      
       text.setAttribute("x",  X);     
       text.setAttribute("y",  Y);   
       text.setAttribute("transform", "rotate(" + (360 - ix) + " " + X + " " + Y + ")");
-      text.textContent = jx;
+      text.textContent = 90 - (ix * 0.25);
       g.appendChild(text);
     }  
     return(g);
   }
   function showInfo(what) {
-    alert("clicked this slice: " + what.target.outerHTML); 
+    var temp = new Date(what.target.getAttribute("ztimestamp"));    
+    alert(temp.getUTCDate());    
   }
 })("miketriticum@gmail.com"); 
