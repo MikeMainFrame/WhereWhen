@@ -71,7 +71,7 @@
       text.setAttribute("x",  X);     
       text.setAttribute("y",  Y);   
       text.setAttribute("transform", "rotate(" + (360 - ix) + " " + X + " " + Y + ")");
-      text.textContent = 90 - (ix * 0.25);
+      text.textContent = (ix * 0.25);
       g.appendChild(text);
     }  
     return(g);
