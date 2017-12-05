@@ -76,7 +76,7 @@
       text.setAttribute("transform", "rotate(" + (360 - ix) + " " + X + " " + Y + ")");
       var temp = thatDay.toUTCString().split(" ");
       text.textContent = thatDay.toUTCString().substr(10);
-      if (thatDay.getDate() = 1) g.appendChild(text);
+      if (thatDay.getDate() === 1) g.appendChild(text);
     }  
     return(g);
   }
