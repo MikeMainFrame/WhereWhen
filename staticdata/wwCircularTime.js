@@ -81,7 +81,8 @@
         g.appendChild(text)
       } else {
         var line = document.createElementNS("http://www.w3.org/2000/svg", 'line');    
-        line.setAttribute("fill", "#FFF");      
+        line.setAttribute("stroke-width", 1);  
+        line.setAttribute("stroke", "#FFF");          
         line.setAttribute("x1",  X);
         line.setAttribute("y1",  Y);                     
         line.setAttribute("x2",  parseFloat(oRadius + (Math.cos(ix * Math.PI/180) * (iRadius - 10))));
