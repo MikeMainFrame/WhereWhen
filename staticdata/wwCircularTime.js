@@ -80,14 +80,12 @@
         text.textContent = temp[0] + " " + temp[1] + " " + temp[2] + " " + temp[3];
         g.appendChild(text)
       } else {
-        var line = document.createElementNS("http://www.w3.org/2000/svg", 'line');    
-        line.setAttribute("stroke-width", 1);  
-        line.setAttribute("stroke", "#FFF");          
-        line.setAttribute("x1",  X);
-        line.setAttribute("y1",  Y);                     
-        line.setAttribute("x2",  parseFloat(oRadius + (Math.cos(ix * Math.PI/180) * (iRadius - 10))));
-        line.setAttribute("y2",  parseFloat(oRadius + (Math.cos(ix * Math.PI/180) * (iRadius - 10))));
-        g.appendChild(line);
+        var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');            
+        circle.setAttribute("stroke", "#FFF");          
+        circle.setAttribute("cx",  X);
+        circle.setAttribute("cy",  Y);                     
+        circle.setAttribute("r",  2);                     
+        g.appendChild(circle);
       }  
     }  
     return(g);
