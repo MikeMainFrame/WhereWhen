@@ -31,6 +31,8 @@
     g.setAttribute("font-family", "sans-serif");
     g.setAttribute("font-size", 18);      
     g.setAttribute("fill", "white");
+    g.setAttribute("transform", "translate(100,100)");
+    
 
     for (var ix = 0; ix < slices.length; ix++) {      
       if (slices[ix].timestamp < min) continue;
@@ -63,16 +65,18 @@
     }      
     
     for (var ix = 0; ix < 360; ix = ix + 4) {    
+      var thatDay = new Date(parseFloat(max - (ix * (1000*60*60*24)));
       X = parseFloat(oRadius + (Math.cos(ix * Math.PI/180) * (iRadius - 20)));
       Y = parseFloat(oRadius - (Math.sin(ix * Math.PI/180) * (iRadius - 20)));     
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
       text.setAttribute("font-size",  14);     
-      text.setAttribute("fill", "#DDD");      
+      text.setAttribute("fill", "#FFF");      
       text.setAttribute("x",  X);     
-      text.setAttribute("y",  Y);   
+      text.setAttribute("y",  Y);                     
       text.setAttribute("transform", "rotate(" + (360 - ix) + " " + X + " " + Y + ")");
-      text.textContent = (ix * 0.25);
-      g.appendChild(text);
+      var temp = thatDay.toUTCString().split(" ");
+      text.textContent = thatDay.toUTCString().substr(10);
+      if (thatDay.getDate() = 1) g.appendChild(text);
     }  
     return(g);
   }
