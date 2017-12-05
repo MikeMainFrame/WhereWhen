@@ -65,7 +65,7 @@
     }      
     
     for (var ix = 0; ix < 360; ix = ix + 4) {    
-      var thatDay = new Date(parseFloat(max - (ix * (1000*60*60*24)));
+      var thatDay = new Date(parseFloat(max - (ix * (1000*60*60*24))));
       X = parseFloat(oRadius + (Math.cos(ix * Math.PI/180) * (iRadius - 20)));
       Y = parseFloat(oRadius - (Math.sin(ix * Math.PI/180) * (iRadius - 20)));     
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
