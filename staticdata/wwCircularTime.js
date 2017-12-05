@@ -68,15 +68,25 @@
       var thatDay = new Date(parseFloat(max - (0.25 * ix * (1000*60*60*24))));
       X = parseFloat(oRadius + (Math.cos(ix * Math.PI/180) * (iRadius - 20)));
       Y = parseFloat(oRadius - (Math.sin(ix * Math.PI/180) * (iRadius - 20)));     
-      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
-      text.setAttribute("font-size",  14);     
-      text.setAttribute("fill", "#FFF");      
-      text.setAttribute("x",  X);     
-      text.setAttribute("y",  Y);                     
-      text.setAttribute("transform", "rotate(" + (360 - ix) + " " + X + " " + Y + ")");
-      var temp = thatDay.toUTCString().split(" ");
-      text.textContent = temp[0] + " " + temp[1] + " " + temp[2] + " " + temp[3];
-      if (thatDay.getDate() === 1) g.appendChild(text);
+      if (thatDay.getDate() === 1) {
+        var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
+        text.setAttribute("text-anchor", "end");
+        text.setAttribute("font-size",  14);     
+        text.setAttribute("fill", "#FFF");      
+        text.setAttribute("x",  X);     
+        text.setAttribute("y",  Y);                     
+        text.setAttribute("transform", "rotate(" + (360 - ix) + " " + X + " " + Y + ")");
+        var temp = thatDay.toUTCString().split(" ");
+        text.textContent = temp[0] + " " + temp[1] + " " + temp[2] + " " + temp[3];
+        g.appendChild(text)
+      } else {
+        var line = document.createElementNS("http://www.w3.org/2000/svg", 'line');    
+        line.setAttribute("x1",  X);
+        line.setAttribute("y1",  Y);                     
+        line.setAttribute("x2",  parseFloat(oRadius + (Math.cos(ix * Math.PI/180) * (iRadius - 10))));
+        line.setAttribute("y2",  parseFloat(oRadius + (Math.cos(ix * Math.PI/180) * (iRadius - 10))));
+        g.appendChild(line);
+      }  
     }  
     return(g);
   }
