@@ -81,10 +81,10 @@
         g.appendChild(text)
       } else {
         var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');            
-        circle.setAttribute("stroke", "#FFF");          
+        (thatDay.getDay() === 6) ? circle.setAttribute("fill", "#F00") : circle.setAttribute("fill", "#FFF");
         circle.setAttribute("cx",  X);
         circle.setAttribute("cy",  Y);                     
-        circle.setAttribute("r",  2);                     
+        circle.setAttribute("r",  3);                     
         g.appendChild(circle);
       }  
     }  
