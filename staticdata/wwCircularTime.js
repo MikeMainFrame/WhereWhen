@@ -81,7 +81,7 @@
         g.appendChild(text)
       } else {
         var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');            
-        if (thatDay.getDay() === 6) 
+        if (thatDay.getDay() === 6) {
           circle.setAttribute("fill", "#F00") : circle.setAttribute("fill", "#FFF");
           circle.setAttribute("cx",  X);
           circle.setAttribute("cy",  Y);                     
