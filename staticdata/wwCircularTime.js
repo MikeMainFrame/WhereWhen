@@ -81,14 +81,26 @@
         g.appendChild(text)
       } else {
         var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');            
-        (thatDay.getDay() === 6) ? circle.setAttribute("fill", "#F00") : circle.setAttribute("fill", "#FFF");
-        circle.setAttribute("cx",  X);
-        circle.setAttribute("cy",  Y);                     
-        circle.setAttribute("r",  3);                     
-        g.appendChild(circle);
-      }  
+        if (thatDay.getDay() === 6) 
+          circle.setAttribute("fill", "#F00") : circle.setAttribute("fill", "#FFF");
+          circle.setAttribute("cx",  X);
+          circle.setAttribute("cy",  Y);                     
+          circle.setAttribute("r",  3);                     
+        } else {
+          g.appendChild(fiveDays(ix * 0.25));
+        }  
     }  
     return(g);
+  }
+  function fiveDays(degree) {
+    
+    var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');        
+    path.setAttribute("stroke-width", 0);  
+    path.setAttribute("d",
+          "M " + parseFloat(500 + (Math.cos(degree * Math.PI/180) * 380)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * 380))    
+        + "A 500,500 0 0,1 " +  parseFloat(500 + (Math.cos((degree + 20) * Math.PI/180) * 380)) +  "," + parseFloat(500 - (Math.sin((degree + 20) * Math.PI/180) * 380))
+        + "Z");        
+    return(path);
   }
   function showInfo(what) {
     var temp = new Date(parseFloat(what.target.getAttribute("ztimestamp")));    
