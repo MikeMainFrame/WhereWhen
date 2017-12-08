@@ -85,6 +85,7 @@
           circle.setAttribute("cx",  X);
           circle.setAttribute("cy",  Y);                     
           circle.setAttribute("r",  3);                     
+          g.appendChild(circle);
         } else if (thatDay.getDay() === 0) {
           g.appendChild(fiveDays(ix));          
         }  
@@ -99,7 +100,7 @@
     path.setAttribute("stroke-width", 0);  
     path.setAttribute("d",
           "M " + parseFloat(500 + (Math.cos(degree * Math.PI/180) * 380)) + ", " + parseFloat(500 - (Math.sin(degree * Math.PI/180) * 380))    
-        + "A 500,500 0 0,1 " +  parseFloat(500 + (Math.cos((degree + 20) * Math.PI/180) * 380)) +  "," + parseFloat(500 - (Math.sin((degree + 20) * Math.PI/180) * 380))
+        + "A 500,500 0 0,0 " +  parseFloat(500 + (Math.cos((degree + 20) * Math.PI/180) * 380)) +  "," + parseFloat(500 - (Math.sin((degree + 20) * Math.PI/180) * 380))
         + "Z");        
     
     return(path);
