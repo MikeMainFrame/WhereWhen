@@ -99,8 +99,9 @@
     var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');        
     path.setAttribute("stroke-width", 0);  
     path.setAttribute("d",
-          "M " + parseFloat(500 + (Math.cos(degree * Math.PI/180) * 380)) + ", " + parseFloat(500 - (Math.sin(degree * Math.PI/180) * 380))    
-        + "A 500,500 0 0,0 " +  parseFloat(500 + (Math.cos((degree + 20) * Math.PI/180) * 380)) +  "," + parseFloat(500 - (Math.sin((degree + 20) * Math.PI/180) * 380))
+          "L " 
+        + parseFloat(500 + (Math.cos(degree * Math.PI/180) * 380)) + ", " + parseFloat(500 - (Math.sin(degree * Math.PI/180) * 380))    
+        + parseFloat(500 + (Math.cos((degree + 20) * Math.PI/180) * 380)) +  "," + parseFloat(500 - (Math.sin((degree + 20) * Math.PI/180) * 380))
         + "Z");        
     
     return(path);
