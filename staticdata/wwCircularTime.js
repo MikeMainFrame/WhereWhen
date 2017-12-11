@@ -79,33 +79,16 @@
         var temp = thatDay.toUTCString().split(" ");
         text.textContent = temp[0] + " " + temp[1] + " " + temp[2] + " " + temp[3];
         g.appendChild(text)
-      } else if (thatDay.getDay() === 6) {
-          var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');            
-          circle.setAttribute("fill", "#F00");
-          circle.setAttribute("cx",  X);
-          circle.setAttribute("cy",  Y);                     
-          circle.setAttribute("r",  3);                     
-          g.appendChild(circle);
-        } else if (thatDay.getDay() === 0) {
-          g.appendChild(fiveDays(ix));          
-        }  
-    } 
-    
-    return(g);
-    
-  }
-  function fiveDays(degree) {
-    
-    var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');        
-    path.setAttribute("stroke-width", 0);  
-    path.setAttribute("d",
-          "L " 
-        + parseFloat(500 + (Math.cos(degree * Math.PI/180) * 380)) + ", " + parseFloat(500 - (Math.sin(degree * Math.PI/180) * 380))    
-        + parseFloat(500 + (Math.cos((degree + 20) * Math.PI/180) * 380)) +  "," + parseFloat(500 - (Math.sin((degree + 20) * Math.PI/180) * 380))
-        + "Z");        
-    
-    return(path);
-    
+      } else if (thatDay.getDay() < 5) {
+          var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');        
+          path.setAttribute("stroke-width", 1);  
+          path.setAttribute("stroke", "#FFF");  
+          path.setAttribute("d",  
+            "M " + parseFloat(500 + (Math.cos(ix * Math.PI/180) * (iRadius - 20))) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * (iRadius - 20)))
+          + "L " + parseFloat(500 + (Math.cos(ix * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * iRadius)); 
+      }  
+    }     
+    return(g);    
   }
   function showInfo(what) {
     var temp = new Date(parseFloat(what.target.getAttribute("ztimestamp")));    
