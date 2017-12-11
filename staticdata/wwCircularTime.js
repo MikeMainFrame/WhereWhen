@@ -86,6 +86,7 @@
           path.setAttribute("d",  
             "M " + parseFloat(500 + (Math.cos(ix * Math.PI/180) * (iRadius - 20))) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * (iRadius - 20)))
           + "L " + parseFloat(500 + (Math.cos(ix * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * iRadius)));                                     
+          g.appendChild(path);
       }  
     }     
     return(g);    
