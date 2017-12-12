@@ -20,8 +20,8 @@
 
   function ringOfTime(slices) {
 
-    const oRadius = 500; const iRadius = 400; const thisColor = "url(#aRed)";
-    var zOffset = 0, zMinutes = 0, max = new Date().getTime(), min = max - (1000*60*60*24*90);
+    const oRadius = 500; const iRadius = 400; const thisColor = "url(#aRed)"; 
+    var zOffset = 0, zMinutes = 0, max = new Date().getTime(), min = max - (1000*60*60*24*90), zSum = 0;
     
     var zBand = max - min;
     var zUnits = zBand / 360;   
@@ -38,6 +38,7 @@
       if (slices[ix].timestamp < min) continue;
       zMinutes = slices[ix].duration / zUnits;
       zOffset = (slices[ix].timestamp - min) / zUnits;
+      zSum = zSum + slices[ix].duration;
       var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
       path.setAttribute("id", ix);     
       path.setAttribute("ztimestamp", slices[ix].timestamp); 
@@ -63,6 +64,13 @@
       text.textContent = parseInt(slices[ix].duration / 60000);
       g.appendChild(text);
     }      
+    
+    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
+    text.setAttribute("font-size",  48);     
+    text.setAttribute("x",  500);     
+    text.setAttribute("y",  500);           
+    text.textContent = parseInt(zSum / 60000);
+    g.appendChild(text);
     
     for (var ix = 0; ix < 360; ix = ix + 4) {    
       var thatDay = new Date(parseFloat(max - (0.25 * ix * (1000*60*60*24))));
