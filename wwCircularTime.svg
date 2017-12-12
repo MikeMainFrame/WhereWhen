@@ -7,7 +7,7 @@
  
   <defs>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet" />
-    <radialGradient id="aRed"  cx="0.50" cy="0.50" r="0.50" fx="0.50" fy="0.50"><stop offset="0.80"   stop-color="#c00" /><stop offset="0.90"   stop-color="#f00" /><stop offset="1.00"   stop-color="#c00" /></radialGradient>       
+    <radialGradient id="aRed"  cx="500" cy="500" r="500" fx="500" fy="500"><stop offset="0.80"   stop-color="#c00" /><stop offset="0.90"   stop-color="#f00" /><stop offset="1.00"   stop-color="#c00" /></radialGradient>       
     <radialGradient id="grey"   gradientUnits="userSpaceOnUse" cx="500" cy="500" r="500" fx="500" fy="500"><stop offset="80%"  stop-color="#a00"></stop><stop offset="90%"  stop-color="#e00"></stop> <stop offset="100%" stop-color="#a00"></stop></radialGradient>
   </defs>
  
