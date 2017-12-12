@@ -66,8 +66,8 @@
     
     for (var ix = 0; ix < 360; ix = ix + 4) {    
       var thatDay = new Date(parseFloat(max - (0.25 * ix * (1000*60*60*24))));
-      X = parseFloat(oRadius + (Math.cos(ix * Math.PI/180) * (iRadius - 20)));
-      Y = parseFloat(oRadius - (Math.sin(ix * Math.PI/180) * (iRadius - 20)));     
+      X = parseFloat(oRadius + (Math.cos(ix * Math.PI/180) * (iRadius - 10)));
+      Y = parseFloat(oRadius - (Math.sin(ix * Math.PI/180) * (iRadius - 10)));     
       if (thatDay.getDate() === 1) {
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
         text.setAttribute("text-anchor", "end");
@@ -79,14 +79,20 @@
         var temp = thatDay.toUTCString().split(" ");
         text.textContent = temp[0] + " " + temp[1] + " " + temp[2] + " " + temp[3];
         g.appendChild(text)
-      } else if (thatDay.getDay() < 5) {
-          var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');        
-          path.setAttribute("stroke-width", 1);  
+      } else {
+          /*var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');        
+          path.setAttribute("stroke-width", 2);  
           path.setAttribute("stroke", "#FFF");  
           path.setAttribute("d",  
-            "M " + parseFloat(500 + (Math.cos(ix * Math.PI/180) * (iRadius - 20))) + ", " + parseFloat(500 - (Math.sin(ix * Math.PI/180) * (iRadius - 20)))
+            "M " + parseFloat(500 + (Math.cos(ix * Math.PI/180) * (iRadius - 10))) + ", " + parseFloat(500 - (Math.sin(ix * Math.PI/180) * (iRadius - 10)))
           + "L " + parseFloat(500 + (Math.cos(ix * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(ix * Math.PI/180) * iRadius)));                                     
-          g.appendChild(path);
+          */
+          var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');        
+          circle.setAttribute("r", 2);    
+          circle.setAttribute("fill", "#fff");  
+          circle.setAttribute("cx", X);  
+          circle.setAttribute("cy", Y);  
+          g.appendChild(circle);
       }  
     }     
     return(g);    
