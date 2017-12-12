@@ -6,12 +6,19 @@
   xmlns="http://www.w3.org/2000/svg">
  
   <defs>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet" />
-    <radialGradient id="aRed"  cx="500" cy="500" r="500" fx="500" fy="500"><stop offset="0.80"   stop-color="#c00" /><stop offset="0.90"   stop-color="#f00" /><stop offset="1.00"   stop-color="#c00" /></radialGradient>       
-    <radialGradient id="grey"   gradientUnits="userSpaceOnUse" cx="500" cy="500" r="500" fx="500" fy="500"><stop offset="80%"  stop-color="#a00"></stop><stop offset="90%"  stop-color="#e00"></stop> <stop offset="100%" stop-color="#a00"></stop></radialGradient>
-  </defs>
+  <radialGradient id="aRed" gradientUnits="userSpaceOnUse" cx="500" cy="500" r="500" fx="500" fy="500">
+	  <stop offset="80%" stop-color="#800"></stop>
+	  <stop offset="90%" stop-color="#f00"></stop>
+	  <stop offset="100%" stop-color="#800"></stop>
+	</radialGradient>
+	<radialGradient id="aGrey" gradientUnits="userSpaceOnUse" cx="600" cy="600" r="500" fx="600" fy="600">
+	  <stop offset="80%" stop-color="#222"></stop>
+	  <stop offset="90%" stop-color="#444"></stop>
+	  <stop offset="100%" stop-color="#222"></stop>
+	</radialGradient>
+</defs>
  
-  <circle cx="600" cy="600" r="500" fill="url(#grey)" />
+  <circle cx="600" cy="600" r="500" fill="url(#aGrey)" />
   <circle cx="600" cy="600" r="400" fill="#000" /> 
   
   <script type="application/ecmascript" xlink:href="staticdata/wwCircularTime.js" ></script>      
