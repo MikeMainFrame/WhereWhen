@@ -20,7 +20,7 @@
 
   function ringOfTime(slices) {
 
-    const oRadius = 500; const iRadius = 400; const thisColor = "#222";
+    const oRadius = 500; const iRadius = 400; const thisColor = "url(#aRed)";
     var zOffset = 0, zMinutes = 0, max = new Date().getTime(), min = max - (1000*60*60*24*90);
     
     var zBand = max - min;
