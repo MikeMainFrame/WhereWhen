@@ -38,7 +38,7 @@
       if (slices[ix].timestamp < min) continue;
       zMinutes = slices[ix].duration / zUnits;
       zOffset = (slices[ix].timestamp - min) / zUnits;
-      zSum = zSum + slices[ix].duration;
+      zSum = zSum + parseInt(slices[ix].duration);
       var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
       path.setAttribute("id", ix);     
       path.setAttribute("ztimestamp", slices[ix].timestamp); 
