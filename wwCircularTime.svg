@@ -1,24 +1,27 @@
 <svg viewBox="0 0 1200 1200"   
   id="zCircularTime" 
-  style="width: 100% ; display: block ; background: #000 ; margin: 0 ; padding: 0 ; font-family: 'Open Sans Condensed', sans-serif"
+  style="background: #000 ; font-family: 'Open Sans Condensed', sans-serif"
   version="1.1" 
   xmlns:xlink="http://www.w3.org/1999/xlink" 
   xmlns="http://www.w3.org/2000/svg">
- 
+  
+ <title>WhereWhen :: Oversigt 90 dage</title>
   <defs>
-  <radialGradient id="aRed" gradientUnits="userSpaceOnUse" cx="500" cy="500" r="500" fx="500" fy="500">
-    <stop offset="80%" stop-color="#800"></stop><stop offset="90%" stop-color="#f00"></stop><stop offset="100%" stop-color="#800"></stop>
-	</radialGradient>
-	<radialGradient id="aGrey" gradientUnits="userSpaceOnUse" cx="600" cy="600" r="500" fx="600" fy="600">
-	  <stop offset="80%" stop-color="#222"></stop><stop offset="90%" stop-color="#444"></stop><stop offset="100%" stop-color="#222"></stop>
-	</radialGradient>
-  <radialGradient id="aPurple" gradientUnits="userSpaceOnUse" cx="500" cy="500" r="500" fx="500" fy="500">
-	  <stop offset="80%" stop-color="#a0a"></stop><stop offset="90%" stop-color="#f0f"></stop><stop offset="100%" stop-color="#a0a"></stop>
-	</radialGradient>  
-</defs>
- 
-  <circle cx="600" cy="600" r="500" fill="url(#aGrey)" />
-  <circle cx="600" cy="600" r="400" fill="#000" /> 
+    <radialGradient id="aRed" gradientUnits="userSpaceOnUse" cx="500" cy="500" r="500" fx="500" fy="500">
+      <stop offset="80%" stop-color="#800"></stop><stop offset="90%" stop-color="#f00"></stop><stop offset="100%" stop-color="#800"></stop>
+    </radialGradient>
+    <radialGradient id="aGrey" gradientUnits="userSpaceOnUse" cx="600" cy="600" r="500" fx="600" fy="600">
+      <stop offset="80%" stop-color="#222"></stop><stop offset="90%" stop-color="#444"></stop><stop offset="100%" stop-color="#222"></stop>
+    </radialGradient>
+    <radialGradient id="aPurple" gradientUnits="userSpaceOnUse" cx="500" cy="500" r="500" fx="500" fy="500">
+      <stop offset="80%" stop-color="#a0a"></stop><stop offset="90%" stop-color="#f0f"></stop><stop offset="100%" stop-color="#a0a"></stop>
+    </radialGradient>  
+  </defs>
+  <g> 
+    <circle cx="600" cy="600" r="500" fill="url(#aGrey)" />
+    <circle cx="600" cy="600" r="400" fill="#000" /> 
+  </g>  
   
   <script type="application/ecmascript" xlink:href="staticdata/wwCircularTime.js" ></script>      
+  
 </svg>
