@@ -20,24 +20,23 @@
 
   function flatTime(slices) {
 
-    const oRadius = 500; const iRadius = 400; const thisColor = "url(#aRed)"; 
+    const thisColor = "url(#aRed)"; 
     var zOffset = 0, zMinutes = 0, max = new Date().getTime(), min = max - (1000*60*60*24*90), zSum = 0;
     
     var zBand = max - min;
-    var zUnits = zBand / 360;   
+    var xUnits = 1720 / slices.length;
+    var yUnits = zBand / 880;   
         
     var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
     g.setAttribute("text-anchor", "middle");
     g.setAttribute("font-family", "sans-serif");
     g.setAttribute("font-size", 18);      
     g.setAttribute("fill", "white");
-    g.setAttribute("transform", "translate(100,100)");
-    
 
     for (var ix = 0; ix < slices.length; ix++) {      
       if (slices[ix].timestamp < min) continue;
       zMinutes = slices[ix].duration / zUnits;
-      zOffset = (slices[ix].timestamp - min) / zUnits;
+      zOffset = ix * xUnits;
       zSum = zSum + parseInt(slices[ix].duration);
       var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');    
       path.setAttribute("id", ix);     
@@ -45,10 +44,10 @@
       path.setAttribute("zduration", slices[ix].duration); 
       path.setAttribute("fill", thisColor);      
       path.setAttribute("stroke-width", 0);  
-      path.setAttribute("x", zOffset);
-      path.setAttribute("y", slices[ix].timestamp);
-      path.setAttribute("width", 15);
-      path.setAttribute("height", slices[ix].duration);
+      path.setAttribute("x", ix*xUnits);
+      path.setAttribute("y", 880 - (yUnits*ix));
+      path.setAttribute("width", - (xUnits*ix));
+      path.setAttribute("height", slices[ix].duration / yUnits);
       path.addEventListener("click", showInfo);
       g.appendChild(path);
       
