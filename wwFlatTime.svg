@@ -1,0 +1,14 @@
+<svg viewBox="0 0 1920 1080"   
+  id="zFlatTime" 
+  style="background: #000 ; font-family: 'Open Sans Condensed', sans-serif"
+  version="1.1" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" 
+  xmlns="http://www.w3.org/2000/svg">
+  
+ <title>WhereWhen :: Oversigt 90 dage</title>
+  <defs></defs>
+  <g> 
+    <rect x="100" y="100" width="1720" hight="880" fill="red" />
+  </g>  
+  <script type="application/ecmascript" xlink:href="staticdata/wwFlatTime.js" ></script>      
+</svg>
