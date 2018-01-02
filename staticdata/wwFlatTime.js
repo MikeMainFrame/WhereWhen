@@ -34,8 +34,7 @@
     g.setAttribute("fill", "white");
 
     for (var ix = 0; ix < slices.length; ix++) {      
-      if (slices[ix].timestamp < min) continue;
-      zMinutes = slices[ix].duration / zUnits;
+      if (slices[ix].timestamp < min) continue;      
       zOffset = ix * xUnits;
       zSum = zSum + parseInt(slices[ix].duration);
       var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');    
@@ -45,8 +44,8 @@
       path.setAttribute("fill", thisColor);      
       path.setAttribute("stroke-width", 0);  
       path.setAttribute("x", ix*xUnits);
-      path.setAttribute("y", 880 - (yUnits*ix));
-      path.setAttribute("width", - (xUnits*ix));
+      path.setAttribute("y", 880);
+      path.setAttribute("width", - xUnits);
       path.setAttribute("height", slices[ix].duration / yUnits);
       path.addEventListener("click", showInfo);
       g.appendChild(path);
