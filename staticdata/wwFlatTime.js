@@ -11,7 +11,7 @@
         slice.timestamp = zTasks[ix].getAttribute("timestamp");
         if (slice.duration > 0 && slice.timestamp > 0) slices.push(slice);
       }
-      document.getElementById("zCircularTime").appendChild(flatTime(slices));
+      document.getElementById("zFlatTime").appendChild(flatTime(slices));
     }        
   };    
   
@@ -24,7 +24,7 @@
     var zOffset = 0, zMinutes = 0, max = new Date().getTime(), min = max - (1000*60*60*24*90), zSum = 0;
     
     var zBand = max - min;
-    var xUnits = 1720 / slices.length;
+    var xUnits = 1720 / 90 // slices.length;
     var yUnits = zBand / 880;   
         
     var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
@@ -44,9 +44,9 @@
       path.setAttribute("fill", thisColor);      
       path.setAttribute("stroke-width", 0);  
       path.setAttribute("x", ix*xUnits);
-      path.setAttribute("y", 880);
+      path.setAttribute("y", slices[ix].duration / yUnits);
       path.setAttribute("width", - xUnits);
-      path.setAttribute("height", slices[ix].duration / yUnits);
+      path.setAttribute("height", 880 - (slices[ix].duration / yUnits));
       path.addEventListener("click", showInfo);
       g.appendChild(path);
       
@@ -69,8 +69,6 @@
     
     for (var ix = 0; ix < 360; ix = ix + 4) {    
       var thatDay = new Date(parseFloat(max - (0.25 * ix * (1000*60*60*24))));
-      X = parseFloat(oRadius + (Math.cos(ix * Math.PI/180) * (iRadius - 10)));
-      Y = parseFloat(oRadius - (Math.sin(ix * Math.PI/180) * (iRadius - 10)));     
       if (thatDay.getDate() === 1) {
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
         text.setAttribute("text-anchor", "end");
