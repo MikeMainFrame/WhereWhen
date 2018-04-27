@@ -17,6 +17,9 @@ handlers:
 - url: /staticdata/wwCircularTime.js  
   script: /staticdata/wwCircularTime.js  
   
+- url: /staticdata/wwFlatTime.js  
+  script: /staticdata/wwFlatTime.js  
+    
 - url: /wwTransaction.php
   script: wwTransaction.php
   
@@ -31,6 +34,9 @@ handlers:
 
 - url: /wwCircularTime.svg
   script: wwCircularTime.svg
+  
+- url: /wwFlatTime.svg
+  script: wwFlatTime.svg
 
 - url: /.*
   script: wwMainApp.php
