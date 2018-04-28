@@ -33,7 +33,7 @@
       if (slices[ix].timestamp < min) continue;
       zDate = new Date(slices[ix].timestamp);
       zSum = zSum + parseInt(slices[ix].duration);
-      x = (max - slices[ix].timestamp) / 86400000) / xUnits;
+      x = (max - slices[ix].timestamp) / 86400000 / xUnits;
       y = (880 - (zDate.getHours() * 60) + zDate.getMinutes * 60)) / yUnits;
       var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');    
       rect.setAttribute("id", ix);     
