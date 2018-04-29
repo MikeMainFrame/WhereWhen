@@ -31,7 +31,7 @@
 
     for (var ix = 0; ix < slices.length; ix++) {      
       if (slices[ix].timestamp < min) continue;
-      zDate = new Date(slices[ix].timestamp);
+      zDate = new Date(parseInt(slices[ix].timestamp));
       zSum = zSum + parseInt(slices[ix].duration);
       x = (max - slices[ix].timestamp) / 86400000 / xUnits;
       y = (880 - (zDate.getHours() * 60) + (zDate.getMinutes * 60)) / yUnits;
