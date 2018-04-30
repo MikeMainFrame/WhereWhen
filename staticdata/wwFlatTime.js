@@ -33,7 +33,7 @@
       zDate = new Date(parseInt(slices[ix].timestamp));
       zSum = zSum + parseInt(slices[ix].duration);
       x = (parseInt(slices[ix].timestamp) - (24*60*60*1000*90) / 86400000);
-      y = (parseInt(zDate.getHours()) * 60 + parseInt(zDate.getMinutes()) / yUnits;
+      y = (parseInt(zDate.getHours()) * 60) + parseInt(zDate.getMinutes()) / yUnits;
       var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');    
       rect.setAttribute("id", ix);     
       rect.setAttribute("ztimestamp", slices[ix].timestamp); 
