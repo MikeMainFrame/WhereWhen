@@ -32,7 +32,7 @@
       if (slices[ix].timestamp < min) continue;
       zDate = new Date(parseInt(slices[ix].timestamp));
       zSum = zSum + parseInt(slices[ix].duration);
-      x = (parseInt(slices[ix].timestamp) - max) / (24*60*60*1000); // what day ?
+      x = (max - parseInt(slices[ix].timestamp)) / (24*60*60*1000); // what day ?
       y = 1640 - (parseInt(zDate.getHours()) * 60) + parseInt(zDate.getMinutes()) / yUnits; // clock in minutes 0 - 1440
       var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');    
       rect.setAttribute("id", ix);     
@@ -42,7 +42,7 @@
       rect.setAttribute("y", y);
       rect.setAttribute("fill", "#00f");
       rect.setAttribute("width", xUnits / 2);
-      rect.setAttribute("height", (slices[ix].duration / yUnits));
+      rect.setAttribute("height", (slices[ix].duration / 60000 / yUnits));
       rect.addEventListener("click", showInfo);      
       g.appendChild(rect);     
     }      
