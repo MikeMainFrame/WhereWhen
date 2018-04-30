@@ -20,8 +20,7 @@
 
   function flatTime(slices) {
     
-    var zOffset = 0, zMinutes = 0, max = new Date().getTime(), min = max - (1000*60*60*24*90), zSum = 0;    
-    var zBand = max - min, zDate = new Date(), xUnits = 1720 / 90, yUnits = zBand / 880, x = 0, y = 0;  
+    var zSum = 0, zDate = new Date(), xUnits = 20, yUnits = 1, x = 0, y = 0;  
         
     var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
     g.setAttribute("text-anchor", "middle");
@@ -33,14 +32,15 @@
       if (slices[ix].timestamp < min) continue;
       zDate = new Date(parseInt(slices[ix].timestamp));
       zSum = zSum + parseInt(slices[ix].duration);
-      x = (max - slices[ix].timestamp) / 86400000 / xUnits;
-      y = (880 - (parseInt(zDate.getHours()) * 60) + (parseInt(zDate.getMinutes()) / yUnits));
+      x = parseInt(slices[ix].timestamp - (24*60*60*1000*90) / 86400000);
+      y = parseInt(zDate.getHours()) * 60 + parseInt(zDate.getMinutes()) / yUnits);
       var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');    
       rect.setAttribute("id", ix);     
       rect.setAttribute("ztimestamp", slices[ix].timestamp); 
       rect.setAttribute("zduration", slices[ix].duration); 
       rect.setAttribute("x", x);
       rect.setAttribute("y", y);
+      rect.setAttribute("fill", "#00f");
       rect.setAttribute("width", xUnits / 2);
       rect.setAttribute("height", (slices[ix].duration / yUnits));
       rect.addEventListener("click", showInfo);      
