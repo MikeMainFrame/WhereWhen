@@ -33,14 +33,14 @@
       zDate = new Date(parseInt(slices[ix].timestamp));
       zSum = zSum + parseInt(slices[ix].duration);
       x = (max - parseInt(slices[ix].timestamp)) / (24*60*60*1000) * xUnits; // what day ?
-      y = parseInt(zDate.getHours()) * 60) + parseInt(zDate.getMinutes() * yUnits; // clock in minutes 0 - 1440
+      y = (parseInt(zDate.getHours()) * 60) + parseInt(zDate.getMinutes()) * yUnits; // clock in minutes 0 - 1440
       var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');    
       rect.setAttribute("id", ix);     
       rect.setAttribute("ztimestamp", slices[ix].timestamp); 
       rect.setAttribute("zduration", slices[ix].duration); 
       rect.setAttribute("x", x);
       rect.setAttribute("y", y);
-      rect.setAttribute("fill", "#00f");
+      rect.setAttribute("fill", "#f00");
       rect.setAttribute("width", xUnits / 2);
       rect.setAttribute("height", (slices[ix].duration / 60000 / yUnits));
       rect.addEventListener("click", showInfo);      
