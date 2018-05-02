@@ -38,7 +38,9 @@
       rect.setAttribute("id", ix);     
       rect.setAttribute("ztimestamp", slices[ix].timestamp); 
       rect.setAttribute("zduration", slices[ix].duration); 
-      rect.setAttribute("x", x);
+      rect.setAttribute("rx", "10%");
+      rect.setAttribute("ry", "10%");
+      rect.setAttribute("x", x);      
       rect.setAttribute("y", y);
       rect.setAttribute("fill", "#f00");
       rect.setAttribute("width", xUnits / 2);
@@ -49,8 +51,8 @@
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
     text.setAttribute("font-size",  48);     
-    text.setAttribute("x",  500);     
-    text.setAttribute("y",  500);           
+    text.setAttribute("x",  1000);     
+    text.setAttribute("y",  820);           
     text.textContent = parseInt(zSum / 60000);
     g.appendChild(text);
     
