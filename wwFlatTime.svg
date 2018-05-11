@@ -5,6 +5,11 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" 
   xmlns="http://www.w3.org/2000/svg">  
  <title>WhereWhen :: Oversigt 90 dage</title>
- <line x1="1000" x2="1000" y1="1" y2="1640" fill="#000" stroke="#00f" />
+  <defs>
+    <pattern id="zRepeat" x="0" y="0" width="50" height="41">      
+       <line x1="10" x2="10" y1="1" y2="21" fill="#000" stroke="#888" />
+    </pattern>
+  </defs>
+ <rect fill="url(#zRepeat)" stroke="black" width="2000" height="1640"/>
  <script xlink:href="staticdata/wwFlatTime.js" ></script>      
 </svg>
