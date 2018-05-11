@@ -7,7 +7,7 @@
  <title>WhereWhen :: Oversigt 90 dage</title>
   <defs>
     <pattern id="zRepeat" x="0" y="0" width="50" height="41">      
-       <line x1="10" x2="10" y1="1" y2="21" fill="#000" stroke="#888" stroke-width="2" />
+       <line x1="10" x2="10" y1="1" y2="21" stroke="#888" stroke-width="2" />
     </pattern>
   </defs>
  <rect fill="url(#zRepeat)" stroke="black" width="2000" height="1640"/>
