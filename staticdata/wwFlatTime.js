@@ -38,8 +38,6 @@
       rect.setAttribute("id", ix);     
       rect.setAttribute("ztimestamp", slices[ix].timestamp); 
       rect.setAttribute("zduration", slices[ix].duration); 
-      rect.setAttribute("rx", "10%");
-      rect.setAttribute("ry", "10%");
       rect.setAttribute("x", x);      
       rect.setAttribute("y", y);
       rect.setAttribute("fill", "#f00");
