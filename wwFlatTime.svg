@@ -5,6 +5,6 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" 
   xmlns="http://www.w3.org/2000/svg">  
  <title>WhereWhen :: Oversigt 90 dage</title>
- <line x1="1000" x2="1000" y1="1" y2="1640" fill="#000" stroke="#00f"
+ <line x1="1000" x2="1000" y1="1" y2="1640" fill="#000" stroke="#00f" />
  <script xlink:href="staticdata/wwFlatTime.js" ></script>      
 </svg>
