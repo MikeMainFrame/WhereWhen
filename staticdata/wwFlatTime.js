@@ -20,7 +20,7 @@
 
   function flatTime(slices) {
     
-    var zSum = 0, zDate = new Date(), xUnits = 20, yUnits = 1, x = 0, y = 0, max = new Date().getTime(), min = max - (1000*60*60*24*90);
+    var zSum = 0, zDate = new Date(), xUnits = 4, yUnits = 1, x = 0, y = 0, max = new Date().getTime(), min = max - (1000*60*60*24*450);
         
     var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
     g.setAttribute("text-anchor", "middle");
