@@ -5,11 +5,13 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" 
   xmlns="http://www.w3.org/2000/svg">  
  <title>WhereWhen :: Oversigt 90 dage</title>
+  <defs>
+<linearGradient id="xGradient" x1="100%" x2="100%" y1="100%" y2="0%"><stop offset="0%" stop-color="#808080" /><stop offset="95%" stop-color="#000000" /></linearGradient>
+<linearGradient id="yGradient" x1="100%" x2="100%" y1="100%" y2="0%"><stop offset="5%" stop-color="#80ff80" /><stop offset="99%" stop-color="#206020" /></linearGradient>
+</defs>
  <script xlink:href="staticdata/wwFlatTime.js" ></script>      
  <g>
-   <rect x="100" y="100" width="1800" height="480" fill="rgba(0,0,0,0.5)" />
-   <rect x="100" y="580" width="1800" height="480" fill="rgba(128,128,128,0.5)" />
-   <rect x="100" y="1060" width="1800" height="480" fill="rgba(0,0,0,0.5)" />
+   <rect x="100" y="100" width="1800" height="1440" fill="url(#xGradient)" />
  </g>
 </svg>
 
