@@ -20,7 +20,7 @@
 
   function flatTime(slices) {
     
-    var zSum = 0, zDate = new Date(), xUnits = 4, yUnits = 1, x = 0, y = 0, max = new Date().getTime(), min = max - (1000*60*60*24*450);
+    var zSum = 0, zDate = new Date(), xUnits = 7, yUnits = 1, x = 0, y = 0, max = new Date().getTime(), min = max - (1000*60*60*24*450);
         
     var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
     g.setAttribute("text-anchor", "middle");
@@ -40,7 +40,7 @@
       rect.setAttribute("zduration", slices[ix].duration); 
       rect.setAttribute("x", x);      
       rect.setAttribute("y", y);
-      rect.setAttribute("fill", "rgba(255,0,0,0.8)");
+      rect.setAttribute("fill", "rgba(255,255,255,0.5)");
       rect.setAttribute("width", xUnits / 2);
       rect.setAttribute("height", (slices[ix].duration / 60000 / yUnits));
       rect.addEventListener("click", showInfo);      
