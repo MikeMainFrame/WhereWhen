@@ -8,7 +8,7 @@
   <defs>
 <linearGradient id="xGradient" x1="100%" x2="100%" y1="100%" y2="0%">
   <stop offset="0%" stop-color="#000000" />
-  <stop offset="50%" stop-color="#808080" />
+  <stop offset="50%" stop-color="#f0f0ff" />
   <stop offset="100%" stop-color="#000000" /> 
 </linearGradient>
 <linearGradient id="yGradient" x1="100%" x2="100%" y1="100%" y2="0%"><stop offset="5%" stop-color="#80ff80" /><stop offset="99%" stop-color="#206020" /></linearGradient>
