@@ -35,8 +35,8 @@ handlers:
 - url: /wwCircularTime.svg
   script: wwCircularTime.svg
   
-- url: /wwFlatTime.svg
-  script: wwFlatTime.svg
+- url: /wwFlatTime.html
+  script: wwFlatTime.html
 
 - url: /.*
   script: wwMainApp.php
