@@ -1,6 +1,6 @@
-<svg viewBox="0 0 2000 1640"   
+<svg viewBox="0 0 3000 1640"   
   id="zFlatTime" 
-  style="background: #fff ; font-family: 'Open Sans Condensed', sans-serif"
+  style="background: #000 ; font-family: 'Open Sans Condensed', sans-serif"
   version="1.1" 
   xmlns:xlink="http://www.w3.org/1999/xlink" 
   xmlns="http://www.w3.org/2000/svg">  
@@ -8,7 +8,9 @@
   <defs>
 <linearGradient id="xGradient" x1="100%" x2="100%" y1="100%" y2="0%">
   <stop offset="0%" stop-color="#000000" />
-  <stop offset="50%" stop-color="#f0f0ff" />
+  <stop offset="20%" stop-color="#ff0000" />
+  <stop offset="50%" stop-color="#8080f0" />
+  <stop offset="80%" stop-color="#ff8000" />
   <stop offset="100%" stop-color="#000000" /> 
 </linearGradient>
 <linearGradient id="yGradient" x1="100%" x2="100%" y1="100%" y2="0%"><stop offset="5%" stop-color="#80ff80" /><stop offset="99%" stop-color="#206020" /></linearGradient>
