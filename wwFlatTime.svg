@@ -6,5 +6,10 @@
   xmlns="http://www.w3.org/2000/svg">  
  <title>WhereWhen :: Oversigt 90 dage</title>
  <script xlink:href="staticdata/wwFlatTime.js" ></script>      
+ <g>
+   <rect x="100" y="100" width="1800" height="480" fill="rgba(0,0,0,0.5)" />
+   <rect x="100" y="580" width="1800" height="480" fill="rgba(128,128,128,0.5)" />
+   <rect x="100" y="1060" width="1800" height="480" fill="rgba(0,0,0,0.5)" />
+ </g>
 </svg>
 
