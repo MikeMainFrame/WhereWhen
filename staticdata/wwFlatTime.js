@@ -44,7 +44,12 @@
       rect.setAttribute("width", xUnits / 2);
       rect.setAttribute("height", (slices[ix].duration / 60000 / yUnits));
       rect.addEventListener("click", showInfo);      
+      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');
+      text.setAttribute("x", x);
+      text.setAttribute("y", 1540);
+      text.textContent = parseInt(zDate.getMonth() + 1)  + "/" + parseInt(zDate.getDay());   
       g.appendChild(rect);     
+      g.appendChild(text);
     }      
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
