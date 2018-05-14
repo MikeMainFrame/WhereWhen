@@ -47,7 +47,7 @@
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');
       text.setAttribute("x", x);
       text.setAttribute("y", 1600);
-      text.setAttribute("transform", "rotate(45," + x + ",1600")");
+      text.setAttribute("transform", "rotate(45," + x + ",1600)");
       text.textContent = parseInt(zDate.getMonth() + 1)  + "/" + parseInt(zDate.getDay());   
       g.appendChild(rect);     
       g.appendChild(text);
@@ -64,7 +64,6 @@
     
   }
   function showInfo(what) {
-    var temp = new Date(parseFloat(what.target.getAttribute("ztimestamp")));    
-    alert(temp.getUTCDate());    
+    alert(what.target.getAttribute("zduration"));    
   }
 })("miketriticum@gmail.com"); 
