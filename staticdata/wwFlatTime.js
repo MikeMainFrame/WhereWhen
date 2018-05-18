@@ -56,8 +56,9 @@
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
     text.setAttribute("font-size",  48);     
     text.setAttribute("x",  1640);     
-    text.setAttribute("y",  48);           
-    text.textContent = parseInt(zSum / 60000);
+    text.setAttribute("y",  148);
+    text.setAttribute("fill","rgba(255,255,255,0.5)");
+    text.textContent = "NoOfMin: " + parseInt(zSum / 60000);
     g.appendChild(text);
     
     return(g);    
