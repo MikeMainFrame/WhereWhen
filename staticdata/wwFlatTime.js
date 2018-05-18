@@ -40,24 +40,24 @@
       rect.setAttribute("zduration", slices[ix].duration); 
       rect.setAttribute("x", x);      
       rect.setAttribute("y", y);
-      rect.setAttribute("fill", "rgba(255,255,255,0.5)");
+      rect.setAttribute("fill", "#FFF");
       rect.setAttribute("width", xUnits / 2);
       rect.setAttribute("height", (slices[ix].duration / 60000 / yUnits));
       rect.addEventListener("click", showInfo);      
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');
       text.setAttribute("x", x);
       text.setAttribute("y", 1600);
-      text.setAttribute("transform", "rotate(45," + x + ",1600)");
+      text.setAttribute("transform", "rotate(90," + x + ",1600)");
       text.textContent = parseInt(zDate.getMonth() + 1)  + "/" + parseInt(zDate.getDay());   
       g.appendChild(rect);     
       g.appendChild(text);
     }      
     
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
-    text.setAttribute("font-size",  48);     
+    text.setAttribute("font-size",  144);     
     text.setAttribute("x",  1640);     
-    text.setAttribute("y",  148);
-    text.setAttribute("fill","rgba(255,255,255,0.5)");
+    text.setAttribute("y",  256);
+    text.setAttribute("fill","#FFF");
     text.textContent = "NoOfMin: " + parseInt(zSum / 60000);
     g.appendChild(text);
     
