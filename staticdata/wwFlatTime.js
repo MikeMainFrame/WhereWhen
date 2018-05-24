@@ -46,7 +46,7 @@
       rect.addEventListener("click", showInfo);      
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');
       text.setAttribute("x", x);
-      text.setAttribute("y", 1600);
+      text.setAttribute("y", ix % 2 ? 1600 : 1648);
       text.setAttribute("transform", "rotate(90," + x + ",1600)");
       text.textContent = parseInt(zDate.getMonth() + 1)  + "/" + parseInt(zDate.getDay());   
       g.appendChild(rect);     
