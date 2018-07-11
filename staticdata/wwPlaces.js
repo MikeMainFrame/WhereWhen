@@ -1,8 +1,6 @@
-const lat = 55.905442, lng = 12.315357, who = "miketriticum@gmail.com";
-
+(function getStoredData(who, lat, lng);
+ 
 zMap = new google.maps.Map(document.getElementById("wwMap"), { center: {lat: lat, lng: lng}, zoom: 12, styles: zStyle });
-
-getStoredData(who);
 
 function getStoredData (who) {
   var xmlhttp = new XMLHttpRequest();
@@ -278,3 +276,4 @@ var zStyle =
     ]
   }
 ]
+})(55.905442, 12.315357, "miketriticum@gmail.com");
