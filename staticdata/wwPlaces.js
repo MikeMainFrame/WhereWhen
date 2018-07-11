@@ -278,4 +278,4 @@ var zStyle =
     ]
   }
 ]
-})(55.905442, 12.315357, "miketriticum@gmail.com");
+})("miketriticum@gmail.com", 55.905442, 12.315357);
