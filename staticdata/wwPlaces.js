@@ -1,6 +1,7 @@
 (function main(who, lat, lng) {
  
-zMap = new google.maps.Map(document.getElementById("wwMap"), { center: {lat: lat, lng: lng}, zoom: 12, styles: zStyle });
+zMap = new google.maps.Map(document.getElementById("wwMap"),
+                           { center: {lat: parseFloat(lat), lng: parseFloat(lng)}, zoom: 12, styles: zStyle });
 
 function getStoredData (who) {
   var xmlhttp = new XMLHttpRequest();
