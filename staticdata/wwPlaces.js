@@ -1,4 +1,4 @@
-(function getStoredData(who, lat, lng);
+(function main(who, lat, lng) {
  
 zMap = new google.maps.Map(document.getElementById("wwMap"), { center: {lat: lat, lng: lng}, zoom: 12, styles: zStyle });
 
