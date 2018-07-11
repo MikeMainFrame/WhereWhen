@@ -20,6 +20,9 @@ handlers:
 - url: /staticdata/wwFlatTime.js  
   script: /staticdata/wwFlatTime.js  
     
+- url: /staticdata/wwPlaces.js  
+  script: /staticdata/wwPlaces.js  
+      
 - url: /wwTransaction.php
   script: wwTransaction.php
   
@@ -37,6 +40,9 @@ handlers:
   
 - url: /wwFlatTime.html
   script: wwFlatTime.html
+  
+- url: /wwPlaces.html
+  script: wwPlaces.html
 
 - url: /.*
   script: wwMainApp.php
