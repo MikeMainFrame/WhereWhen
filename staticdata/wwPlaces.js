@@ -18,7 +18,7 @@ function getStoredData (who) {
 
 function groupTasks_ShowUI(root) {
   var zTasks = root.getElementsByTagName("task");
-  var match = false;
+  var match = false; grouped = [];
   for (var ix = 0; ix < zTasks.length; ix++) {
     task = zTasks[ix]; match = false;
     for (var jx = 0; jx < grouped.length; jx++) {
@@ -42,11 +42,9 @@ function groupTasks_ShowUI(root) {
     map: zMap,
     icon: {
       path: google.maps.SymbolPath.CIRCLE,
-      strokeColor: '#0000FF',
+      strokeColor: '#FF6000',
       strokeOpacity: 0.8,
       strokeWeight: 0,
-      fillColor: "#0000FF",
-      fillOpacity: 0.5,
       scale: 16
       },
     animation: google.maps.Animation.DROP
