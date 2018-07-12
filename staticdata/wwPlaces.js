@@ -1,11 +1,7 @@
 (function main(who, lat, lng) {
- 
-zMap = new google.maps.Map(document.getElementById("wwMap"),
-                           { center: {lat: parseFloat(lat), lng: parseFloat(lng)}, zoom: 12, styles: zStyle });
-getStoredData(who);
- 
-function getStoredData (who) {
+  
   var xmlhttp = new XMLHttpRequest();
+  
   xmlhttp.overrideMimeType("application/xml");
   xmlhttp.onreadystatechange=function() {
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -14,18 +10,19 @@ function getStoredData (who) {
   };
   xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who);
   xmlhttp.send();
-}
+  return;
 
 function groupTasks_ShowUI(root) {
   var zTasks = root.getElementsByTagName("task");
-  var match = false; grouped = [];
+  var match = false, grouped = [], kx = 0;
   for (var ix = 0; ix < zTasks.length; ix++) {
-    task = zTasks[ix]; match = false;
+    var task = zTasks[ix];
+    match = false;
     for (var jx = 0; jx < grouped.length; jx++) {
-      if (task.getAttribute("address") == grouped[jx].address) {        
+      if (task.getAttribute("address") === grouped[jx].address) {        
         match = true;
         if (task.id === "9999") {
-          grouped[jx].duration = (parseInt(grouped[jx].duration) + parseInt(task.getAttribute("duration")));
+          grouped[jx].duration = parseInt(grouped[jx].duration, 10) + parseInt(task.getAttribute("duration"), 10);
         } else {
           grouped[jx].id = task.id;
         }  
@@ -34,9 +31,12 @@ function groupTasks_ShowUI(root) {
     if (match === false) grouped.push(copyTask(task));
   }
   // cascade the markers not equal to 9999
-  var kx = 0;
-  for (var jx = 0; jx < grouped.length; jx++) {
-    if (grouped[jx].id == "9999") continue; // skip 9999 elements
+  
+  var zMap = new google.maps.Map(document.getElementById("wwMap"),
+                           { center: {lat: parseFloat(lat), lng: parseFloat(lng)}, zoom: 12, styles: zStyle });
+
+  for (jx = 0; jx < grouped.length; jx++) {
+    if (grouped[jx].id === "9999") continue; // skip 9999 elements
     var marker = new google.maps.Marker({
     position: {lat: parseFloat(grouped[jx].lat), lng: parseFloat(grouped[jx].lng)},
     map: zMap,
@@ -62,7 +62,7 @@ function groupTasks_ShowUI(root) {
     groupedItem.address = task.getAttribute("address");
     return groupedItem;
   }
-}
+
 var zStyle =
 [
   {
@@ -275,5 +275,6 @@ var zStyle =
       }
     ]
   }
-]
+];
+}
 })("miketriticum@gmail.com", 55.905442, 12.315357);
