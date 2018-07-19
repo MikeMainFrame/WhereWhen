@@ -1,16 +1,14 @@
 (function main(who, lat, lng) {
   
   var xmlhttp = new XMLHttpRequest(); 
-      xmlhttp.overrideMimeType("application/xml");
-      xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-          groupTasks_ShowUI(xmlhttp.responseXML.documentElement);      
-        }
-      };    
-      xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who);
-      xmlhttp.send();  
-      }
-    );  
+  xmlhttp.overrideMimeType("application/xml");
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+      groupTasks_ShowUI(xmlhttp.responseXML.documentElement);      
+    }
+  };    
+  xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who);
+  xmlhttp.send();    
     
   function groupTasks_ShowUI(root) {
     var oLatLng =  { lat: 0, lng: 0};	
