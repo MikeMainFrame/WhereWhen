@@ -1,25 +1,17 @@
 (function main(who, lat, lng) {
   
-  var xmlhttp = new XMLHttpRequest();
-  
-  get(who).then(groupTasks_ShowUI(xmlhttp.responseXML.documentElement));
- 
-  function get(who) {
-
-    return new Promise(function(resolve, reject) {
-    
+  var xmlhttp = new XMLHttpRequest(); 
       xmlhttp.overrideMimeType("application/xml");
       xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-          resolve(xmlhttp.responseXML.documentElement);      
+          groupTasks_ShowUI(xmlhttp.responseXML.documentElement);      
         }
       };    
       xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who);
       xmlhttp.send();  
       }
     );  
-  }
-  
+    
   function groupTasks_ShowUI(root) {
     var oLatLng =  { lat: 0, lng: 0};	
     var oIcon =  { path: google.maps.SymbolPath.CIRCLE, strokeColor: '#FF6000', strokeOpacity: 1,strokeWeight: 2, fillColor: "#FF6000", fillOpacity: 0.3, scale: 12 };
@@ -55,7 +47,6 @@
       zMarker.position.lng = parseFloat(grouped[jx].lng);    
       var temp = new google.maps.Marker(zMarker);
       document.getElementById("wwRightColumn").appendChild(showTasksUI(grouped[jx]));
-
       kx++;
     }  
 
