@@ -1,15 +1,13 @@
 (function main(who, lat, lng) {
-  var temp;
   
-  get(who).then(groupTasks_ShowUI(temp));
+  var xmlhttp = new XMLHttpRequest();
   
-  return;
-  
+  get(who).then(groupTasks_ShowUI(xmlhttp.responseXML.documentElement));
+ 
   function get(who) {
 
     return new Promise(function(resolve, reject) {
-      var xmlhttp = new XMLHttpRequest();
-
+    
       xmlhttp.overrideMimeType("application/xml");
       xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
