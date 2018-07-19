@@ -1,6 +1,8 @@
 (function main(who, lat, lng) {
   
-  get(who).then(groupTasks_ShowUI);
+  get(who).then(groupTasks_ShowUI(temp));
+  
+  return;
   
   function get(who) {
 
@@ -16,9 +18,11 @@
         }
       };    
       xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who);
-      xmlhttp.send();
-
+      xmlhttp.send();  
+      }
+    );  
   }
+  
   function groupTasks_ShowUI(root) {
     var oLatLng =  { lat: 0, lng: 0};	
     var oIcon =  { path: google.maps.SymbolPath.CIRCLE, strokeColor: '#FF6000', strokeOpacity: 1,strokeWeight: 2, fillColor: "#FF6000", fillOpacity: 0.3, scale: 12 };
@@ -142,4 +146,5 @@
       return g;    
     }
   }
+  
 })("miketriticum@gmail.com", 55.905442, 12.315357);
