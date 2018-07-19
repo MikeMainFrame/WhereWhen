@@ -1,4 +1,5 @@
 (function main(who, lat, lng) {
+  var temp;
   
   get(who).then(groupTasks_ShowUI(temp));
   
@@ -13,8 +14,6 @@
       xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
           resolve(xmlhttp.responseXML.documentElement);      
-        } else {
-          reject(console.log(xmlhttp.status));
         }
       };    
       xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who);
