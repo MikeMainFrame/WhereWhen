@@ -46,7 +46,7 @@
       kx++;
     }  
 
-    document.getElementById("wwMap").appendChild(ringOfTime(grouped));
+    document.getElementById("wwLeftColumn").appendChild(ringOfTime(grouped));
 
     return;
 
@@ -85,6 +85,7 @@
       text.setAttribute("font-weight", 900);
       text.textContent = "#" + group.id;
       g.setAttribute("transform", "rotate(90 50 100)");
+      g.setAttribute("transform", "translate(0," + parseInt(ix * 600, 10) + ")");
       
       g.appendChild(text);     
 
@@ -118,6 +119,8 @@
           + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
           + " Z");        
         // path.addEventListener("click", showInfo);
+        path.setAttribute("transform", "translate(0," + parseInt(ix * 1000, 10) + ")");
+ 
         g.appendChild(path);
       }      
 
@@ -126,10 +129,9 @@
       text.setAttribute("x",  500);     
       text.setAttribute("y",  500);           
       text.textContent = parseInt(zDegrees / 60000, 10);
-      g.setAttribute("transform", "translate(0," + parseInt(ix * 1000, 10) + ")");
       g.appendChild(text);
 
       return g;    
     }
   } 
-})("miketriticum@gmail.com", 55.905442, 12.315357);
+})("miketriticum@gmail.com", 55.957513, 12.524859);
