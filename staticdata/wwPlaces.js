@@ -65,7 +65,6 @@
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
       g.setAttribute("fill", "#F60");
       g.setAttribute("font-size", 24);
-      g.setAttribute("transform", "translate(" + 0 + 0 + ")");
 
       var rect =  document.createElementNS("http://www.w3.org/2000/svg", 'rect'); 
       rect.setAttribute("x", 0);
@@ -75,6 +74,7 @@
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 200);
       rect.setAttribute("x", 1);
+      
       g.appendChild(rect);
 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
@@ -84,9 +84,9 @@
       text.setAttribute("fill", "#F60");
       text.setAttribute("font-weight", 900);
       text.textContent = "#" + group.id;
-      g.setAttribute("transform", "rotate(90 50 100)");
-      g.setAttribute("transform", "translate(0," + parseInt(ix * 600, 10) + ")");
+      text.setAttribute("transform", "rotate(90 50 100)");
       
+      g.setAttribute("transform", "translate(0," + parseInt(ix * 600, 10) + ")");      
       g.appendChild(text);     
 
       return g;
@@ -103,7 +103,7 @@
 
       for (var ix = 0; ix < slices.length; ix++) {
         zMinutes = slices[ix].duration / 60000;
-        zOffset = new Date (slices[ix].timestamp);
+        zOffset = new Date (parseDbl(slices[ix].timestamp));
         zDegrees = (zOffset.getHours() * 60) + zOffset.getMinutes() / 4;
         var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
         path.setAttribute("id", ix);     
