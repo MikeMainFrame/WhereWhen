@@ -79,12 +79,12 @@
 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
       text.setAttribute("font-size",  48);     
-      text.setAttribute("x",  40);     
+      text.setAttribute("x",  50);     
       text.setAttribute("y",  100);      
       text.setAttribute("fill", "#F60");
       text.setAttribute("font-weight", 900);
-      text.textContent = group.id;
-      g.setAttribute("transform", "rotate(90, " + x + ", " + y + ")");
+      text.textContent = "#" + group.id;
+      g.setAttribute("transform", "rotate(90 50 100)");
       
       g.appendChild(text);     
 
