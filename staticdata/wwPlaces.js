@@ -37,8 +37,6 @@
     var zMap = new google.maps.Map(document.getElementById("wwMap"), oMap);
     var zMarker = oMarker; zMarker.map = zMap;
 
-    // cascade the markers not equal to 9999
-
     for (jx = 0; jx < grouped.length; jx++) {
       if (grouped[jx].id === "9999") continue; // skip 9999 elements
       zMarker.position.lat = parseFloat(grouped[jx].lat);
@@ -61,8 +59,7 @@
       groupedItem.lng = task.getAttribute("lng");
       groupedItem.address = task.getAttribute("address");
       return groupedItem;
-    }  
-      
+    }   
     function showTasksUI (group) {
 
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
@@ -78,19 +75,22 @@
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 200);
       rect.setAttribute("x", 1);
-      g.appenndChild(rect);
+      g.appendChild(rect);
 
-      var rect =  document.createElementNS("http://www.w3.org/2000/svg", 'rect'); 
-      rect.setAttribute("x", 4);
-      rect.setAttribute("y", 4);
-      rect.setAttribute("fill", "#666");
-      rect.setAttribute("width", 200);
-      rect.setAttribute("height", 192);
-      rect.setAttribute("x", 1);
+      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
+      text.setAttribute("font-size",  48);     
+      text.setAttribute("x",  40);     
+      text.setAttribute("y",  100);      
+      text.setAttribute("fill", "#F60");
+      text.setAttribute("font-weight", 900);
+      text.textContent = group.id;
+      g.setAttribute("transform", "rotate(90, " + x + ", " + y + ")");
+      
+      g.appendChild(text);     
 
+      return g;
 
     }
-
     function ringOfTime(slices) {
 
       const oRadius = 500; const iRadius = 400; const thisColor = "#ff8000"; 
@@ -131,6 +131,5 @@
 
       return g;    
     }
-  }
-  
+  } 
 })("miketriticum@gmail.com", 55.905442, 12.315357);
