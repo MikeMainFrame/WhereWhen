@@ -103,7 +103,7 @@
 
       for (var ix = 0; ix < slices.length; ix++) {
         zMinutes = slices[ix].duration / 60000;
-        zOffset = new Date (parseDbl(slices[ix].timestamp));
+        zOffset = new Date (parseFloat(slices[ix].timestamp));
         zDegrees = (zOffset.getHours() * 60) + zOffset.getMinutes() / 4;
         var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
         path.setAttribute("id", ix);     
