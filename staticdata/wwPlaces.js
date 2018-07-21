@@ -130,7 +130,7 @@
       g.setAttribute("text-anchor", "middle");
 
       for (var ix = 0; ix < slices.length; ix++) {
-        if (slices[jx].id < "9999") continue; // skip 9999 elements
+        if (slices[ix].id < "9999") continue; // skip 9999 elements
         zMinutes = slices[ix].duration / 60000;
         zOffset = new Date (parseFloat(slices[ix].timestamp));
         zDegrees = ((zOffset.getHours() * 60) + parseInt(zOffset.getMinutes())) / 4;
