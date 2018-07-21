@@ -33,16 +33,18 @@
       }
       if (match === false) grouped.push(copyTask(task));
     }
-    oMap.center.lat = lat; oMap.center.lng = lng;
+    oMap.center.lat = lat;
+    oMap.center.lng = lng;
     var zMap = new google.maps.Map(document.getElementById("wwMap"), oMap);
-    var zMarker = oMarker; zMarker.map = zMap;
+    var zMarker = oMarker;
+    zMarker.map = zMap;
 
     for (jx = 0; jx < grouped.length; jx++) {
       if (grouped[jx].id === "9999") continue; // skip 9999 elements
       zMarker.position.lat = parseFloat(grouped[jx].lat);
       zMarker.position.lng = parseFloat(grouped[jx].lng);    
       var temp = new google.maps.Marker(zMarker);
-      document.getElementById("wwRightColumn").appendChild(showTasksUI(grouped[jx]));
+      document.getElementById("wwRightColumn").appendChild(showTasksUI(grouped[jx], ix));
       kx++;
     }  
 
@@ -60,11 +62,12 @@
       groupedItem.address = task.getAttribute("address");
       return groupedItem;
     }   
-    function showTasksUI (group) {
+    function showTasksUI (group, ix) {
 
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
       g.setAttribute("fill", "#F60");
       g.setAttribute("font-size", 24);
+      g.setAttribute("text-anchor", "middle");
 
       var rect =  document.createElementNS("http://www.w3.org/2000/svg", 'rect'); 
       rect.setAttribute("x", 0);
@@ -81,10 +84,35 @@
       text.setAttribute("font-size",  48);     
       text.setAttribute("x",  50);     
       text.setAttribute("y",  100);      
-      text.setAttribute("fill", "#F60");
       text.setAttribute("font-weight", 900);
       text.textContent = "#" + group.id;
       text.setAttribute("transform", "rotate(90 50 100)");
+      
+      g.appendChild(text);
+      
+      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
+      text.setAttribute("x",  350);     
+      text.setAttribute("y",  46);      
+      text.setAttribute("fill", "#666");
+      text.textContent = "Location Address";
+      
+      g.appendChild(text);
+      
+      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
+      text.setAttribute("x",  350);     
+      text.setAttribute("y",  86);      
+      text.setAttribute("font-weight", 900);
+      text.textContent = group.address;
+  
+      g.appendChild(text);      
+  
+      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');           
+      text.setAttribute("x",  350);     
+      text.setAttribute("y",  122);      
+      text.setAttribute("fill", "#666");
+      text.textContent = "Geo Position";
+      
+      g.appendChild(text);
       
       g.setAttribute("transform", "translate(0," + parseInt(ix * 600, 10) + ")");      
       g.appendChild(text);     
@@ -102,7 +130,7 @@
       g.setAttribute("text-anchor", "middle");
 
       for (var ix = 0; ix < slices.length; ix++) {
-        if (grouped[jx].id < "9999") continue; // skip 9999 elements
+        if (slices[jx].id < "9999") continue; // skip 9999 elements
         zMinutes = slices[ix].duration / 60000;
         zOffset = new Date (parseFloat(slices[ix].timestamp));
         zDegrees = ((zOffset.getHours() * 60) + parseInt(zOffset.getMinutes())) / 4;
