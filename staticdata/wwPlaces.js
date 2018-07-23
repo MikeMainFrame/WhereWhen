@@ -44,11 +44,11 @@
       zMarker.position.lat = parseFloat(grouped[jx].lat);
       zMarker.position.lng = parseFloat(grouped[jx].lng);    
       var temp = new google.maps.Marker(zMarker);
-      document.getElementById("wwTasks").appendChild(showTasks(grouped[jx], jx));
+      document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx], jx));
       kx++;
     }  
 
-    document.getElementById("wwTasksDetails").appendChild(showTaskDetails(grouped));
+    document.getElementById("wwTaskSpec").appendChild(showTaskDetails(grouped));
 
     return;
 
