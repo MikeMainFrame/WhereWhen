@@ -134,6 +134,7 @@
         zMinutes = slices[ix].duration / 60000;
         zOffset = new Date (parseFloat(slices[ix].timestamp));
         zDegrees = ((zOffset.getHours() * 60) + parseInt(zOffset.getMinutes())) / 4;
+        if (zDegrees > 720) ? zDegrees = zDeegress - 720;        
         var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
         path.setAttribute("id", ix);     
         path.setAttribute("ztimestamp", slices[ix].timestamp); 
@@ -148,7 +149,7 @@
           + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
           + " Z");        
         // path.addEventListener("click", showInfo);
-        path.setAttribute("transform", "translate(0," + parseInt(ix * 1000, 10) + ")");
+        //path.setAttribute("transform", "translate(0," + parseInt(ix * 1000, 10) + ")");
  
         g.appendChild(path);
       }      
