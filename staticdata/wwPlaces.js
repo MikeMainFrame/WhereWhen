@@ -93,7 +93,7 @@
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
       text.setAttribute("x",  350);     
       text.setAttribute("y",  46);      
-      text.setAttribute("fill", "#666");
+      text.setAttribute("fill", "#212121");
       text.textContent = "Location Address";
       
       g.appendChild(text);
@@ -109,7 +109,7 @@
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');           
       text.setAttribute("x",  350);     
       text.setAttribute("y",  122);      
-      text.setAttribute("fill", "#666");
+      text.setAttribute("fill", "#212121");
       text.textContent = "Geo Position";
       
       g.appendChild(text);
@@ -148,13 +148,13 @@
           + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
           + " Z");        
         // path.addEventListener("click", showInfo);
-        //path.setAttribute("transform", "translate(0," + parseInt(ix * 1000, 10) + ")");
+        path.setAttribute("transform", "translate(0," + parseInt(ix * 1000, 10) + ")");
  
         g.appendChild(path);
       }      
 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
-      text.setAttribute("font-size",  48);     
+      text.setAttribute("font-size",  192);     
       text.setAttribute("fill", "#F60");      
       text.setAttribute("x",  500);     
       text.setAttribute("y",  500);           
