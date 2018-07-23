@@ -72,7 +72,7 @@
       var rect =  document.createElementNS("http://www.w3.org/2000/svg", 'rect'); 
       rect.setAttribute("x", 0);
       rect.setAttribute("y", 0);
-      rect.setAttribute("stroke", "#666");
+      rect.setAttribute("fill", "#666");
       rect.setAttribute("stroke-width", 2);
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 200);
@@ -114,7 +114,7 @@
       
       g.appendChild(text);
       
-      g.setAttribute("transform", "translate(0," + parseInt(ix * 600, 10) + ")");      
+      g.setAttribute("transform", "translate(0," + parseInt(ix * 200, 10) + ")");      
       g.appendChild(text);     
 
       return g;
@@ -138,7 +138,7 @@
         path.setAttribute("id", ix);     
         path.setAttribute("ztimestamp", slices[ix].timestamp); 
         path.setAttribute("zduration", slices[ix].duration); 
-        path.setAttribute("fill", thisColor);      
+        path.setAttribute("fill", "#F60");      
         path.setAttribute("stroke-width", 0);  
         path.setAttribute("d",
             "M " + parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * iRadius))
@@ -155,6 +155,7 @@
 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
       text.setAttribute("font-size",  48);     
+      text.setAttribute("fill", "#F60");      
       text.setAttribute("x",  500);     
       text.setAttribute("y",  500);           
       text.textContent = parseInt(zDegrees / 60000, 10);
