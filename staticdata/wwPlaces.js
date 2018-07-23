@@ -66,7 +66,7 @@
 
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
       g.setAttribute("fill", "#F60");
-      g.setAttribute("font-size", 24);
+      g.setAttribute("font-size", 18);
       g.setAttribute("text-anchor", "middle");
 
       var rect =  document.createElementNS("http://www.w3.org/2000/svg", 'rect'); 
@@ -82,11 +82,11 @@
 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
       text.setAttribute("font-size",  48);     
-      text.setAttribute("x",  50);     
+      text.setAttribute("x",  20);     
       text.setAttribute("y",  100);      
       text.setAttribute("font-weight", 900);
       text.textContent = "#" + group.id;
-      text.setAttribute("transform", "rotate(90 50 100)");
+      text.setAttribute("transform", "rotate(90 20 100)");
       
       g.appendChild(text);
       
