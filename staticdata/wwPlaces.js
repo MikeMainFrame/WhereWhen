@@ -4,13 +4,13 @@
   xmlhttp.overrideMimeType("application/xml");
   xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-      groupTasks_ShowUI(xmlhttp.responseXML.documentElement);      
+      groupTasks(xmlhttp.responseXML.documentElement);      
     }
   };    
   xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who);
   xmlhttp.send();    
     
-  function groupTasks_ShowUI(root) {
+  function groupTasks(root) {
     var oLatLng =  { lat: 0, lng: 0};	
     var oIcon =  { path: google.maps.SymbolPath.CIRCLE, strokeColor: '#FF6000', strokeOpacity: 1,strokeWeight: 2, fillColor: "#FF6000", fillOpacity: 0.3, scale: 12 };
     var oMap = { center: oLatLng, zoom: 12, styles: zStyles};
@@ -44,11 +44,11 @@
       zMarker.position.lat = parseFloat(grouped[jx].lat);
       zMarker.position.lng = parseFloat(grouped[jx].lng);    
       var temp = new google.maps.Marker(zMarker);
-      document.getElementById("wwRightColumn").appendChild(showTasksUI(grouped[jx], ix));
+      document.getElementById("wwTasks").appendChild(showTasks(grouped[jx], jx));
       kx++;
     }  
 
-    document.getElementById("wwLeftColumn").appendChild(ringOfTime(grouped));
+    document.getElementById("wwTasksDetails").appendChild(showTaskDetails(grouped));
 
     return;
 
@@ -62,7 +62,7 @@
       groupedItem.address = task.getAttribute("address");
       return groupedItem;
     }   
-    function showTasksUI (group, ix) {
+    function showTasks (group, ix) {
 
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
       g.setAttribute("fill", "#F60");
@@ -120,7 +120,7 @@
       return g;
 
     }
-    function ringOfTime(slices) {
+    function showTaskDetails(slices) {
 
       const oRadius = 500; const iRadius = 400; const thisColor = "#ff8000"; 
       var zOffset = 0, zDegrees = 0, zMinutes = 0;   
