@@ -55,10 +55,10 @@
     function copyTask (task) {
       var groupedItem = {};
       groupedItem.id = task.getAttribute("id");
-      groupedItem.duration = task.getAttribute("duration");
+      groupedItem.duration = parseInt(task.getAttribute("duration"), 10);
       groupedItem.timestamp = task.getAttribute("timestamp");
-      groupedItem.lat = task.getAttribute("lat");
-      groupedItem.lng = task.getAttribute("lng");
+      groupedItem.lat = parseFloat(task.getAttribute("lat"));
+      groupedItem.lng = parseFloat(task.getAttribute("lng"));
       groupedItem.address = task.getAttribute("address");
       return groupedItem;
     }   
