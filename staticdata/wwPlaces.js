@@ -72,7 +72,7 @@
       var rect =  document.createElementNS("http://www.w3.org/2000/svg", 'rect'); 
       rect.setAttribute("x", 0);
       rect.setAttribute("y", 0);
-      rect.setAttribute("fill", "#666");
+      rect.setAttribute("fill", "#212121");
       rect.setAttribute("stroke-width", 2);
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 200);
