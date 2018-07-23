@@ -126,15 +126,14 @@
       var zOffset = 0, zDegrees = 0, zMinutes = 0;   
 
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
-
       g.setAttribute("text-anchor", "middle");
 
       for (var ix = 0; ix < slices.length; ix++) {
         if (slices[ix].id < "9999") continue; // skip 9999 elements
-        zMinutes = slices[ix].duration / 60000;
         zOffset = new Date (parseFloat(slices[ix].timestamp));
         zDegrees = ((zOffset.getHours() * 60) + parseInt(zOffset.getMinutes())) / 4;
-        if (zDegrees > 720) ? zDegrees = zDeegress - 720;        
+        if (zDegrees > 720) zDegrees = zDegrees - 720;
+        zMinutes = slices[ix].duration / 240000;
         var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
         path.setAttribute("id", ix);     
         path.setAttribute("ztimestamp", slices[ix].timestamp); 
