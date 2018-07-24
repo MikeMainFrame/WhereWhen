@@ -91,7 +91,7 @@
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
       text.setAttribute("x",  350);     
       text.setAttribute("y",  86);
-      text.setAttribute("fill", "#EEE");
+      text.setAttribute("fill", "#888");
       text.textContent = group.address;  
       g.appendChild(text);
       
@@ -101,7 +101,7 @@
       text.textContent = group.lat + ", " + group.lng;  
       g.appendChild(text);
       
-      g.setAttribute("transform", "translate(0," + (parseInt(group.id, 10) * 200) + ")");      
+      g.setAttribute("transform", "translate(0," + ((parseInt(group.id, 10) - 1) * 200) + ")");      
 
       return g;
 
@@ -122,6 +122,14 @@
         zDegrees = ((zOffset.getHours() * 60) + parseInt(zOffset.getMinutes())) / 4;
         if (zDegrees > 720) zDegrees = zDegrees - 720;
         zMinutes = slices[ix].duration / 240000;
+        
+        var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
+        circle.setAttribute("cx", 500);
+        circle.setAttribute("cy", 500);
+        circle.setAttribute("r", 500);
+        circle.setAttribute("fill", "#212121");
+        g.appendChild(circle);
+     
         var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
         path.setAttribute("id", ix);     
         path.setAttribute("ztimestamp", slices[ix].timestamp); 
@@ -135,13 +143,7 @@
           + "L " + parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
           + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
           + " Z");        
-        // path.addEventListener("click", showInfo);
-         var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
-        circle.setAttribute("cx", 500);
-        circle.setAttribute("cy", 500);
-        circle.setAttribute("r", 500);
-        circle.setAttribute("fill", "#212121");
-        g.appendChild(circle);
+        g.appendChild(path);
         var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
         circle.setAttribute("cx", 500);
         circle.setAttribute("cy", 500);
@@ -155,9 +157,8 @@
         text.setAttribute("y",  500);           
         text.textContent = parseInt(slices[ix].duration / 60000, 10);
         g.appendChild(text);
-        g.appendChild(path);
-        jx++;
         g.setAttribute("transform", "translate(0," + parseInt(jx * 1000, 10) + ")");
+        jx++;
         m.appendChild(g);
       }            
       return m;    
