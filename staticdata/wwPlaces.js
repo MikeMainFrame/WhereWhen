@@ -62,18 +62,19 @@
       groupedItem.address = task.getAttribute("address");
       return groupedItem;
     }   
+    
     function showTasks (group, ix) {
 
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
       g.setAttribute("fill", "#F60");
-      g.setAttribute("font-size", 18);
+      g.setAttribute("font-size", 24);
       g.setAttribute("text-anchor", "middle");
 
       var rect =  document.createElementNS("http://www.w3.org/2000/svg", 'rect'); 
       rect.setAttribute("x", 0);
       rect.setAttribute("y", 0);
       rect.setAttribute("fill", "#212121");
-      rect.setAttribute("stroke-width", 4);
+      rect.setAttribute("stroke-width", 0);
       rect.setAttribute("stroke", "#eee");
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 200);
