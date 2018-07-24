@@ -115,12 +115,24 @@
 
       const oRadius = 500; const iRadius = 400; const thisColor = "#ff8000"; 
       var zOffset = 0, zDegrees = 0, zMinutes = 0;   
-
-      var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
-      g.setAttribute("text-anchor", "middle");
-
+      var m = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
+      m.setAttribute("text-anchor", "middle");
+      
       for (var ix = 0; ix < slices.length; ix++) {
-        if (slices[ix].id < "9999") continue; // only 9999 elements
+        if (slices[ix].id < "9999") continue; // only 9999 elements        
+        var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
+        g.setAttribute("text-anchor", "middle");
+        var cirle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  
+        circle.setAttribute("cx", 500);
+        circle.setAttribute("cy", 500);
+        circle.setAttribute("r", 500);
+        circle.setAttribute("fill", "#212121");
+        g.appendChild(circle);
+        circle.setAttribute("cx", 500);
+        circle.setAttribute("cy", 500);
+        circle.setAttribute("r", 400);
+        circle.setAttribute("fill", "#000");
+        g.appendChild(circle);
         zOffset = new Date (parseFloat(slices[ix].timestamp));
         zDegrees = ((zOffset.getHours() * 60) + parseInt(zOffset.getMinutes())) / 4;
         if (zDegrees > 720) zDegrees = zDegrees - 720;
@@ -139,20 +151,18 @@
           + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
           + " Z");        
         // path.addEventListener("click", showInfo);
-        path.setAttribute("transform", "translate(0," + parseInt(ix * 1000, 10) + ")");
- 
+          var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
+        text.setAttribute("font-size",  192);     
+        text.setAttribute("fill", "#F60");      
+        text.setAttribute("x",  500);     
+        text.setAttribute("y",  500);           
+        text.textContent = parseInt(zDegrees / 60000, 10);
+        g.appendChild(text);
         g.appendChild(path);
-      }      
-
-      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
-      text.setAttribute("font-size",  192);     
-      text.setAttribute("fill", "#F60");      
-      text.setAttribute("x",  500);     
-      text.setAttribute("y",  500);           
-      text.textContent = parseInt(zDegrees / 60000, 10);
-      g.appendChild(text);
-
-      return g;    
+        g.setAttribute("transform", "translate(0," + parseInt(ix * 1000, 10) + ")");
+        m.appendChild(g);
+      }            
+      return m;    
     }
   } 
 })("miketriticum@gmail.com", 55.957513, 12.524859);
