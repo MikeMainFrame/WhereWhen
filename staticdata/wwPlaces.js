@@ -73,10 +73,10 @@
       rect.setAttribute("x", 0);
       rect.setAttribute("y", 0);
       rect.setAttribute("fill", "#212121");
-      rect.setAttribute("stroke-width", 2);
+      rect.setAttribute("stroke-width", 4);
+      rect.setAttribute("stroke", "#eee");
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 200);
-      rect.setAttribute("x", 1);
       
       g.appendChild(rect);
 
@@ -92,28 +92,19 @@
       
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
       text.setAttribute("x",  350);     
-      text.setAttribute("y",  46);      
-      text.setAttribute("fill", "#212121");
-      text.textContent = "Location Address";
-      
-      g.appendChild(text);
-      
-      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
-      text.setAttribute("x",  350);     
       text.setAttribute("y",  86);      
       text.setAttribute("font-weight", 900);
       text.textContent = group.address;
   
-      g.appendChild(text);      
-  
-      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');           
-      text.setAttribute("x",  350);     
-      text.setAttribute("y",  122);      
-      text.setAttribute("fill", "#212121");
-      text.textContent = "Geo Position";
-      
       g.appendChild(text);
       
+      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
+      text.setAttribute("x",  350);     
+      text.setAttribute("y",  148);      
+      text.setAttribute("font-weight", 900);
+      text.textContent = group.lat + ", " group.lng;
+  
+      g.appendChild(text);
       g.setAttribute("transform", "translate(0," + parseInt(ix * 200, 10) + ")");      
       g.appendChild(text);     
 
