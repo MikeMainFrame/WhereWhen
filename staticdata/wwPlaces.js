@@ -14,7 +14,7 @@
     var oLatLng =  { lat: 0, lng: 0};	
     var oIcon =  { path: google.maps.SymbolPath.CIRCLE, strokeColor: '#FF6000', strokeOpacity: 1,strokeWeight: 2, fillColor: "#FF6000", fillOpacity: 0.3, scale: 12 };
     var oMap = { center: oLatLng, zoom: 12, styles: zStyles};
-    var oMarker = { position: oLatLng, visible: true, map: oMap, icon: oIcon,animation: google.maps.Animation.DROP};
+    var oMarker = { position: oLatLng, visible: true, map: oMap, icon: oIcon,animation: google.maps.Animation.DROP, title: ""};
 
     var zTasks = root.getElementsByTagName("task");
     var match = false, kx = 0;
@@ -43,6 +43,7 @@
       if (grouped[jx].id === "9999") continue; // skip 9999 elements
       zMarker.position.lat = parseFloat(grouped[jx].lat);
       zMarker.position.lng = parseFloat(grouped[jx].lng);   
+      zMarker.title = grouped[jx].id;
       var temp = new google.maps.Marker(zMarker);
       temp.addListener("click", showTaskDetails);     
       document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx]));
