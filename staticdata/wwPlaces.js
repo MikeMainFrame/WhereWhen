@@ -85,7 +85,6 @@
       text.setAttribute("font-size",  48);     
       text.setAttribute("x",  20);     
       text.setAttribute("y",  100);      
-      text.setAttribute("font-weight", 900);
       text.textContent = "#" + group.id;
       text.setAttribute("transform", "rotate(90 20 100)");
       
@@ -94,7 +93,6 @@
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
       text.setAttribute("x",  350);     
       text.setAttribute("y",  86);      
-      text.setAttribute("font-weight", 900);
       text.textContent = group.address;
   
       g.appendChild(text);
@@ -102,7 +100,6 @@
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
       text.setAttribute("x",  350);     
       text.setAttribute("y",  148);      
-      text.setAttribute("font-weight", 900);
       text.textContent = group.lat + ", " + group.lng;
   
       g.appendChild(text);
