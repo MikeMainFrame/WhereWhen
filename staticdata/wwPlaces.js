@@ -77,8 +77,7 @@
       rect.setAttribute("stroke-width", 0);
       rect.setAttribute("stroke", "#eee");
       rect.setAttribute("width", 600);
-      rect.setAttribute("height", 200);
-      
+      rect.setAttribute("height", 200);      
       g.appendChild(rect);
 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
@@ -87,24 +86,22 @@
       text.setAttribute("y",  100);      
       text.textContent = "#" + group.id;
       text.setAttribute("transform", "rotate(90 20 100)");
-      
       g.appendChild(text);
       
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
       text.setAttribute("x",  350);     
-      text.setAttribute("y",  86);      
-      text.textContent = group.address;
-  
+      text.setAttribute("y",  86);
+      text.setAttribute("fill", "#EEE");
+      text.textContent = group.address;  
       g.appendChild(text);
       
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
       text.setAttribute("x",  350);     
       text.setAttribute("y",  148);      
-      text.textContent = group.lat + ", " + group.lng;
-  
+      text.textContent = group.lat + ", " + group.lng;  
       g.appendChild(text);
-      g.setAttribute("transform", "translate(0," + parseInt(ix * 200, 10) + ")");      
-      g.appendChild(text);     
+      
+      g.setAttribute("transform", "translate(0," + (parseInt(group.id, 10) * 200) + ")");      
 
       return g;
 
@@ -112,7 +109,7 @@
     function showTaskDetails(slices) {
 
       const oRadius = 500; const iRadius = 400; const thisColor = "#ff8000"; 
-      var zOffset = 0, zDegrees = 0, zMinutes = 0;   
+      var zOffset = 0, zDegrees = 0, zMinutes = 0, jx=0;  
       var m = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
       m.setAttribute("text-anchor", "middle");
       
@@ -120,18 +117,7 @@
         if (slices[ix].id < "9999") continue; // only 9999 elements        
         var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
         g.setAttribute("text-anchor", "middle");
-        var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  
-        circle.setAttribute("cx", 500);
-        circle.setAttribute("cy", 500);
-        circle.setAttribute("r", 500);
-        circle.setAttribute("fill", "#212121");
-        g.appendChild(circle);
-        var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  
-        circle.setAttribute("cx", 500);
-        circle.setAttribute("cy", 500);
-        circle.setAttribute("r", 400);
-        circle.setAttribute("fill", "#000");
-        g.appendChild(circle);
+       
         zOffset = new Date (parseFloat(slices[ix].timestamp));
         zDegrees = ((zOffset.getHours() * 60) + parseInt(zOffset.getMinutes())) / 4;
         if (zDegrees > 720) zDegrees = zDegrees - 720;
@@ -150,15 +136,28 @@
           + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
           + " Z");        
         // path.addEventListener("click", showInfo);
-          var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
+         var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
+        circle.setAttribute("cx", 500);
+        circle.setAttribute("cy", 500);
+        circle.setAttribute("r", 500);
+        circle.setAttribute("fill", "#212121");
+        g.appendChild(circle);
+        var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
+        circle.setAttribute("cx", 500);
+        circle.setAttribute("cy", 500);
+        circle.setAttribute("r", 400);
+        circle.setAttribute("fill", "#000");
+        g.appendChild(circle);
+        var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
         text.setAttribute("font-size",  192);     
         text.setAttribute("fill", "#F60");      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  500);           
-        text.textContent = parseInt(slices[ix].duration, 10) / 60000;
+        text.textContent = parseInt(slices[ix].duration / 60000, 10);
         g.appendChild(text);
         g.appendChild(path);
-        g.setAttribute("transform", "translate(0," + parseInt(ix * 1000, 10) + ")");
+        jx++;
+        g.setAttribute("transform", "translate(0," + parseInt(jx * 1000, 10) + ")");
         m.appendChild(g);
       }            
       return m;    
