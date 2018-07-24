@@ -43,8 +43,8 @@
       if (grouped[jx].id === "9999") continue; // skip 9999 elements
       zMarker.position.lat = parseFloat(grouped[jx].lat);
       zMarker.position.lng = parseFloat(grouped[jx].lng);   
-      zMarker.addListener("click", showTaskDetails);  
       var temp = new google.maps.Marker(zMarker);
+      temp.addListener("click", showTaskDetails);     
       document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx]));
       kx++;
     }  
