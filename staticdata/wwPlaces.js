@@ -111,12 +111,15 @@
     function showTaskDetails(key) { 
       
       const oRadius = 500; const iRadius = 400; const thisColor = "#ff8000"; 
-      var zOffset = 0, zDegrees = 0, zMinutes = 0, jx=0;  
+      var zOffset = 0, zDegrees = 0, zMinutes = 0, jx=0, zId = "";
+      
+      (typeof key.Ha.currentTarget.title != 'undefined') ? zId = key.Ha.currentTarget.title : zId = key; 
+      
       var m = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
       m.setAttribute("text-anchor", "middle");
       
       for (var ix = 0; ix < slices.length; ix++) {
-        if (slices[ix].id !== key) continue; 
+        if (slices[ix].id !== zId) continue; 
         var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
         g.setAttribute("text-anchor", "middle");
        
