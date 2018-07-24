@@ -42,13 +42,14 @@
     for (jx = 0; jx < grouped.length; jx++) {
       if (grouped[jx].id === "9999") continue; // skip 9999 elements
       zMarker.position.lat = parseFloat(grouped[jx].lat);
-      zMarker.position.lng = parseFloat(grouped[jx].lng);    
+      zMarker.position.lng = parseFloat(grouped[jx].lng);   
+      zMarker.addListener("click", showTaskDetails);  
       var temp = new google.maps.Marker(zMarker);
       document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx]));
       kx++;
     }  
 
-    document.getElementById("wwTaskSpec").appendChild(showTaskDetails(1));
+    document.getElementById("wwTaskSpec").appendChild(showTaskDetails("1"));
 
     return;
 
@@ -107,6 +108,7 @@
 
     }
     function showTaskDetails(key) { 
+      
       const oRadius = 500; const iRadius = 400; const thisColor = "#ff8000"; 
       var zOffset = 0, zDegrees = 0, zMinutes = 0, jx=0;  
       var m = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
@@ -142,7 +144,7 @@
           + "L " + parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
           + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
           + " Z");        
-        path.addEventListener("click", showTaskDetails);
+       
         g.appendChild(path);
         var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
         circle.setAttribute("cx", 500);
