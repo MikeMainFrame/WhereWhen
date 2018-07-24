@@ -122,7 +122,7 @@
         if (slices[ix].id < "9999") continue; // only 9999 elements        
         var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
         g.setAttribute("text-anchor", "middle");
-        var cirle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  
+        var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  
         circle.setAttribute("cx", 500);
         circle.setAttribute("cy", 500);
         circle.setAttribute("r", 500);
