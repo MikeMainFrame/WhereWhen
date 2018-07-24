@@ -128,6 +128,7 @@
         circle.setAttribute("cy", 500);
         circle.setAttribute("r", 500);
         circle.setAttribute("fill", "#212121");
+        var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  
         g.appendChild(circle);
         circle.setAttribute("cx", 500);
         circle.setAttribute("cy", 500);
