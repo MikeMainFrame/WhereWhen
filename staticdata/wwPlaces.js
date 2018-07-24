@@ -102,7 +102,7 @@
       text.setAttribute("x",  350);     
       text.setAttribute("y",  148);      
       text.setAttribute("font-weight", 900);
-      text.textContent = group.lat + ", " group.lng;
+      text.textContent = group.lat + ", " + group.lng;
   
       g.appendChild(text);
       g.setAttribute("transform", "translate(0," + parseInt(ix * 200, 10) + ")");      
