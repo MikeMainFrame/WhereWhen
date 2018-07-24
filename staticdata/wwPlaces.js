@@ -125,8 +125,8 @@
         circle.setAttribute("cy", 500);
         circle.setAttribute("r", 500);
         circle.setAttribute("fill", "#212121");
-        var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  
         g.appendChild(circle);
+        var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  
         circle.setAttribute("cx", 500);
         circle.setAttribute("cy", 500);
         circle.setAttribute("r", 400);
@@ -155,7 +155,7 @@
         text.setAttribute("fill", "#F60");      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  500);           
-        text.textContent = parseInt(zDegrees / 60000, 10);
+        text.textContent = parseInt(slices[ix].duration, 10) / 60000;
         g.appendChild(text);
         g.appendChild(path);
         g.setAttribute("transform", "translate(0," + parseInt(ix * 1000, 10) + ")");
