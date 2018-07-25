@@ -13,19 +13,22 @@
   function organizeData(root)  {
 	
     var zTasks = root.getElementsByTagName("task");
-	  var kx = 0;
-	
-	  for (var ix = 0; ix < zTasks.length; ix++) {
-	    var task = zTasks[ix];
-	    if (task.id < "9999") kx = ix;
-	    grouped[kx].duration = grouped[kx].duration + parseInt(task.getAttribute("duration"), 10);
-	    grouped.push(copyTask(task));
-	  }	
-	  groupTasks(root); // map + groups
-	  document.getElementById("wwTaskSpec").appendChild(showTaskDetails("1")); // group details
-   } 
+    var kx = 0;
+
+    for (var ix = 0; ix < zTasks.length; ix++) {
+      var task = zTasks[ix];
+      if (task.id < "9999") kx = ix;
+      if (kx in grouped) {
+        grouped[kx].duration = grouped[kx].duration + parseInt(task.getAttribute("duration"), 10);
+      } else {	    
+        grouped.push(copyTask(task));
+      }	
+    }	  
+    groupTasks(root); // map + groups
+    document.getElementById("wwTaskSpec").appendChild(showTaskDetails("1")); // group details
+  } 
    
-   function groupTasks(root) {
+  function groupTasks(root) {
      var oLatLng =  { lat: 0, lng: 0};	
      var oIcon =  { path: google.maps.SymbolPath.CIRCLE, strokeColor: '#FF6000', strokeOpacity: 1,strokeWeight: 2, fillColor: "#FF6000", fillOpacity: 0.3, scale: 12 };
      var oMap = { center: oLatLng, zoom: 12, styles: zStyles};
