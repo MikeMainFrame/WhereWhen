@@ -1,5 +1,5 @@
 (function main(who, lat, lng) {
-  var grouped = [], zTaskId = "1";
+  var grouped = [];
   var xmlhttp = new XMLHttpRequest(); 
   xmlhttp.overrideMimeType("application/xml");
   xmlhttp.onreadystatechange = function() {
@@ -11,55 +11,42 @@
   xmlhttp.send();    
   
   function organizeData(root)  {
-
-      var zTasks = root.getElementsByTagName("task");
-      var match = false, kx = 0;
-      for (var ix = 0; ix < zTasks.length; ix++) {
-        var task = zTasks[ix];
-        match = false;
-        for (var jx = 0; jx < grouped.length; jx++) {
-          if (task.getAttribute("address") === grouped[jx].address) {        
-            match = true;
-            if (task.id === "9999") {
-              grouped[jx].duration = parseInt(grouped[jx].duration, 10) + parseInt(task.getAttribute("duration"), 10);
-            } else {
-              grouped[jx].id = task.id;
-            }  
-          }      
-        }
-        if (match === false) grouped.push(copyTask(task));
-      }
-
-      groupTasks(root); // map + groups
-
-      document.getElementById("wwTaskSpec").appendChild(showTaskDetails("1")); // group details
-
-    } 
+	
+    var zTasks = root.getElementsByTagName("task");
+	  var kx = 0;
+	
+	  for (var ix = 0; ix < zTasks.length; ix++) {
+	    var task = zTasks[ix];
+	    if (task.id < "9999") kx = ix;
+	    grouped[kx].duration = grouped[kx].duration + parseInt(task.getAttribute("duration"), 10);
+	    grouped.push(copyTask(task));
+	  }	
+	  groupTasks(root); // map + groups
+	  document.getElementById("wwTaskSpec").appendChild(showTaskDetails("1")); // group details
+   } 
    
-    function groupTasks(root) {
-      var oLatLng =  { lat: 0, lng: 0};	
-      var oIcon =  { path: google.maps.SymbolPath.CIRCLE, strokeColor: '#FF6000', strokeOpacity: 1,strokeWeight: 2, fillColor: "#FF6000", fillOpacity: 0.3, scale: 12 };
-      var oMap = { center: oLatLng, zoom: 12, styles: zStyles};
-      var oMarker = { position: oLatLng, visible: true, map: oMap, icon: oIcon,animation: google.maps.Animation.DROP, title: ""};
-
-      oMap.center.lat = lat;
-      oMap.center.lng = lng;
-      var zMap = new google.maps.Map(document.getElementById("wwMap"), oMap);
-      var zMarker = oMarker;
-      zMarker.map = zMap;
-
-      for (jx = 0; jx < grouped.length; jx++) {
-        if (grouped[jx].id === "9999") continue; // skip 9999 elements
-        zMarker.position.lat = parseFloat(grouped[jx].lat);
-        zMarker.position.lng = parseFloat(grouped[jx].lng);   
-        zMarker.title = grouped[jx].id;
-        var temp = new google.maps.Marker(zMarker);
-        document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx]));
-        kx++;
-      }  
-    }
+   function groupTasks(root) {
+     var oLatLng =  { lat: 0, lng: 0};	
+     var oIcon =  { path: google.maps.SymbolPath.CIRCLE, strokeColor: '#FF6000', strokeOpacity: 1,strokeWeight: 2, fillColor: "#FF6000", fillOpacity: 0.3, scale: 12 };
+     var oMap = { center: oLatLng, zoom: 12, styles: zStyles};
+     var oMarker = { position: oLatLng, visible: true, map: oMap, icon: oIcon,animation: google.maps.Animation.DROP, title: ""};
+     oMap.center.lat = lat;
+     oMap.center.lng = lng;
+     var zMap = new google.maps.Map(document.getElementById("wwMap"), oMap);
+     var zMarker = oMarker;
+     zMarker.map = zMap;
+     
+     for (jx = 0; jx < grouped.length; jx++) {
+       if (grouped[jx].id === "9999") continue; // skip 9999 elements
+       zMarker.position.lat = parseFloat(grouped[jx].lat);
+       zMarker.position.lng = parseFloat(grouped[jx].lng);   
+       zMarker.title = grouped[jx].id;
+       var temp = new google.maps.Marker(zMarker);
+       document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx]));
+     }  
+   }
   
-    function copyTask(task) {
+   function copyTask(task) {
       var groupedItem = {};
       groupedItem.id = task.getAttribute("id");      
       groupedItem.duration = parseInt(task.getAttribute("duration"), 10);
@@ -116,7 +103,7 @@
       return g;
     }
   
-    function showTaskDetails(task) { 
+    function showTaskDetails(taskid) { 
       
       const oRadius = 500; const iRadius = 400; const thisColor = "#ff8000"; 
       var zOffset = 0, zDegrees = 0, zMinutes = 0, jx=0;
@@ -125,10 +112,10 @@
       m.setAttribute("text-anchor", "middle");
       
       for (var ix = 0; ix < group.length; ix++) {
-        if (grouped[ix].id === task) break;
+        if (grouped[ix].id === taskid) break;
       } 
       for (;ix < group.length; ix++) {
-        if (grouped[ix].id !== task) break;
+        if (grouped[ix].id !== parseInt(taskid, 10)) break;
         var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
        
         zOffset = new Date (parseFloat(group[ix].timestamp));
@@ -171,7 +158,7 @@
         text.setAttribute("y",  500);           
         text.textContent = parseInt(group[ix].duration / 60000, 10);
         g.appendChild(text);
-         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
+        var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
         text.setAttribute("font-size",  48);     
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
@@ -184,5 +171,5 @@
       }            
       return m;    
     }
-  } 
+   
 })("miketriticum@gmail.com", 55.957513, 12.524859);
