@@ -1,5 +1,5 @@
 (function main(who, lat, lng) {
-  var slices = [];
+  var slices = [], zTaskId = "1";
   var xmlhttp = new XMLHttpRequest(); 
   xmlhttp.overrideMimeType("application/xml");
   xmlhttp.onreadystatechange = function() {
@@ -45,12 +45,12 @@
       zMarker.position.lng = parseFloat(grouped[jx].lng);   
       zMarker.title = grouped[jx].id;
       var temp = new google.maps.Marker(zMarker);
-      temp.addListener("click", showTaskDetails);     
+      temp.addListener("click", function(e) { zTaskId = e.Ha.currentTarget.title; showTaskDetails(); });     
       document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx]));
       kx++;
     }  
 
-    document.getElementById("wwTaskSpec").appendChild(showTaskDetails("1"));
+    document.getElementById("wwTaskSpec").appendChild(showTaskDetails());
 
     return;
 
@@ -85,7 +85,8 @@
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
       text.setAttribute("font-size",  48);     
       text.setAttribute("x",  20);     
-      text.setAttribute("y",  100);      
+      text.setAttribute("y",  100);          
+      text.setAttribute("fill", "#888");
       text.textContent = "#" + group.id;
       text.setAttribute("transform", "rotate(90 20 100)");
       g.appendChild(text);
@@ -93,13 +94,13 @@
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
       text.setAttribute("x",  350);     
       text.setAttribute("y",  86);
-      text.setAttribute("fill", "#888");
       text.textContent = group.address;  
       g.appendChild(text);
       
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
       text.setAttribute("x",  350);     
-      text.setAttribute("y",  148);      
+      text.setAttribute("y",  148);          
+      text.setAttribute("fill", "#888");
       text.textContent = group.lat + ", " + group.lng;  
       g.appendChild(text);
       
@@ -108,18 +109,16 @@
       return g;
 
     }
-    function showTaskDetails(key) { 
+    function showTaskDetails() { 
       
       const oRadius = 500; const iRadius = 400; const thisColor = "#ff8000"; 
-      var zOffset = 0, zDegrees = 0, zMinutes = 0, jx=0, zId = "";
-      
-      (typeof key.Ha.currentTarget.title != 'undefined') ? zId = key.Ha.currentTarget.title : zId = key; 
-      
+      var zOffset = 0, zDegrees = 0, zMinutes = 0, jx=0;
+    
       var m = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
       m.setAttribute("text-anchor", "middle");
       
       for (var ix = 0; ix < slices.length; ix++) {
-        if (slices[ix].id !== zId) continue; 
+        if (slices[ix].id !== zTaskId) continue; 
         var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
         g.setAttribute("text-anchor", "middle");
        
