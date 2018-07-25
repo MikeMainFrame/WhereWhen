@@ -1,20 +1,16 @@
 (function main(who, lat, lng) {
-  var slices = [], zTaskId = "1";
+  var grouped = [], zTaskId = "1";
   var xmlhttp = new XMLHttpRequest(); 
   xmlhttp.overrideMimeType("application/xml");
   xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-      groupTasks(xmlhttp.responseXML.documentElement, slices);      
+      organizeData(xmlhttp.responseXML.documentElement);      
     }
   };    
   xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who);
   xmlhttp.send();    
-    
-  function groupTasks(root, grouped) {
-    var oLatLng =  { lat: 0, lng: 0};	
-    var oIcon =  { path: google.maps.SymbolPath.CIRCLE, strokeColor: '#FF6000', strokeOpacity: 1,strokeWeight: 2, fillColor: "#FF6000", fillOpacity: 0.3, scale: 12 };
-    var oMap = { center: oLatLng, zoom: 12, styles: zStyles};
-    var oMarker = { position: oLatLng, visible: true, map: oMap, icon: oIcon,animation: google.maps.Animation.DROP, title: ""};
+  
+  function organizeData(root)  {
 
     var zTasks = root.getElementsByTagName("task");
     var match = false, kx = 0;
@@ -33,6 +29,19 @@
       }
       if (match === false) grouped.push(copyTask(task));
     }
+    
+    groupTasks(root); // map + groups
+    
+    document.getElementById("wwTaskSpec").appendChild(showTaskDetails("1")); // group details
+    
+  } 
+   
+  function groupTasks(root) {
+    var oLatLng =  { lat: 0, lng: 0};	
+    var oIcon =  { path: google.maps.SymbolPath.CIRCLE, strokeColor: '#FF6000', strokeOpacity: 1,strokeWeight: 2, fillColor: "#FF6000", fillOpacity: 0.3, scale: 12 };
+    var oMap = { center: oLatLng, zoom: 12, styles: zStyles};
+    var oMarker = { position: oLatLng, visible: true, map: oMap, icon: oIcon,animation: google.maps.Animation.DROP, title: ""};
+
     oMap.center.lat = lat;
     oMap.center.lng = lng;
     var zMap = new google.maps.Map(document.getElementById("wwMap"), oMap);
@@ -45,18 +54,13 @@
       zMarker.position.lng = parseFloat(grouped[jx].lng);   
       zMarker.title = grouped[jx].id;
       var temp = new google.maps.Marker(zMarker);
-      temp.addListener("click", function(e) { zTaskId = e.Ha.currentTarget.title; showTaskDetails(); });     
       document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx]));
       kx++;
     }  
 
-    document.getElementById("wwTaskSpec").appendChild(showTaskDetails());
-
-    return;
-
     function copyTask(task) {
       var groupedItem = {};
-      groupedItem.id = task.getAttribute("id");
+      groupedItem.id = task.getAttribute("id");      
       groupedItem.duration = parseInt(task.getAttribute("duration"), 10);
       groupedItem.timestamp = task.getAttribute("timestamp");
       groupedItem.lat = parseFloat(task.getAttribute("lat"));
@@ -75,11 +79,13 @@
       var rect =  document.createElementNS("http://www.w3.org/2000/svg", 'rect'); 
       rect.setAttribute("x", 0);
       rect.setAttribute("y", 0);
+      rect.setAttribute("id", group.id);
       rect.setAttribute("fill", "#212121");
       rect.setAttribute("stroke-width", 0);
       rect.setAttribute("stroke", "#eee");
       rect.setAttribute("width", 600);
-      rect.setAttribute("height", 200);      
+      rect.setAttribute("height", 200); 
+      rect.addEventListener("click", function (e) {zTaskId = event.target.id ; showTaskDetails()}, false);     
       g.appendChild(rect);
 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
@@ -109,7 +115,7 @@
       return g;
 
     }
-    function showTaskDetails() { 
+    function showTaskDetails(task) { 
       
       const oRadius = 500; const iRadius = 400; const thisColor = "#ff8000"; 
       var zOffset = 0, zDegrees = 0, zMinutes = 0, jx=0;
@@ -117,15 +123,17 @@
       var m = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
       m.setAttribute("text-anchor", "middle");
       
-      for (var ix = 0; ix < slices.length; ix++) {
-        if (slices[ix].id !== zTaskId) continue; 
+      for (var ix = 0; ix < group.length; ix++) {
+        if (grouped[ix].id === task) break;
+      } 
+      for (;ix < group.length; ix++) {
+        if (grouped[ix].id !== task) break;
         var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
-        g.setAttribute("text-anchor", "middle");
        
-        zOffset = new Date (parseFloat(slices[ix].timestamp));
+        zOffset = new Date (parseFloat(group[ix].timestamp));
         zDegrees = ((zOffset.getHours() * 60) + parseInt(zOffset.getMinutes())) / 4;
         if (zDegrees > 720) zDegrees = zDegrees - 720;
-        zMinutes = slices[ix].duration / 240000;
+        zMinutes = grouped[ix].duration / 240000;
         
         var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
         circle.setAttribute("cx", 500);
@@ -136,8 +144,8 @@
      
         var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
         path.setAttribute("id", ix);     
-        path.setAttribute("ztimestamp", slices[ix].timestamp); 
-        path.setAttribute("zduration", slices[ix].duration); 
+        path.setAttribute("ztimestamp", grouped[ix].timestamp); 
+        path.setAttribute("zduration", grouped[ix].duration); 
         path.setAttribute("fill", "#F60");      
         path.setAttribute("stroke-width", 0);  
         path.setAttribute("d",
@@ -160,7 +168,7 @@
         text.setAttribute("fill", "#F60");      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  500);           
-        text.textContent = parseInt(slices[ix].duration / 60000, 10);
+        text.textContent = parseInt(group[ix].duration / 60000, 10);
         g.appendChild(text);
          var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
         text.setAttribute("font-size",  48);     
