@@ -12,52 +12,53 @@
   
   function organizeData(root)  {
 
-    var zTasks = root.getElementsByTagName("task");
-    var match = false, kx = 0;
-    for (var ix = 0; ix < zTasks.length; ix++) {
-      var task = zTasks[ix];
-      match = false;
-      for (var jx = 0; jx < grouped.length; jx++) {
-        if (task.getAttribute("address") === grouped[jx].address) {        
-          match = true;
-          if (task.id === "9999") {
-            grouped[jx].duration = parseInt(grouped[jx].duration, 10) + parseInt(task.getAttribute("duration"), 10);
-          } else {
-            grouped[jx].id = task.id;
-          }  
-        }      
+      var zTasks = root.getElementsByTagName("task");
+      var match = false, kx = 0;
+      for (var ix = 0; ix < zTasks.length; ix++) {
+        var task = zTasks[ix];
+        match = false;
+        for (var jx = 0; jx < grouped.length; jx++) {
+          if (task.getAttribute("address") === grouped[jx].address) {        
+            match = true;
+            if (task.id === "9999") {
+              grouped[jx].duration = parseInt(grouped[jx].duration, 10) + parseInt(task.getAttribute("duration"), 10);
+            } else {
+              grouped[jx].id = task.id;
+            }  
+          }      
+        }
+        if (match === false) grouped.push(copyTask(task));
       }
-      if (match === false) grouped.push(copyTask(task));
-    }
-    
-    groupTasks(root); // map + groups
-    
-    document.getElementById("wwTaskSpec").appendChild(showTaskDetails("1")); // group details
-    
-  } 
+
+      groupTasks(root); // map + groups
+
+      document.getElementById("wwTaskSpec").appendChild(showTaskDetails("1")); // group details
+
+    } 
    
-  function groupTasks(root) {
-    var oLatLng =  { lat: 0, lng: 0};	
-    var oIcon =  { path: google.maps.SymbolPath.CIRCLE, strokeColor: '#FF6000', strokeOpacity: 1,strokeWeight: 2, fillColor: "#FF6000", fillOpacity: 0.3, scale: 12 };
-    var oMap = { center: oLatLng, zoom: 12, styles: zStyles};
-    var oMarker = { position: oLatLng, visible: true, map: oMap, icon: oIcon,animation: google.maps.Animation.DROP, title: ""};
+    function groupTasks(root) {
+      var oLatLng =  { lat: 0, lng: 0};	
+      var oIcon =  { path: google.maps.SymbolPath.CIRCLE, strokeColor: '#FF6000', strokeOpacity: 1,strokeWeight: 2, fillColor: "#FF6000", fillOpacity: 0.3, scale: 12 };
+      var oMap = { center: oLatLng, zoom: 12, styles: zStyles};
+      var oMarker = { position: oLatLng, visible: true, map: oMap, icon: oIcon,animation: google.maps.Animation.DROP, title: ""};
 
-    oMap.center.lat = lat;
-    oMap.center.lng = lng;
-    var zMap = new google.maps.Map(document.getElementById("wwMap"), oMap);
-    var zMarker = oMarker;
-    zMarker.map = zMap;
+      oMap.center.lat = lat;
+      oMap.center.lng = lng;
+      var zMap = new google.maps.Map(document.getElementById("wwMap"), oMap);
+      var zMarker = oMarker;
+      zMarker.map = zMap;
 
-    for (jx = 0; jx < grouped.length; jx++) {
-      if (grouped[jx].id === "9999") continue; // skip 9999 elements
-      zMarker.position.lat = parseFloat(grouped[jx].lat);
-      zMarker.position.lng = parseFloat(grouped[jx].lng);   
-      zMarker.title = grouped[jx].id;
-      var temp = new google.maps.Marker(zMarker);
-      document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx]));
-      kx++;
-    }  
-
+      for (jx = 0; jx < grouped.length; jx++) {
+        if (grouped[jx].id === "9999") continue; // skip 9999 elements
+        zMarker.position.lat = parseFloat(grouped[jx].lat);
+        zMarker.position.lng = parseFloat(grouped[jx].lng);   
+        zMarker.title = grouped[jx].id;
+        var temp = new google.maps.Marker(zMarker);
+        document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx]));
+        kx++;
+      }  
+    }
+  
     function copyTask(task) {
       var groupedItem = {};
       groupedItem.id = task.getAttribute("id");      
@@ -113,8 +114,8 @@
       g.setAttribute("transform", "translate(0," + ((parseInt(group.id, 10) - 1) * 200) + ")");      
 
       return g;
-
     }
+  
     function showTaskDetails(task) { 
       
       const oRadius = 500; const iRadius = 400; const thisColor = "#ff8000"; 
