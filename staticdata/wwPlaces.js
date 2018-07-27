@@ -53,9 +53,9 @@
   
    function copyTask(task) {
       var groupedItem = {};
-      groupedItem.id = task.getAttribute("id");      
+      groupedItem.id = parseInt(task.getAttribute("id"), 10);      
       groupedItem.duration = parseInt(task.getAttribute("duration"), 10);
-      groupedItem.timestamp = task.getAttribute("timestamp");
+      groupedItem.timestamp = parseInt(task.getAttribute("timestamp"), 10);
       groupedItem.lat = parseFloat(task.getAttribute("lat"));
       groupedItem.lng = parseFloat(task.getAttribute("lng"));
       groupedItem.address = task.getAttribute("address");
