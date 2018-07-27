@@ -25,7 +25,8 @@
     }
     
     groupTasks(); // map + groups
-    document.getElementById("wwTaskSpec").appendChild(showTaskDetails("1")); // group details
+	  
+    document.getElementById("wwTaskSpec").appendChild(showTaskDetails(1)); // group details
     
   } 
    
