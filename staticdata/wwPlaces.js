@@ -21,7 +21,7 @@
 	  
     for (ix = 0; ix < grouped.length; ix++) {
       if (grouped[ix].id < 9999) kx = ix;
-      grouped[kx].duration = grouped[kx].duration + parseInt(task.getAttribute("duration"), 10);	
+      grouped[kx].duration = grouped[kx].duration + grouped[ix].duration;
     }
     
     groupTasks(); // map + groups
