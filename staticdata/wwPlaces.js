@@ -16,23 +16,24 @@
     var kx = 0;
 
     for (var ix = 0; ix < zTasks.length; ix++) {
-      var task = zTasks[ix];
-      if (task.id < "9999") kx = ix;
-      if (kx in grouped) {
-        grouped[kx].duration = grouped[kx].duration + parseInt(task.getAttribute("duration"), 10);
-      } else {	    
-        grouped.push(copyTask(task));
-      }	
+      grouped.push(copyTask(task));
     }	  
-    groupTasks(root); // map + groups
+	  
+    for (var ix = 0; ix < grouped.length; ix++) {
+      if (grouped[ix].id < 9999) kx = ix;
+      grouped[kx].duration = grouped[kx].duration + parseInt(task.getAttribute("duration"), 10);	
+    }
+    
+    groupTasks(); // map + groups
     document.getElementById("wwTaskSpec").appendChild(showTaskDetails("1")); // group details
+    
   } 
    
-  function groupTasks(root) {
+  function groupTasks() {
      var oLatLng =  { lat: 0, lng: 0};	
      var oIcon =  { path: google.maps.SymbolPath.CIRCLE, strokeColor: '#FF6000', strokeOpacity: 1,strokeWeight: 2, fillColor: "#FF6000", fillOpacity: 0.3, scale: 12 };
      var oMap = { center: oLatLng, zoom: 12, styles: zStyles};
-     var oMarker = { position: oLatLng, visible: true, map: oMap, icon: oIcon,animation: google.maps.Animation.DROP, title: ""};
+     var oMarker = { position: oLatLng, visible: true, map: oMap, icon: oIcon,animation: google.maps.Animation.DROP};
      oMap.center.lat = lat;
      oMap.center.lng = lng;
      var zMap = new google.maps.Map(document.getElementById("wwMap"), oMap);
@@ -40,13 +41,13 @@
      zMarker.map = zMap;
      
      for (jx = 0; jx < grouped.length; jx++) {
-       if (grouped[jx].id === "9999") continue; // skip 9999 elements
+       if (grouped[jx].id  === 9999) continue; // skip 9999 elements
        zMarker.position.lat = parseFloat(grouped[jx].lat);
        zMarker.position.lng = parseFloat(grouped[jx].lng);   
-       zMarker.title = grouped[jx].id;
        var temp = new google.maps.Marker(zMarker);
        document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx]));
-     }  
+     }
+    
    }
   
    function copyTask(task) {
@@ -162,11 +163,11 @@
         text.textContent = parseInt(group[ix].duration / 60000, 10);
         g.appendChild(text);
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
-        text.setAttribute("font-size",  48);     
+        text.setAttribute("font-size",  72);     
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  200);           
-        text.textContent = zOffset.getHours() * 60 + ":" + zOffset.getMinutes();
+        text.textContent = zOffset.getHours() + ":" + zOffset.getMinutes();
         g.appendChild(text);
         g.setAttribute("transform", "translate(0," + parseInt(jx * 1000, 10) + ")");
         jx++;
