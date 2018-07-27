@@ -120,7 +120,7 @@
         if (grouped[ix].id === taskid) break;
       } 
       for (;ix < grouped.length; ix++) {
-        if (grouped[ix].id !== parseInt(taskid, 10)) break;
+        if (grouped[ix].id < 9999) break;
         var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
        
         zOffset = new Date (parseFloat(grouped[ix].timestamp));
