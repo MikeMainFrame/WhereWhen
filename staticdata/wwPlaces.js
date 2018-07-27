@@ -115,14 +115,14 @@
       var m = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
       m.setAttribute("text-anchor", "middle");
       
-      for (var ix = 0; ix < group.length; ix++) {
+      for (var ix = 0; ix < grouped.length; ix++) {
         if (grouped[ix].id === taskid) break;
       } 
-      for (;ix < group.length; ix++) {
+      for (;ix < grouped.length; ix++) {
         if (grouped[ix].id !== parseInt(taskid, 10)) break;
         var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
        
-        zOffset = new Date (parseFloat(group[ix].timestamp));
+        zOffset = new Date (parseFloat(grouped[ix].timestamp));
         zDegrees = ((zOffset.getHours() * 60) + parseInt(zOffset.getMinutes())) / 4;
         if (zDegrees > 720) zDegrees = zDegrees - 720;
         zMinutes = grouped[ix].duration / 240000;
@@ -160,7 +160,7 @@
         text.setAttribute("fill", "#F60");      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  500);           
-        text.textContent = parseInt(group[ix].duration / 60000, 10);
+        text.textContent = parseInt(grouped[ix].duration / 60000, 10);
         g.appendChild(text);
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
         text.setAttribute("font-size",  72);     
