@@ -13,13 +13,13 @@
   function organizeData(root)  {
 	
     var zTasks = root.getElementsByTagName("task");
-    var kx = 0;
+    var kx = 0, ix = 0;
 
-    for (var ix = 0; ix < zTasks.length; ix++) {
-      grouped.push(copyTask(task));
+    for (ix = 0; ix < zTasks.length; ix++) {
+      grouped.push(copyTask(zTasks[ix]));
     }	  
 	  
-    for (var ix = 0; ix < grouped.length; ix++) {
+    for (ix = 0; ix < grouped.length; ix++) {
       if (grouped[ix].id < 9999) kx = ix;
       grouped[kx].duration = grouped[kx].duration + parseInt(task.getAttribute("duration"), 10);	
     }
