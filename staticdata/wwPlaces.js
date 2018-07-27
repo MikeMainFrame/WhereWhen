@@ -78,7 +78,7 @@
       rect.setAttribute("stroke", "#eee");
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 200); 
-      rect.addEventListener("click", function (e) {zTaskId = event.target.id ; showTaskDetails()}, false);     
+      rect.addEventListener("click", function (e) {showTaskDetails(e.target.id)}, false);     
       g.appendChild(rect);
 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
