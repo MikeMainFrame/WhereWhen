@@ -171,4 +171,4 @@
       return m;    
     }
    
-})("miketriticum@gmail.com", 55.957513, 12.524859);
+})("miketriticum@gmail.com", 55.6680607, 12.5811275);
