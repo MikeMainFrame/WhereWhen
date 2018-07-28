@@ -65,8 +65,9 @@
     function showTasks(group) {
 
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
-      g.setAttribute("fill", "#F60");
-      g.setAttribute("font-size", 24);
+      g.setAttribute("fill", "#888");
+      g.setAttribute("font-size", 64);      
+      g.setAttribute("font-weight", 900);
       g.setAttribute("text-anchor", "middle");
 
       var rect =  document.createElementNS("http://www.w3.org/2000/svg", 'rect'); 
@@ -76,26 +77,37 @@
       rect.setAttribute("fill", "#212121");
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 300); 
-      rect.addEventListener("click", function (e) {showTaskDetails(e.target.id)}, false);     
+      rect.addEventListener("click", function (e) {showTaskDetails(parseInt(e.target.id, 10))}, false);     
       g.appendChild(rect);
 
-      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
-      text.setAttribute("font-size",  48);     
+      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
       text.setAttribute("x",  20);     
       text.setAttribute("y",  150);          
-      text.setAttribute("fill", "#888");
+      text.setAttribute("fill", "#F80");
       text.textContent = "#" + group.id;
       text.setAttribute("transform", "rotate(90 20 150)");
       g.appendChild(text);
       
+      var three = group.address.split(","); 
+      
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
       text.setAttribute("x",  300);     
-      text.setAttribute("y",  120);
-      text.setAttribute("fill", "#888");      
-      text.setAttribute("font-weight", 900);
-      text.textContent = group.address;
+      text.setAttribute("y",  110);
+      text.textContent = three[0];
       g.appendChild(text);
       
+      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
+      text.setAttribute("x",  300);     
+      text.setAttribute("y",  160);
+      text.textContent = three[1];
+      g.appendChild(text);
+  
+	    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
+      text.setAttribute("x",  300);     
+      text.setAttribute("y",  210);
+      text.textContent = three[2];
+      g.appendChild(text);
+  
       g.setAttribute("transform", "translate(0," + ((parseInt(group.id, 10) - 1) * 300) + ")");      
 
       return g;
@@ -123,7 +135,7 @@
         g.appendChild(circle);
       
         zOffset = new Date (parseFloat(grouped[ix].timestamp));
-        zDegrees = (((zOffset.getHours() * 60) + parseInt(zOffset.getMinutes())) / 4) - 90;
+        zDegrees = (((zOffset.getHours() * 60) + parseInt(zOffset.getMinutes())) / 4);
         if (zDegrees > 720) zDegrees = zDegrees - 720;
         zMinutes = grouped[ix].duration / 240000;
    
@@ -161,7 +173,7 @@
         text.setAttribute("font-size",  72);     
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
-        text.setAttribute("y",  200);           
+        text.setAttribute("y",  220);           
         text.textContent = zOffset.getHours() + ":" + zOffset.getMinutes();
         g.appendChild(text);
         g.setAttribute("transform", "translate(0," + parseInt(jx * 1000, 10) + ")");
