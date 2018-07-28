@@ -77,15 +77,17 @@
       rect.setAttribute("fill", "#212121");
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 300); 
-      rect.addEventListener("click", function (e) {showTaskDetails(parseInt(e.target.id, 10))}, false);     
+      rect.addEventListener("click", function (e) { 	      document.getElementById("wwTaskSpec").appendChild(showTaskDetails(parseInt(e.target.id, 10))}), false);     
       g.appendChild(rect);
 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
-      text.setAttribute("x",  20);     
-      text.setAttribute("y",  150);          
-      text.setAttribute("fill", "#F80");
+      text.setAttribute("x",  0);     
+      text.setAttribute("y",  300);          
+      text.setAttribute("fill", "#F80");                                                  
+      text.setAttribute("text-anchor", "end");                                                   
+      text.setAttribute("font-weight",  900);
       text.textContent = "#" + group.id;
-      text.setAttribute("transform", "rotate(90 20 150)");
+      text.setAttribute("transform", "rotate(90 0 300)");
       g.appendChild(text);
       
       var three = group.address.split(","); 
