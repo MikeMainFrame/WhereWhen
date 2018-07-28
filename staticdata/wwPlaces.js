@@ -1,5 +1,6 @@
-(function main(who, lat, lng) {
-  var grouped = [];
+( var grouped = [];
+  function main(who, lat, lng) {
+ 
   var xmlhttp = new XMLHttpRequest(); 
   xmlhttp.overrideMimeType("application/xml");
   xmlhttp.onreadystatechange = function() {
@@ -15,11 +16,11 @@
     var zTasks = root.getElementsByTagName("task");
     var kx = 0, ix = 0;
 
-    for (ix = 0; ix < zTasks.length; ix++) {
+    for (ix = 0; ix < zTasks.length; ix++) { // from DOM to ARRAY
       grouped.push(copyTask(zTasks[ix]));
     }	  
 	  
-    for (ix = 0; ix < grouped.length; ix++) {
+    for (ix = 0; ix < grouped.length; ix++) { // sum up
       if (grouped[ix].id < 9999) kx = ix;
       grouped[kx].duration = grouped[kx].duration + grouped[ix].duration;
     }
@@ -41,14 +42,13 @@
      var zMarker = oMarker;
      zMarker.map = zMap;
      
-     for (jx = 0; jx < grouped.length; jx++) {
+     for (jx = 0; jx < grouped.length && jx < 6; jx++) {
        if (grouped[jx].id  === 9999) continue; // skip 9999 elements
        zMarker.position.lat = parseFloat(grouped[jx].lat);
        zMarker.position.lng = parseFloat(grouped[jx].lng);   
        var temp = new google.maps.Marker(zMarker);
        document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx]));
      }
-    
    }
   
    function copyTask(task) {
@@ -74,36 +74,29 @@
       rect.setAttribute("y", 0);
       rect.setAttribute("id", group.id);
       rect.setAttribute("fill", "#212121");
-      rect.setAttribute("stroke-width", 0);
-      rect.setAttribute("stroke", "#eee");
       rect.setAttribute("width", 600);
-      rect.setAttribute("height", 200); 
+      rect.setAttribute("height", 300); 
       rect.addEventListener("click", function (e) {showTaskDetails(e.target.id)}, false);     
       g.appendChild(rect);
 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
       text.setAttribute("font-size",  48);     
       text.setAttribute("x",  20);     
-      text.setAttribute("y",  100);          
+      text.setAttribute("y",  150);          
       text.setAttribute("fill", "#888");
       text.textContent = "#" + group.id;
-      text.setAttribute("transform", "rotate(90 20 100)");
+      text.setAttribute("transform", "rotate(90 20 150)");
       g.appendChild(text);
       
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
-      text.setAttribute("x",  350);     
-      text.setAttribute("y",  86);
-      text.textContent = group.address;  
+      text.setAttribute("x",  300);     
+      text.setAttribute("y",  120);
+      text.setAttribute("fill", "#888");      
+      text.setAttribute("font-weight", 900);
+      text.textContent = group.address;
       g.appendChild(text);
       
-      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
-      text.setAttribute("x",  350);     
-      text.setAttribute("y",  148);          
-      text.setAttribute("fill", "#888");
-      text.textContent = group.lat + ", " + group.lng;  
-      g.appendChild(text);
-      
-      g.setAttribute("transform", "translate(0," + ((parseInt(group.id, 10) - 1) * 200) + ")");      
+      g.setAttribute("transform", "translate(0," + ((parseInt(group.id, 10) - 1) * 300) + ")");      
 
       return g;
     }
@@ -111,30 +104,29 @@
     function showTaskDetails(taskid) { 
       
       const oRadius = 500; const iRadius = 400; const thisColor = "#ff8000"; 
-      var zOffset = 0, zDegrees = 0, zMinutes = 0, jx=0;
+      var zOffset = 0, zDegrees = 0, zMinutes = 0, jx=0, ix=0;
     
       var m = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
       m.setAttribute("text-anchor", "middle");
       
-      for (var ix = 0; ix < grouped.length; ix++) {
+      for (ix = 0; ix < grouped.length; ix++) {
         if (grouped[ix].id === taskid) break;
       } 
-      for (;ix < grouped.length; ix++) {
+      for (ix++ ; ix < grouped.length; ix++) {
         if (grouped[ix].id < 9999) break;
         var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
-       
-        zOffset = new Date (parseFloat(grouped[ix].timestamp));
-        zDegrees = ((zOffset.getHours() * 60) + parseInt(zOffset.getMinutes())) / 4;
-        if (zDegrees > 720) zDegrees = zDegrees - 720;
-        zMinutes = grouped[ix].duration / 240000;
-        
-        var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
+           var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
         circle.setAttribute("cx", 500);
         circle.setAttribute("cy", 500);
         circle.setAttribute("r", 500);
         circle.setAttribute("fill", "#212121");
         g.appendChild(circle);
-     
+      
+        zOffset = new Date (parseFloat(grouped[ix].timestamp));
+        zDegrees = (((zOffset.getHours() * 60) + parseInt(zOffset.getMinutes())) / 4) - 90;
+        if (zDegrees > 720) zDegrees = zDegrees - 720;
+        zMinutes = grouped[ix].duration / 240000;
+   
         var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
         path.setAttribute("id", ix);     
         path.setAttribute("ztimestamp", grouped[ix].timestamp); 
@@ -156,6 +148,7 @@
         circle.setAttribute("r", 400);
         circle.setAttribute("fill", "#000");
         g.appendChild(circle);
+        
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
         text.setAttribute("font-size",  192);     
         text.setAttribute("fill", "#F60");      
@@ -163,6 +156,7 @@
         text.setAttribute("y",  500);           
         text.textContent = parseInt(grouped[ix].duration / 60000, 10);
         g.appendChild(text);
+        
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
         text.setAttribute("font-size",  72);     
         text.setAttribute("fill", "#888");      
