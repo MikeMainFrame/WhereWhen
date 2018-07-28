@@ -77,7 +77,7 @@
       rect.setAttribute("fill", "#212121");
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 300); 
-      rect.addEventListener("click", function (e) { 	      document.getElementById("wwTaskSpec").appendChild(showTaskDetails(parseInt(e.target.id, 10))}), false);     
+      rect.addEventListener("click", function (e) { 	      document.getElementById("wwTaskSpec").appendChild(showTaskDetails(parseInt(e.target.id, 10) ) ) }, false);     
       g.appendChild(rect);
 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
