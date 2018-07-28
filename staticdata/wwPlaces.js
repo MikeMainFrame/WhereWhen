@@ -1,5 +1,5 @@
-( var grouped = [];
-  function main(who, lat, lng) {
+ var grouped = [];
+(function main(who, lat, lng) {
  
   var xmlhttp = new XMLHttpRequest(); 
   xmlhttp.overrideMimeType("application/xml");
