@@ -83,7 +83,7 @@
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
       text.setAttribute("x",  0);     
       text.setAttribute("y",  300);          
-      text.setAttribute("fill", "#F80");                                                  
+      text.setAttribute("fill", "#F60");                                                  
       text.setAttribute("text-anchor", "end");                                                   
       text.setAttribute("font-weight",  900);
       text.textContent = "#" + group.id;
@@ -94,7 +94,7 @@
       
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
       text.setAttribute("x",  300);     
-      text.setAttribute("y",  110);
+      text.setAttribute("y",  106);
       text.textContent = three[0];
       g.appendChild(text);
       
@@ -106,11 +106,10 @@
   
 	    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
       text.setAttribute("x",  300);     
-      text.setAttribute("y",  210);
+      text.setAttribute("y",  214);
       text.textContent = three[2];
-      g.appendChild(text);
-  
-      g.setAttribute("transform", "translate(0," + ((parseInt(group.id, 10) - 1) * 300) + ")");      
+      g.appendChild(text);  
+      g.setAttribute("transform", "translate(0," + ((parseInt(group.id, 10) - 1) * 301) + ")");      
 
       return g;
     }
@@ -119,20 +118,21 @@
       
       const oRadius = 500; const iRadius = 400; const thisColor = "#ff8000"; 
       var zOffset = 0, zDegrees = 0, zMinutes = 0, jx=0, ix=0;
-      var execute = document.getElementById('toDie');    
-      if (execute) execute.parentNode.removeChild(execute);
+      
+      var execute = document.getElementById('toDie');    // eliminate old tasklist
+      if (execute) execute.parentNode.removeChild(execute); // die if exists
 
       var m = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
       m.setAttribute("text-anchor", "middle")
 	    m.setAttribute("id", "toDie");
          
-      for (ix = 0; ix < grouped.length; ix++) {
+      for (ix = 0; ix < grouped.length; ix++) { // move pointer to task id
         if (grouped[ix].id === taskid) break;
       } 
-      for (ix++ ; ix < grouped.length; ix++) {
+      for (ix++ ; ix < grouped.length; ix++) { // and take all 9999 until next task id is meet
         if (grouped[ix].id < 9999) break;
         var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
-           var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
+        var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
         circle.setAttribute("cx", 500);
         circle.setAttribute("cy", 500);
         circle.setAttribute("r", 500);
@@ -153,7 +153,7 @@
         path.setAttribute("d",
             "M " + parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * iRadius))
           + "L " + parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * oRadius)) + ", " + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * oRadius))
-          + "A " + oRadius + "," + oRadius + " 0 0,1 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * oRadius))
+          + "A " + oRadius + "," + oRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * oRadius))
           + "L " + parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
           + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
           + " Z");        
@@ -178,7 +178,7 @@
         text.setAttribute("font-size",  72);     
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
-        text.setAttribute("y",  220);           
+        text.setAttribute("y",  240);           
         text.textContent = zOffset.getHours() + ":" + zOffset.getMinutes();
         g.appendChild(text);
         g.setAttribute("transform", "translate(0," + parseInt(jx * 1000, 10) + ")");
