@@ -42,7 +42,7 @@
      var zMarker = oMarker;
      zMarker.map = zMap;
      
-     for (jx = 0; jx < grouped.length && jx < 6; jx++) {
+     for (jx = 0; jx < grouped.length ; jx++) {
        if (grouped[jx].id  === 9999) continue; // skip 9999 elements
        zMarker.position.lat = parseFloat(grouped[jx].lat);
        zMarker.position.lng = parseFloat(grouped[jx].lng);   
