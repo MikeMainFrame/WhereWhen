@@ -67,7 +67,7 @@
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
       g.setAttribute("fill", "#888");
       g.setAttribute("font-size", 64);      
-      g.setAttribute("font-weight", 900);
+      g.setAttribute("font-weight", 300);
       g.setAttribute("text-anchor", "middle");
 
       var rect =  document.createElementNS("http://www.w3.org/2000/svg", 'rect'); 
@@ -117,10 +117,13 @@
       
       const oRadius = 500; const iRadius = 400; const thisColor = "#ff8000"; 
       var zOffset = 0, zDegrees = 0, zMinutes = 0, jx=0, ix=0;
-    
+      var execute = document.getElementById('toDie');    
+      if (execute) execute.parentNode.removeChild(execute);
+
       var m = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
-      m.setAttribute("text-anchor", "middle");
-      
+      m.setAttribute("text-anchor", "middle")
+	    m.setAttribute("id", "toDie");
+         
       for (ix = 0; ix < grouped.length; ix++) {
         if (grouped[ix].id === taskid) break;
       } 
