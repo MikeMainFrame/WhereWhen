@@ -41,13 +41,14 @@
      var zMap = new google.maps.Map(document.getElementById("wwMap"), oMap);
      var zMarker = oMarker;
      zMarker.map = zMap;
+	  var kx = 0;
      
      for (jx = 0; jx < grouped.length ; jx++) {
        if (grouped[jx].id  === 9999) continue; // skip 9999 elements
        zMarker.position.lat = parseFloat(grouped[jx].lat);
        zMarker.position.lng = parseFloat(grouped[jx].lng);   
        var temp = new google.maps.Marker(zMarker);
-       document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx], jx));
+       document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx], kx++));
      }
    }
   
@@ -183,7 +184,7 @@
         text.setAttribute("x",  500);     
         text.setAttribute("y",  600);           
         var temp = zOffset.toUTCString().split(":");
-        text.textContent = temp[0]+temp[1];
+        text.textContent = temp[0] + ":" + temp[1];
 
         g.appendChild(text);
         g.setAttribute("transform", "translate(0," + parseInt(jx * 1000, 10) + ")");
