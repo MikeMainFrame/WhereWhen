@@ -155,11 +155,11 @@
         path.setAttribute("fill", "#F60");      
         path.setAttribute("stroke-width", 0);  
         path.setAttribute("d",
-            "M " + parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * iRadius))
-          + "L " + parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * oRadius)) + ", " + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * oRadius))
-          + "A " + oRadius + "," + oRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * oRadius))
-          + "L " + parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
-          + "A " + iRadius + "," + iRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
+            "M " + parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
+          + "L " + parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * oRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * oRadius))
+          + "A " + oRadius + "," + oRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * oRadius))
+          + "L " + parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * iRadius))
+          + "A " + iRadius + "," + iRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * iRadius))
           + " Z");        
        
         g.appendChild(path);
@@ -171,10 +171,10 @@
         g.appendChild(circle);
         
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
-        text.setAttribute("font-size",  192);     
+        text.setAttribute("font-size",  244);     
         text.setAttribute("fill", "#F60");      
         text.setAttribute("x",  500);     
-        text.setAttribute("y",  400);           
+        text.setAttribute("y",  360);           
         text.textContent = parseInt(grouped[ix].duration / 60000, 10);
         g.appendChild(text);
         
@@ -183,7 +183,7 @@
         text.setAttribute("font-family", "Roboto");   
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
-        text.setAttribute("y",  600);           
+        text.setAttribute("y",  500);           
         var temp = zOffset.toUTCString().split(":");
         text.textContent = temp[0] + ":" + temp[1];
 
