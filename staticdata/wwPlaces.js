@@ -142,10 +142,10 @@
         circle.setAttribute("fill", "#212121");
         g.appendChild(circle);
       
-        zOffset = new Date (parseFloat(grouped[ix].timestamp));
-        zh = zOffset.getHours();
+        var zTemp = new Date (parseFloat(grouped[ix].timestamp));
+        zh = zTemp.getHours();
         if (zh > 12) zh = zh - 12; 
-        zDegrees = (((zh * 60) + zOffset.getMinutes()) / 2) + 90; // 720 minutes per circle - 360 degrees - offset 90 degrees
+        zOffset = (((zh * 60) + zOffset.getMinutes()) / 2) + 90; // 720 minutes per circle - 360 degrees - offset 90 degrees
         zMinutes = grouped[ix].duration / 60000 / 2;
    
         var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
@@ -155,12 +155,12 @@
         path.setAttribute("fill", "#F60");      
         path.setAttribute("stroke-width", 0);  
         path.setAttribute("d",
-            "M " + parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
-          + "L " + parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * oRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * oRadius))
-          + "A " + oRadius + "," + oRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * oRadius))
-          + "L " + parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * iRadius))
-          + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
-          + " Z");        
+          "M " + parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * iRadius))
+        + "L " + parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * oRadius)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * oRadius))
+        + "A " + oRadius + "," + oRadius + " 0 0,1 " +  parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * oRadius))
+        + "L " + parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius))
+        + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius))
+        + " Z");              
        
         g.appendChild(path);
         var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
@@ -183,7 +183,7 @@
         text.setAttribute("font-family", "Roboto");   
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
-        text.setAttribute("y",  488);           
+        text.setAttribute("y",  492);           
         var temp = zOffset.toUTCString().split(":");
         text.textContent = temp[0] + ":" + temp[1];
 
