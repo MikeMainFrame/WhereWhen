@@ -145,7 +145,7 @@
         var zTemp = new Date (parseFloat(grouped[ix].timestamp));
         zh = zTemp.getHours();
         if (zh > 12) zh = zh - 12; 
-        zOffset = (((zh * 60) + zOffset.getMinutes()) / 2) + 90; // 720 minutes per circle - 360 degrees - offset 90 degrees
+        zOffset = (((zh * 60) + zTemp.getMinutes()) / 2) + 90; // 720 minutes per circle - 360 degrees - offset 90 degrees
         zMinutes = grouped[ix].duration / 60000 / 2;
    
         var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
