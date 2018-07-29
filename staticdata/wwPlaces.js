@@ -156,10 +156,10 @@
         path.setAttribute("stroke-width", 0);  
         path.setAttribute("d",
             "M " + parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
-          + "L " + parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * oRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * oRadius))
-          + "A " + oRadius + "," + oRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * oRadius))
+          + "L " + parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * oRadius)) + ", " + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * oRadius))
+          + "A " + oRadius + "," + oRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * oRadius))
           + "L " + parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * iRadius))
-          + "A " + iRadius + "," + iRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * iRadius))
+          + "A " + iRadius + "," + iRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
           + " Z");        
        
         g.appendChild(path);
@@ -183,7 +183,7 @@
         text.setAttribute("font-family", "Roboto");   
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
-        text.setAttribute("y",  482);           
+        text.setAttribute("y",  464);           
         var temp = zOffset.toUTCString().split(":");
         text.textContent = temp[0] + ":" + temp[1];
 
