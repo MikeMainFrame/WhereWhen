@@ -47,7 +47,7 @@
        zMarker.position.lat = parseFloat(grouped[jx].lat);
        zMarker.position.lng = parseFloat(grouped[jx].lng);   
        var temp = new google.maps.Marker(zMarker);
-       document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx]));
+       document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx]), jx);
      }
    }
   
@@ -62,11 +62,11 @@
       return groupedItem;
     }   
     
-    function showTasks(group) {
+    function showTasks(group, no) {
 
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
       g.setAttribute("fill", "#888");
-      g.setAttribute("font-size", 64);      
+      g.setAttribute("font-size", 60);      
       g.setAttribute("font-weight", 300);
       g.setAttribute("text-anchor", "middle");
 
@@ -109,7 +109,7 @@
       text.setAttribute("y",  214);
       text.textContent = three[2];
       g.appendChild(text);  
-      g.setAttribute("transform", "translate(0," + ((parseInt(group.id, 10) - 1) * 302) + ")");      
+      g.setAttribute("transform", "translate(0," + (no * 302) + ")");      
 
       return g;
     }
