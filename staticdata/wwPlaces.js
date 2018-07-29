@@ -109,7 +109,7 @@
       text.setAttribute("y",  214);
       text.textContent = three[2];
       g.appendChild(text);  
-      g.setAttribute("transform", "translate(0," + ((parseInt(group.id, 10) - 1) * 301) + ")");      
+      g.setAttribute("transform", "translate(0," + ((parseInt(group.id, 10) - 1) * 302) + ")");      
 
       return g;
     }
@@ -182,7 +182,7 @@
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  600);           
-        text.textContent = zOffset.getUTCDate();
+        text.textContent = zOffset.toUTCString();
         g.appendChild(text);
         g.setAttribute("transform", "translate(0," + parseInt(jx * 1000, 10) + ")");
         jx++;
