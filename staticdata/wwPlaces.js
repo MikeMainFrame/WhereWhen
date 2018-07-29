@@ -47,7 +47,7 @@
        zMarker.position.lat = parseFloat(grouped[jx].lat);
        zMarker.position.lng = parseFloat(grouped[jx].lng);   
        var temp = new google.maps.Marker(zMarker);
-       document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx]), jx);
+       document.getElementById("wwTaskMain").appendChild(showTasks(grouped[jx], jx));
      }
    }
   
@@ -182,7 +182,9 @@
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  600);           
-        text.textContent = zOffset.toUTCString();
+        var temp = zOffset.toUTCString().split(":");
+        text.textContent = temp[0]+temp[1];
+
         g.appendChild(text);
         g.setAttribute("transform", "translate(0," + parseInt(jx * 1000, 10) + ")");
         jx++;
