@@ -77,7 +77,7 @@
       rect.setAttribute("fill", "#212121");
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 300); 
-      rect.addEventListener("click", function (e) { 	      document.getElementById("wwTaskSpec").appendChild(showTaskDetails(parseInt(e.target.id, 10) ) ) }, false);     
+      rect.addEventListener("click", function (e) {document.getElementById("wwTaskSpec").appendChild(showTaskDetails(parseInt(e.target.id, 10) ) ) }, false);     
       g.appendChild(rect);
 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
@@ -117,7 +117,7 @@
     function showTaskDetails(taskid) { 
       
       const oRadius = 500; const iRadius = 400; const thisColor = "#ff8000"; 
-      var zOffset = 0, zDegrees = 0, zMinutes = 0, jx=0, ix=0;
+      var zOffset = 0, zDegrees = 0, zMinutes = 0, jx=0, ix=0, kx=0, zh=0;
       
       var execute = document.getElementById('toDie');    // eliminate old tasklist
       if (execute) execute.parentNode.removeChild(execute); // die if exists
@@ -129,8 +129,10 @@
       for (ix = 0; ix < grouped.length; ix++) { // move pointer to task id
         if (grouped[ix].id === taskid) break;
       } 
-      for (ix++ ; ix < grouped.length; ix++) { // and take all 9999 until next task id is meet
-        if (grouped[ix].id < 9999) break;
+      kx=ix;
+      for (ix++ ; ix < grouped.length; ix++) { 
+        if (grouped[kx].address !== grouped[ix].address) continue; // only want same address
+        if (grouped[kx].id < 9999) continue; // only want detail registration
         var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
         var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
         circle.setAttribute("cx", 500);
@@ -140,9 +142,10 @@
         g.appendChild(circle);
       
         zOffset = new Date (parseFloat(grouped[ix].timestamp));
-        zDegrees = (((zOffset.getHours() * 60) + parseInt(zOffset.getMinutes())) / 4);
-        if (zDegrees > 720) zDegrees = zDegrees - 720;
-        zMinutes = grouped[ix].duration / 240000;
+        zh = zOffset.getHours();
+        if (zh > 12) zh = zh - 12; 
+        zDegrees = (((zh * 60) + zOffset.getMinutes()) / 2); // 720 minutes per circle - 360 degrees
+        zMinutes = grouped[ix].duration / 120000;
    
         var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
         path.setAttribute("id", ix);     
@@ -153,7 +156,7 @@
         path.setAttribute("d",
             "M " + parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * iRadius))
           + "L " + parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * oRadius)) + ", " + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * oRadius))
-          + "A " + oRadius + "," + oRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * oRadius))
+          + "A " + oRadius + "," + oRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * oRadius))
           + "L " + parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
           + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
           + " Z");        
@@ -170,7 +173,7 @@
         text.setAttribute("font-size",  192);     
         text.setAttribute("fill", "#F60");      
         text.setAttribute("x",  500);     
-        text.setAttribute("y",  500);           
+        text.setAttribute("y",  400);           
         text.textContent = parseInt(grouped[ix].duration / 60000, 10);
         g.appendChild(text);
         
@@ -178,8 +181,8 @@
         text.setAttribute("font-size",  72);     
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
-        text.setAttribute("y",  240);           
-        text.textContent = zOffset.getHours() + ":" + zOffset.getMinutes();
+        text.setAttribute("y",  600);           
+        text.textContent = zOffset.getUTCDate();
         g.appendChild(text);
         g.setAttribute("transform", "translate(0," + parseInt(jx * 1000, 10) + ")");
         jx++;
