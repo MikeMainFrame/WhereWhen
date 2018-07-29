@@ -34,7 +34,7 @@
   function groupTasks() {
      var oLatLng =  { lat: 0, lng: 0};	
      var oIcon =  { path: google.maps.SymbolPath.CIRCLE, strokeColor: '#FF6000', strokeOpacity: 1,strokeWeight: 2, fillColor: "#FF6000", fillOpacity: 0.3, scale: 12 };
-     var oMap = { center: oLatLng, zoom: 10, styles: zStyles};
+     var oMap = { center: oLatLng, zoom: 10, styles: zStyles,  disableDefaultUI: true};
      var oMarker = { position: oLatLng, visible: true, map: oMap, icon: oIcon,animation: google.maps.Animation.DROP};
      oMap.center.lat = lat;
      oMap.center.lng = lng;
@@ -157,7 +157,7 @@
         path.setAttribute("d",
             "M " + parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
           + "L " + parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * oRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * oRadius))
-          + "A " + oRadius + "," + oRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * oRadius))
+          + "A " + oRadius + "," + oRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * oRadius))
           + "L " + parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * iRadius))
           + "A " + iRadius + "," + iRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * iRadius))
           + " Z");        
@@ -183,7 +183,7 @@
         text.setAttribute("font-family", "Roboto");   
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
-        text.setAttribute("y",  500);           
+        text.setAttribute("y",  482);           
         var temp = zOffset.toUTCString().split(":");
         text.textContent = temp[0] + ":" + temp[1];
 
