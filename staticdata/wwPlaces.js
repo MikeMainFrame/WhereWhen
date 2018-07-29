@@ -184,7 +184,7 @@
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  492);           
-        var temp = zOffset.toUTCString().split(":");
+        var temp = zTemp.toUTCString().split(":");
         text.textContent = temp[0] + ":" + temp[1];
 
         g.appendChild(text);
