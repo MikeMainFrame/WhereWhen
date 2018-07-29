@@ -144,8 +144,8 @@
         zOffset = new Date (parseFloat(grouped[ix].timestamp));
         zh = zOffset.getHours();
         if (zh > 12) zh = zh - 12; 
-        zDegrees = (((zh * 60) + zOffset.getMinutes()) / 2); // 720 minutes per circle - 360 degrees
-        zMinutes = grouped[ix].duration / 120000;
+        zDegrees = (((zh * 60) + zOffset.getMinutes()) / 2) + 90; // 720 minutes per circle - 360 degrees
+        zMinutes = (grouped[ix].duration / 60000 / 2) + 90;
    
         var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
         path.setAttribute("id", ix);     
@@ -156,9 +156,9 @@
         path.setAttribute("d",
             "M " + parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * iRadius))
           + "L " + parseFloat(500 + (Math.cos(zDegrees * Math.PI/180) * oRadius)) + ", " + parseFloat(500 - (Math.sin(zDegrees * Math.PI/180) * oRadius))
-          + "A " + oRadius + "," + oRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * oRadius))
+          + "A " + oRadius + "," + oRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * oRadius))
           + "L " + parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
-          + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
+          + "A " + iRadius + "," + iRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zDegrees) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zDegrees) * Math.PI/180) * iRadius))
           + " Z");        
        
         g.appendChild(path);
