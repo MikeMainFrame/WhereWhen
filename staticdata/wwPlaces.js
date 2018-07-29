@@ -34,7 +34,7 @@
   function groupTasks() {
      var oLatLng =  { lat: 0, lng: 0};	
      var oIcon =  { path: google.maps.SymbolPath.CIRCLE, strokeColor: '#FF6000', strokeOpacity: 1,strokeWeight: 2, fillColor: "#FF6000", fillOpacity: 0.3, scale: 12 };
-     var oMap = { center: oLatLng, zoom: 12, styles: zStyles};
+     var oMap = { center: oLatLng, zoom: 10, styles: zStyles};
      var oMarker = { position: oLatLng, visible: true, map: oMap, icon: oIcon,animation: google.maps.Animation.DROP};
      oMap.center.lat = lat;
      oMap.center.lng = lng;
@@ -131,8 +131,8 @@
       } 
       kx=ix;
       for (ix++ ; ix < grouped.length; ix++) { 
-        if (grouped[kx].address !== grouped[ix].address) continue; // only want same address
-        if (grouped[kx].id < 9999) continue; // only want detail registration
+        if (grouped[ix].address !== grouped[kx].address) continue; // only want same address
+        if (grouped[ix].id < 9999) continue; // only want detail registration
         var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
         var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
         circle.setAttribute("cx", 500);
