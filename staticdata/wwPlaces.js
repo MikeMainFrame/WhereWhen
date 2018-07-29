@@ -145,8 +145,8 @@
         zOffset = new Date (parseFloat(grouped[ix].timestamp));
         zh = zOffset.getHours();
         if (zh > 12) zh = zh - 12; 
-        zDegrees = (((zh * 60) + zOffset.getMinutes()) / 2) + 90; // 720 minutes per circle - 360 degrees
-        zMinutes = (grouped[ix].duration / 60000 / 2) + 90;
+        zDegrees = (((zh * 60) + zOffset.getMinutes()) / 2) + 90; // 720 minutes per circle - 360 degrees - offset 90 degrees
+        zMinutes = grouped[ix].duration / 60000 / 2;
    
         var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
         path.setAttribute("id", ix);     
@@ -179,7 +179,8 @@
         g.appendChild(text);
         
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
-        text.setAttribute("font-size",  72);     
+        text.setAttribute("font-size",  72);   
+        text.setAttribute("font-family", "Roboto");   
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  600);           
