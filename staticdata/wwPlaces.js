@@ -45,7 +45,7 @@
      
      for (jx = 0; jx < grouped.length ; jx++) {
        if (grouped[jx].id  === 9999) continue; // skip 9999 elements
-       zMarker.icon.strokeColor,
+       zMarker.icon.strokeColor = colors6[grouped[jx].id];
        zMarker.icon.fillColor = colors6[grouped[jx].id];
        zMarker.position.lat = parseFloat(grouped[jx].lat);
        zMarker.position.lng = parseFloat(grouped[jx].lng);   
@@ -154,6 +154,8 @@
         path.setAttribute("id", ix);     
         path.setAttribute("ztimestamp", grouped[ix].timestamp); 
         path.setAttribute("zduration", grouped[ix].duration); 
+        path.setAttribute("zOffset", zOffset);
+        path.setAttribute("zMinutes", zMinutes); 
         path.setAttribute("fill", colors6[grouped[kx].id]);      
         path.setAttribute("stroke-width", 0);  
         path.setAttribute("d",
@@ -161,7 +163,7 @@
         + "L " + parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * oRadius)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * oRadius))
         + "A " + oRadius + "," + oRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos((zMinutes - zOffset) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes - zOffset) * Math.PI/180) * oRadius))
         + "L " + parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius))
-        + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes - zOffset) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes - zOffset) * Math.PI/180) * iRadius))
+        + "A " + iRadius + "," + iRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos((zMinutes - zOffset) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes - zOffset) * Math.PI/180) * iRadius))
         + " Z");              
        
         g.appendChild(path);
