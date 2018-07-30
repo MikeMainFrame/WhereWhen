@@ -162,7 +162,7 @@
         + "L " + parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * oRadius)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * oRadius))
         + "A " + oRadius + "," + oRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos((zOffset - zMinutes) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zOffset - zMinutes) * Math.PI/180) * oRadius))
         + "L " + parseFloat(500 + (Math.cos((zOffset - zMinutes) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius))
-        + "A " + iRadius + "," + iRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos((zOffset - zMinutes) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zOffset - zMinutes) * Math.PI/180) * iRadius))
+        + "A " + iRadius + "," + iRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * iRadius))
         + " Z");              
        
         g.appendChild(path);
