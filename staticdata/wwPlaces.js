@@ -1,4 +1,4 @@
- var grouped = [];  const colors6 = ["#F60", "#F06", "#80F", "#6F0", "#06F", "#08F"];
+ var grouped = [];  const colors6 = ["#F60", "#F06", "#F0F", "#6F0", "#FF0", "#0FF"];
 (function main(who, lat, lng) {
  
   var xmlhttp = new XMLHttpRequest(); 
@@ -77,7 +77,7 @@
       rect.setAttribute("x", 0);
       rect.setAttribute("y", 0);
       rect.setAttribute("id", group.id);
-      rect.setAttribute("fill", "#212121");
+      rect.setAttribute("fill", "#000");
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 300); 
       rect.addEventListener("click", function (e) {document.getElementById("wwTaskSpec").appendChild(showTaskDetails(parseInt(e.target.id, 10) ) ) }, false);     
