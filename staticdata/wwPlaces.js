@@ -68,7 +68,7 @@
     function showTasks(group, no) {
 
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
-      g.setAttribute("fill", "#888");
+      g.setAttribute("fill", colors6[no]);
       g.setAttribute("font-size", 60);      
       g.setAttribute("font-weight", 300);
       g.setAttribute("text-anchor", "middle");
@@ -77,8 +77,7 @@
       rect.setAttribute("x", 0);
       rect.setAttribute("y", 0);
       rect.setAttribute("id", group.id);
-      rect.setAttribute("fill", colors6[no]);
-      rect.setAttribute("opacity", 0.3);
+      rect.setAttribute("fill", "#212121");
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 300); 
       rect.addEventListener("click", function (e) {document.getElementById("wwTaskSpec").appendChild(showTaskDetails(parseInt(e.target.id, 10) ) ) }, false);     
