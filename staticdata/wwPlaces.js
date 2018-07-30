@@ -1,4 +1,4 @@
- var grouped = [];
+ var grouped = [];  const colors6 = ["#F60", "#F06", "#60F", "#6F0", "#06F", "#0F6"];
 (function main(who, lat, lng) {
  
   var xmlhttp = new XMLHttpRequest(); 
@@ -33,7 +33,7 @@
    
   function groupTasks() {
      var oLatLng =  { lat: 0, lng: 0};	
-     var oIcon =  { path: google.maps.SymbolPath.CIRCLE, strokeColor: '#FF6000', strokeOpacity: 1,strokeWeight: 2, fillColor: "#FF6000", fillOpacity: 0.3, scale: 12 };
+     var oIcon =  { path: google.maps.SymbolPath.CIRCLE, strokeColor: "#F60", strokeOpacity: 1,strokeWeight: 2, fillColor: "#F60", fillOpacity: 0.3, scale: 12 };
      var oMap = { center: oLatLng, zoom: 10, styles: zStyles,  disableDefaultUI: true};
      var oMarker = { position: oLatLng, visible: true, map: oMap, icon: oIcon,animation: google.maps.Animation.DROP};
      oMap.center.lat = lat;
@@ -41,10 +41,12 @@
      var zMap = new google.maps.Map(document.getElementById("wwMap"), oMap);
      var zMarker = oMarker;
      zMarker.map = zMap;
-	  var kx = 0;
+	   var kx = 0;
      
      for (jx = 0; jx < grouped.length ; jx++) {
        if (grouped[jx].id  === 9999) continue; // skip 9999 elements
+       zMarker.icon.strokeColor,
+       zMarker.icon.fillColor = colors6[kx];
        zMarker.position.lat = parseFloat(grouped[jx].lat);
        zMarker.position.lng = parseFloat(grouped[jx].lng);   
        var temp = new google.maps.Marker(zMarker);
@@ -75,7 +77,8 @@
       rect.setAttribute("x", 0);
       rect.setAttribute("y", 0);
       rect.setAttribute("id", group.id);
-      rect.setAttribute("fill", "#212121");
+      rect.setAttribute("fill", colors6[no);
+      rect.setAttribute("opacity", 0.3);
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 300); 
       rect.addEventListener("click", function (e) {document.getElementById("wwTaskSpec").appendChild(showTaskDetails(parseInt(e.target.id, 10) ) ) }, false);     
@@ -84,7 +87,7 @@
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
       text.setAttribute("x",  0);     
       text.setAttribute("y",  300);          
-      text.setAttribute("fill", "#F60");                                                  
+      text.setAttribute("fill", colors6[0]);                                                  
       text.setAttribute("text-anchor", "end");                                                   
       text.setAttribute("font-weight",  900);
       text.textContent = "#" + group.id;
@@ -117,7 +120,7 @@
   
     function showTaskDetails(taskid) { 
       
-      const oRadius = 500; const iRadius = 400; const thisColor = "#ff8000"; 
+      const oRadius = 500, iRadius = 400; 
       var zOffset = 0, zDegrees = 0, zMinutes = 0, jx=0, ix=0, kx=0, zh=0;
       
       var execute = document.getElementById('toDie');    // eliminate old tasklist
@@ -130,7 +133,7 @@
       for (ix = 0; ix < grouped.length; ix++) { // move pointer to task id
         if (grouped[ix].id === taskid) break;
       } 
-      kx=ix;
+      kx=ix; // points to mother task slot
       for (ix++ ; ix < grouped.length; ix++) { 
         if (grouped[ix].address !== grouped[kx].address) continue; // only want same address
         if (grouped[ix].id < 9999) continue; // only want detail registration
@@ -145,21 +148,21 @@
         var zTemp = new Date (parseFloat(grouped[ix].timestamp));
         zh = zTemp.getHours();
         if (zh > 12) zh = zh - 12; 
-        zOffset = (((zh * 60) + zTemp.getMinutes()) / 2) + 90; // 720 minutes per circle - 360 degrees - offset 90 degrees
+        zOffset = 270 -(((zh * 60) + zTemp.getMinutes()) / 2); // 720 minutes per circle - 360 degrees - offset 90 degrees
         zMinutes = grouped[ix].duration / 60000 / 2;
    
         var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
         path.setAttribute("id", ix);     
         path.setAttribute("ztimestamp", grouped[ix].timestamp); 
         path.setAttribute("zduration", grouped[ix].duration); 
-        path.setAttribute("fill", "#F60");      
+        path.setAttribute("fill", colors6[kx]);      
         path.setAttribute("stroke-width", 0);  
         path.setAttribute("d",
           "M " + parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * iRadius))
         + "L " + parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * oRadius)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * oRadius))
-        + "A " + oRadius + "," + oRadius + " 0 0,1 " +  parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * oRadius))
+        + "A " + oRadius + "," + oRadius + " 0 0,1 " +  parseFloat(500 + (Math.cos((zMinutes - zOffset) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes - zOffset) * Math.PI/180) * oRadius))
         + "L " + parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius))
-        + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius))
+        + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes - zOffset) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes - zOffset) * Math.PI/180) * iRadius))
         + " Z");              
        
         g.appendChild(path);
@@ -172,7 +175,7 @@
         
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
         text.setAttribute("font-size",  244);     
-        text.setAttribute("fill", "#F60");      
+        text.setAttribute("fill", colors6[kx]);      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  360);           
         text.textContent = parseInt(grouped[ix].duration / 60000, 10);
