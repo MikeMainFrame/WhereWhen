@@ -77,7 +77,7 @@
       rect.setAttribute("x", 0);
       rect.setAttribute("y", 0);
       rect.setAttribute("id", group.id);
-      rect.setAttribute("fill", colors6[no);
+      rect.setAttribute("fill", colors6[no]);
       rect.setAttribute("opacity", 0.3);
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 300); 
