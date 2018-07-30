@@ -1,4 +1,4 @@
- var grouped = [];  const colors6 = ["#F60", "#F06", "#F0F", "#6F0", "#FF0", "#0FF"];
+ var grouped = [];  const colors6 = ["#F60", "#F0F", "#F06", "#6F0", "#FF0", "#0FF", "#F0F"];
 (function main(who, lat, lng) {
  
   var xmlhttp = new XMLHttpRequest(); 
@@ -68,7 +68,7 @@
     function showTasks(group, no) {
 
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
-      g.setAttribute("fill", colors6[no - 1]);
+      g.setAttribute("fill", colors6[group.id - 1]);
       g.setAttribute("font-size", 60);      
       g.setAttribute("font-weight", 300);
       g.setAttribute("text-anchor", "middle");
@@ -121,7 +121,7 @@
       const oRadius = 500, iRadius = 400; 
       var zOffset = 0, zDegrees = 0, zMinutes = 0, jx=0, ix=0, kx=0, zh=0;
       
-      var execute = document.getElementById('toDie');    // eliminate old tasklist
+      var execute = document.getElementById("toDie");    // eliminate old tasklist
       if (execute) execute.parentNode.removeChild(execute); // die if exists
 
       var m = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
@@ -160,9 +160,9 @@
         path.setAttribute("d",
           "M " + parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * iRadius))
         + "L " + parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * oRadius)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * oRadius))
-        + "A " + oRadius + "," + oRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos((zOffset - zMinutes) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zOffset - zMinutes) * Math.PI/180) * oRadius))
-        + "L " + parseFloat(500 + (Math.cos((zOffset - zMinutes) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius))
-        + "A " + iRadius + "," + iRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * iRadius))
+        + "A " + oRadius + "," + oRadius + " 0 0,1 " +  parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * oRadius))
+        + "L " + parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius))
+        + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius))
         + " Z");              
        
         g.appendChild(path);
