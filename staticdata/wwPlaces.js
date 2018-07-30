@@ -46,7 +46,7 @@
      for (jx = 0; jx < grouped.length ; jx++) {
        if (grouped[jx].id  === 9999) continue; // skip 9999 elements
        zMarker.icon.strokeColor,
-       zMarker.icon.fillColor = colors6[kx];
+       zMarker.icon.fillColor = colors6[grouped[jx].id];
        zMarker.position.lat = parseFloat(grouped[jx].lat);
        zMarker.position.lng = parseFloat(grouped[jx].lng);   
        var temp = new google.maps.Marker(zMarker);
@@ -86,8 +86,7 @@
 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
       text.setAttribute("x",  0);     
-      text.setAttribute("y",  300);          
-      text.setAttribute("fill", colors6[0]);                                                  
+      text.setAttribute("y",  300);                                              
       text.setAttribute("text-anchor", "end");                                                   
       text.setAttribute("font-weight",  900);
       text.textContent = "#" + group.id;
@@ -155,12 +154,12 @@
         path.setAttribute("id", ix);     
         path.setAttribute("ztimestamp", grouped[ix].timestamp); 
         path.setAttribute("zduration", grouped[ix].duration); 
-        path.setAttribute("fill", colors6[kx]);      
+        path.setAttribute("fill", colors6[grouped[kx].id]);      
         path.setAttribute("stroke-width", 0);  
         path.setAttribute("d",
           "M " + parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * iRadius))
         + "L " + parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * oRadius)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * oRadius))
-        + "A " + oRadius + "," + oRadius + " 0 0,1 " +  parseFloat(500 + (Math.cos((zMinutes - zOffset) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes - zOffset) * Math.PI/180) * oRadius))
+        + "A " + oRadius + "," + oRadius + " 0 0,0 " +  parseFloat(500 + (Math.cos((zMinutes - zOffset) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes - zOffset) * Math.PI/180) * oRadius))
         + "L " + parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius))
         + "A " + iRadius + "," + iRadius + " 1 0,0 " +  parseFloat(500 + (Math.cos((zMinutes - zOffset) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes - zOffset) * Math.PI/180) * iRadius))
         + " Z");              
@@ -175,7 +174,7 @@
         
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
         text.setAttribute("font-size",  244);     
-        text.setAttribute("fill", colors6[kx]);      
+        text.setAttribute("fill", colors6[grouped[kx].id]);      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  360);           
         text.textContent = parseInt(grouped[ix].duration / 60000, 10);
