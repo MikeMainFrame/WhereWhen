@@ -133,10 +133,9 @@
         if (zGeoList[ix].id === taskid) break;
       } 
       kx=ix; // points to mother task slot
-      for (ix++ ; ix < zGeoList.length; ix++) { 
+      for (ix = 0 ; ix < zGeoList.length; ix++) { 
         if (zGeoList[ix].address !== zGeoList[kx].address) continue; // only want same address
         if (zGeoList[ix].id < 9999) continue; // only want detail registration
-        
         var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
         var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
         circle.setAttribute("cx", 500);
