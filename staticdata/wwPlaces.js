@@ -177,7 +177,7 @@
         
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
         text.setAttribute("font-size",  244);     
-        text.setAttribute("fill", colors6[zGeoList[kx].id - 1]);      
+        text.setAttribute("fill", colors6[zGeoList[kx].id]);      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  360);           
         text.textContent = parseInt(zGeoList[ix].duration / 60000, 10);
