@@ -1,4 +1,4 @@
- var zGeoList = [];  const colors6 = ["#F60", "#F0F", "#FF0", "#6F0", "#FF0", "#0FF", "#F0F"];
+ var zGeoList = [];  const colors6 = ["dummy", "#F60", "#F0F", "#FF0", "#6F0", "#FFF", "#0FF", "#F0F"];
 (function main(who, lat, lng) {
  
   var xmlhttp = new XMLHttpRequest(); 
@@ -45,8 +45,8 @@
      
      for (jx = 0; jx < zGeoList.length ; jx++) {
        if (zGeoList[jx].id  === 9999) continue; // skip 9999 elements
-       zMarker.icon.strokeColor = colors6[zGeoList[jx].id - 1];
-       zMarker.icon.fillColor = colors6[zGeoList[jx].id - 1];
+       zMarker.icon.strokeColor = colors6[zGeoList[jx].id];
+       zMarker.icon.fillColor = colors6[zGeoList[jx].id];
        zMarker.position.lat = parseFloat(zGeoList[jx].lat);
        zMarker.position.lng = parseFloat(zGeoList[jx].lng);   
        var temp = new google.maps.Marker(zMarker);
@@ -68,7 +68,8 @@
     function showTasks(group, no) {
 
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
-      g.setAttribute("fill", colors6[group.id - 1]);
+      g.setAttribute("fill", colors6[group.id]);
+      g.setAttribute("id", group.id);      
       g.setAttribute("font-size", 56);      
       g.setAttribute("font-weight", 300);
       g.setAttribute("text-anchor", "middle");
@@ -78,7 +79,6 @@
       var rect =  document.createElementNS("http://www.w3.org/2000/svg", 'rect'); 
       rect.setAttribute("x", 0);
       rect.setAttribute("y", 0);
-      rect.setAttribute("id", group.id);
       rect.setAttribute("fill", "#000");
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 300); 
