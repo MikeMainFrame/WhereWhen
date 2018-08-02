@@ -157,7 +157,7 @@
         path.setAttribute("zduration", zGeoList[ix].duration); 
         path.setAttribute("zOffset", zOffset);
         path.setAttribute("zMinutes", zMinutes); 
-        path.setAttribute("fill", colors6[zGeoList[kx].id - 1]);      
+        path.setAttribute("fill", colors6[zGeoList[kx].id]);      
         path.setAttribute("stroke-width", 0);  
         path.setAttribute("d",
           "M " + parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * iRadius))
