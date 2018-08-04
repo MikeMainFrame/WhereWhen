@@ -77,8 +77,8 @@
       var rect =  document.createElementNS("http://www.w3.org/2000/svg", 'rect'); 
       rect.setAttribute("x", 0);
       rect.setAttribute("y", 0);
-      rect.setAttribute("rx", 3);      
-      rect.setAttribute("ry", 3);
+      rect.setAttribute("rx", 30);      
+      rect.setAttribute("ry", 30);
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 300); 
       rect.setAttribute("fill", colors6[group.id]); 
@@ -88,12 +88,12 @@
       g.appendChild(rect);
 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
-      text.setAttribute("x",  0);     
-      text.setAttribute("y",  300);                                              
+      text.setAttribute("x",  30);     
+      text.setAttribute("y",  270);                                              
       text.setAttribute("text-anchor", "end");                                                   
       text.setAttribute("font-weight",  900);
       text.textContent = "#" + group.id;
-      text.setAttribute("transform", "rotate(90 0 300)");
+      text.setAttribute("transform", "rotate(90 30 270)");
       g.appendChild(text);
       
       var three = group.address.split(","); 
@@ -117,7 +117,7 @@
       text.setAttribute("y",  214);
       text.textContent = three[2];
       g.appendChild(text);  
-      g.setAttribute("transform", "translate(3," + (no * 303) + ")");      
+      g.setAttribute("transform", "translate(30," + (no * 330) + ")");      
 
       return g;
     }
@@ -204,7 +204,7 @@
         g.appendChild(text);
         
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
-        text.setAttribute("font-size",  72);   
+        text.setAttribute("font-size",  80);   
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  492);           
