@@ -120,7 +120,7 @@
 	
     function timeStamp(date) {
   
-      var today = new Date(), var temp = "";  
+      var today = new Date(), temp = "";  
   
       if (arguments.length > 0) {
         temp = date;
