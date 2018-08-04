@@ -145,12 +145,13 @@
         circle.setAttribute("fill", "#212121");
         g.appendChild(circle);
       
-        var zTemp = new Date (parseFloat(zGeoList[ix].timestamp));
-        zh = zTemp.getHours();
-        if (zh > 12) zh = zh - 12; 
-        zOffset = 450 -(((zh * 60) + zTemp.getMinutes()) / 2); // 720 minutes per circle - 360 degrees - offset 90 degrees
-        zMinutes = zGeoList[ix].duration / 60000 / 2;
-        (zMinutes > 180) ? arcSweep = 1 : arcSweep = 0;
+        var zTimestamp = new Date (parseFloat(zGeoList[ix].timestamp));
+        zh = zTimestamp.getHours();
+        if (zh > 12) zh = zh - 12; // twelf hour circle 24 hour span
+        zOffset = 450 -(((zh * 60) + zTimestamp.getMinutes()) / 2); // 720 minutes per circle - 360 degrees - offset 90 degrees
+        zMinutes = zGeoList[ix].duration / 60000 / 2; // duration is recorded in milli
+        (zMinutes > 180) ? arcSweep = 1 : arcSweep = 0; // if more than half, then signal large arc
+        var t1 = zOffset - zMinutes, t0 = zOffset; // readabillity
    
         var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
         path.setAttribute("id", ix);     
@@ -161,11 +162,18 @@
         path.setAttribute("fill", colors6[zGeoList[kx].id]);      
         path.setAttribute("stroke-width", 0);  
         path.setAttribute("d",
-          "M " + parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * iRadius))
-        + "L " + parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * oRadius)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * oRadius))
-        + "A " + oRadius + "," + oRadius + " 0 " + arcSweep + " ,0 " +  parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * oRadius))
-        + "L " + parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius))
-        + "A " + iRadius + "," + iRadius + " 1 " + arcSweep + " ,0 " +  parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius))
+          "M " + parseFloat(500 + (Math.cos(t1 * Math.PI/180) * iRadius)) 
+			  + ", " + parseFloat(500 - (Math.sin(t1 * Math.PI/180) * iRadius))
+        + "L " + parseFloat(500 + (Math.cos(t1 * Math.PI/180) * oRadius)) 
+        + ", " + parseFloat(500 - (Math.sin(t1 * Math.PI/180) * oRadius))
+        + "A " + oRadius + "," + oRadius + " 0 " + arcSweep + " ,0 " 
+               + parseFloat(500 + (Math.cos(t0 * Math.PI/180) * oRadius)) 
+        +  "," + parseFloat(500 - (Math.sin(t0 * Math.PI/180) * oRadius))
+        + "L " + parseFloat(500 + (Math.cos(t0 * Math.PI/180) * iRadius)) 
+        + ", " + parseFloat(500 - (Math.sin(t0 * Math.PI/180) * iRadius))
+        + "A " + iRadius + "," + iRadius + " 1 " + arcSweep + " ,0 " 
+               + parseFloat(500 + (Math.cos(t1 * Math.PI/180) * iRadius)) 
+        +  "," + parseFloat(500 - (Math.sin(t1 * Math.PI/180) * iRadius))
         + " Z");              
        
         g.appendChild(path);
@@ -178,7 +186,7 @@
         
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
         text.setAttribute("font-size",  244);  
-        text.setAttribute("font-family", "Cormorant Garamond");
+        text.setAttribute("font-family", "font-family: 'Spectral SC', serif;");
         text.setAttribute("fill", colors6[zGeoList[kx].id]);      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  360);           
@@ -187,11 +195,11 @@
         
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
         text.setAttribute("font-size",  72);   
-        text.setAttribute("font-family", "Roboto");   
+        text.setAttribute("font-family", "font-family: 'Spectral SC', serif");   
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  492);           
-        var temp = zTemp.toUTCString().split(":");
+        var temp = zTimestamp.toUTCString().split(":");
         text.textContent = temp[0] + ":" + temp[1];
 
         g.appendChild(text);
