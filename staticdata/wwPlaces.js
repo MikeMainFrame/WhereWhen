@@ -148,7 +148,7 @@
         var zTimestamp = new Date (parseFloat(zGeoList[ix].timestamp));
         zh = zTimestamp.getHours();
         if (zh > 12) zh = zh - 12; // twelf hour circle 24 hour span
-        zOffset = 450 -(((zh * 60) + zTimestamp.getMinutes()) / 2); // 720 minutes per circle - 360 degrees - offset 90 degrees
+        zOffset = 450 - (zh * 30) + (zTimestamp.getMinutes() / 2); // 720 minutes per circle - 360 degrees - offset 90 degrees
         zMinutes = zGeoList[ix].duration / 60000 / 2; // duration is recorded in milli
         (zMinutes > 180) ? arcSweep = 1 : arcSweep = 0; // if more than half, then signal large arc
         var t1 = zOffset - zMinutes, t0 = zOffset; // readabillity
@@ -157,8 +157,8 @@
         path.setAttribute("id", ix);     
         path.setAttribute("ztimestamp", zGeoList[ix].timestamp); 
         path.setAttribute("zduration", zGeoList[ix].duration); 
-        path.setAttribute("zOffset", zOffset);
-        path.setAttribute("zMinutes", zMinutes); 
+        path.setAttribute("t0", t0);
+        path.setAttribute("t1", t1); 
         path.setAttribute("fill", colors6[zGeoList[kx].id]);      
         path.setAttribute("stroke-width", 0);  
         path.setAttribute("d",
@@ -177,6 +177,7 @@
         + " Z");              
        
         g.appendChild(path);
+        
         var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
         circle.setAttribute("cx", 500);
         circle.setAttribute("cy", 500);
@@ -186,7 +187,6 @@
         
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
         text.setAttribute("font-size",  244);  
-        text.setAttribute("font-family", "font-family: 'Spectral SC', serif;");
         text.setAttribute("fill", colors6[zGeoList[kx].id]);      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  360);           
@@ -195,7 +195,6 @@
         
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
         text.setAttribute("font-size",  72);   
-        text.setAttribute("font-family", "font-family: 'Spectral SC', serif");   
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  492);           
@@ -203,7 +202,7 @@
         text.textContent = temp[0] + ":" + temp[1];
 
         g.appendChild(text);
-        g.setAttribute("transform", "translate(0," + parseInt(jx * 1000, 10) + ")");
+        g.setAttribute("transform", "translate(500," + parseInt(jx * 1010, 10) + ")");
         jx++;
         m.appendChild(g);
       }            
