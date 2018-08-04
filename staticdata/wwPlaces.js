@@ -148,7 +148,7 @@
         var zTimestamp = new Date (parseFloat(zGeoList[ix].timestamp));
         zh = zTimestamp.getHours();
         if (zh > 12) zh = zh - 12; // twelf hour circle 24 hour span
-        zOffset = 450 - (zh * 30) - (zTimestamp.getMinutes() / 2); // 720 minutes per circle - 360 degrees - offset 90 degrees
+        zOffset = 450 - (zh * 30) + (zTimestamp.getMinutes() / 2); // 720 minutes per circle - 360 degrees - offset 90 degrees
         zMinutes = zGeoList[ix].duration / 60000 / 2; // duration is recorded in milli
         (zMinutes > 180) ? arcSweep = 1 : arcSweep = 0; // if more than half, then signal large arc
         var t1 = zOffset - zMinutes, t0 = zOffset; // readabillity
@@ -198,10 +198,9 @@
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  492);           
-        var temp = zTimestamp.toUTCString().split(":");
-        text.textContent = temp[0] + ":" + temp[1];
+        text.textContent =  zTimestamp.toDateString() + " " + substr("0" + zTimestamp.getHours(),2) + ":"   + substr("0" + zTimestamp.getMinutes(),2); 
         g.appendChild(text);
-        g.setAttribute("transform", "translate(" + ((jx % 2) * 300) + ", " + parseInt(jx * 1100, 10) + ")");
+        g.setAttribute("transform", "translate(" + ((jx % 2) * 500) + ", " + parseInt(jx * 850, 10) + ")");
         jx++;
         m.appendChild(g);
       }            
