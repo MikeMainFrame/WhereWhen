@@ -69,12 +69,10 @@
 
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
       g.setAttribute("fill", colors6[group.id]);
-      g.setAttribute("id", group.id);      
       g.setAttribute("font-size", 56);      
       g.setAttribute("font-weight", 300);
       g.setAttribute("text-anchor", "middle");
-      g.addEventListener("click", function (e) {document.getElementById("wwTaskSpec").appendChild(showTaskDetails(parseInt(e.target.id, 10) ) ) }, false);     
-
+  
 
       var rect =  document.createElementNS("http://www.w3.org/2000/svg", 'rect'); 
       rect.setAttribute("x", 0);
@@ -82,6 +80,9 @@
       rect.setAttribute("fill", "#000");
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 300); 
+      rect.setAttribute("id", group.id);      
+	    rect.addEventListener("click", function (e) {document.getElementById("wwTaskSpec").appendChild(showTaskDetails(parseInt(e.target.id, 10) ) ) }, false);     
+
       g.appendChild(rect);
 
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
@@ -164,7 +165,7 @@
         + "L " + parseFloat(500 + (Math.cos(zOffset * Math.PI/180) * oRadius)) + ", " + parseFloat(500 - (Math.sin(zOffset * Math.PI/180) * oRadius))
         + "A " + oRadius + "," + oRadius + " 0 " + arcSweep + " ,0 " +  parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * oRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * oRadius))
         + "L " + parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * iRadius)) + ", " + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius))
-        + "A " + iRadius + "," + iRadius + " 1 " + arcSweep + ",0 " +  parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius))
+        + "A " + iRadius + "," + iRadius + " 1 " + arcSweep + " ,0 " +  parseFloat(500 + (Math.cos((zMinutes + zOffset) * Math.PI/180) * iRadius)) +  "," + parseFloat(500 - (Math.sin((zMinutes + zOffset) * Math.PI/180) * iRadius))
         + " Z");              
        
         g.appendChild(path);
@@ -176,7 +177,9 @@
         g.appendChild(circle);
         
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
-        text.setAttribute("font-size",  244);     
+        text.setAttribute("font-size",  244);  
+        text.setAttribute("font-family", "Cormorant Garamond");
+        <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
         text.setAttribute("fill", colors6[zGeoList[kx].id]);      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  360);           
