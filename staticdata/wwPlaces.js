@@ -1,4 +1,4 @@
- var zGeoList = [];  const colors6 = ["dummy", "#F60", "#F0F", "#FF0", "#6F0", "#F0F", "#0FF", "#00F"];
+ var zGeoList = [];  const colors6 = ["dummy", "#F60", "#F08", "#0F8", "#8F0", "#80F", "#08F", "#00F"];
 (function main(who, lat, lng) {
  
   var xmlhttp = new XMLHttpRequest(); 
@@ -101,7 +101,7 @@
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
       text.setAttribute("x",  590);     
       text.setAttribute("y",  86);
-      text.setAttribute("font-size", 72);      
+      text.setAttribute("font-size", 64);      
       text.setAttribute("font-weight", 700);
       text.textContent = three[0];
       g.appendChild(text);
@@ -125,7 +125,7 @@
     function timeStamp(iDate) {  
       var yyyymmdd = parseInt((iDate.getFullYear() * 10000) + ((iDate.getMonth() + 1) * 100) + iDate.getDate());  
       var hhmm = parseInt((iDate.getHours() * 10000) + (iDate.getMinutes() * 100));
-      return temp.toString() + " " + hhmm.toString();
+      return yyyymmdd.toString() + " " + hhmm.toString();
     }
 	
     function showTaskDetails(taskid) { 
