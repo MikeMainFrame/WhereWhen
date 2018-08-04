@@ -117,7 +117,22 @@
 
       return g;
     }
+	
+    function timeStamp(date) {
   
+      var today = new Date(), var temp = "";  
+  
+      if (arguments.length > 0) {
+        temp = date;
+      } else {
+        temp = parseInt((today.getFullYear() * 10000) + ((today.getMonth() + 1) * 100) + today.getDate());
+        temp = temp.toString();
+      }
+
+      var hhmmss = parseInt((today.getHours() * 10000) + (today.getMinutes() * 100) + today.getSeconds());
+      return temp + hhmmss.toString();
+    }
+	
     function showTaskDetails(taskid) { 
       
       const oRadius = 500, iRadius = 400; 
@@ -198,7 +213,7 @@
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  492);           
-        text.textContent =  zTimestamp.toDateString() + " " + ("0" + zTimestamp.getHours()).substr(,2) + ":"  + ("0" + zTimestamp.getMinutes()).substr(,2);
+        text.textContent =  timeStamp(zTimestamp);
         g.appendChild(text);
         g.setAttribute("transform", "translate(" + ((jx % 2) * 500) + ", " + parseInt(jx * 850, 10) + ")");
         jx++;
