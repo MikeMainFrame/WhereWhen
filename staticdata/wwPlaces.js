@@ -118,19 +118,11 @@
       return g;
     }
 	
-    function timeStamp(date) {
-  
-      var today = new Date(), temp = "";  
-  
-      if (arguments.length > 0) {
-        temp = date;
-      } else {
-        temp = parseInt((today.getFullYear() * 10000) + ((today.getMonth() + 1) * 100) + today.getDate());
-        temp = temp.toString();
-      }
-
+    function timeStamp(iDate) {  
+      var today = iDate, temp = "";    
+      temp = parseInt((today.getFullYear() * 10000) + ((today.getMonth() + 1) * 100) + today.getDate());  
       var hhmmss = parseInt((today.getHours() * 10000) + (today.getMinutes() * 100) + today.getSeconds());
-      return temp + hhmmss.toString();
+      return temp.toString() + hhmmss.toString();
     }
 	
     function showTaskDetails(taskid) { 
