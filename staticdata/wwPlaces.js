@@ -198,7 +198,7 @@
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  492);           
-        text.textContent =  zTimestamp.toDateString() + " " + substr("0" + zTimestamp.getHours(),2) + ":"   + substr("0" + zTimestamp.getMinutes(),2); 
+        text.textContent =  zTimestamp.toDateString() + " " + ("0" + zTimestamp.getHours()).substr(,2) + ":"  + ("0" + zTimestamp.getMinutes()).substr(,2);
         g.appendChild(text);
         g.setAttribute("transform", "translate(" + ((jx % 2) * 500) + ", " + parseInt(jx * 850, 10) + ")");
         jx++;
