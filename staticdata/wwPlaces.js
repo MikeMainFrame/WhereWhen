@@ -1,4 +1,4 @@
- var zGeoList = [];  const colors6 = ["dummy", "#F60", "#F0F", "#FF0", "#6F0", "#FFF", "#0FF", "#F0F"];
+ var zGeoList = [];  const colors6 = ["dummy", "#F60", "#F0F", "#FF0", "#6F0", "#F0F", "#0FF", "#00F"];
 (function main(who, lat, lng) {
  
   var xmlhttp = new XMLHttpRequest(); 
@@ -68,19 +68,21 @@
     function showTasks(group, no) {
 
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
-      g.setAttribute("fill", colors6[group.id]);
+      g.setAttribute("fill", "#FFF");
       g.setAttribute("font-size", 56);      
       g.setAttribute("font-weight", 300);
-      g.setAttribute("text-anchor", "middle");
+      g.setAttribute("text-anchor", "end");
   
 
       var rect =  document.createElementNS("http://www.w3.org/2000/svg", 'rect'); 
       rect.setAttribute("x", 0);
       rect.setAttribute("y", 0);
-      rect.setAttribute("fill", "#000");
+      rect.setAttribute("rx", 3);      
+      rect.setAttribute("ry", 3);
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 300); 
-      rect.setAttribute("id", group.id);      
+      rect.setAttribute("fill", colors6[group.id]); 
+      rect.setAttribute("id", group.id); 
 	    rect.addEventListener("click", function (e) {document.getElementById("wwTaskSpec").appendChild(showTaskDetails(parseInt(e.target.id, 10) ) ) }, false);     
 
       g.appendChild(rect);
@@ -97,32 +99,33 @@
       var three = group.address.split(","); 
       
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
-      text.setAttribute("x",  300);     
-      text.setAttribute("y",  106);
+      text.setAttribute("x",  590);     
+      text.setAttribute("y",  86);
+      text.setAttribute("font-size", 72);      
+      text.setAttribute("font-weight", 700);
       text.textContent = three[0];
       g.appendChild(text);
       
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
-      text.setAttribute("x",  300);     
-      text.setAttribute("y",  160);
+      text.setAttribute("x",  590);     
+      text.setAttribute("y",  170);
       text.textContent = three[1];
       g.appendChild(text);
   
 	    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
-      text.setAttribute("x",  300);     
+      text.setAttribute("x",  590);     
       text.setAttribute("y",  214);
       text.textContent = three[2];
       g.appendChild(text);  
-      g.setAttribute("transform", "translate(0," + (no * 302) + ")");      
+      g.setAttribute("transform", "translate(3," + (no * 303) + ")");      
 
       return g;
     }
 	
     function timeStamp(iDate) {  
-      var today = iDate, temp = "";    
-      temp = parseInt((today.getFullYear() * 10000) + ((today.getMonth() + 1) * 100) + today.getDate());  
-      var hhmmss = parseInt((today.getHours() * 10000) + (today.getMinutes() * 100) + today.getSeconds());
-      return temp.toString() + hhmmss.toString();
+      var yyyymmdd = parseInt((iDate.getFullYear() * 10000) + ((iDate.getMonth() + 1) * 100) + iDate.getDate());  
+      var hhmm = parseInt((iDate.getHours() * 10000) + (iDate.getMinutes() * 100));
+      return temp.toString() + " " + hhmm.toString();
     }
 	
     function showTaskDetails(taskid) { 
@@ -169,17 +172,17 @@
         path.setAttribute("fill", colors6[zGeoList[kx].id]);      
         path.setAttribute("stroke-width", 0);  
         path.setAttribute("d",
-          "M " + parseFloat(500 + (Math.cos(t1 * Math.PI/180) * iRadius)) 
+          "M " + parseFloat(500 - (Math.cos(t1 * Math.PI/180) * iRadius)) 
 			  + ", " + parseFloat(500 - (Math.sin(t1 * Math.PI/180) * iRadius))
-        + "L " + parseFloat(500 + (Math.cos(t1 * Math.PI/180) * oRadius)) 
+        + "L " + parseFloat(500 - (Math.cos(t1 * Math.PI/180) * oRadius)) 
         + ", " + parseFloat(500 - (Math.sin(t1 * Math.PI/180) * oRadius))
         + "A " + oRadius + "," + oRadius + " 0 " + arcSweep + " ,0 " 
-               + parseFloat(500 + (Math.cos(t0 * Math.PI/180) * oRadius)) 
+               + parseFloat(500 - (Math.cos(t0 * Math.PI/180) * oRadius)) 
         +  "," + parseFloat(500 - (Math.sin(t0 * Math.PI/180) * oRadius))
-        + "L " + parseFloat(500 + (Math.cos(t0 * Math.PI/180) * iRadius)) 
+        + "L " + parseFloat(500 - (Math.cos(t0 * Math.PI/180) * iRadius)) 
         + ", " + parseFloat(500 - (Math.sin(t0 * Math.PI/180) * iRadius))
         + "A " + iRadius + "," + iRadius + " 1 " + arcSweep + " ,0 " 
-               + parseFloat(500 + (Math.cos(t1 * Math.PI/180) * iRadius)) 
+               + parseFloat(500 - (Math.cos(t1 * Math.PI/180) * iRadius)) 
         +  "," + parseFloat(500 - (Math.sin(t1 * Math.PI/180) * iRadius))
         + " Z");              
        
