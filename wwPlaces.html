@@ -5,9 +5,13 @@
     <meta name=viewport content="width=device-width, initial-scale=0.8">
     <title>WhereWhen :: by Mike/TRITICUM</title>
     <link href="https://fonts.googleapis.com/css?family=Racing+Sans+One|Merriweather|Roboto|Material+Icons" rel="stylesheet" />  
+    <style>
+      #wwMap     { height: 100%;}
+      html, body { height: 100% ; margin: 0 ; padding: 0; }
+    </style>
   </head>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV112FdOVJA4U5BSwImhPzEI73mgYUjQ&language=da"></script>
-  <body style="background: #000 ; margin: 0 ; padding: 0 ; color: #fff; font-family: 'Roboto', sans-serif ; overflow: hidden">  
+  <body style="background: #000 ; color: #fff; font-family: 'Roboto', sans-serif ; overflow: hidden">  
   <div style="width: 20% ; float:left">
     <div style="width: 100%">
      <svg viewBox="0 0 660 3960" 
@@ -18,7 +22,7 @@
     </div>
   </div>
   <div style="width: 59% ;  float:left ; margin: 0 auto">
-    <div style="width: 100% ; float:left ; min-height: 1024px ; height: 100%" id="wwMap" ></div>
+    <div style="width: 100% ; float:left " id="wwMap" ></div>
   </div>
   <div style="width: 20% ; float: right">
     <div style="width: 100% ; background: transparent">
