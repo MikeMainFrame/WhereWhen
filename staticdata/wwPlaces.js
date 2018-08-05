@@ -1,4 +1,4 @@
- var zGeoList = [];  const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#AA0", "#088", "#00A", "#F80"];
+ var zGeoList = [];  const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CA0", "#088", "#00A", "#F80"];
 (function main(who, lat, lng) {
  
   var xmlhttp = new XMLHttpRequest(); 
@@ -136,7 +136,8 @@
       if (execute) execute.parentNode.removeChild(execute); // die if exists
 
       var m = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
-      m.setAttribute("text-anchor", "middle")
+      m.setAttribute("text-anchor", "middle")      
+      m.setAttribute("font-weight", 600);
 	    m.setAttribute("id", "toDie");
          
       for (ix = 0; ix < zGeoList.length; ix++) { // move pointer to task id
@@ -199,7 +200,6 @@
         
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
         text.setAttribute("font-size",  80);   
-        text.setAttribute("font-weight", 600);
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  492);           
