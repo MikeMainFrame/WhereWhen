@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-  <who id="1234">
+  <who id="mail@address.com">
     <task duration="3600" timestamp="20170506235959" lat="51.235689" lng="111.123456" />
   </who>
 </root>
