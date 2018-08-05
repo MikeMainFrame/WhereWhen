@@ -208,7 +208,7 @@
         jx++;
         m.appendChild(g);
       }            
-      var temp = document.getElementById("zSum").textContent;
+      var temp = document.getElementById("zSum");
       temp.textContent = temp.textContent + parseInt(zSum / 60000, 10);
       return m;    
     }
