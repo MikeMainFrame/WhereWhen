@@ -140,15 +140,6 @@
       
       kx=ix; // points to mother task slot
       
-      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');        
-      text.setAttribute("id",  "zSum");  
-      text.setAttribute("font-size",  80);  
-      text.setAttribute("fill", colors6[zGeoList[kx].id]);      
-      text.setAttribute("x",  500);     
-      text.setAttribute("y",  60);           
-      text.textContent = "accum minutes period: " + parseInt(zSum / 60000, 10); // minutes
-      m.appendChild(text);
-      
       for (ix = 0 ; ix < zGeoList.length; ix++) { 
         if (zGeoList[ix].address !== zGeoList[kx].address) continue; // only want same address
         if (zGeoList[ix].id < 9999) continue; // only want detail registration
