@@ -14,17 +14,11 @@
   function organizeData(root)  {
 	
     var zTasks = root.getElementsByTagName("task");
-    var kx = 0, ix = 0;
 
-    for (ix = 0; ix < zTasks.length; ix++) { // from DOM to ARRAY
+    for (var ix = 0; ix < zTasks.length; ix++) { // from DOM to ARRAY
       zGeoList.push(copyTask(zTasks[ix]));
     }	  
-	  
-    for (ix = 0; ix < zGeoList.length; ix++) { // sum up
-      if (zGeoList[ix].id < 9999) kx = ix;
-      zGeoList[kx].duration = zGeoList[kx].duration + zGeoList[ix].duration;
-    }
-    
+
     groupTasks(); // map + groups
 	  
     document.getElementById("wwTaskSpec").appendChild(showTaskDetails(1)); // group details
@@ -130,7 +124,7 @@
     function showTaskDetails(taskid) { 
       
       const oRadius = 500, iRadius = 400; 
-      var zOffset = 0, zDegrees = 0, zMinutes = 0, jx=0, ix=0, kx=0, zh=0, arcSweep = 0;
+      var zOffset = 0, zSum = 0, zMinutes = 0, jx=0, ix=0, kx=0, zh=0, arcSweep = 0;
       
       var execute = document.getElementById("toDie");    // eliminate old tasklist
       if (execute) execute.parentNode.removeChild(execute); // die if exists
@@ -143,7 +137,18 @@
       for (ix = 0; ix < zGeoList.length; ix++) { // move pointer to task id
         if (zGeoList[ix].id === taskid) break;
       } 
+      
       kx=ix; // points to mother task slot
+      
+      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');        
+      text.setAttribute("id",  "zSum");  
+      text.setAttribute("font-size",  80);  
+      text.setAttribute("fill", colors6[zGeoList[kx].id]);      
+      text.setAttribute("x",  500);     
+      text.setAttribute("y",  60);           
+      text.textContent = "accum minutes period: " + parseInt(zSum / 60000, 10); // minutes
+      m.appendChild(text);
+      
       for (ix = 0 ; ix < zGeoList.length; ix++) { 
         if (zGeoList[ix].address !== zGeoList[kx].address) continue; // only want same address
         if (zGeoList[ix].id < 9999) continue; // only want detail registration
@@ -154,8 +159,11 @@
         circle.setAttribute("r", 500);
         circle.setAttribute("fill", "#212121");
         g.appendChild(circle);
-      
+
+        zSum = zSum + zGeoList[ix].duration; // all time accumulated in milli secs
+        
         var zTimestamp = new Date (parseFloat(zGeoList[ix].timestamp));
+
         zh = zTimestamp.getHours();
         if (zh > 12) zh = zh - 12; // twelf hour circle 24 hour span
         zOffset = 450 - (zh * 30) + (zTimestamp.getMinutes() / 2); // 720 minutes per circle - 360 degrees - offset 90 degrees
@@ -205,10 +213,12 @@
         text.setAttribute("y",  492);           
         text.textContent =  timeStamp(zTimestamp);
         g.appendChild(text);
-        g.setAttribute("transform", "translate(" + ((jx % 2) * 500) + ", " + parseInt(jx * 900, 10) + ")");
+        g.setAttribute("transform", "translate(" + ((jx % 2) * 500) + ", " + parseInt((jx * 900) + 150, 10) + ")");
         jx++;
         m.appendChild(g);
       }            
+      var temp = document.getElementById("zSum").textContent;
+      temp.textContent = temp.textContent + parseInt(zSum / 60000, 10);
       return m;    
     }
    
