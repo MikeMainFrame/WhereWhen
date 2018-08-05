@@ -1,4 +1,4 @@
- var zGeoList = [];  const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#A6A", "#088", "#00A", "#F80"];
+ var zGeoList = [];  const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#AA0", "#088", "#00A", "#F80"];
 (function main(who, lat, lng) {
  
   var xmlhttp = new XMLHttpRequest(); 
@@ -72,7 +72,6 @@
       g.setAttribute("font-size", 56);      
       g.setAttribute("font-weight", 300);
       g.setAttribute("text-anchor", "end");
-  
 
       var rect =  document.createElementNS("http://www.w3.org/2000/svg", 'rect'); 
       rect.setAttribute("x", 0);
@@ -101,7 +100,7 @@
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
       text.setAttribute("x",  590);     
       text.setAttribute("y",  86);
-      text.setAttribute("font-size", 64);      
+      text.setAttribute("font-size", 62);      
       text.setAttribute("font-weight", 600);
       text.textContent = three[0];
       g.appendChild(text);
@@ -123,8 +122,8 @@
     }
 	
     function timeStamp(iDate) {  
-      var yyyymmddhhmm = parseInt((iDate.getFullYear() * 1.0E+08) + ((iDate.getMonth() + 1) * 1.0E+06) + (iDate.getDate() * 10000)
-                         + (iDate.getHours() * 100) + iDate.getMinutes());
+      var yyyymmddhhmm = 
+      (iDate.getFullYear()*1.0E+08)+((iDate.getMonth()+1)*1.0E+06)+(iDate.getDate()*10000)+(iDate.getHours()*100) + iDate.getMinutes();
       return yyyymmddhhmm.toString();
     }
 	
@@ -200,6 +199,7 @@
         
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
         text.setAttribute("font-size",  80);   
+        text.setAttribute("font-weight", 600);
         text.setAttribute("fill", "#888");      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  492);           
