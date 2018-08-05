@@ -1,4 +1,4 @@
- var zGeoList = [];  const colors6 = ["dummy", "#F00", "#F08", "#0F0", "#F8F", "#088", "#00F", "#F80"];
+ var zGeoList = [];  const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#A6A", "#088", "#00A", "#F80"];
 (function main(who, lat, lng) {
  
   var xmlhttp = new XMLHttpRequest(); 
@@ -163,12 +163,7 @@
         (zMinutes > 180) ? arcSweep = 1 : arcSweep = 0; // if more than half, then signal large arc
         var t1 = zOffset - zMinutes, t0 = zOffset; // readabillity
    
-        var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');    
-        path.setAttribute("id", ix);     
-        path.setAttribute("ztimestamp", zGeoList[ix].timestamp); 
-        path.setAttribute("zduration", zGeoList[ix].duration); 
-        path.setAttribute("t0", t0);
-        path.setAttribute("t1", t1); 
+        var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');
         path.setAttribute("fill", colors6[zGeoList[kx].id]);      
         path.setAttribute("stroke-width", 0);  
         path.setAttribute("d",
@@ -210,7 +205,7 @@
         text.setAttribute("y",  492);           
         text.textContent =  timeStamp(zTimestamp);
         g.appendChild(text);
-        g.setAttribute("transform", "translate(" + ((jx % 2) * 500) + ", " + parseInt(jx * 850, 10) + ")");
+        g.setAttribute("transform", "translate(" + ((jx % 2) * 500) + ", " + parseInt(jx * 900, 10) + ")");
         jx++;
         m.appendChild(g);
       }            
