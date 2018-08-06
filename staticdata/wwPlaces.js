@@ -170,12 +170,12 @@
 			  + ", " + parseFloat(500 - (Math.sin(t1 * Math.PI/180) * iRadius))
         + "L " + parseFloat(500 + (Math.cos(t1 * Math.PI/180) * oRadius)) 
         + ", " + parseFloat(500 - (Math.sin(t1 * Math.PI/180) * oRadius))
-        + "A " + oRadius + "," + oRadius + " 0 " + arcSweep + " ,0 " 
+        + "A " + oRadius + "," + oRadius + " 0 " + arcSweep + " ,1 " 
                + parseFloat(500 + (Math.cos(t0 * Math.PI/180) * oRadius)) 
         +  "," + parseFloat(500 - (Math.sin(t0 * Math.PI/180) * oRadius))
         + "L " + parseFloat(500 + (Math.cos(t0 * Math.PI/180) * iRadius)) 
         + ", " + parseFloat(500 - (Math.sin(t0 * Math.PI/180) * iRadius))
-        + "A " + iRadius + "," + iRadius + " 1 " + arcSweep + " ,0 " 
+        + "A " + iRadius + "," + iRadius + " 1 " + arcSweep + " ,1 " 
                + parseFloat(500 + (Math.cos(t1 * Math.PI/180) * iRadius)) 
         +  "," + parseFloat(500 - (Math.sin(t1 * Math.PI/180) * iRadius))
         + " Z");              
@@ -189,7 +189,9 @@
         circle.setAttribute("fill", "#000");
         g.appendChild(circle);
         
-        var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
+        var text = document.createElementNS("http://www.w3.org/2000/svg", 'text'); 
+        
+        text.setAttribute("font-family",  "Racing Sans One");
         text.setAttribute("font-size",  244);  
         text.setAttribute("fill", colors6[zGeoList[kx].id]);      
         text.setAttribute("x",  500);     
