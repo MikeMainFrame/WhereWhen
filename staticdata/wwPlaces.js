@@ -170,7 +170,7 @@
 			  + ", " + parseFloat(500 - (Math.sin(t1 * Math.PI/180) * iRadius))
         + "L " + parseFloat(500 + (Math.cos(t1 * Math.PI/180) * oRadius)) 
         + ", " + parseFloat(500 - (Math.sin(t1 * Math.PI/180) * oRadius))
-        + "A " + oRadius + "," + oRadius + " 0 " + arcSweep + " ,1 " 
+        + "A " + oRadius + "," + oRadius + " 0 " + arcSweep + " ,0 " 
                + parseFloat(500 + (Math.cos(t0 * Math.PI/180) * oRadius)) 
         +  "," + parseFloat(500 - (Math.sin(t0 * Math.PI/180) * oRadius))
         + "L " + parseFloat(500 + (Math.cos(t0 * Math.PI/180) * iRadius)) 
