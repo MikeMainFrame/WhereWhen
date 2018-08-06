@@ -35,7 +35,7 @@
      var zMap = new google.maps.Map(document.getElementById("wwMap"), oMap);
      var zMarker = oMarker;
      zMarker.map = zMap;
-	   var kx = 0;
+     var kx = 0;
      
      for (jx = 0; jx < zGeoList.length ; jx++) {
        if (zGeoList[jx].id  === 9999) continue; // skip 9999 elements
@@ -76,7 +76,7 @@
       rect.setAttribute("height", 300); 
       rect.setAttribute("fill", colors6[group.id]); 
       rect.setAttribute("id", group.id); 
-	    rect.addEventListener("click", function (e) {document.getElementById("wwTaskSpec").appendChild(showTaskDetails(parseInt(e.target.id, 10) ) ) }, false);     
+      rect.addEventListener("click", function (e) {document.getElementById("wwTaskSpec").appendChild(showTaskDetails(parseInt(e.target.id, 10) ) ) }, false);     
 
       g.appendChild(rect);
 
@@ -104,7 +104,7 @@
       text.setAttribute("y",  160);
       text.textContent = three[1];
       g.appendChild(text);
-  
+      
 	    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
       text.setAttribute("x",  590);     
       text.setAttribute("y",  214);
