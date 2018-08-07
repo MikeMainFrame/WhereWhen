@@ -1,28 +1,31 @@
- var zGeoList = [];  const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CA0", "#088", "#00A", "#F80"];
+var zGeoList = [];
+const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"];
+
 (function main(who, lat, lng) {
- 
-  var xmlhttp = new XMLHttpRequest(); 
-  xmlhttp.overrideMimeType("application/xml");
-  xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-      organizeData(xmlhttp.responseXML.documentElement);      
-    }
-  };    
-  xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who);
-  xmlhttp.send();    
   
-  function organizeData(root)  {
+   getData(who).then(organizeData(responseXML.documentElement))
+               .catch(console.error("Failed!", error));
+  
+   function getData(who) {
+     return new Promise((resolve, reject) => {
+     const xmlhttp = new XMLHttpRequest();
+     xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who);
+     xmlhttp.onload = () => resolve(xmlhttp.response.responseXML);
+     xmlhttp.onerror = () => reject(xmlhttp.statusText);
+     xmlhttp.send();
+   });
+  
+   function organizeData(root)  {
 	
-    var zTasks = root.getElementsByTagName("task");
+     var zTasks = root.getElementsByTagName("task");
 
-    for (var ix = 0; ix < zTasks.length; ix++) { // from DOM to ARRAY
-      zGeoList.push(copyTask(zTasks[ix]));
-    }	  
+     for (var ix = 0; ix < zTasks.length; ix++) { 
+       zGeoList.push(copyTask(zTasks[ix]));
+     }	  
 
-    groupTasks(); // map + groups
+     groupTasks(); 
 	  
-    document.getElementById("wwTaskSpec").appendChild(showTaskDetails(1)); // group details
-    
+     document.getElementById("wwTaskSpec").appendChild(showTaskDetails(1)); 
   } 
    
   function groupTasks() {
@@ -209,10 +212,15 @@
         g.setAttribute("transform", "translate(" + ((jx % 2) * 500) + ", " + parseInt((jx * 900) + 150, 10) + ")");
         jx++;
         m.appendChild(g);
-      }            
-      var temp = document.getElementById("zSum");
-      temp.textContent = parseInt(zSum / 60000, 10);
-      return m;    
+      }                  
+      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
+      text.setAttribute("font-size",  80);   
+      text.setAttribute("fill", "#888");      
+      text.setAttribute("x",  40);     
+      text.setAttribute("y",  80);           
+      text.textContent =  zSum;
+      m.appendChild(text)
+      return m;   
     }
    
 })("miketriticum@gmail.com", 55.6680607, 12.5811275);
