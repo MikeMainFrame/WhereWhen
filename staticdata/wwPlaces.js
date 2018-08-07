@@ -3,21 +3,22 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
 
 (function main(who, lat, lng) {
   
-   getData(who).then(organizeData(responseXML.documentElement))
-               .catch(console.error("Failed!", error));
+   getData(who).then(organizeData())
+               .catch(console.log("Damn"));
   
    function getData(who) {
      return new Promise((resolve, reject) => {
-     const xmlhttp = new XMLHttpRequest();
-     xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who);
-     xmlhttp.onload = () => resolve(xmlhttp.response.responseXML);
-     xmlhttp.onerror = () => reject(xmlhttp.statusText);
-     xmlhttp.send();
-   });
+	   const xmlhttp = new XMLHttpRequest();
+	   xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who);
+	   xmlhttp.onload = () => resolve(xmlhttp.response);
+	   xmlhttp.onerror = () => reject(xmlhttp.statusText);
+	   xmlhttp.send();
+     });
+   }
   
-   function organizeData(root)  {
-	
-     var zTasks = root.getElementsByTagName("task");
+   function organizeData()  {
+	 var root = arguments[0];
+     var zTasks = root.responseXML.documentElement.getElementsByTagName("task");
 
      for (var ix = 0; ix < zTasks.length; ix++) { 
        zGeoList.push(copyTask(zTasks[ix]));
