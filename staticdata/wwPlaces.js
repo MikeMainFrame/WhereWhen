@@ -10,15 +10,15 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
      return new Promise((resolve, reject) => {
 	   const xmlhttp = new XMLHttpRequest();
 	   xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who);
-	   xmlhttp.onload = () => resolve(xmlhttp.response);
+	   xmlhttp.onload = () => resolve(xmlhttp.responseXML);
 	   xmlhttp.onerror = () => reject(xmlhttp.statusText);
 	   xmlhttp.send();
      });
    }
   
-   function organizeData()  {
-	 var root = arguments[0];
-     var zTasks = root.responseXML.documentElement.getElementsByTagName("task");
+   function organizeData(XML)  {
+	   
+     var zTasks = XML.documentElement.getElementsByTagName("task");
 
      for (var ix = 0; ix < zTasks.length; ix++) { 
        zGeoList.push(copyTask(zTasks[ix]));
