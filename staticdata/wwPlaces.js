@@ -3,7 +3,7 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
 
 (function main(who, lat, lng) {
   
-   getData(who).then(organizeData())
+   getData(who).then(function(response) { organizeData(response) })
                .catch(console.log("Damn"));
   
    function getData(who) {
