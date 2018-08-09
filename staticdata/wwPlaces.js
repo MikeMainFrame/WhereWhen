@@ -1,5 +1,6 @@
 var zGeoList = [];
 const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"];
+var hm = (miliSec) => { const x=miliSec/1000; const parseInt(h=x/3600, 10); const m=parseInt(x-((h*3600)/60),10) ; return h+ "h"+m+"m";}
 
 (function main(who, lat, lng) {
   
@@ -200,8 +201,7 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
         text.setAttribute("fill", colors6[zGeoList[kx].id]);      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  360);           
-        var slam = (miliSec) => { const x=miliSec/1000; const h=x/3600; const m=x-((h*3600)/60) ; return h+ "h"+m+"m";}
-        text.textContent = slam(zGeoList[ix].duration);
+        text.textContent = hm(zGeoList[ix].duration);
         g.appendChild(text);
         
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
@@ -221,7 +221,7 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
       text.setAttribute("fill", "#888");      
       text.setAttribute("x",  40);     
       text.setAttribute("y",  80);           
-      text.textContent =  zSum;
+      text.textContent =  hm(zSum);
       m.appendChild(text)
       return m;   
     }
