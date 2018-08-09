@@ -200,7 +200,7 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
         text.setAttribute("fill", colors6[zGeoList[kx].id]);      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  360);           
-        text.textContent = () => {const x=parseInt(zGeoList[ix].duration/1000);const h=parseInt(x/3600);const m=parseInt((x-(h*3600))/60) return h+"h"+m+"m"}
+        text.textContent = () => {const x=parseInt(zGeoList[ix].duration/1000);const h=parseInt(x/3600);const m=parseInt((x-(h*3600))/60); return h+"h"+m+"m";}
         
         }parseInt(zGeoList[ix].duration / 60000, 10);
         g.appendChild(text);
