@@ -121,7 +121,7 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
 	
     function timeStamp(iDate) {  
       var yyyymmddhhmm = 
-      (iDate.getFullYear()*1.0E+08)+((iDate.getMonth()+1)*1.0E+06)+(iDate.getDate()*10000)+(iDate.getHours()*100) + iDate.getMinutes();
+      (iDate.getFullYear()*1.0E8)+((iDate.getMonth()+1)*1.0E6)+(iDate.getDate()*1.0E4)+(iDate.getHours()*1.0E2)+iDate.getMinutes();
       return yyyymmddhhmm.toString();
     }
 	
@@ -161,7 +161,7 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
 
         zh = zTimestamp.getHours();
         if (zh > 12) zh = zh - 12; // twelf hour circle 24 hour span
-        zOffset = 450 - (zh * 30) + (zTimestamp.getMinutes() / 2); // 720 minutes per circle - 360 degrees - offset 90 degrees
+        zOffset = 450 - ((zh * 30) + (zTimestamp.getMinutes() / 2)); // 720 minutes per circle - 360 degrees - offset 90 degrees
         zMinutes = zGeoList[ix].duration / 60000 / 2; // duration is recorded in milli
         (zMinutes > 180) ? arcSweep = 1 : arcSweep = 0; // if more than half, then signal large arc
         var t1 = zOffset - zMinutes, t0 = zOffset; // readabillity
@@ -200,7 +200,9 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
         text.setAttribute("fill", colors6[zGeoList[kx].id]);      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  360);           
-        text.textContent = parseInt(zGeoList[ix].duration / 60000, 10);
+        text.textContent = () => {const x=parseInt(zGeoList[ix].duration/1000);const h=parseInt(x/3600);const m=parseInt((x-(h*3600))/60) return h+"h"+m+"m"}
+        
+        }parseInt(zGeoList[ix].duration / 60000, 10);
         g.appendChild(text);
         
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
@@ -213,7 +215,8 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
         g.setAttribute("transform", "translate(" + ((jx % 2) * 500) + ", " + parseInt((jx * 900) + 150, 10) + ")");
         jx++;
         m.appendChild(g);
-      }                  
+      }                 
+      
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
       text.setAttribute("font-size",  80);   
       text.setAttribute("fill", "#888");      
