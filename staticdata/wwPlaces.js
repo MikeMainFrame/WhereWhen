@@ -1,6 +1,6 @@
 var zGeoList = [];
 const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"];
-var hm = (miliSec) => { const x=miliSec/1000; const parseInt(h=x/3600, 10); const m=parseInt(x-((h*3600)/60),10) ; return h+ "h"+m+"m";}
+var hm = (miliSec) => { const x=miliSec/1000; const h=parseInt(x/3600, 10); const m=parseInt(x-((h*3600)/60),10) ; return h+"h"+m+"m";}
 
 (function main(who, lat, lng) {
   
