@@ -1,7 +1,5 @@
 var zGeoList = [];
 const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"];
-var hm = (miliSec) => { const x=miliSec/1000; const h=parseInt(x/3600, 10); const m=parseInt(x-((h*3600)/60),10) ; return h+"h"+m+"m";}
-
 (function main(who, lat, lng) {
   
    getData(who).then(function(response) { organizeData(response) })
@@ -201,7 +199,7 @@ var hm = (miliSec) => { const x=miliSec/1000; const h=parseInt(x/3600, 10); cons
         text.setAttribute("fill", colors6[zGeoList[kx].id]);      
         text.setAttribute("x",  500);     
         text.setAttribute("y",  360);           
-        text.textContent = hm(zGeoList[ix].duration);
+        text.textContent = parseInt(zGeoList[ix].duration / 60000);
         g.appendChild(text);
         
         var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
@@ -217,11 +215,12 @@ var hm = (miliSec) => { const x=miliSec/1000; const h=parseInt(x/3600, 10); cons
       }                 
       
       var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');       
+      text.setAttribute("font-family",  "Racing Sans One");
       text.setAttribute("font-size",  80);   
       text.setAttribute("fill", "#888");      
-      text.setAttribute("x",  40);     
+      text.setAttribute("x",  80);     
       text.setAttribute("y",  80);           
-      text.textContent =  hm(zSum);
+      text.textContent =  parseInt(zSum / 60000, 10);
       m.appendChild(text)
       return m;   
     }
