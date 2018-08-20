@@ -19,9 +19,6 @@ function showWhereWhenOnMap(latLng) {
     if (status === google.maps.GeocoderStatus.OK) document.getElementById("zAddress").textContent = wwObject.address = results[0].formatted_address;
   });
 }
-function error(err) {
-  alert("ERROR(" + err.code + "): " + err.message);
-}
 function getStoredData (latLng) {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.overrideMimeType("application/xml");
@@ -188,4 +185,4 @@ function showInfo(translate, color, wwObject) {
   
   svgdoc.appendChild(group);  
 }
-id = navigator.geolocation.watchPosition(GetGPSCoords, error, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
+id = navigator.geolocation.watchPosition(GetGPSCoords, error => { console.log(error) }, { enableHighAccuracy: true, timeout: 9000, maximumAge: 0 });
