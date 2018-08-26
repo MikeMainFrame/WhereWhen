@@ -50,17 +50,6 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
        document.getElementById("wwTaskMain").appendChild(showTasks(zGeoList[jx], kx++));
      }
    }
-  
-   function copyTask(task) {
-      var zGeoListItem = {};
-      zGeoListItem.id = parseInt(task.getAttribute("id"), 10);      
-      zGeoListItem.duration = parseInt(task.getAttribute("duration"), 10);
-      zGeoListItem.timestamp = parseInt(task.getAttribute("timestamp"), 10);
-      zGeoListItem.lat = parseFloat(task.getAttribute("lat"));
-      zGeoListItem.lng = parseFloat(task.getAttribute("lng"));
-      zGeoListItem.address = task.getAttribute("address");
-      return zGeoListItem;
-    }   
     
     function showTasks(group, no) {
 
@@ -112,19 +101,13 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
       text.setAttribute("x",  590);     
       text.setAttribute("y",  214);
       text.textContent = three[2];
-      g.appendChild(addText(,, "#888", 500, 492, timeStamp(zTimestamp));   
- 
+      
       g.appendChild(text);  
       g.setAttribute("transform", "translate(30," + (no * 330) + ")");      
 
       return g;
     }
-	
-    function timeStamp(iDate) {  
-      var yyyymmddhhmm = 
-      (iDate.getFullYear()*1.0E8)+((iDate.getMonth()+1)*1.0E6)+(iDate.getDate()*1.0E4)+(iDate.getHours()*1.0E2)+iDate.getMinutes();
-      return yyyymmddhhmm.toString();
-    }
+
 	
     function showTaskDetails(taskid) { 
       
@@ -132,9 +115,9 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
       var zOffset = 0, zSum = 0, zMinutes = 0, jx=0, ix=0, kx=0, zh=0, arcSweep = 0;
       
       var execute = document.getElementById("toDie");    
-      // eliminate old tasklist
+// eliminate old tasklist
       if (execute) execute.parentNode.removeChild(execute); 
-      // die if exists
+// die if exists
 
       var m = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
       m.setAttribute("text-anchor", "middle")      
@@ -142,81 +125,95 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
 	    m.setAttribute("id", "toDie");
       
       for (ix = 0 ; ix < zGeoList.length; ix++) { 
+        
         if (zGeoList[ix].address !== zGeoList[taskid].address) continue; 
-        // only want same address
+//                                                                                only want same address
         if (zGeoList[ix].id < 9999) continue; 
-        // only want detail registration
-        g.appendChild(bCircle(500, "#212121"));      
+//                                                                                only want detail registration    
         zSum = zSum + zGeoList[ix].duration; 
-        // all time accumulated in milli secs        
+//                                                                                all time accumulated in milli secs        
         var zTimestamp = new Date (parseFloat(zGeoList[ix].timestamp));
-        zh = zTimestamp.getHours();
-        if (zh > 12) zh = zh - 12; 
-        // twelf hour circle 24 hour span
-        zOffset = 450 - ((zh * 30) + (zTimestamp.getMinutes() / 2)); 
-        // 720 minutes per circle - 360 degrees - offset 90 degrees
+        zTimestamp.getHours() > 12 ? zh = zTimestamp.getHours() - 12 : zh = zTimestamp.getHours();
+//                                                                                twelf hour circle 24 hour span
+        zOffset = 450 - ((zh * 30) + (zTimestamp.getMinutes() / 2));
+//                                                                                720 minutes per circle - 360 degrees - offset 90 degrees
         zMinutes = zGeoList[ix].duration / 60000 / 2; 
-        // duration is recorded in milli
+//                                                                                duration is recorded in milli
         (zMinutes > 180) ? arcSweep = 1 : arcSweep = 0; 
-        // if more than half, then signal large arc
-        var t1 = zOffset - zMinutes, t0 = zOffset; 
-        // readabillity
+//                                                                                if more than half, then signal large arc
         g.appendChild(bCircle(500, "#212121"));   
-        g.appendChild(pathPeriod(t0,t1,iRadius,oRadius,arcSweep,colors6[zGeoList[kx].id]));             
+        g.appendChild(pathPeriod(zOffset,zOffset - zMinutes,iRadius,oRadius,arcSweep,colors6[zGeoList[kx].id]));             
         g.appendChild(bCircle(400, "#000"));   
         g.appendChild(addText("Racing Sans One", 244, colors6[zGeoList[kx].id], 500, 360, parseInt(zGeoList[ix].duration / 60000)));
-        g.appendChild(addText(,80, "#888", 500, 492, timeStamp(zTimestamp));   
+        g.appendChild(addText("Roboto", 80, "#888", 500, 492, timeStamp(zTimestamp));   
         g.setAttribute("transform", "translate(" + ((jx % 2) * 500) + ", " + parseInt((jx * 900) + 150, 10) + ")");
         jx++;
         m.appendChild(g);
       }             
       
-      m.appendChild(addText("Racing Sans One", , "#888", 80, 80, parseInt(zSum / 60000, 10));
+      m.appendChild(addText("Racing Sans One", 80 , "#888", 80, 80, parseInt(zSum / 60000, 10));
 
       return m;   
-      
-      function addText(fSize = 80, fType, color, x, y, title) {      
-        var text = document.createElementNS("http://www.w3.org/2000/svg", 'text'); 
-        if (fType) text.setAttribute("font-family",  fType);
-        text.setAttribute("font-size",  fSize);  
-        text.setAttribute("fill", color);      
-        text.setAttribute("x",  x);     
-        text.setAttribute("y",  y);           
-        text.textContent = title;
-        return text;
-      }
-      
-      function pathPeriod (t0, t1, iRadius, oRadius, arcSweep, fill) {
+  }        
+                       
+  function addText (fType, fSize = 80, color, x, y, title) {      
+    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text'); 
+    if (fType) text.setAttribute("font-family",  fType);
+    if (fSize) text.setAttribute("font-size",  fSize);  
+    text.setAttribute("fill", color);      
+    text.setAttribute("x",  x);     
+    text.setAttribute("y",  y);           
+    text.textContent = title;
+    return text;
+  }
 
-        var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-        path.setAttribute("fill", fill);      
-        path.setAttribute("stroke-width", 0);  
-        path.setAttribute("d",
-          "M " + parseFloat(500 + (Math.cos(t1 * Math.PI/180) * iRadius)) 
-        + ", " + parseFloat(500 - (Math.sin(t1 * Math.PI/180) * iRadius))
-        + "L " + parseFloat(500 + (Math.cos(t1 * Math.PI/180) * oRadius)) 
-        + ", " + parseFloat(500 - (Math.sin(t1 * Math.PI/180) * oRadius))
-        + "A " + oRadius + "," + oRadius + " 0 " + arcSweep + " ,0 " 
-               + parseFloat(500 + (Math.cos(t0 * Math.PI/180) * oRadius)) 
-        +  "," + parseFloat(500 - (Math.sin(t0 * Math.PI/180) * oRadius))
-        + "L " + parseFloat(500 + (Math.cos(t0 * Math.PI/180) * iRadius)) 
-        + ", " + parseFloat(500 - (Math.sin(t0 * Math.PI/180) * iRadius))
-        + "A " + iRadius + "," + iRadius + " 1 " + arcSweep + " ,1 " 
-               + parseFloat(500 + (Math.cos(t1 * Math.PI/180) * iRadius)) 
-        +  "," + parseFloat(500 - (Math.sin(t1 * Math.PI/180) * iRadius))
-        + " Z");              
-        return path;
-      }
+  function pathPeriod (t0, t1, iRadius, oRadius, arcSweep, fill) {
+
+    var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+    path.setAttribute("fill", fill);      
+    path.setAttribute("stroke-width", 0);  
+    path.setAttribute("d",
+      "M " + parseFloat(500 + (Math.cos(t1 * Math.PI/180) * iRadius)) 
+    + ", " + parseFloat(500 - (Math.sin(t1 * Math.PI/180) * iRadius))
+    + "L " + parseFloat(500 + (Math.cos(t1 * Math.PI/180) * oRadius)) 
+    + ", " + parseFloat(500 - (Math.sin(t1 * Math.PI/180) * oRadius))
+    + "A " + oRadius + "," + oRadius + " 0 " + arcSweep + " ,0 " 
+           + parseFloat(500 + (Math.cos(t0 * Math.PI/180) * oRadius)) 
+    +  "," + parseFloat(500 - (Math.sin(t0 * Math.PI/180) * oRadius))
+    + "L " + parseFloat(500 + (Math.cos(t0 * Math.PI/180) * iRadius)) 
+    + ", " + parseFloat(500 - (Math.sin(t0 * Math.PI/180) * iRadius))
+    + "A " + iRadius + "," + iRadius + " 1 " + arcSweep + " ,1 " 
+           + parseFloat(500 + (Math.cos(t1 * Math.PI/180) * iRadius)) 
+    +  "," + parseFloat(500 - (Math.sin(t1 * Math.PI/180) * iRadius))
+    + " Z");              
+    return path;
+  }
+
+  function bCircle (radius, fill) {
+    var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
+    var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
+    circle.setAttribute("cx", 500);
+    circle.setAttribute("cy", 500);
+    circle.setAttribute("r", radius);
+    circle.setAttribute("fill", fill);
+    return circle;
+  }  
+	
+  function timeStamp(iDate) {  
+    var yyyymmddhhmm = 
+    (iDate.getFullYear()*1.0E8)+((iDate.getMonth()+1)*1.0E6)+(iDate.getDate()*1.0E4)+(iDate.getHours()*1.0E2)+iDate.getMinutes();
+    return yyyymmddhhmm.toString();
+  }
       
-      function bCircle (radius, fill) {
-        var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
-        var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
-        circle.setAttribute("cx", 500);
-        circle.setAttribute("cy", 500);
-        circle.setAttribute("r", radius);
-        circle.setAttribute("fill", fill);
-        return circle;
-      }  
-    }
-   
+  function copyTask(task) {
+    var zGeoListItem = {};
+    zGeoListItem.id = parseInt(task.getAttribute("id"), 10);      
+    zGeoListItem.duration = parseInt(task.getAttribute("duration"), 10);
+    zGeoListItem.timestamp = parseInt(task.getAttribute("timestamp"), 10);
+    zGeoListItem.lat = parseFloat(task.getAttribute("lat"));
+    zGeoListItem.lng = parseFloat(task.getAttribute("lng"));
+    zGeoListItem.address = task.getAttribute("address");
+    return zGeoListItem;
+  }
+      
 })("miketriticum@gmail.com", 55.6680607, 12.5811275);
