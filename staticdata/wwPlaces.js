@@ -112,6 +112,8 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
       text.setAttribute("x",  590);     
       text.setAttribute("y",  214);
       text.textContent = three[2];
+      g.appendChild(addText(,, "#888", 500, 492, timeStamp(zTimestamp));   
+ 
       g.appendChild(text);  
       g.setAttribute("transform", "translate(30," + (no * 330) + ")");      
 
@@ -159,7 +161,8 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
         // if more than half, then signal large arc
         var t1 = zOffset - zMinutes, t0 = zOffset; 
         // readabillity
-        g.appendChild(pathPeriod);             
+        g.appendChild(bCircle(500, "#212121"));   
+        g.appendChild(pathPeriod(t0,t1,iRadius,oRadius,arcSweep,colors6[zGeoList[kx].id]));             
         g.appendChild(bCircle(400, "#000"));   
         g.appendChild(addText("Racing Sans One", 244, colors6[zGeoList[kx].id], 500, 360, parseInt(zGeoList[ix].duration / 60000)));
         g.appendChild(addText(,80, "#888", 500, 492, timeStamp(zTimestamp));   
@@ -177,16 +180,16 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
         if (fType) text.setAttribute("font-family",  fType);
         text.setAttribute("font-size",  fSize);  
         text.setAttribute("fill", color);      
-        text.setAttribute("x",  500);     
-        text.setAttribute("y",  360);           
+        text.setAttribute("x",  x);     
+        text.setAttribute("y",  y);           
         text.textContent = title;
         return text;
       }
       
-      function pathPeriod () {
+      function pathPeriod (t0, t1, iRadius, oRadius, arcSweep, fill) {
 
         var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-        path.setAttribute("fill", colors6[zGeoList[kx].id]);      
+        path.setAttribute("fill", fill);      
         path.setAttribute("stroke-width", 0);  
         path.setAttribute("d",
           "M " + parseFloat(500 + (Math.cos(t1 * Math.PI/180) * iRadius)) 
@@ -210,7 +213,7 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
         var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
         circle.setAttribute("cx", 500);
         circle.setAttribute("cy", 500);
-        circle.setAttribute("r", 500);
+        circle.setAttribute("r", radius);
         circle.setAttribute("fill", fill);
         return circle;
       }  
