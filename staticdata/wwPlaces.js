@@ -7,12 +7,12 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
   
    function getData(who) {
      return new Promise((resolve, reject) => {
-	   const xmlhttp = new XMLHttpRequest();
-	   xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who);
-	   xmlhttp.onload = () => resolve(xmlhttp.responseXML);
-	   xmlhttp.onerror = () => reject(xmlhttp.statusText);
-	   xmlhttp.send();
-     });
+       const xmlhttp = new XMLHttpRequest();
+       xmlhttp.open("GET","wwGetTasks.php" + "?id=" + who);
+       xmlhttp.onload = () => resolve(xmlhttp.responseXML);
+       xmlhttp.onerror = () => reject(xmlhttp.statusText);
+       xmlhttp.send();
+       });
    }
   
    function organizeData(XML)  {
@@ -145,28 +145,26 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
         g.appendChild(pathPeriod(zOffset,zOffset - zMinutes,iRadius,oRadius,arcSweep,colors6[zGeoList[kx].id]));             
         g.appendChild(bCircle(400, "#000"));   
         g.appendChild(addText("Racing Sans One", 244, colors6[zGeoList[kx].id], 500, 360, parseInt(zGeoList[ix].duration / 60000)));
-        g.appendChild(addText("Roboto", 80, "#888", 500, 492, timeStamp(zTimestamp));   
+        g.appendChild(addText("Roboto", 80, "#888", 500, 492, timeStamp(zTimestamp)));   
         g.setAttribute("transform", "translate(" + ((jx % 2) * 500) + ", " + parseInt((jx * 900) + 150, 10) + ")");
         jx++;
         m.appendChild(g);
       }             
       
-      m.appendChild(addText("Racing Sans One", 80 , "#888", 80, 80, parseInt(zSum / 60000, 10));
+      m.appendChild(addText("Racing Sans One", 80 , "#888", 80, 80, parseInt(zSum / 60000, 10)));
 
       return m;   
-  }        
-                       
+  }                             
   function addText (fType, fSize = 80, color, x, y, title) {      
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text'); 
     if (fType) text.setAttribute("font-family",  fType);
-    if (fSize) text.setAttribute("font-size",  fSize);  
+    text.setAttribute("font-size",  fSize);  
     text.setAttribute("fill", color);      
     text.setAttribute("x",  x);     
     text.setAttribute("y",  y);           
     text.textContent = title;
     return text;
   }
-
   function pathPeriod (t0, t1, iRadius, oRadius, arcSweep, fill) {
 
     var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');
@@ -188,7 +186,6 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
     + " Z");              
     return path;
   }
-
   function bCircle (radius, fill) {
     var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
     var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
@@ -198,13 +195,11 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
     circle.setAttribute("fill", fill);
     return circle;
   }  
-	
-  function timeStamp(iDate) {  
+	function timeStamp(iDate) {  
     var yyyymmddhhmm = 
     (iDate.getFullYear()*1.0E8)+((iDate.getMonth()+1)*1.0E6)+(iDate.getDate()*1.0E4)+(iDate.getHours()*1.0E2)+iDate.getMinutes();
     return yyyymmddhhmm.toString();
   }
-      
   function copyTask(task) {
     var zGeoListItem = {};
     zGeoListItem.id = parseInt(task.getAttribute("id"), 10);      
@@ -214,6 +209,5 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
     zGeoListItem.lng = parseFloat(task.getAttribute("lng"));
     zGeoListItem.address = task.getAttribute("address");
     return zGeoListItem;
-  }
-      
+  }      
 })("miketriticum@gmail.com", 55.6680607, 12.5811275);
