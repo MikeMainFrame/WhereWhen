@@ -1,3 +1,7 @@
+/**
+*  ZGeolist has to be declared here, to be avaiable during session - the colors same
+*  Goal to have thois < 200 line of code. And it is so ;o) - M.Rasch/TRITICUM - 2018
+*/
 var zGeoList = [];
 const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"];
 (function main(who, lat, lng) {
@@ -68,7 +72,9 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
       rect.setAttribute("height", 300); 
       rect.setAttribute("fill", colors6[group.id]); 
       rect.setAttribute("id", group.id); 
-      rect.addEventListener("click", function (e) {document.getElementById("wwTaskSpec").appendChild(showTaskDetails(parseInt(e.target.id, 10) ) ) }, false);     
+      rect.addEventListener("click", function (e) {
+        document.getElementById("wwTaskSpec").appendChild(showTaskDetails(parseInt(e.target.id, 10) ) ) 
+      }, false);     
 
       g.appendChild(rect);
 
@@ -83,26 +89,10 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
       
       var three = group.address.split(","); 
       
-      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
-      text.setAttribute("x",  590);     
-      text.setAttribute("y",  86);
-      text.setAttribute("font-size", 62);      
-      text.setAttribute("font-weight", 600);
-      text.textContent = three[0];
-      g.appendChild(text);
+      g.appendChild(addText("Roboto", 62, "#FFF", 590, 86, three[0], 600));   
+      g.appendChild(addText("Roboto", 56, "#FFF", 590, 160, three[1], 300));   
+      g.appendChild(addText("Roboto", 56, "#FFF", 590, 214, three[2], 300));   
       
-      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
-      text.setAttribute("x",  590);     
-      text.setAttribute("y",  160);
-      text.textContent = three[1];
-      g.appendChild(text);
-      
-	    var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');     
-      text.setAttribute("x",  590);     
-      text.setAttribute("y",  214);
-      text.textContent = three[2];
-      
-      g.appendChild(text);  
       g.setAttribute("transform", "translate(30," + (no * 330) + ")");      
 
       return g;
@@ -115,50 +105,45 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
       var zOffset = 0, zSum = 0, zMinutes = 0, jx=0, ix=0, kx=0, zh=0, arcSweep = 0;
       
       var execute = document.getElementById("toDie");    
-// eliminate old tasklist
       if (execute) execute.parentNode.removeChild(execute); 
-// die if exists
 
       var m = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
       m.setAttribute("text-anchor", "middle")      
       m.setAttribute("font-weight", 600);
 	    m.setAttribute("id", "toDie");
       
-      for (ix = 0 ; ix < zGeoList.length; ix++) { 
-        
-        if (zGeoList[ix].address !== zGeoList[taskid].address) continue; 
-//                                                                                only want same address
-        if (zGeoList[ix].id < 9999) continue; 
-//                                                                                only want detail registration    
-        zSum = zSum + zGeoList[ix].duration; 
-//                                                                                all time accumulated in milli secs        
-        var zTimestamp = new Date (parseFloat(zGeoList[ix].timestamp));
-        zTimestamp.getHours() > 12 ? zh = zTimestamp.getHours() - 12 : zh = zTimestamp.getHours();
-//                                                                                twelf hour circle 24 hour span
-        zOffset = 450 - ((zh * 30) + (zTimestamp.getMinutes() / 2));
-//                                                                                720 minutes per circle - 360 degrees - offset 90 degrees
-        zMinutes = zGeoList[ix].duration / 60000 / 2; 
-//                                                                                duration is recorded in milli
-        (zMinutes > 180) ? arcSweep = 1 : arcSweep = 0; 
-//                                                                                if more than half, then signal large arc
-        g.appendChild(bCircle(500, "#212121"));   
-        g.appendChild(pathPeriod(zOffset,zOffset - zMinutes,iRadius,oRadius,arcSweep,colors6[zGeoList[kx].id]));             
-        g.appendChild(bCircle(400, "#000"));   
-        g.appendChild(addText("Racing Sans One", 244, colors6[zGeoList[kx].id], 500, 360, parseInt(zGeoList[ix].duration / 60000)));
-        g.appendChild(addText("Roboto", 80, "#888", 500, 492, timeStamp(zTimestamp)));   
-        g.setAttribute("transform", "translate(" + ((jx % 2) * 500) + ", " + parseInt((jx * 900) + 150, 10) + ")");
-        jx++;
-        m.appendChild(g);
-      }             
+      for (ix = 0 ; ix < zGeoList.length; ix++) {         
+        if (zGeoList[ix].address === zGeoList[taskid].address 
+        && zGeoList[ix].id === 9999) ) {
+          
+          zSum = zSum + zGeoList[ix].duration; 
+          var zTimestamp = new Date (parseFloat(zGeoList[ix].timestamp));
+          zTimestamp.getHours() > 12 ? zh = zTimestamp.getHours() - 12 : zh = zTimestamp.getHours();
+          zOffset = 450 - ((zh * 30) + (zTimestamp.getMinutes() / 2));
+          zMinutes = zGeoList[ix].duration / 60000 / 2; 
+          (zMinutes > 180) ? arcSweep = 1 : arcSweep = 0; 
+
+          g.appendChild(bCircle(500, "#212121"));   
+          g.appendChild(pathPeriod(zOffset,zOffset - zMinutes,iRadius,oRadius,arcSweep,colors6[taskid],500));             
+          g.appendChild(bCircle(400, "#000"));   
+          g.appendChild(addText("Racing Sans One", 244, colors6[taskid], 500, 360, parseInt(zGeoList[ix].duration / 60000), 500));
+          g.appendChild(addText("Roboto", 80, "#888", 500, 492, timeStamp(zTimestamp),500));   
+          g.setAttribute("transform", "translate(" + ((jx % 2) * 500) + ", " + parseInt((jx * 900) + 150, 10) + ")");
+          jx++;
+          m.appendChild(g);
+          
+        }             
+      }
       
       m.appendChild(addText("Racing Sans One", 80 , "#888", 80, 80, parseInt(zSum / 60000, 10)));
 
       return m;   
   }                             
-  function addText (fType, fSize = 80, color, x, y, title) {      
+  function addText (fType, fSize, color, x, y, title, fWeight) {      
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text'); 
-    if (fType) text.setAttribute("font-family",  fType);
+    text.setAttribute("font-family",  fType);
     text.setAttribute("font-size",  fSize);  
+    text.setAttribute("font-weight",  fWeight);      
     text.setAttribute("fill", color);      
     text.setAttribute("x",  x);     
     text.setAttribute("y",  y);           
