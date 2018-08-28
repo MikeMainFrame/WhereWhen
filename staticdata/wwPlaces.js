@@ -1,6 +1,6 @@
 /**
 *  ZGeolist has to be declared here, to be avaiable during session - the colors same
-*  Goal to have thois < 200 line of code. And it is so ;o) - M.Rasch/TRITICUM - 2018
+*  Goal to have this < 200 line of code. And it is so ;o) - M.Rasch/TRITICUM - 2018
 */
 var zGeoList = [];
 const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"];
