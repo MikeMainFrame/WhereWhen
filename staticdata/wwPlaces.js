@@ -17,8 +17,7 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
        xmlhttp.onerror = () => reject(xmlhttp.statusText);
        xmlhttp.send();
        });
-   }
-  
+   }  
    function organizeData(XML)  {
 	   
      var zTasks = XML.documentElement.getElementsByTagName("task");
@@ -30,8 +29,7 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
      groupTasks(); 
 	  
      document.getElementById("wwTaskSpec").appendChild(showTaskDetails(1)); 
-  } 
-   
+  }    
   function groupTasks() {
      var oLatLng =  { lat: 0, lng: 0};	
      var oIcon =  { path: google.maps.SymbolPath.CIRCLE, strokeColor: "#F60", strokeOpacity: 1,strokeWeight: 2, fillColor: "#F60", fillOpacity: 0.3, scale: 12 };
@@ -54,8 +52,7 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
        document.getElementById("wwTaskMain").appendChild(showTasks(zGeoList[jx], kx++));
      }
    }
-    
-    function showTasks(group, no) {
+   function showTasks(group, no) {
 
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
       g.setAttribute("fill", "#FFF");
@@ -96,9 +93,7 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
       g.setAttribute("transform", "translate(30," + (no * 330) + ")");      
 
       return g;
-    }
-
-	
+    }	
     function showTaskDetails(taskid) { 
       
       const oRadius = 500, iRadius = 400; 
@@ -114,7 +109,7 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
       
       for (ix = 0 ; ix < zGeoList.length; ix++) {         
         if (zGeoList[ix].address === zGeoList[taskid].address 
-        && zGeoList[ix].id === 9999) ) {
+        && zGeoList[ix].id === 9999) {
           
           zSum = zSum + zGeoList[ix].duration; 
           var zTimestamp = new Date (parseFloat(zGeoList[ix].timestamp));
@@ -172,7 +167,6 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
     return path;
   }
   function bCircle (radius, fill) {
-    var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
     var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');  // overlay
     circle.setAttribute("cx", 500);
     circle.setAttribute("cy", 500);
@@ -180,7 +174,7 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
     circle.setAttribute("fill", fill);
     return circle;
   }  
-	function timeStamp(iDate) {  
+  function timeStamp(iDate) {  
     var yyyymmddhhmm = 
     (iDate.getFullYear()*1.0E8)+((iDate.getMonth()+1)*1.0E6)+(iDate.getDate()*1.0E4)+(iDate.getHours()*1.0E2)+iDate.getMinutes();
     return yyyymmddhhmm.toString();
