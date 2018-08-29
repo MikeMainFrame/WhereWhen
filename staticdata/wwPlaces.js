@@ -17,14 +17,15 @@ var zGeoList = [];
        xmlhttp.send();
        });
    }  
-   function organizeData(XML)  {
-	   
+   function organizeData(XML)  {	   
      var zTasks = XML.documentElement.getElementsByTagName("task");
 
      for (var ix = 0; ix < zTasks.length; ix++) { 
        zGeoList.push(copyTask(zTasks[ix]));
      }	  
-
+     
+     // Then show it ...
+     
      groupTasks(); 
 	  
      document.getElementById("wwTaskSpec").appendChild(showTaskDetails(1)); 
@@ -52,7 +53,6 @@ var zGeoList = [];
      }
    }
    function showTasks(group, no) {
-
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
       g.setAttribute("fill", "#FFF");
       g.setAttribute("font-size", 56);      
