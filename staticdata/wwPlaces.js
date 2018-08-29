@@ -1,9 +1,8 @@
 /**
-*  ZGeolist has to be declared here, to be avaiable during session - the colors same
+*  ZGeolist has to be declared here, to be avaiable during session
 *  Goal to have this < 200 line of code. And it is so ;o) - M.Rasch/TRITICUM - 2018
 */
 var zGeoList = [];
-const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"];
 (function main(who, lat, lng) {
   
    getData(who).then(function(response) { organizeData(response) })
@@ -44,8 +43,8 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
      
      for (jx = 0; jx < zGeoList.length ; jx++) {
        if (zGeoList[jx].id  === 9999) continue; // skip 9999 elements
-       zMarker.icon.strokeColor = colors6[zGeoList[jx].id];
-       zMarker.icon.fillColor = colors6[zGeoList[jx].id];
+       zMarker.icon.strokeColor = zGeoList[jx].color;
+       zMarker.icon.fillColor = zGeoList[jx].color;
        zMarker.position.lat = parseFloat(zGeoList[jx].lat);
        zMarker.position.lng = parseFloat(zGeoList[jx].lng);   
        var temp = new google.maps.Marker(zMarker);
@@ -67,7 +66,7 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
       rect.setAttribute("ry", 30);
       rect.setAttribute("width", 600);
       rect.setAttribute("height", 300); 
-      rect.setAttribute("fill", colors6[group.id]); 
+      rect.setAttribute("fill", group.color); 
       rect.setAttribute("id", group.id); 
       rect.addEventListener("click", function (e) {
         document.getElementById("wwTaskSpec").appendChild(showTaskDetails(parseInt(e.target.id, 10) ) ) 
@@ -119,9 +118,9 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
           (zMinutes > 180) ? arcSweep = 1 : arcSweep = 0; 
 
           g.appendChild(bCircle(500, "#212121"));   
-          g.appendChild(pathPeriod(zOffset,zOffset - zMinutes,iRadius,oRadius,arcSweep,colors6[taskid],500));             
+          g.appendChild(pathPeriod(zOffset,zOffset - zMinutes,iRadius,oRadius,arcSweep,zGeoList[taskid].color,500));             
           g.appendChild(bCircle(400, "#000"));   
-          g.appendChild(addText("Racing Sans One", 244, colors6[taskid], 500, 360, parseInt(zGeoList[ix].duration / 60000), 500));
+          g.appendChild(addText("Racing Sans One", 244, zGeoList[taskid].color, 500, 360, parseInt(zGeoList[ix].duration / 60000), 500));
           g.appendChild(addText("Roboto", 80, "#888", 500, 492, timeStamp(zTimestamp),500));   
           g.setAttribute("transform", "translate(" + ((jx % 2) * 500) + ", " + parseInt((jx * 900) + 150, 10) + ")");
           jx++;
@@ -181,6 +180,7 @@ const colors6 = ["dummy", "#A00", "#A07", "#0A0", "#CC0", "#088", "#00A", "#F80"
   }
   function copyTask(task) {
     var zGeoListItem = {};
+    zGeoListItem.color = task.getAttribute("color");
     zGeoListItem.id = parseInt(task.getAttribute("id"), 10);      
     zGeoListItem.duration = parseInt(task.getAttribute("duration"), 10);
     zGeoListItem.timestamp = parseInt(task.getAttribute("timestamp"), 10);
