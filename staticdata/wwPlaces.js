@@ -1,6 +1,7 @@
 /**
 *  ZGeolist has to be declared here, to be avaiable during session
 *  Goal to have this < 200 line of code. And it is so ;o) - M.Rasch/TRITICUM - 2018
+*  ignition: https://geomainapp.appspot.com/wwPlaces.html 
 */
 var zGeoList = [];
 (function main(who, lat, lng) {
@@ -73,13 +74,8 @@ var zGeoList = [];
       }, false);     
 
       g.appendChild(rect);
-
-      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
-      text.setAttribute("x",  30);     
-      text.setAttribute("y",  270);                                              
-      text.setAttribute("text-anchor", "end");                                                   
-      text.setAttribute("font-weight",  900);
-      text.textContent = "#" + group.id;
+     
+      var text = addText("Roboto", 62, "#FFF", 30, 270, "#" + group.id, 900);   
       text.setAttribute("transform", "rotate(90 30 270)");
       g.appendChild(text);
       
@@ -93,18 +89,17 @@ var zGeoList = [];
 
       return g;
     }	
-    function showTaskDetails(taskid) { 
-      
+    function showTaskDetails(taskid) {       
       const oRadius = 500, iRadius = 400; 
       var zOffset = 0, zSum = 0, zMinutes = 0, jx=0, ix=0, kx=0, zh=0, arcSweep = 0;
-      
+      // if any old list - eliminate it
       var execute = document.getElementById("toDie");    
       if (execute) execute.parentNode.removeChild(execute); 
 
       var m = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
       m.setAttribute("text-anchor", "middle")      
       m.setAttribute("font-weight", 600);
-	    m.setAttribute("id", "toDie");
+      m.setAttribute("id", "toDie");
       
       for (ix = 0 ; ix < zGeoList.length; ix++) {         
         if (zGeoList[ix].address === zGeoList[taskid].address 
@@ -128,12 +123,12 @@ var zGeoList = [];
           
         }             
       }
-      
+   
       m.appendChild(addText("Racing Sans One", 80 , "#888", 80, 80, parseInt(zSum / 60000, 10)));
 
       return m;   
   }                             
-  function addText (fType, fSize, color, x, y, title, fWeight) {      
+  function addText (fType, fSize, color, x, y, title, fWeight = 500) {      
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text'); 
     text.setAttribute("font-family",  fType);
     text.setAttribute("font-size",  fSize);  
@@ -145,7 +140,6 @@ var zGeoList = [];
     return text;
   }
   function pathPeriod (t0, t1, iRadius, oRadius, arcSweep, fill) {
-
     var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');
     path.setAttribute("fill", fill);      
     path.setAttribute("stroke-width", 0);  
