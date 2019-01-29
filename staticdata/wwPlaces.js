@@ -1,7 +1,6 @@
 /**
 *  ZGeolist has to be declared here, to be avaiable during session
 *  Goal to have this < 200 line of code. And it is so ;o) - M.Rasch/TRITICUM - 2018
-*  ignition: https://geomainapp.appspot.com/wwPlaces.html 
 */
 var zGeoList = [];
 (function main(who, lat, lng) {
@@ -18,15 +17,14 @@ var zGeoList = [];
        xmlhttp.send();
        });
    }  
-   function organizeData(XML)  {	   
+   function organizeData(XML)  {
+	   
      var zTasks = XML.documentElement.getElementsByTagName("task");
 
      for (var ix = 0; ix < zTasks.length; ix++) { 
        zGeoList.push(copyTask(zTasks[ix]));
      }	  
-     
-     // Then show it ...
-     
+
      groupTasks(); 
 	  
      document.getElementById("wwTaskSpec").appendChild(showTaskDetails(1)); 
@@ -54,6 +52,7 @@ var zGeoList = [];
      }
    }
    function showTasks(group, no) {
+
       var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
       g.setAttribute("fill", "#FFF");
       g.setAttribute("font-size", 56);      
@@ -74,8 +73,13 @@ var zGeoList = [];
       }, false);     
 
       g.appendChild(rect);
-     
-      var text = addText("Roboto", 62, "#FFF", 30, 270, "#" + group.id, 900);   
+
+      var text = document.createElementNS("http://www.w3.org/2000/svg", 'text');    
+      text.setAttribute("x",  30);     
+      text.setAttribute("y",  270);                                              
+      text.setAttribute("text-anchor", "end");                                                   
+      text.setAttribute("font-weight",  900);
+      text.textContent = "#" + group.id;
       text.setAttribute("transform", "rotate(90 30 270)");
       g.appendChild(text);
       
@@ -89,46 +93,47 @@ var zGeoList = [];
 
       return g;
     }	
-    function showTaskDetails(taskid) {       
+    function showTaskDetails(taskid) { 
+      
       const oRadius = 500, iRadius = 400; 
       var zOffset = 0, zSum = 0, zMinutes = 0, jx=0, ix=0, kx=0, zh=0, arcSweep = 0;
-      // if any old list - eliminate it
+      
       var execute = document.getElementById("toDie");    
       if (execute) execute.parentNode.removeChild(execute); 
 
       var m = document.createElementNS("http://www.w3.org/2000/svg", 'g');  
       m.setAttribute("text-anchor", "middle")      
       m.setAttribute("font-weight", 600);
-      m.setAttribute("id", "toDie");
+	    m.setAttribute("id", "toDie");
       
-      for (ix = 0 ; ix < zGeoList.length; ix++) {         
-        if (zGeoList[ix].address === zGeoList[taskid].address 
-        && zGeoList[ix].id === 9999) {
-          
-          zSum = zSum + zGeoList[ix].duration; 
-          var zTimestamp = new Date (parseFloat(zGeoList[ix].timestamp));
-          zTimestamp.getHours() > 12 ? zh = zTimestamp.getHours() - 12 : zh = zTimestamp.getHours();
-          zOffset = 450 - ((zh * 30) + (zTimestamp.getMinutes() / 2));
-          zMinutes = zGeoList[ix].duration / 60000 / 2; 
-          (zMinutes > 180) ? arcSweep = 1 : arcSweep = 0; 
-
-          g.appendChild(bCircle(500, "#212121"));   
-          g.appendChild(pathPeriod(zOffset,zOffset - zMinutes,iRadius,oRadius,arcSweep,zGeoList[taskid].color,500));             
-          g.appendChild(bCircle(400, "#000"));   
-          g.appendChild(addText("Racing Sans One", 244, zGeoList[taskid].color, 500, 360, parseInt(zGeoList[ix].duration / 60000), 500));
-          g.appendChild(addText("Roboto", 80, "#888", 500, 492, timeStamp(zTimestamp),500));   
-          g.setAttribute("transform", "translate(" + ((jx % 2) * 500) + ", " + parseInt((jx * 900) + 150, 10) + ")");
-          jx++;
-          m.appendChild(g);
+         for (ix = 0 ; ix < zGeoList.length; ix++) {         
+          if (zGeoList[ix].address === zGeoList[taskid].address 
+          && zGeoList[ix].id === 9999) {
+            var g = document.createElementNS("http://www.w3.org/2000/svg", 'g');
+            
+            zSum = zSum + zGeoList[ix].duration; 
+            var zTimestamp = new Date (parseFloat(zGeoList[ix].timestamp));
+            zTimestamp.getHours() > 12 ? zh = zTimestamp.getHours() - 12 : zh = zTimestamp.getHours();
+            zOffset = 450 - ((zh * 30) + (zTimestamp.getMinutes() / 2));
+            zMinutes = zGeoList[ix].duration / 60000 / 2; 
+            (zMinutes > 180) ? arcSweep = 1 : arcSweep = 0; 
+            g.appendChild(bCircle(500, "#212121"));   
+            g.appendChild(pathPeriod(zOffset,zOffset - zMinutes,iRadius,oRadius,arcSweep,zGeoList[taskid - 1].color,500));             
+            g.appendChild(bCircle(400, "#000"));   
+            g.appendChild(addText("Racing Sans One", 244, zGeoList[taskid].color, 500, 360, parseInt(zGeoList[ix].duration / 60000), 500));
+            g.appendChild(addText("Roboto", 80, "#888", 500, 492, timeStamp(zTimestamp),500));   
+            g.setAttribute("transform", "translate(" + ((jx % 2) * 500) + ", " + parseInt((jx * 900) + 150, 10) + ")");
+            jx++;
+            m.appendChild(g);
           
         }             
       }
-   
+      
       m.appendChild(addText("Racing Sans One", 80 , "#888", 80, 80, parseInt(zSum / 60000, 10)));
 
       return m;   
   }                             
-  function addText (fType, fSize, color, x, y, title, fWeight = 500) {      
+  function addText (fType, fSize, color, x, y, title, fWeight) {      
     var text = document.createElementNS("http://www.w3.org/2000/svg", 'text'); 
     text.setAttribute("font-family",  fType);
     text.setAttribute("font-size",  fSize);  
@@ -140,6 +145,7 @@ var zGeoList = [];
     return text;
   }
   function pathPeriod (t0, t1, iRadius, oRadius, arcSweep, fill) {
+
     var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');
     path.setAttribute("fill", fill);      
     path.setAttribute("stroke-width", 0);  
